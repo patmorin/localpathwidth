@@ -1,0 +1,146 @@
+\documentclass{patmorin}
+\listfiles
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{amsthm,amsmath,graphicx}
+\usepackage{pat}
+\usepackage[letterpaper]{hyperref}
+\usepackage[table,dvipsnames]{xcolor}
+\definecolor{linkblue}{named}{Blue}
+\hypersetup{colorlinks=true, linkcolor=linkblue,  anchorcolor=linkblue,
+citecolor=linkblue, filecolor=linkblue, menucolor=linkblue,
+urlcolor=linkblue} 
+\setlength{\parskip}{1ex}
+\usepackage{wasysym}
+
+\title{\MakeUppercase{Notes on Local Pathwidth}}
+
+\author{\ } %The Layered $\star$-width Gang}%
+
+%\usepackage[mathlines]{lineno}
+%\linenumbers
+%\setlength{\linenumbersep}{2.5cm}
+%\rightlinenumbers
+%\linenumbers
+%\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+%  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+%  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+%  \renewenvironment{#1}%
+%     {\linenomath\csname old#1\endcsname}%
+%     {\csname oldend#1\endcsname\endlinenomath}}% 
+%\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+%  \patchAmsMathEnvironmentForLineno{#1}%
+%  \patchAmsMathEnvironmentForLineno{#1*}}%
+%\AtBeginDocument{%
+%\patchBothAmsMathEnvironmentsForLineno{equation}%
+%\patchBothAmsMathEnvironmentsForLineno{align}%
+%\patchBothAmsMathEnvironmentsForLineno{flalign}%
+%\patchBothAmsMathEnvironmentsForLineno{alignat}%
+%\patchBothAmsMathEnvironmentsForLineno{gather}%
+%\patchBothAmsMathEnvironmentsForLineno{multline}%
+%}
+
+
+\newcommand{\question}[1]{\textbf{\color{red}Question:}~#1}
+
+\DeclareMathOperator{\degree}{deg}
+
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\pw}{pw}
+\DeclareMathOperator{\lpw}{lpw}
+\DeclareMathOperator{\wlpw}{wlpw}
+
+\DeclareSymbolFont{sfoperators}{OT1}{cmss}{m}{n}
+\DeclareSymbolFontAlphabet{\mathsf}{sfoperators}
+
+%\makeatletter
+%\def\operator@font{\mathgroup\symsfoperators}
+%\makeatother
+
+%\pagenumbering{roman}
+\begin{document}
+%\begin{titlepage}
+\maketitle
+
+\section{Introduction}
+\pagenumbering{arabic}
+
+\begin{lem}\lemlabel{dual-diameter}
+  Let $G$ be an embedded planar graph of treewidth at most $k$ and let
+  $G'$ be the dual graph of $G$.  Then the diameter of $G'$ is $O(k)$.
+\end{lem}
+
+
+\begin{lem}\lemlabel{planar}
+  Let $G$ be an embedded planar graph whose dual graph has diameter at most
+  $k$. Then there exists constants $\beta=\beta(k)$ and $\gamma=\gamma(k)$
+  such that $G$ has a width-$\beta$ tree decomposition $(T,B)$ with
+  the property that, for each $v\in V(G)$, the pathwdith of $T[v]$
+  is at most $\gamma$.
+\end{lem}
+
+\begin{proof}
+  Without loss of generality, we may assume that $G$ is connected.
+  Let $T_{G'}$ be a breadth-first search tree of $G'$ rooted at the
+  outer face and let $X$ denote the set of edges in $G$ that are dual
+  to edges in $T_{G'}$. Note thet $T_G:=G-X$ is a spanning tree of $G$.
+
+  Now, construct a graph $H$ with maximum degree 3 by replacing each
+  vertex of degree $d\ge 3$ in $G$ with a path of length $d-3$ and let
+  $f:V(H)\to V(G)$ be the (many-to-one) mapping from each vertex $v'$
+  in $H$ to the vertex $v$ in $G$ that generated $v'$. Similarly, each
+  edge $vw$ in $G$ has exactly one corresponding edge $g(vw):=v'w'$
+  in $H$ where $v'\in f^{-1}(v)$ and $w'\in f^{-1}(w)$.  Let $T$ be the
+  spanning tree of $H$ defined as $T=H-\{g(vw):vw\in X\}$.
+
+  We will use $T$ (the spanning tree of $H$) in a tree decomposition
+  $(T,B)$ of $G$ For each $v'$ in $T$, our tree decomposition includes
+  $v=f(v')$ in the bag $B_{v'}$.  For each edge $vw$ of $T_G$,
+
+  Each edge $vw$ in $T_G$ has has a corresponding edge $v'w'=g(vw)$
+  in $T$, so we add both $v$ and $w$ to the bags $B_{v'}$ and $B_{w'}$.
+  By now, $(T,B)$ is a tree decomposition of $T_G$.  What remains is to
+  include  the edges of $X$.  For each edge $vw$ of $X$, consider
+  the pair of vertex $v'$ and $w'$ with $v'w'=g(vw)$.  To complete our
+  tree decomposition of $G$, we add one of the two vertices, say $v$,
+  to the bag $B_{x'}$ for every vertex $x'$ on the path from from $v'$
+  to $w'$ in $T$.
+
+  At this point, $(T,B)$ is a tree decomposition of $G$. What remains
+  is to show that $(T,B)$ has small width and that, for each vertex $v$
+  of $G$, $T[v]$ has small pathwidth.
+
+  First, consider $T[v]$ for some vertex $v$ of $G$. Initially, $T[v]$
+  starts out as a path $P_v$ of length $\max\{1,\degree(v)-3\}$.  Later,
+  for each edge $vw$ in $X$, $T[v]$ expands to include a path from $v'$
+  to $w'$.  Nevertheless, we claim that $T[v]$ is a tree all of whose
+  branching nodes lie on the common path $P_v$, i.e., $T[v]$ is a
+  subdivision of a caterpillar.
+\end{proof}
+
+\begin{thm}
+  Let $\mathcal{G}$ be a minor-closed family of planar graphs in which
+  each member has layered pathwidth at most $\alpha$.
+  There there exists constants $\beta=\beta(\alpha)$ and $\gamma=\gamma(\alpha)$
+  such that, every $G\in \mathcal{G}$ has a width-$\beta$ tree decomposition
+  $(T,B)$ with the property that, for each $v\in V(G)$, the pathwdith
+  of $T[v]$ is at most $\gamma$.
+\end{thm}
+
+
+\begin{proof}
+  Recall that $T_{4\alpha+1}$ has pathwidth greater than $2\alpha$,
+  which implies that $Q_{4\alpha+1}$ has layered pathwidth greater than
+  $\alpha$.  This implies that $G$ does not contain a $Q_{4\alpha+1}$
+  minor, so the treewidth of $G$ is $O(1)$.  Therefore, by
+  \lemref{dual-diameter}, the dual $G'$ of $G$ has constant diameter.
+  Now apply \lemref{planar}.
+\end{proof}
+
+\bibliographystyle{plain}
+\bibliography{localpathwidth}
+
+\end{document}
+
+
