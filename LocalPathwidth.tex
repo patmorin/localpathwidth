@@ -130,40 +130,56 @@ Let $T_h$ be the complete binary tree of height $h$. For a graph $G$, let $t(G)$
 
 Let $Q_k$ be the graph obtained from $T_k$ by adding one dominant vertex. Thus $\pw(Q_k)=\ceil{k/2}+1$. 
 
-\section{A Conjecture and Some Proofs}
 
-\begin{conjecture}
-\label{MainConj}
+The main result of this paper is the following theorem:
+
+\begin{theorem}
+\label{MainThm}
 The following are equivalent for a proper minor-closed class \GG:
 \begin{enumerate}[(1)]
-\item \GG\ has bounded local pathwidth,
 \item \GG\ excludes $Q_k$ as a minor for some fixed $k$,
+\item \GG\ has bounded local pathwidth,
+\item \GG\ has linear local pathwidth.
 \item \GG\ has bounded layered pathwidth,
 \item each graph in $G\in\GG$ has a tree decomposition $T$ of bounded width, such that $T[v]$ has bounded pathwidth for each vertex $v$ of $G$,
-\item \GG\ has linear local pathwidth.
 \end{enumerate}
-\end{conjecture}
+\end{theorem}
 
-It is immediate that (5) implies (1).
+In \cref{easy-section} we prove $(5)\implies (4)\implies(3)\implies(2)\implies(1)$. In \cref{hard-section} we close the loop by proving $(1)\implies (5)$.
 
-\begin{proof}[Proof that (2) implies (1)] 
-Let $G$ be a graph containing no $Q_k$ minor. Let $v$ be a vertex of $G$. For $i\geq 0$, let $V_i$ be the set of vertices of $G$ at distance $i$ from $v$. Fix $r\geq 0$. Let $G_r$ be the subgraph of $G$ induced by $V_0\cup V_1\cup \dots\cup V_r$. Our goal is to prove that $t(G_r)\leq f(k,r)$ for some function $f$ (independent of $G$). To do so, for $0\leq j\leq r$, let $G_{r,j}$ be the subgraph of $G$ induced by $V_{r-j},V_{r-j+1},\dots,V_r$. We proceed by induction on $j$, with the hypothesis that $t(G_{r,j})< k^{j+1}$. Since $G_r=G_{r,r}$, the desired result follows with $f(k,r):=k^{r+1}$. 
+\section{Downward Implications}
+\label{easy-section}
 
-For the base case $j=0$, if $G_{r,0}$ (which is the subgraph of $G$ induced by $V_r$) contains a $T_k$ minor, then the graph obtained from $G$ by contracting $V_0\cup V_1\cup\dots\cup V_{r-1}$ into a single vertex contains $Q_k$ (since every vertex in $V_r$ has a neighbour in $V_{r-1}$). Since $G$ contains no $Q_k$ minor, $G_{r,0}$ contains no $T_k$ minor, and $t(G_{r,0})< k$. Hence the hypothesis holds for $j=0$.
+%\begin{proof}[Proof that (2) implies (1)] 
+%Suppose that for some vertex $v$ of a graph $G$, the radius-$d$ ball $H$ centred at $v$ has pathwidth at least $2^{2dh+1} -1$. 
+%Thus,  $H-v$ has pathwidth at least $2^{2dh+1}-2$. 
+%By the theorem of \citet{BRST-JCTB91},  $H-v$ contains a $T_{2dh}$ minor. 
+%By \cref{FindTk+}, $H$ contains $T_{2h}^+$ as a minor. 
+%By \cref{FindQh}, $H-v$ contains a $Q_h$ minor. 
+%
+%This shows that for a graph with no $Q_h$ minor every radius-$d$ subgraph has pathwidth at most $2^{2dh+1}-2$
+%\end{proof}
 
-Now assume that $t(G_{r,j})< k^{j+1}$ for some $j$ with $0\leq j\leq r-1$. Suppose on the contrary that $t(G_{r,j+1})\geq k^{j+2}$. Hence $G_{r,j+1}$ contains a subdivision of $T_{kh}$ as a subgraph, where $h:=k^{j+1}$. Observe that $T_{kh}$ contains $2^k-1$ pairwise disjoint copies of $T_h$, such that contracting each copy gives $T_k$. Thus $G_{r,j+1}$ contains $2^k-1$ pairwise disjoint copies of subdivisions of $T_h$, such that contracting each copy gives a $T_k$ minor. Since $G_{r,j}$ contains no $T_h$ minor, each such subdivision of $T_h$ contains some vertex in $V_{r-j-1}$. Contracting each such subdivision of $T_h$, and contracting $V_0\cup\dots\cup V_{r-j-2}$ into a single vertex gives a $Q_k$-minor in $G$ (since each subdivision of $T_h$ has a vertex in $V_{r-j-1}$, which has a neighbour in $V_{r-j-2}$). This is a contradiction, since $G$ contains no $Q_k$ minor. Hence   $t(G_{r,j+1})< k^{j+2}$, as desired. 
-
-This proves that $t(G_r)=t(G_{r,r})<k^{r+1}$. Hence $G_r$ has pathwidth at most $2^{k^{r+1}+2}-3$, and $G$ has bounded local pathwidth. 
+\begin{proof}[Proof that (2) implies (1)] Assume that \GG\ has bounded local pathwidth. Thus, for some constant $k$, for every graph $G\in\GG$ and every vertex $v$ of $G$, we have $\pw(G[N[v]])\leq k$. Suppose on the contrary that $G:=Q_{2k}$ is in \GG. Let $v$ be the dominant vertex in $Q_{2k}$. Thus $$k+1=\pw(Q_{2k})=\pw(G[N[v]])\leq k\enspace.$$ This contradiction proves that $Q_{2k}$ is not in \GG. 
 \end{proof}
 
-\begin{proof}[Proof that (3) implies (5)] 
+It is immediate that (3) implies (2).
+
+%\begin{proof}[Proof that (2) implies (1)] 
+%Let $G$ be a graph containing no $Q_k$ minor. Let $v$ be a vertex of $G$. For $i\geq 0$, let $V_i$ be the set of vertices of $G$ at distance $i$ from $v$. Fix $r\geq 0$. Let $G_r$ be the subgraph of $G$ induced by $V_0\cup V_1\cup \dots\cup V_r$. Our goal is to prove that $t(G_r)\leq f(k,r)$ for some function $f$ (independent of $G$). To do so, for $0\leq j\leq r$, let $G_{r,j}$ be the subgraph of $G$ induced by $V_{r-j},V_{r-j+1},\dots,V_r$. We proceed by induction on $j$, with the hypothesis that $t(G_{r,j})< k^{j+1}$. Since $G_r=G_{r,r}$, the desired result follows with $f(k,r):=k^{r+1}$. 
+%
+%For the base case $j=0$, if $G_{r,0}$ (which is the subgraph of $G$ induced by $V_r$) contains a $T_k$ minor, then the graph obtained from $G$ by contracting $V_0\cup V_1\cup\dots\cup V_{r-1}$ into a single vertex contains $Q_k$ (since every vertex in $V_r$ has a neighbour in $V_{r-1}$). Since $G$ contains no $Q_k$ minor, $G_{r,0}$ contains no $T_k$ minor, and $t(G_{r,0})< k$. Hence the hypothesis holds for $j=0$.
+%
+%Now assume that $t(G_{r,j})< k^{j+1}$ for some $j$ with $0\leq j\leq r-1$. Suppose on the contrary that $t(G_{r,j+1})\geq k^{j+2}$. Hence $G_{r,j+1}$ contains a subdivision of $T_{kh}$ as a subgraph, where $h:=k^{j+1}$. Observe that $T_{kh}$ contains $2^k-1$ pairwise disjoint copies of $T_h$, such that contracting each copy gives $T_k$. Thus $G_{r,j+1}$ contains $2^k-1$ pairwise disjoint copies of subdivisions of $T_h$, such that contracting each copy gives a $T_k$ minor. Since $G_{r,j}$ contains no $T_h$ minor, each such subdivision of $T_h$ contains some vertex in $V_{r-j-1}$. Contracting each such subdivision of $T_h$, and contracting $V_0\cup\dots\cup V_{r-j-2}$ into a single vertex gives a $Q_k$-minor in $G$ (since each subdivision of $T_h$ has a vertex in $V_{r-j-1}$, which has a neighbour in $V_{r-j-2}$). This is a contradiction, since $G$ contains no $Q_k$ minor. Hence   $t(G_{r,j+1})< k^{j+2}$, as desired. 
+%
+%This proves that $t(G_r)=t(G_{r,r})<k^{r+1}$. Hence $G_r$ has pathwidth at most $2^{k^{r+1}+2}-3$, and $G$ has bounded local pathwidth. 
+%\end{proof}
+
+\begin{proof}[Proof that (4) implies (3)] 
 Let $B_1,\dots,B_s$ be a path decomposition of $G$ with layered with $\pb(G)$, with respect to layering $V_0,V_1,\dots,V_t$. Let $v$ be a vertex in $V_i$. Let $r$ be a positive integer. Let $H$ be the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$. Thus $V(H)\subseteq V_{i-r}\cup V_{i-r+1}\cup\dots\cup V_{i+r}$. Each bag $B_i$ contains at most $\pw(G)$ vertices in each layer. Hence $B_1\cap V(H),\dots,B_s\cap V(H)$ is a path decomposition of $H$ with at most $(2r+1)\pb(G)$ vertices in each bag, and  $\lpw(G,r)\leq(2r+1)\pb(G)-1$.  
 \end{proof}
 
-\begin{proof}[Proof that (1) implies (2)] Assume that \GG\ has bounded local pathwidth. Thus, for some constant $k$, for every graph $G\in\GG$ and every vertex $v$ of $G$, we have $\pw(G[N[v]])\leq k$. Suppose on the contrary that $G:=Q_{2k}$ is in \GG. Let $v$ be the dominant vertex in $Q_{2k}$. Thus $$k+1=\pw(Q_{2k})=\pw(G[N[v]])\leq k\enspace.$$ This contradiction proves that $Q_{2k}$ is not in \GG. 
-\end{proof}
-
-\begin{proof}[Proof that (4) implies (3)] Consider a graph  $G$ with a tree decomposition $T$ of width $k$, such that $\pw(T[v])\leq p$  for each vertex $v$ of $G$. Since adding edges does not decrease the layered pathwidth, we may add edges to $G$ between two non-adjacent vertices in the same bag of $T$. Now each bag is a clique, and $G$ is chordal with maximum clique size $k+1$. Let $V_0,V_1,\dots,V_t$ be a bfs layering in $G$. That is, $V_i$ is the set of vertices in $G$ at distance $i$ from some fixed vertex $x$ of $G$. In particular, $V_0=\{x\}$. 
+\begin{proof}[Proof that (5) implies (4)] Consider a graph  $G$ with a tree decomposition $T$ of width $k$, such that $\pw(T[v])\leq p$  for each vertex $v$ of $G$. Since adding edges does not decrease the layered pathwidth, we may add edges to $G$ between two non-adjacent vertices in the same bag of $T$. Now each bag is a clique, and $G$ is chordal with maximum clique size $k+1$. Let $V_0,V_1,\dots,V_t$ be a bfs layering in $G$. That is, $V_i$ is the set of vertices in $G$ at distance $i$ from some fixed vertex $x$ of $G$. In particular, $V_0=\{x\}$. 
 
 Consider a component $H$ of $G[V_i]$ for some $i\geq 1$. Let $C_H$ be the set of vertices in $V_{i-1}$ adjacent to some vertex in $H$. Then $C_H$ is a clique of size at most $k$ (see \citep{KP-DM08,DMW05}), called the \emph{parent clique} of $H$. A bag containing $w\in C_H$ is said to \emph{belong} to $w$. Define $X_H:=\cup_{w\in C_H}T[w]$. Since $C_H$ is a clique, which is contained in a single bag of $T$, the subtrees whose union is $X_H$ have a node in common. Thus $X_H$ is a (connected) subtree of $T$. Moreover, $X_H$  is the union of at most $k$ subtrees, each with pathwidth at most $p$. Thus $\pw(X_H)+1\leq k(p+1)$ by Corollary~\ref{SubtreeUnion}. 
 
@@ -178,223 +194,520 @@ We now construct a path-decomposition of $G$ with layered width at most $k(p+1)(
  with layered width at most $k(p+1)(k+1)$ with respect to layering $V_0,V_1,\dots,V_i$. In particular, we obtain a path decomposition of $G$  with layered width at most $k(p+1)(k+1)$ with respect to layering $V_0,V_1,\dots,V_t$.
  \end{proof}
 
-\textcolor{red}{It remains to prove that (1) implies (4), or (2) implies (4). }
+\section{Proof that (1) implies (5)}
+\label{hard-section}
 
-\section{New Stuff} 
+This section is devoted to proving that, if
+$G$ is a graph with no $Q_k$ minor then $G$ has a tree decomposition
+$(T,\mathcal{B})$ of width at most $w=w(k)$ and, for every $v\in V(G)$,
+the subtree $T[v]$ has pathwidth at most $p=p(k)$.  We will
+call such a tree decomposition \emph{$(w,p)$-good}.
 
-Short version: We think we have all the necessary ingredients to
-finish the paper now, thanks to a recent result of Thanh Dang, a
-student of Robin Thomas, who characterized unavoidable minors in
-3-connected graphs of large pathwidth in his PhD thesis. A corollary
-of his main result is that 3-connected graphs with no $Q_k$ minor have
-bounded pathwidth, where $Q_k$ is the complete binary tree of height $k$ plus a 
-universal vertex.
+We now give an outline of the proof.  We make use of a recent result
+of Dang, which shows that, any 3-connected $Q_k$-minor free graph
+$G$ has pathwidth at most $w=w(k)$.  Thus, $G$ has a $(w,1)$-good
+tree decomposition.  Next we deal with cut vertices by showing that,
+if each 2-connected component of a graph $G$ with no $Q_k$ minor has
+a $(w,p)$-good tree decomposition, then $G$ has a $(w,p+1)$-good tree
+decomposition.
 
-Long version, with recaps of previous stuff:
+Thus, the main difficulty is to show that every 2-connected graph $G$
+with no $Q_k$ minor has $(w,p)$-good tree decomposition.  To do this, we
+describe a tree decomposition $(T,\mathcal{B})$ of $G$.  If we assume,
+for the sake of contradiction that $\pw(T[v])\ge 2^X$ for some $v\in
+V(G)$ then, by the results of \citet{BRST-JCTB91} the graph $T[v]$
+contains a $T_X$ minor.  We then show that this $T_X$ minor in $T[v]$
+implies that $G$ has a $Q_k$ minor in which $v$ is the apex vertex.
 
-- Say G is a graph with no $Q_k$-minor (or equivalently, $G$ and all its
-minors have bounded local pathwidth)
+To construct the tree decomposition $(T,\mathcal{B})$ we use two tools:
+An SPQR-tree, $S$, represents $G$ as a collection of subgraphs (S- and
+R-nodes) that are joined at 2-vertex cutsets (P-nodes).  These subgraphs
+consist of cycles (S-nodes) and 3-connected graphs (R-nodes). Cycles have
+pathwidth 2 and, by the result of Dang discussed above, the 3-connected
+graphs have pathwidth $w=w(k)$. Replacing the S- and R-nodes of the
+SPQR-tree with these path decompositions produces our tree decomposition
+$(T,\mathcal{B})$.
 
-- The missing part in our draft was a proof that $G$ has bounded layered pathwidth
+To show that $(T,B)$ is $(w,p)$-good, we first show that if $T[v]$
+contains a subdivision of a sufficiently large binary tree then the
+SPQR-tree $S$ also contains a subdivision $S'$ of a large binary tree
+all of whose degree-3 vertices are what we call $v$-bad.  Using this
+large $v$-bad binary tree we then piece together a subdivision of $Q_k$
+in which $v$ is the apex vertex.
 
-- We know it is enough to show that $G$ has a 'good tree decomposition',
-a tree decomposition of bounded width such that, for each vertex $v$ of
-$G$, the corresponding subtree $T_v$ has bounded pathwidth
+\subsection{Dang's Result}
 
-- To show this, we may easily reduce to the 2-connected case, so
-assume $G$ is 2-connected
+Next we show how a result of Dang implies that any 3-connected graph with no $Q_k$ minor has pathwidth at most $w=w(k)$.
 
-- To handle the 2-connected case, David Eppstein\ suggested to look at the
-associated SPQR-tree and study how the triconnected components of a
-graph can be 2-summed together without ever creating a $Q_k$ minor
+Let $P'$ be a graph with two distinct vertices $u_1$ and $u_2$ such
+that $P'-\{u_1,u_2\}$ is a forest, $Q'$ be a graph with a vertex $v$
+such that $Q'\setminus\{v\}$ is an outerplanar graph, and $R'$ be a tree
+with a cycle going through its leaves in order from the leftmost leaf to
+the rightmost leaf so that $R'$ is planar. \citet[Theorem 1.1.5]{Dang18}
+proved the following
 
-- In a series of emails (April 2015), he showed the following:
+\begin{theorem}[Dang 2018]
+\label{dang-theorem}
+There exists a number $w = w(P ', Q' , R')$ such that every 3-connected graph
+of pathwidth at least $w$ has a $P'$, $Q'$ or $R'$ minor.
+\end{theorem} 
 
-** Say that an R-node is 'safe' if, in the corresponding 3-connected
-graph, either there are at most 2 virtual edges, or there are three
-virtual edges and they form a triangle, or the graph is obtained from
-a planar graph with all virtual edges are on a common face using
-3-sums with other 3-connected graphs
+\begin{corollary}\label{3-connected}
+  There exists a number $w=w(k)$ such that every 3-connected graph of pathwidth at least $w$ has a $Q_k$ minor.
+\end{corollary}
 
-** In a safe R-node, it is not possible contract edges of the
-corresponding graph so as to have three parallel virtual edges
-
-** Conversely, in an unsafe R-node, it is always possible to do so.
-(The intuition is that unsafe R-nodes allow some kind of branching of
-2-cutsets while safe R-nodes don't.)
-
-** If the SPQR-tree of G contains a subdivision of a large enough
-complete binary tree such that the degree-3 nodes are either P-nodes
-or unsafe R-nodes, then there is a $Q_k$-minor in $G$
-
-** So this does not happen, and using this we can reduce to the
-3-connected case: Assuming that we have a good tree decomposition of
-each triconnected component of G, we can join them together following
-the 2-sums encoded by the SPQT-tree and argue that the pathwidth of
-our subtrees $T_v$ does not explode, otherwise we would find the
-complete binary tree from the previous step.
-
-- To show that the triconnected components have good tree
-decompositions, it is enough to show that a 3-connected graph with no
-$Q_k$ minor must have bounded pathwidth
-
-- This is a corollary of Theorem 1.1.5 on page 3 in thesis of  \citet{Dang18}:
-
-** In that theorem, choose $P'$ to be the complete binary of height k
-plus two universal vertices. Choose $Q'$ to be the "universal"
-outerplanar graph of depth $k+1$, as defined in \cite[page 3]{HJMW}, plus one universal
-vertex. Choose $R'$ to be the complete binary of height $2^k +1$ plus a
+\begin{proof}
+Choose $P'$ to be $T_k$ plus 
+two universal vertices $u_1$ and $u_2$ adjacent ot every vertex of $T_k$. Choose $Q'$ to be the ``universal''
+outerplanar graph $\nabla_{k+1}$ of depth $k+1$ as defined, for example, in
+\citet{} plus one additional apex vertex $v$.
+Choose $R'$ to be $T_{2^k +1}$ plus a
 cycle on its leaves.
 
-** Clearly, $P'$ contains $Q_k$ as a minor
-
-** Q' also does, because $U_{k+1}$ contains a complete binary of height
-k as a subgraph
-
-** Finally, R' also contains a $Q_k$ minor: Contract the cycle, then we
+Clearly, $P'$ contains $Q_k$ as a minor since $P'\{u_2\}$ is isomorphic
+to $Q_k$.
+$Q'$ also contains $Q_k$ as a minor because $\nabla_{k+1}$ contains a complete binary tree of of height
+$k$ as a subgraph. Finally, $R'$ also contains a $Q_k$ minor: Contract the cycle, then we
 have a complete binary tree of height $2^k$ plus an apex vertex linked
-to its leaves, which contains $Q_k$ as minor (see e.g. \citep[Lemma 2.2 on page 4]{HJMW}.
+to its leaves, which contains $Q_k$ as a minor by \cref{FindQh}.
+\end{proof}
 
 
-\section{SPQR Trees --- from Wikipedia}
+\subsection{SPQR-Trees}
 
-An SPQR tree is an unrooted tree in which for each node $x$ there is associated an undirected graph or multigraph $G_x$. The node, and the graph associated with it, may have one of four types, given the initials SPQR:
+A \emph{labelled minor} $H$ of a graph $G$ is a multigraph with
+$V(H)\subseteq V(G)$ that can be obtained from $G$ using edge deletions
+and contractions in such a way that when an edge $xy$ is contracted,
+the resulting vertex is $x$.  That is, the result of contracting $xy$
+in $G$ is a graph $G'$ with $V(G')=V(G)\setminus \{y\}$ and $E(G') =
+E(G)\cup \{xz : yz\in E(G)\} \setminus \{yz: yz\in E(G)\}$.
 
-In an S node, the associated graph is a cycle graph with three or more vertices and edges. 
+Let $G$ be a 2-connected graph. The \emph{SPQR-tree} $S(G)$ for $G$
+is a tree in which each node $a\in V(S(G))$ is associated with a
+labelled minor $H_a$ of $G$.  For each node $a$ of $S(G)$ each
+edge $xy\in E(H_a)$ is classified either as a \emph{virtual edge} or
+a \emph{real edge}.  For each edge $xy\in E(G)$ there is exactly one
+node $a$ of $S(G)$ for which $xy$ is a real edge in $H_a$ and we call
+$a$ the \emph{representative node} for $xy$.  Each edge $ab$ in $S(G)$
+is labelled with a virtual edge $e(ab)$ that appears as a virtual edge
+in $H_a$ and in $H_b$.
 
-In a P node, the associated graph is a dipole graph, a multigraph with two vertices and three or more edges. 
+The SPQR-tree $S(G)$ is defined recursively as follows:\footnote{This
+definition includes P-nodes consisting of only two virtual edges, which
+some works exclude because they are unnecessary. However, their inclusion
+in our definition makes some of our analysis simpler.}
+\begin{enumerate}
+   \item If $G$ is a cycle, then $S(G)$ consists of a single node $a$
+     (an S-node) in which $H_a=G$.
+   \item If $G$ is 3-connected, then $S(G)$ consists of a single node $a$
+     (an R-node) in which $H_a=G$.  
+   \item If $G$ has an edge $xy$ such that $\{x,y\}$ is a cutset,
+     then let $C_1,\ldots,C_r$ be the connected components of $G-\{x,y\}$.
+     For each $i\in \{1,\ldots,r\}$, let $G_i=G[V(C_i)\cup\{x,y\}]$.
+     Note that each $G_i$ is 2-connected, so each has an SPQR-tree $S_i$.
+     Then the SPQR-tree for $G$ is obtained by creating a node $a$ (a
+     P-node) with $H_a$ being a \emph{dipole graph} with vertices $x$
+     and $y$ and having $k$ virtual edges joining $x$ and $y$ and one
+     real edge $xy$.  Now the edge $xy$ appears in each $S_i$ as a real
+     edge in exactly one node $a_i$ of $S_i$.
+     To complete $S(G)$ we make $a$ adjacent to each of $a_1,\ldots,a_k$ and we
+     make the edge the $xy$ a virtual edge in each of $H_{a_1},\ldots,H_{a_k}$.
 
-In a Q node, the associated graph has a single real edge. This trivial case is necessary to handle the graph that has only one edge. In some works on SPQR trees, this type of node does not appear in the SPQR trees of graphs with more than one edge; in other works, all non-virtual edges are required to be represented by Q nodes with one real and one virtual edge, and the edges in the other node types must all be virtual.
+   \item Otherwise $G$ has a cutset $\{x,y\}$ such that $xy\not\in E(G)$.
+     Then let $C_1,\ldots,C_r$ be the connected components of
+     $G-\{x,y\}$.  For each $i\in \{1,\ldots,r\}$, let $\tilde{G}_i$
+     be $G[V(C_i)\cup\{x,y\}]$ along with the additional edge $xy$.
+     Note that (because of the inclusion of $xy$) each $G_i$  is
+     2-connected, so each has an SPQR-tree $S_i$.  Then the SPQR-tree
+     for $G$ is obtained by creating a node $a$ (a P-node) with $H_a$
+     being a dipole graph with vertices $x$ and $y$ and having $k$
+     virtual edges joining $x$ and $y$.  Now the edge $xy$ appears in each
+     $S_i$ as a real edge in exactly one node $a_i$ of $S_i$.  To complete
+     $S(G)$ we make $a$ adjacent to each of $a_1,\ldots,a_k$ and we make
+     the edge the $xy$ a virtual edge in each of $H_{a_1},\ldots,H_{a_k}$.
+\end{enumerate}
 
-In an R node, the associated graph is a 3-connected graph that is not a cycle or dipole. 
+For each node $a$ in $S(G)$, we let $E_r(H_a)$ denote the set of real
+edges in $H_a$ and $E_v(H_a)$ denote the multiset of virtual edges
+in $H_a$.  For a connected subtree $S'$ of $S(G)$ we define $G[S']$ as
+the subgraph of $G$ whose vertex set is $V(G[S'])=\bigcup_{a\in V(S')}
+V(H_a)$ and whose edge set is $E(G[S'])=\bigcup_{a\in V(S')} E_r(H_a)$.
 
-Each edge $xy$ between two nodes of the SPQR tree is associated with two directed virtual edges, one of which is an edge in $G_x$ and the other of which is an edge in $G_y$. Each edge in a graph $G_x$ may be a virtual edge for at most one SPQR tree edge.
+The SQPR-tree $S$ for a 2-connected graph $G$
+has several properties:
 
-An SPQR tree T represents a 2-connected graph $G-T$, formed as follows. Whenever SPQR tree edge $xy$ associates the virtual edge $ab$ of $G_x$ with the virtual edge $cd$ of $G_y$, form a single larger graph by merging $a$ and $c$ into a single supervertex, merging $b$ and $d$ into another single supervertex, and deleting the two virtual edges. That is, the larger graph is the 2-clique-sum of $G_x$ and $G_y$. Performing this gluing step on each edge of the SPQR tree produces the graph $G_T$; the order of performing the gluing steps does not affect the result. Each vertex in one of the graphs $G_x$ may be associated in this way with a unique vertex in $G_T$, the supervertex into which it was merged.
-
-Typically, it is not allowed for two S nodes to be adjacent, nor for two P nodes to be adjacent, because if such an adjacency occurred the two nodes could be merged into a single larger node. With this assumption, the SPQR tree is uniquely determined from its graph. When a graph G is represented by an SPQR tree with no adjacent P nodes and no adjacent S nodes, then the graphs $G_x$ associated with the nodes of the SPQR tree are known as the triconnected components of $G$.
-
-\section{Comment by David Eppstein, 8 April 2015}
-
-Something still seems strange to me about your proposed structure theorem for minor-closed families of bounded local pathwidth. For the other restricted structure theorems (for families excluding a planar graph, families excluding a one-crossing graph, families excluding a tree, etc) we have a characterization that itself gives a minor-closed family (graphs of bounded treewidth, clique-sums of planar graphs and graphs of bounded treewidth, graphs of bounded pathwidth, etc). But your proposed structure, a tree-decomposition of low width in which each vertex belongs to a set of bags of low pathwidth, is not minor-closed. For instance, let T be a large binary tree and consider the graph G = K2 x T. Then G has a tree decomposition that is itself in the form of a large binary tree, with each vertex belonging to a three-bag path formed by a parent and its two children, so it fits your structure theorem. But if you collapse one of the two copies of T in G, you get a large tree-apex graph. This suggests to me that, although your conjecture that this structure might always exist should still be true, there is a more highly constrained structure that always exists and might be easier to prove.
-
-For a while I thought maybe the structure might be the following: let F be a minor-closed family of bounded local pathwidth; then I thought the graphs in F would necessarily be 1-sums of graphs of bounded pathwidth. But this is too constrained and turns out to be false. The outerplanar graphs do not have this form, but every outerplanar graph has bounded local pathwidth (did you already know this?). Here's a construction of a layered pathwidth 2 layering of an arbitrary outerplanar graph: find a one-page book embedding of the graph (in a halfspace), and label every vertex and face by its distance in the vertex-face incidence graph from the (unique) unbounded face of the embedding. Use the vertex labels as layers; every two adjacent vertices share a face, so they can have labels at most two units apart and therefore are either on the same layer or on consecutive layers. Make a path decomposition as follows: for each vertex (in left to right order), make a bag containing that vertex and the vertex closest to it on the left with each label (including its own label). I've attached a figure showing the construction.
-
-So now I'm wondering what the right kind of structure is. It should allow arbitrary 1-sums, outerplanar graphs, and bounded-pathwidth graphs, but it's also possible to do some (but not arbitrary) 2-sums or 3-sums between the bounded-pathwidth pieces and the outerplanar pieces in a controlled way that preserves the hereditary bounded local pathwidth. And unlike your proposed structure, every minor of every graph with this structure should have bounded local pathwidth.
-
-
-\section{Comment by David Eppstein 9 April 2015}
-
-So in connection with this I've been looking today at the structure of 2-connected graphs (their SPQR trees) when their minors have bounded local pathwidth. I think, for instance, that if you take a collection of planar graphs of bounded pathwidth, and then you 2-sum them together in such a way that
-- each edge is used to 2-sum only two of the graphs
-- within each of the planar graphs, the edges used for 2-sums all lie on a single face
-then the result should still have minor-closed bounded local pathwidth, regardless of the shape of the SPQR tree.
-
-On the other hand if there is a subdivision of a large complete binary tree within the SPQR tree such that each of the branching nodes of the subdivision is either
-- a P node, or
-- an R node that can be contracted to a P node (i.e. you can contract its graph down to a two-vertex bipole multigraph keeping each of the three 3-sum edges uncontracted)
-then you can use this to form a minor in the form of a Cartesian product of large tree T with K2, and then contracting one of the two copies of T gives a large apex-tree minor.
-
-These two constructions show that we can't just look at the SPQR tree, and at the pathwidth of the 3-connected components, to determine whether a graph has minors with bounded local pathwidth. We have to look inside the 3-connected components to see how they're connected to the rest of the SPQR tree.
-Because we could have two graphs with isomorphic SPQR trees that are large binary trees of R nodes, but where the R nodes of one graph are bounded-pathwidth planar graphs with its 2-sums all on the same face, and the R nodes of the other can be contracted to P nodes. Despite having the same SPQR tree, the first graph would have minors with bounded local pathwidth and the second wouldn't.
-
-Based on this I'd like to understand when a 3-connected graph plus three designated edges can be contracted down to a bipole multigraph and when it can't. The situation of a planar graph with all three edges on one face is an example when it can't, because any contraction preserves the fact that the three edges still lie on a single face. Another example is an arbitrary 3-connected graph in which the three edges form a triangle. And if G is a graph with three designated edges that cannot be contracted down in this way, then any clique-sum of G with another graph doesn't change anything. Are those the only possibilities?
-
-\section{Comment by David Eppstein 14 April 2015}
-
-Recall from my earlier message that if the SPQR tree contains a subdivision of a ternary tree T in which the branching nodes are either P nodes or R nodes that can be contracted to P nodes, then the graph can be contracted to K2 x T (actually not quite, for each edge of T one of the two copies of the edge in K2 x T could be contracted) and then by collapsing one of the copies of T we can find a large tree-apex minor. This gives a way for a graph to fail to have minor-closed bounded local pathwidth even when each of its 3-connected components is individually well-behaved, and maybe the only way for it to fail. So I'm still trying to investigate the conditions under which an R node (3-connected component) can be contracted to a P node (multigraph with two vertices and three edges, in which the three uncontracted edges are the virtual edges linking the R node to other parts of the SPQR tree).
-
-The case when the three virtual edges in the R node form a triangle is easy (it can't be contracted to a P node) and the case in which they form a claw is almost as easy (it can always be contracted). The next simplest case is when they form a three-edge path. In this case, I believe the result is that the R node can be contracted into a P node if and only if the 3-connected component is not a planar graph with the path forming part of a face, and is not a graph obtained from a planar graph (with the path on a face) by 3-sums with other graphs.
-
-The key lemma (which I imagine is likely known somewhere in Robertson and Seymour's many papers on this sort of thing): suppose G is a 4-connected graph with four designated vertices p,q,r,s. Then either (1) G is planar and pqrs are on one face, or (2) for each of the three possible pairings (p-q r-s, p-r q-s, or p-s q-r) the two pairs of vertices can be connected by vertex-disjoint paths. The proof sketch is to consider any one pairing, and add to G a 4-wheel through the four vertices, with the two pairs opposite each other around the wheel. If (1) fails, then the augmented graph G' is nonplanar, and contains a subdivision of a Kuratowski graph K5 or K33. By 4-connectivity the vertices p, q, r, and s have four disjoint paths to four vertices of the subdivision (where we choose these four vertices to avoid the wheel center if necessary). A case analysis shows that these paths can be extended through the Kuratowski graph  to connect the two desired pairs.
-
-Then if you have three virtual edges forming a path, split off any 3-separation (the reverse operation to a 3-clique-sum) and, if this separates one edge from the other two, replace it by a triangle edge from the 3-sum, until getting to a 4-connected graph that still has three designated edges forming a path pqrs. Then either the graph is planar with the path on a face, or there are disjoint paths p-r and q-s. Contracting along these paths (and contracting the rest of the graph) gives the desired P node.
-
-
-Something similar but more complicated also works when the three virtual edges form a two-edge path pqr and another separate edge st.
-1. By biconnectivity we can find a cycle through two of the edges, and a path from and to the cycle containing the third edge. If the path endpoints separate the two edges on the cycle, we can contract to a P node. Otherwise, we can reroute to get a cycle C through all three nodes.
-2. Reduce to the 4-connected case as above.
-3. By the lemma about 4-connectivity, we can either find disjoint paths p-r and q-s, or show that the graph is planar with pqrs on the same face. Similarly, we can either find paths p-r and q-t, or show that the graph is planar with pqrt on the same face. If both planar cases happen, then all five vertices are on the same face (in an order consistent with having the edges also on the face) and we are done. Otherwise, we have one of the two sets of disjoint paths, say (by symmetry) p-r and q-s.
-4. If the q-s path passes through t, shorten it and swap the vertex labels so that it doesn't.
-5. If the q-s path avoids the r-t arc of C, then we can contract p-r-t and q-s, giving a bipole.
-6. If qs has multiple non-contiguous intersections with the r-t arc of C, we can re-route C along qs, giving it only a single path ¹ where they intersect.
-7. If path p-r meets the r-t arc of C at a point x that is closer to t than ¹, then we can contract p-r, x-t, and q-s, giving a P node.
-8. If none of the preceding cases hold, let y be the first point of path q-s that lies on arc r-t. Then replace path q-s by path q-y-t where the first part of the path (up to y) follows q-s and the second part follows r-t. Because case 7 is assumed not to hold, this new path is still disjoint from path p-r, and it has fewer edges that do not belong to C. So we can go back to step 5 with the new pair of paths and use induction on the number of edges that are not in C.
-
-
-I'm hopeful that something like this will also work for the remaining case (three disjoint edges) but I haven't gotten them to work yet.
-
-
-... new email ...
-
-By the way, I think I didn't explain this clearly before, but: the reason for trying to prove this characterization that you can collapse R nodes of the SPQR tree to P nodes iff the virtual edges of the R node neither form a triangle nor all lie on a face of a planar graph (3-summed with other graphs) is that if it holds, it allows us to reduce the characterization of minor-closed bounded local pathwidth to the 3-connected case.
-
-In particular, if H is a nontrivial 3-connected component (R node of the SPQR tree) with three or more virtual edges (separation pairs linking it to other components) but these virtual edges form a triangle or lie on a planar face, then each vertex of H can only be shared with two of the neighboring components. This is also always true of the S nodes of the SPQR tree (which represent 3-connected components that are simple cycles). So (assuming this characterization works) if we have a good tree decomposition within each 3-connected component (one where each vertex occupies a low-pathwidth set of bags), we glue these tree decompositions together, and we don't have a bushy tree of P nodes or contractible-to-P R nodes, then we automatically get a good decomposition for the whole graph, because the P nodes and contractible-to-P nodes are the only ones where the set of bags for a vertex can branch to more than just a path of components.
-
-Also, unlike good tree decompositions, this characterization is minor closed: if the virtual edges are in a triangle or a planar face, the same is true for every contraction that preserves the structure of the 3-connected components (and contractions that increase the number of components or change a 2-separation to a 1-separation are also safe).
-
-
-\section{Comment by David Eppstein, 15 April 2015}
-
-Ok, I think I can handle the final case of the reduction to 3-connectivity. But it takes the use of 4-connectivity directly, not just the existence of linkages.
-
-Claim: Let G be a 4-connected graph with three non-incident edges ab, cd, and ef. Then either it is possible to contract G down to a 2-vertex multigraph without contracting any of these three edges, or G is planar and the three edges lie on a face.
-
-Proof sketch:
-- By biconnectivity we can assume ab and cd lie on a cycle. If this cycle does not also contain ef, then there is a path containing ef that starts and ends on the cycle. If the endpoints of this path are separated on the cycle by ab and cd, we can immediately contract G down to a bipole. Otherwise, we can reroute the cycle so that it passes through all three designated edges. By relabeling if necessary, we can assume that the cycle order is abcdef.
-- By Jung's theorem, either some two long diagonals of this hexagon form a linkage, or we have three quadruples of cofacial vertices in a planar graph, which is enough to force all three edges to lie on a common face. So from now on we can assume that one of these three two-diagonal linkages exists, say the one from a to d and b to e.
-- By 4-connectivity (this is the part I'm a little unsure of, but I'm pretty sure this follows from Menger's theorem) there exist four vertex-disjoint paths from (2 x a, 2 x b) to (c,d,e,f). I.e. two of the paths start at a, two start at b, and they end at the four distinct vertices c, d, e, and f. If the two paths from a go to an endpoint of cd and an endpoint of ef, then the same must be true of the two paths from b; in this case we can contract these four paths to give a bipole. So from now on we can assume that either the paths connect a-c a-d b-e b-f or a-e a-f b-c b-d.
-- If we have four paths a-c a-d b-e b-f, we also have a linkage a-f b-c coming from the cycle through abcdef. In the other case, we have a linkage a-d b-e, and we can relabel so that (as long as we no longer use the cycle abcdef) we have the case of four paths a-c a-d b-e b-f and a linkage a-f b-c.
-- Although the four paths a-c a-d b-e b-f are disjoint, and the two paths a-f b-c are disjoint, there might be intersections between the four paths and the two paths. But suppose that additionally a-f is disjoint from b-e and b-c is disjoint from a-d. In this case we can contract d-a-f and c-b-e and get a bipole.
-- In the remaining case, one of the four paths is blocked by one of the two paths; by symmetry, suppose that a-d has a nonempty intersection with b-c. Let x be the point closest to d along path a-d that belongs to one of the two linkage paths a-f and b-c. If x belongs to a-f, we can reroute path a-d via the prefix of a-f up to x, and then continue from x to d, eliminating the blockage of a-d by b-c. On the other hand, suppose that x belongs to path b-c. In this case, we can replace b-c by b-x-d, getting another two linkage paths that have fewer edges outside the other four paths.
-- In each case we can either solve the problem or reduce to a case of the same type (four paths and a linkage) with fewer edges in the linkage that are outside the four paths. The result follows by induction.
+\begin{enumerate}
+   \item Every R-node and S-node is adjacent only to P-nodes and no two
+   P-nodes are adjacent.
+   \item If $a$ is an R-node or S-node, then $H_a$ is a simple graph, i.e., $H_a$ does not contain any parallel edges.
+   \item If $a$ is a P-node, then $H_a$ contains at least two virtual edges.
+   \item If nodes $a$ and $b$ are adjacent and $v\in V(H_a)\cap V(H_b)$ then $v$ is incident on a virtual edge in $H_a$ and in $H_b$.
+   \item The degree of $a$ in $S$ is equal to the number of virtual edges in $H_a$.
+   \item For every 2-vertex cutset $\{x,y\}$ in $G$ there is at most
+     one P-node $a$ for which $V(H_a)=\{x,y\}$.
+   \item If $S'$ is a maximal connected subtree of $S$ that excludes some P-node    $a$ with poles $x$ and $y$ then $G[S']$ is connected.
+   \item If $S'$ and $S''$ are two subtrees of $S$ that are adjacent to
+     but not including a common P-node $a$ whose dipole graph has vertices
+     $x$ and $y$, then $G[S']$ and $G[S'']$ have exactly two vertices,
+     $x$ and $y$ in common and have no edges in common.
+   \item For a vertex $v\in V(G)$, the set of vertices $S[v]=\{a\in V(S): v\in V(H_a)\}$ is connected in $S$.
+\end{enumerate}
 
 
-The other missing part of the reduction is that, if we have a large subdivision complete binary tree T in the SPQR tree, at which all branching nodes are P nodes or contractable-to-P R nodes, then we can find a minor of the given graph that has the structure of a graph K2 x T in which at most one of the two copies of each edge of T has been contracted. We need to show that such a graph has a large complete-binary-tree-apex minor. The obvious thing to do is to contract the copy of T in which the most edges have been already contracted, but this does not work. Suppose for instance that in the two copies of T one copy has all the leaves contracted and the other has all the non-leaf edges contracted. Then the only way to get the tree-apex minor we seek is to contract the copy of T whose non-leaf edges have already been contracted, even though the other copy has more edges already contracted.
+\subsection{The Good Tree Decomposition}
 
-Claim: let T be a complete binary tree of height h, and suppose that the edges of T are partitioned into two subsets A and B. Form a tree $T_A$ by contracting B, and similarly form a tree $T_B$ by contracting A. Then at least one of $T_A$ and $T_B$ contains a subdivision of a complete binary tree of height $\Omega(\sqrt h)$.
+To obtain our good tree decomposition $(T,\mathcal{B})$ of a 2-connected
+graph $G$ we start with the SPQR-tree $S$ for $G$.  For each R-node or
+S-node $a$ of $S$ we obtain a path decomposition $(P_a,\mathcal{B})$
+of $H_a$.  The node $a$ is adjacent to some set of P-nodes in $S$. For
+each such P-node $b$ whose dipole has $x$ and $y$, the edge $xy\in
+H_a$ and therefore $x$ and $y$ appear in some common bag $c$ of $P_a$.
+We therefore make $c$ and $b$ adjacent in $T$. This defines the tree $T$
+in the tree decomposition. The contents of $T$'s bags are obvious. Each
+P-node $a$ of $S$ becomes a node in $T$ whose bag contains only the
+two vertices of $H_a$.  Every node $a$ in $T$ that does not correspond
+to P-node in $S$ is a vertex in some path decomposition of a a cycle
+or 3-connected graph and already has an associated bag $B_a$ that it
+inherits from this path decomposition.
 
-Proof: split T into subtrees of height sqrt(h). Say that a subtree S is "good" if there are two leaves of S such that the two paths from these leaves to their common ancestor contain at least one edge of A, and "bad" otherwise. Then if all subtrees are good, we can find a subdivision of a complete binary tree in $T_A$ by starting at the root of T and within each subtree continuing at the two leaves that define it as good. On the other hand if there exists at least one bad subtree then we can find a subdivision of a complete binary tree in $T_B$ just restricted to that one bad subtree, because in a bad subtree only the edges of a single leaf-to-root path can belong to A.
+It is straightforward to verify that $(T,\mathcal{B})$ is indeed a
+tree decomposition of $G$. For any particular vertex $v\in V(G)$ the
+connectivity of the subtree $T[v]$ follows from Property~4 of SPQR-trees.
+Each bag $B_a$ of $(T,\mathcal{B})$ either has size 2 (when $a$ is
+generated by a P-node or an S-node) or it has size $w(k)$ where $w(k)$ is
+the function in \cref{3-connected} (when $a$ is generated by an R-node).
+Thus, $(T,\mathcal{B})$ is a tree decomposition whose width depends only
+on $k$.  What remains is to show that, for every $v\in V(G)$, $T[v]$
+has pathwidth that depends only on $k$.
+
+In the remainder of this section, we fix $G$ to be a 2-connected graph,
+$S$ to be the SPQR-tree of $G$ and $(T,\mathcal{B})$ to be the tree
+decomposition described above.  For a vertex $v\in V(G)$, we say that
+a node $a$ of $S$ is \emph{$v$-bad} if $H_a$ contains 3 or more virtual
+edges incident on $v$. Note that, by Property~2 of SPQR-trees, no S-node is $v$-bad because $H_a$ has maximum-degree 2 from 
+
+\begin{lemma}
+  \label{roof-lifting}
+  If $T[v]$ has pathwidth at least $2^{2Y?}$, then $S$ contains a subdivision of $T_Y$ in which each degree-3 node is $v$-bad.
+\end{lemma}
+
+\begin{proof}
+  In a rooted binary tree we call the root and every degree 3 node
+  \emph{branching nodes}. We will use the convention that all binary trees
+  are ordered, possibly arbitrarily, so that we can distinguish between
+  left and right children of a branching node.  For a node $a$ in a rooted
+  binary tree, we denote by $T_a$, the maximal subtree rooted at $a$.
+
+  Recall from the introduction that, if $T[v]$
+  has pathwidth at least $2^{2Y}$ then it contains a subdivision $T'$
+  of $T_{2Y}$.  Label each node of $T'$ with the node of $S$ that
+  generated it.
+  Recall that each node $a$ in $S$ generates a path in $T$ so, if we
+  consider any subset of nodes of $T'$ with a common label then this
+  subset forms a path in $T'$.
+
+  We claim that $T'$ contains a subdivision $T''$ of $T_{Y}$ such that
+  all the branching nodes of $T''$ have distinct labels.  We establish
+  this claim by induction on $Y$: If $Y=0$ then the claim is trivial.
+  Otherwise, let $a$ be the root of $T'$ and notice that $a$ has two
+  branching vertices $a_1$ and $a_2$ that are in $a$'s left subtree
+  and such $T_{a_1}$ and $T_{a_2}$ are each subdivisions of $T_{2Y-2}$.
+  Similarly, $a$'s right subtree has two branching vertices $a_3$ and
+  $a_4$ and such that each of $T_{a_3}$ and $T_{a_4}$ is a subdivision
+  of $T_{2Y-2}$.  At least one of $T_{a_1}$ or $T_{a_2}$, say $T_{a_2}$,
+  does not have any labels in common with the label of $a$.  Similarly,
+  at least one of $T_{a_3}$ or $T_{a_4}$, say $T_{a_3}$, does not
+  have any labels in common with $a$.  Furthermore, since they are
+  separated by $a$, $T_{a_2}$ and $T_{a_3}$ have no labels in common.
+  Applying induction on $T_{a_2}$ and $T_{a_3}$ and connecting them by
+  the path from $a_2$ to $a$ to $a_3$ yields a subdivision of $T_{Y}$
+  in which each branching vertex has a distinct label.
+
+  Now, each branching node in $T''$ has a distinct label and therefore
+  corresponds to a unique node of $S$.  Now, if we contract all nodes of
+  $T''$ sharing a common label, then we obtain a subtree $T'''$ of $S$
+  that is a subdivision of $T_{Y}$. All that remains is to show that every
+  degree-3 node of $T'''$ is $v$-bad.  But this is straightforward. Every
+  degree-3 node $a$ of $T'''$ has three neighbours $a_1$, $a_2$, and
+  $a_3$ and each of $H_{a_1}$, $H_{a_2}$ and $H_{a_3}$ contains a $v$.
+  Therefore $H_a$ contains at least three virtual edges incident on $v$.
+\end{proof}
+
+Thus far we have established that if $T[v]$ has sufficiently high pathwidth, then $S$ contains a subdivision of $T_Y$ in which all branching nodes are $v$-bad.
+
+\begin{lemma}
+  If $S$ contains a subdivision of $T_{cY}$ in which all branching nodes are $v$-bad then $G$ contains a subdivision of $Q_{k}$.
+\end{lemma}
+
+\begin{proof}
+  First we note that if $S$ contains a subdivision of $T_{cY}$ in which
+  all branching nodes are $v$-bad, then $S$ contains a subdivision $T'$
+  of $T_{Y}$ in which all branching nodes are $v$-bad and the path
+  between any pair of branching nodes contains at least 2 $v$-bad
+  non-branching nodes.
+
+  It will be helpful to work with a simplified SPQR-tree $S'$ and
+  multigraph $G'$ obtained by repeating the following operation
+  exhaustively: Consider some edge $ab$ of $S$ with $a\in V(T')$ and
+  $b\not\in V(T')$. The edge $ab$ is associated with some virtual edge
+  $xy$ in $H_a$.  In $S'$ we replace the virtual edge $xy$ in $H_a$
+  with a real edge. At the same time we remove the maximal subtree of
+  $S$ that contains $b$ and not $a$.  In $G'$ this means we replace
+  one of the components $C$ of $G-\{x,y\}$ with the single edge $xy$,
+  possibly introducing multiple edges in $G'$.  This simplification
+  is safe in the sense that, if we find a subdivision of $Q_k$ in $G'$
+  that uses the edge $xy$ then, $G$, this edge can be replaced with a
+  path in $G[V(C)\cup\{x,y\}]$ that joins $x$ and $y$.
+
+  With this simplification, the tree $T'$ is the SPQR-tree for the
+  multigraph $G'$ and every virtual edge is incident to $v$.  Now, $Q_k$
+  is the union of a complete binary tree $T_k$ and an apex vertex $v$.
+  We begin by finding the subdivision of $T_k$ in $G$.
+
+  Let $a$ and $b$ be two branching nodes of $T'$ with no branching
+  nodes on the path $a=c_1,c_2,\ldots,c_r=b$ joining them. For
+  each $i\in\{1,\ldots,r-1\}$, the edge $c_ic_{i+1}$ is associated
+  with a cutset $\{v,x_i\}$ in $G$.   We claim that, for each
+  $i\in\{1,\ldots,r-2\}$, $H_{c_{i+1}}$ contains a path from $x_i$
+  to $x_{i+1}$ that does not contain $v$.  In this case where $c_i$
+  is a P-node, this is trivial since, in this case, $x_i=x_{i+1}$.
+  The case in which $c_i$ is an S-node or R-node is also easy: In these
+  cases $H_{c_i}$ is 2-connected, therefore there is a path from $x_1$
+  to $x_{i+1}$ that avoids $v$.  Therefore, $G'$ contains a path from
+  $x_1$ to $x_{r-1}$ that not include $v$.  Since the only virtual
+  edges of $S'$ are incident to $v$, this implies that the path from
+  $x_1$ to $x_r$ uses only real edges in $H_{c_2}$ to $H_{c_{r-1}}$.
+  Therefore, all of the paths obtained this way (one for each edge of
+  $T_{Y}$) do not share any edges or interior vertices. Furthermore,
+  none of these paths uses any real edges of any branching node.
+  
+  Thus far we have constructed paths joining each branching 
+
+The edge $ac_1$
+  is associated with a cutset $\{v,x\}$ of $G$ and the edge $c_rb$
+  is associated with a cutset $\{v, y\}$ of $G$ with $x\neq y$.
+
+\end{proof}
 
 
-So if I haven't made any mistakes in these proofs (unlikely...) the remaining step is to understand what happens when we have a 3-connected graph in a minor-closed family of bounded local pathwidth. Do these always have bounded pathwidth?
 
-\section{Comment by David Eppstein, 21 July 2015}
-
-If I remember correctly from our messages of a few months ago, we had a complete structural characterization of the minor-closed graph families of bounded layered pathwidth, in terms of their block-cut trees and SPQR trees, modulo one missing detail: a proof that in minor-closed graph families of bounded layered pathwidth, the 3-connected graphs necessarily also have bounded pathwidth. I believe I now am close to a proof of this piece, although there are still some (seemingly not difficult) unproven details.
-
-Possibly more strongly, the formulation I want to prove is that there exists a non-constant monotonic function f such that, if G is a 3-connected graph of pathwidth at least p, then G also must have layered pathwidth at least f(p).
-
-So suppose G has pathwidth p; then (by the standard characterization of minor-closed families of bounded pathwidth as having a forbidden tree minor) G necessarily contains a subdivision of a large complete binary tree B. (Here "large" means bounded below by a non-constant monotonic function of p). Additionally, if G is 3-connected, then for each vertex v of G (where v is neither the root nor a child of the root) there is a path leading from the subtree of v to a node of B whose common ancestor with v is higher than the parent of v. Here comes the biggest gap in the proof: I want to contract the parts of G outside of B so that each subtree of B has an edge to somewhere else in the tree rather than just a path. Next, we can contract small neighborhoods in B so that we get a complete 6-ary tree (whose height is still large) with the same subtree-escape-edge property. And then, for each node v of B, find the escape edge in its subtree such that the common ancestor of v with the other endpoint of the edge is as high as possible, and contract the path in the subtree from v to this edge; the result is a complete 5-ary tree T (still of large height) where each node is incident to an escape edge connecting it past its parent, and where the escape edge of each node goes at least as far as the escape edge of its children.
-
-What I want to prove (by induction) is that whenever you have a complete 9-ary tree T and a set of escape edges with this property, you can find a minor that is either a leaf-apex tree (a large complete binary tree with an additional apex vertex connected to all of its leaves, which we already know has high layered pathwidth) or the Cartesian product of a complete binary tree with a single edge (let's call this a tree of squares).
-If you have a tree of squares, then collapsing one of the two binary tree factors gives leaf-apex tree, so trees of squares also have high layered pathwidth. Thus, if we can show that either they exist, or large leaf-apex trees exist directly, we're done.
-
-If S is a subtree of T, define a TS(i) within S to be a minor of the given graph, formed only from nodes in S, that takes the form of a tree of squares of height i, with the following additional properties. First, the root node of S should be one of the nodes that is contracted to form one of the two root nodes of the tree of squares. And second, among the two root nodes of the tree of squares tree, the one that does not include the root node of S should be the endpoint of an escape edge that connects out of S.
-
-Lemma: if S is a subtree of T and S' is a subtree of S containing a TS(i) then S also contains a TS(i). Proof idea: If the escape edge from the TS(i) in S' also escapes S, we can just contract the path from the root of S' to the root of S. Otherwise, we can step upwards in the tree from S', possibly swapping the roles of the two root nodes in the TS(i).
-
-Lemma: if S is a subtree of T, v is a node within S, and the 5 children of v each contain a TS(i) whose escape edge stays within S, then S contains a TS(i+1). Proof sketch: classify the children of v into 4 types, according to the following two criteria: (1) does the escape edge of the TS(i) terminate at v itself or farther away in the tree? (2) let e be the escape edge of the TS(i) (if it terminates farther than v) or the escape edge of the child (otherwise). Do e and the escape edge of v terminate at the same place, or does the escape edge of v terminate farther away than e? (Because of the way we contracted the 6-ary tree to form T, it can't terminate closer.) Since there are 5 children and only 4 types, some two children have the same type as each other. By a somewhat messy case analysis (shown schematically in the attached illustration) having a pair of children of any of the 4 types gives a TS(i+1) in some subtree of S. And then by the previous lemma we get a TS(i+1) in S itself.
-
-Lemma: Let k be given. Then either T can be contracted to a k-level leaf-apex tree, or for each i there exists j such that every j-level subtree of T contains a TS(i). Proof: induction on i. Let j' be such that every j-level subtree of T contains a TS(i-1), and consider a subtree S of level j'+k+1. Then the nodes of S at level j'+1 each have 5 child subtrees containing a TS(i-1). Suppose that each node at level j'+1 has an escape edge that leaves S. Then the part of S between its top level and level j'+1, together with the contraction of the entire rest of the graph, forms a height-k leaf apex tree minor, and we are done. On the other hand, suppose that for at least one of these nodes at level j'+1, the escape edges for that node and for all its descendants stay within S. Then by the previous lemma we get a TS(i) inside S, and again we are done.
-
-... new email ...
-
-Oops, one small correction re "Possibly more strongly, the formulation I want to prove is that there exists a non-constant monotonic function f such that, if G is a 3-connected graph of pathwidth at least p, then G also must have layered pathwidth at least f(p)."
-What I want to show is that G must have a minor with layered pathwidth at least f(p). G itself could have smaller lpw.
-
-Reply from David Wood: 
-When you say "the subtree of v", I assume you mean "the subtree of B rooted at v", let's denote it by $B_v$. I think you also mean "each vertex v of B" not "each vertex of G", right? Anyway, say p is the parent of a vertex v in B, and say w is the sibling of v. Is the path starting at $B_v$ allowed to go through $B_w$ before arriving at a node of B whose common ancestor with v is higher than the parent of v. If this is allowed then I envisage problems when you start contracting paths in the proof that follows. On the other hand, I do not see how to prove that this path avoids $B_w$. Perhaps I am missing something important?
-
-Reply from David Eppstein: 
-Yes, I mean rooted subtrees, and "each vertex of G" was a typo for "each vertex of B".
-Paths that pass through siblings of v before getting to the rest of B do seem to be a bit of a problem here; I wasn't thinking about that possibility.
-
-Gwen (22 July 2015): 
-We had a quick skype discussion with David W. just now about this but
-we couldn't find an easy fix for this "path passing first through
-subtree of sibling" issue. A very interesting approach nonetheless, I
-hope we'll find a way around this.
+%\textcolor{red}{It remains to prove that (1) implies (4), or (2) implies (4). }
+%
+%\section{New Stuff} 
+%
+%Short version: We think we have all the necessary ingredients to
+%finish the paper now, thanks to a recent result of Thanh Dang, a
+%student of Robin Thomas, who characterized unavoidable minors in
+%3-connected graphs of large pathwidth in his PhD thesis. A corollary
+%of his main result is that 3-connected graphs with no $Q_k$ minor have
+%bounded pathwidth, where $Q_k$ is the complete binary tree of height $k$ plus a 
+%universal vertex.
+%
+%Long version, with recaps of previous stuff:
+%
+%- Say G is a graph with no $Q_k$-minor (or equivalently, $G$ and all its
+%minors have bounded local pathwidth)
+%
+%- The missing part in our draft was a proof that $G$ has bounded layered pathwidth
+%
+%- We know it is enough to show that $G$ has a 'good tree decomposition',
+%a tree decomposition of bounded width such that, for each vertex $v$ of
+%$G$, the corresponding subtree $T_v$ has bounded pathwidth
+%
+%- To show this, we may easily reduce to the 2-connected case, so
+%assume $G$ is 2-connected
+%
+%- To handle the 2-connected case, David Eppstein\ suggested to look at the
+%associated SPQR-tree and study how the triconnected components of a
+%graph can be 2-summed together without ever creating a $Q_k$ minor
+%
+%- In a series of emails (April 2015), he showed the following:
+%
+%** Say that an R-node is 'safe' if, in the corresponding 3-connected
+%graph, either there are at most 2 virtual edges, or there are three
+%virtual edges and they form a triangle, or the graph is obtained from
+%a planar graph with all virtual edges are on a common face using
+%3-sums with other 3-connected graphs
+%
+%** In a safe R-node, it is not possible contract edges of the
+%corresponding graph so as to have three parallel virtual edges
+%
+%** Conversely, in an unsafe R-node, it is always possible to do so.
+%(The intuition is that unsafe R-nodes allow some kind of branching of
+%2-cutsets while safe R-nodes don't.)
+%
+%** If the SPQR-tree of G contains a subdivision of a large enough
+%complete binary tree such that the degree-3 nodes are either P-nodes
+%or unsafe R-nodes, then there is a $Q_k$-minor in $G$
+%
+%** So this does not happen, and using this we can reduce to the
+%3-connected case: Assuming that we have a good tree decomposition of
+%each triconnected component of G, we can join them together following
+%the 2-sums encoded by the SPQT-tree and argue that the pathwidth of
+%our subtrees $T_v$ does not explode, otherwise we would find the
+%complete binary tree from the previous step.
+%
+%- To show that the triconnected components have good tree
+%decompositions, it is enough to show that a 3-connected graph with no
+%$Q_k$ minor must have bounded pathwidth
+%
+%- This is a corollary of Theorem 1.1.5 on page 3 in thesis of  \citet{Dang18}:
+%
+%** In that theorem, choose $P'$ to be the complete binary of height k
+%plus two universal vertices. Choose $Q'$ to be the "universal"
+%outerplanar graph of depth $k+1$, as defined in \cite[page 3]{HJMW}, plus one universal
+%vertex. Choose $R'$ to be the complete binary of height $2^k +1$ plus a
+%cycle on its leaves.
+%
+%** Clearly, $P'$ contains $Q_k$ as a minor
+%
+%** Q' also does, because $U_{k+1}$ contains a complete binary of height
+%k as a subgraph
+%
+%** Finally, R' also contains a $Q_k$ minor: Contract the cycle, then we
+%have a complete binary tree of height $2^k$ plus an apex vertex linked
+%to its leaves, which contains $Q_k$ as minor (see e.g. \citep[Lemma 2.2 on page 4]{HJMW}.
+%
+%
+%\section{SPQR Trees --- from Wikipedia}
+%
+%An SPQR tree is an unrooted tree in which for each node $x$ there is associated an undirected graph or multigraph $G_x$. The node, and the graph associated with it, may have one of four types, given the initials SPQR:
+%
+%In an S node, the associated graph is a cycle graph with three or more vertices and edges. 
+%
+%In a P node, the associated graph is a dipole graph, a multigraph with two vertices and three or more edges. 
+%
+%In a Q node, the associated graph has a single real edge. This trivial case is necessary to handle the graph that has only one edge. In some works on SPQR trees, this type of node does not appear in the SPQR trees of graphs with more than one edge; in other works, all non-virtual edges are required to be represented by Q nodes with one real and one virtual edge, and the edges in the other node types must all be virtual.
+%
+%In an R node, the associated graph is a 3-connected graph that is not a cycle or dipole. 
+%
+%Each edge $xy$ between two nodes of the SPQR tree is associated with two directed virtual edges, one of which is an edge in $G_x$ and the other of which is an edge in $G_y$. Each edge in a graph $G_x$ may be a virtual edge for at most one SPQR tree edge.
+%
+%An SPQR tree T represents a 2-connected graph $G-T$, formed as follows. Whenever SPQR tree edge $xy$ associates the virtual edge $ab$ of $G_x$ with the virtual edge $cd$ of $G_y$, form a single larger graph by merging $a$ and $c$ into a single supervertex, merging $b$ and $d$ into another single supervertex, and deleting the two virtual edges. That is, the larger graph is the 2-clique-sum of $G_x$ and $G_y$. Performing this gluing step on each edge of the SPQR tree produces the graph $G_T$; the order of performing the gluing steps does not affect the result. Each vertex in one of the graphs $G_x$ may be associated in this way with a unique vertex in $G_T$, the supervertex into which it was merged.
+%
+%Typically, it is not allowed for two S nodes to be adjacent, nor for two P nodes to be adjacent, because if such an adjacency occurred the two nodes could be merged into a single larger node. With this assumption, the SPQR tree is uniquely determined from its graph. When a graph G is represented by an SPQR tree with no adjacent P nodes and no adjacent S nodes, then the graphs $G_x$ associated with the nodes of the SPQR tree are known as the triconnected components of $G$.
+%
+%\section{Comment by David Eppstein, 8 April 2015}
+%
+%Something still seems strange to me about your proposed structure theorem for minor-closed families of bounded local pathwidth. For the other restricted structure theorems (for families excluding a planar graph, families excluding a one-crossing graph, families excluding a tree, etc) we have a characterization that itself gives a minor-closed family (graphs of bounded treewidth, clique-sums of planar graphs and graphs of bounded treewidth, graphs of bounded pathwidth, etc). But your proposed structure, a tree-decomposition of low width in which each vertex belongs to a set of bags of low pathwidth, is not minor-closed. For instance, let T be a large binary tree and consider the graph G = K2 x T. Then G has a tree decomposition that is itself in the form of a large binary tree, with each vertex belonging to a three-bag path formed by a parent and its two children, so it fits your structure theorem. But if you collapse one of the two copies of T in G, you get a large tree-apex graph. This suggests to me that, although your conjecture that this structure might always exist should still be true, there is a more highly constrained structure that always exists and might be easier to prove.
+%
+%For a while I thought maybe the structure might be the following: let F be a minor-closed family of bounded local pathwidth; then I thought the graphs in F would necessarily be 1-sums of graphs of bounded pathwidth. But this is too constrained and turns out to be false. The outerplanar graphs do not have this form, but every outerplanar graph has bounded local pathwidth (did you already know this?). Here's a construction of a layered pathwidth 2 layering of an arbitrary outerplanar graph: find a one-page book embedding of the graph (in a halfspace), and label every vertex and face by its distance in the vertex-face incidence graph from the (unique) unbounded face of the embedding. Use the vertex labels as layers; every two adjacent vertices share a face, so they can have labels at most two units apart and therefore are either on the same layer or on consecutive layers. Make a path decomposition as follows: for each vertex (in left to right order), make a bag containing that vertex and the vertex closest to it on the left with each label (including its own label). I've attached a figure showing the construction.
+%
+%So now I'm wondering what the right kind of structure is. It should allow arbitrary 1-sums, outerplanar graphs, and bounded-pathwidth graphs, but it's also possible to do some (but not arbitrary) 2-sums or 3-sums between the bounded-pathwidth pieces and the outerplanar pieces in a controlled way that preserves the hereditary bounded local pathwidth. And unlike your proposed structure, every minor of every graph with this structure should have bounded local pathwidth.
+%
+%
+%\section{Comment by David Eppstein 9 April 2015}
+%
+%So in connection with this I've been looking today at the structure of 2-connected graphs (their SPQR trees) when their minors have bounded local pathwidth. I think, for instance, that if you take a collection of planar graphs of bounded pathwidth, and then you 2-sum them together in such a way that
+%- each edge is used to 2-sum only two of the graphs
+%- within each of the planar graphs, the edges used for 2-sums all lie on a single face
+%then the result should still have minor-closed bounded local pathwidth, regardless of the shape of the SPQR tree.
+%
+%On the other hand if there is a subdivision of a large complete binary tree within the SPQR tree such that each of the branching nodes of the subdivision is either
+%- a P node, or
+%- an R node that can be contracted to a P node (i.e. you can contract its graph down to a two-vertex bipole multigraph keeping each of the three 3-sum edges uncontracted)
+%then you can use this to form a minor in the form of a Cartesian product of large tree T with K2, and then contracting one of the two copies of T gives a large apex-tree minor.
+%
+%These two constructions show that we can't just look at the SPQR tree, and at the pathwidth of the 3-connected components, to determine whether a graph has minors with bounded local pathwidth. We have to look inside the 3-connected components to see how they're connected to the rest of the SPQR tree.
+%Because we could have two graphs with isomorphic SPQR trees that are large binary trees of R nodes, but where the R nodes of one graph are bounded-pathwidth planar graphs with its 2-sums all on the same face, and the R nodes of the other can be contracted to P nodes. Despite having the same SPQR tree, the first graph would have minors with bounded local pathwidth and the second wouldn't.
+%
+%Based on this I'd like to understand when a 3-connected graph plus three designated edges can be contracted down to a bipole multigraph and when it can't. The situation of a planar graph with all three edges on one face is an example when it can't, because any contraction preserves the fact that the three edges still lie on a single face. Another example is an arbitrary 3-connected graph in which the three edges form a triangle. And if G is a graph with three designated edges that cannot be contracted down in this way, then any clique-sum of G with another graph doesn't change anything. Are those the only possibilities?
+%
+%\section{Comment by David Eppstein 14 April 2015}
+%
+%Recall from my earlier message that if the SPQR tree contains a subdivision of a ternary tree T in which the branching nodes are either P nodes or R nodes that can be contracted to P nodes, then the graph can be contracted to K2 x T (actually not quite, for each edge of T one of the two copies of the edge in K2 x T could be contracted) and then by collapsing one of the copies of T we can find a large tree-apex minor. This gives a way for a graph to fail to have minor-closed bounded local pathwidth even when each of its 3-connected components is individually well-behaved, and maybe the only way for it to fail. So I'm still trying to investigate the conditions under which an R node (3-connected component) can be contracted to a P node (multigraph with two vertices and three edges, in which the three uncontracted edges are the virtual edges linking the R node to other parts of the SPQR tree).
+%
+%The case when the three virtual edges in the R node form a triangle is easy (it can't be contracted to a P node) and the case in which they form a claw is almost as easy (it can always be contracted). The next simplest case is when they form a three-edge path. In this case, I believe the result is that the R node can be contracted into a P node if and only if the 3-connected component is not a planar graph with the path forming part of a face, and is not a graph obtained from a planar graph (with the path on a face) by 3-sums with other graphs.
+%
+%The key lemma (which I imagine is likely known somewhere in Robertson and Seymour's many papers on this sort of thing): suppose G is a 4-connected graph with four designated vertices p,q,r,s. Then either (1) G is planar and pqrs are on one face, or (2) for each of the three possible pairings (p-q r-s, p-r q-s, or p-s q-r) the two pairs of vertices can be connected by vertex-disjoint paths. The proof sketch is to consider any one pairing, and add to G a 4-wheel through the four vertices, with the two pairs opposite each other around the wheel. If (1) fails, then the augmented graph G' is nonplanar, and contains a subdivision of a Kuratowski graph K5 or K33. By 4-connectivity the vertices p, q, r, and s have four disjoint paths to four vertices of the subdivision (where we choose these four vertices to avoid the wheel center if necessary). A case analysis shows that these paths can be extended through the Kuratowski graph  to connect the two desired pairs.
+%
+%Then if you have three virtual edges forming a path, split off any 3-separation (the reverse operation to a 3-clique-sum) and, if this separates one edge from the other two, replace it by a triangle edge from the 3-sum, until getting to a 4-connected graph that still has three designated edges forming a path pqrs. Then either the graph is planar with the path on a face, or there are disjoint paths p-r and q-s. Contracting along these paths (and contracting the rest of the graph) gives the desired P node.
+%
+%
+%Something similar but more complicated also works when the three virtual edges form a two-edge path pqr and another separate edge st.
+%1. By biconnectivity we can find a cycle through two of the edges, and a path from and to the cycle containing the third edge. If the path endpoints separate the two edges on the cycle, we can contract to a P node. Otherwise, we can reroute to get a cycle C through all three nodes.
+%2. Reduce to the 4-connected case as above.
+%3. By the lemma about 4-connectivity, we can either find disjoint paths p-r and q-s, or show that the graph is planar with pqrs on the same face. Similarly, we can either find paths p-r and q-t, or show that the graph is planar with pqrt on the same face. If both planar cases happen, then all five vertices are on the same face (in an order consistent with having the edges also on the face) and we are done. Otherwise, we have one of the two sets of disjoint paths, say (by symmetry) p-r and q-s.
+%4. If the q-s path passes through t, shorten it and swap the vertex labels so that it doesn't.
+%5. If the q-s path avoids the r-t arc of C, then we can contract p-r-t and q-s, giving a bipole.
+%6. If qs has multiple non-contiguous intersections with the r-t arc of C, we can re-route C along qs, giving it only a single path ¹ where they intersect.
+%7. If path p-r meets the r-t arc of C at a point x that is closer to t than ¹, then we can contract p-r, x-t, and q-s, giving a P node.
+%8. If none of the preceding cases hold, let y be the first point of path q-s that lies on arc r-t. Then replace path q-s by path q-y-t where the first part of the path (up to y) follows q-s and the second part follows r-t. Because case 7 is assumed not to hold, this new path is still disjoint from path p-r, and it has fewer edges that do not belong to C. So we can go back to step 5 with the new pair of paths and use induction on the number of edges that are not in C.
+%
+%
+%I'm hopeful that something like this will also work for the remaining case (three disjoint edges) but I haven't gotten them to work yet.
+%
+%
+%... new email ...
+%
+%By the way, I think I didn't explain this clearly before, but: the reason for trying to prove this characterization that you can collapse R nodes of the SPQR tree to P nodes iff the virtual edges of the R node neither form a triangle nor all lie on a face of a planar graph (3-summed with other graphs) is that if it holds, it allows us to reduce the characterization of minor-closed bounded local pathwidth to the 3-connected case.
+%
+%In particular, if H is a nontrivial 3-connected component (R node of the SPQR tree) with three or more virtual edges (separation pairs linking it to other components) but these virtual edges form a triangle or lie on a planar face, then each vertex of H can only be shared with two of the neighboring components. This is also always true of the S nodes of the SPQR tree (which represent 3-connected components that are simple cycles). So (assuming this characterization works) if we have a good tree decomposition within each 3-connected component (one where each vertex occupies a low-pathwidth set of bags), we glue these tree decompositions together, and we don't have a bushy tree of P nodes or contractible-to-P R nodes, then we automatically get a good decomposition for the whole graph, because the P nodes and contractible-to-P nodes are the only ones where the set of bags for a vertex can branch to more than just a path of components.
+%
+%Also, unlike good tree decompositions, this characterization is minor closed: if the virtual edges are in a triangle or a planar face, the same is true for every contraction that preserves the structure of the 3-connected components (and contractions that increase the number of components or change a 2-separation to a 1-separation are also safe).
+%
+%
+%\section{Comment by David Eppstein, 15 April 2015}
+%
+%Ok, I think I can handle the final case of the reduction to 3-connectivity. But it takes the use of 4-connectivity directly, not just the existence of linkages.
+%
+%Claim: Let G be a 4-connected graph with three non-incident edges ab, cd, and ef. Then either it is possible to contract G down to a 2-vertex multigraph without contracting any of these three edges, or G is planar and the three edges lie on a face.
+%
+%Proof sketch:
+%- By biconnectivity we can assume ab and cd lie on a cycle. If this cycle does not also contain ef, then there is a path containing ef that starts and ends on the cycle. If the endpoints of this path are separated on the cycle by ab and cd, we can immediately contract G down to a bipole. Otherwise, we can reroute the cycle so that it passes through all three designated edges. By relabeling if necessary, we can assume that the cycle order is abcdef.
+%- By Jung's theorem, either some two long diagonals of this hexagon form a linkage, or we have three quadruples of cofacial vertices in a planar graph, which is enough to force all three edges to lie on a common face. So from now on we can assume that one of these three two-diagonal linkages exists, say the one from a to d and b to e.
+%- By 4-connectivity (this is the part I'm a little unsure of, but I'm pretty sure this follows from Menger's theorem) there exist four vertex-disjoint paths from (2 x a, 2 x b) to (c,d,e,f). I.e. two of the paths start at a, two start at b, and they end at the four distinct vertices c, d, e, and f. If the two paths from a go to an endpoint of cd and an endpoint of ef, then the same must be true of the two paths from b; in this case we can contract these four paths to give a bipole. So from now on we can assume that either the paths connect a-c a-d b-e b-f or a-e a-f b-c b-d.
+%- If we have four paths a-c a-d b-e b-f, we also have a linkage a-f b-c coming from the cycle through abcdef. In the other case, we have a linkage a-d b-e, and we can relabel so that (as long as we no longer use the cycle abcdef) we have the case of four paths a-c a-d b-e b-f and a linkage a-f b-c.
+%- Although the four paths a-c a-d b-e b-f are disjoint, and the two paths a-f b-c are disjoint, there might be intersections between the four paths and the two paths. But suppose that additionally a-f is disjoint from b-e and b-c is disjoint from a-d. In this case we can contract d-a-f and c-b-e and get a bipole.
+%- In the remaining case, one of the four paths is blocked by one of the two paths; by symmetry, suppose that a-d has a nonempty intersection with b-c. Let x be the point closest to d along path a-d that belongs to one of the two linkage paths a-f and b-c. If x belongs to a-f, we can reroute path a-d via the prefix of a-f up to x, and then continue from x to d, eliminating the blockage of a-d by b-c. On the other hand, suppose that x belongs to path b-c. In this case, we can replace b-c by b-x-d, getting another two linkage paths that have fewer edges outside the other four paths.
+%- In each case we can either solve the problem or reduce to a case of the same type (four paths and a linkage) with fewer edges in the linkage that are outside the four paths. The result follows by induction.
+%
+%
+%The other missing part of the reduction is that, if we have a large subdivision complete binary tree T in the SPQR tree, at which all branching nodes are P nodes or contractable-to-P R nodes, then we can find a minor of the given graph that has the structure of a graph K2 x T in which at most one of the two copies of each edge of T has been contracted. We need to show that such a graph has a large complete-binary-tree-apex minor. The obvious thing to do is to contract the copy of T in which the most edges have been already contracted, but this does not work. Suppose for instance that in the two copies of T one copy has all the leaves contracted and the other has all the non-leaf edges contracted. Then the only way to get the tree-apex minor we seek is to contract the copy of T whose non-leaf edges have already been contracted, even though the other copy has more edges already contracted.
+%
+%Claim: let T be a complete binary tree of height h, and suppose that the edges of T are partitioned into two subsets A and B. Form a tree $T_A$ by contracting B, and similarly form a tree $T_B$ by contracting A. Then at least one of $T_A$ and $T_B$ contains a subdivision of a complete binary tree of height $\Omega(\sqrt h)$.
+%
+%Proof: split T into subtrees of height sqrt(h). Say that a subtree S is "good" if there are two leaves of S such that the two paths from these leaves to their common ancestor contain at least one edge of A, and "bad" otherwise. Then if all subtrees are good, we can find a subdivision of a complete binary tree in $T_A$ by starting at the root of T and within each subtree continuing at the two leaves that define it as good. On the other hand if there exists at least one bad subtree then we can find a subdivision of a complete binary tree in $T_B$ just restricted to that one bad subtree, because in a bad subtree only the edges of a single leaf-to-root path can belong to A.
+%
+%
+%So if I haven't made any mistakes in these proofs (unlikely...) the remaining step is to understand what happens when we have a 3-connected graph in a minor-closed family of bounded local pathwidth. Do these always have bounded pathwidth?
+%
+%\section{Comment by David Eppstein, 21 July 2015}
+%
+%If I remember correctly from our messages of a few months ago, we had a complete structural characterization of the minor-closed graph families of bounded layered pathwidth, in terms of their block-cut trees and SPQR trees, modulo one missing detail: a proof that in minor-closed graph families of bounded layered pathwidth, the 3-connected graphs necessarily also have bounded pathwidth. I believe I now am close to a proof of this piece, although there are still some (seemingly not difficult) unproven details.
+%
+%Possibly more strongly, the formulation I want to prove is that there exists a non-constant monotonic function f such that, if G is a 3-connected graph of pathwidth at least p, then G also must have layered pathwidth at least f(p).
+%
+%So suppose G has pathwidth p; then (by the standard characterization of minor-closed families of bounded pathwidth as having a forbidden tree minor) G necessarily contains a subdivision of a large complete binary tree B. (Here "large" means bounded below by a non-constant monotonic function of p). Additionally, if G is 3-connected, then for each vertex v of G (where v is neither the root nor a child of the root) there is a path leading from the subtree of v to a node of B whose common ancestor with v is higher than the parent of v. Here comes the biggest gap in the proof: I want to contract the parts of G outside of B so that each subtree of B has an edge to somewhere else in the tree rather than just a path. Next, we can contract small neighborhoods in B so that we get a complete 6-ary tree (whose height is still large) with the same subtree-escape-edge property. And then, for each node v of B, find the escape edge in its subtree such that the common ancestor of v with the other endpoint of the edge is as high as possible, and contract the path in the subtree from v to this edge; the result is a complete 5-ary tree T (still of large height) where each node is incident to an escape edge connecting it past its parent, and where the escape edge of each node goes at least as far as the escape edge of its children.
+%
+%What I want to prove (by induction) is that whenever you have a complete 9-ary tree T and a set of escape edges with this property, you can find a minor that is either a leaf-apex tree (a large complete binary tree with an additional apex vertex connected to all of its leaves, which we already know has high layered pathwidth) or the Cartesian product of a complete binary tree with a single edge (let's call this a tree of squares).
+%If you have a tree of squares, then collapsing one of the two binary tree factors gives leaf-apex tree, so trees of squares also have high layered pathwidth. Thus, if we can show that either they exist, or large leaf-apex trees exist directly, we're done.
+%
+%If S is a subtree of T, define a TS(i) within S to be a minor of the given graph, formed only from nodes in S, that takes the form of a tree of squares of height i, with the following additional properties. First, the root node of S should be one of the nodes that is contracted to form one of the two root nodes of the tree of squares. And second, among the two root nodes of the tree of squares tree, the one that does not include the root node of S should be the endpoint of an escape edge that connects out of S.
+%
+%Lemma: if S is a subtree of T and S' is a subtree of S containing a TS(i) then S also contains a TS(i). Proof idea: If the escape edge from the TS(i) in S' also escapes S, we can just contract the path from the root of S' to the root of S. Otherwise, we can step upwards in the tree from S', possibly swapping the roles of the two root nodes in the TS(i).
+%
+%Lemma: if S is a subtree of T, v is a node within S, and the 5 children of v each contain a TS(i) whose escape edge stays within S, then S contains a TS(i+1). Proof sketch: classify the children of v into 4 types, according to the following two criteria: (1) does the escape edge of the TS(i) terminate at v itself or farther away in the tree? (2) let e be the escape edge of the TS(i) (if it terminates farther than v) or the escape edge of the child (otherwise). Do e and the escape edge of v terminate at the same place, or does the escape edge of v terminate farther away than e? (Because of the way we contracted the 6-ary tree to form T, it can't terminate closer.) Since there are 5 children and only 4 types, some two children have the same type as each other. By a somewhat messy case analysis (shown schematically in the attached illustration) having a pair of children of any of the 4 types gives a TS(i+1) in some subtree of S. And then by the previous lemma we get a TS(i+1) in S itself.
+%
+%Lemma: Let k be given. Then either T can be contracted to a k-level leaf-apex tree, or for each i there exists j such that every j-level subtree of T contains a TS(i). Proof: induction on i. Let j' be such that every j-level subtree of T contains a TS(i-1), and consider a subtree S of level j'+k+1. Then the nodes of S at level j'+1 each have 5 child subtrees containing a TS(i-1). Suppose that each node at level j'+1 has an escape edge that leaves S. Then the part of S between its top level and level j'+1, together with the contraction of the entire rest of the graph, forms a height-k leaf apex tree minor, and we are done. On the other hand, suppose that for at least one of these nodes at level j'+1, the escape edges for that node and for all its descendants stay within S. Then by the previous lemma we get a TS(i) inside S, and again we are done.
+%
+%... new email ...
+%
+%Oops, one small correction re "Possibly more strongly, the formulation I want to prove is that there exists a non-constant monotonic function f such that, if G is a 3-connected graph of pathwidth at least p, then G also must have layered pathwidth at least f(p)."
+%What I want to show is that G must have a minor with layered pathwidth at least f(p). G itself could have smaller lpw.
+%
+%Reply from David Wood: 
+%When you say "the subtree of v", I assume you mean "the subtree of B rooted at v", let's denote it by $B_v$. I think you also mean "each vertex v of B" not "each vertex of G", right? Anyway, say p is the parent of a vertex v in B, and say w is the sibling of v. Is the path starting at $B_v$ allowed to go through $B_w$ before arriving at a node of B whose common ancestor with v is higher than the parent of v. If this is allowed then I envisage problems when you start contracting paths in the proof that follows. On the other hand, I do not see how to prove that this path avoids $B_w$. Perhaps I am missing something important?
+%
+%Reply from David Eppstein: 
+%Yes, I mean rooted subtrees, and "each vertex of G" was a typo for "each vertex of B".
+%Paths that pass through siblings of v before getting to the rest of B do seem to be a bit of a problem here; I wasn't thinking about that possibility.
+%
+%Gwen (22 July 2015): 
+%We had a quick skype discussion with David W. just now about this but
+%we couldn't find an easy fix for this "path passing first through
+%subtree of sibling" issue. A very interesting approach nonetheless, I
+%hope we'll find a way around this.
 
 \section{A Useful Lemma}
 
@@ -610,16 +923,6 @@ It is possible that graphs of bounded layered treewidth have bounded track- and 
 %contains a $T_{2dh}$ minor.
 
 
-\begin{proof}[Proof that (2) implies (1) in \cref{MainConj}] 
-Suppose that for some vertex $v$ of a graph $G$, the radius-$d$ ball $H$ centred at $v$ has pathwidth at least $2^{2dh+1} -1$. 
-Thus,  $H-v$ has pathwidth at least $2^{2dh+1}-2$. 
-By the theorem of \citet{BRST-JCTB91},  $H-v$ contains a $T_{2dh}$ minor. 
-By \cref{FindTk+}, $H$ contains $T_{2h}^+$ as a minor. 
-By \cref{FindQh}, $H-v$ contains a $Q_h$ minor. 
-
-This shows that for a graph with no $Q_h$ minor every radius-$d$ subgraph has pathwidth at most $2^{2dh+1}-2$
-\end{proof}
-
 \section{Results of \citet{BDDEW}}
 
 Results of \citet{BDDEW}
@@ -628,6 +931,7 @@ Results of \citet{BDDEW}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{myNatbibStyle}
-\bibliography{myBibliography,myConferences}
+%\bibliography{myBibliography,myConferences}
+\bibliography{LocalPathwidth}
 
 \end{document}

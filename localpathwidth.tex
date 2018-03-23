@@ -66,17 +66,20 @@ urlcolor=linkblue}
 \section{The Proof}
 \pagenumbering{arabic}
 
-This draft proves that $(2)\rightarrow (4)$ for families of planar graphs.  
-There might be a shorter proof of this, but I'm hoping this one has some 
-hope of generalizing.
+%This draft proves that $(2)\rightarrow (4)$ for families of planar graphs.  
+%There might be a shorter proof of this, but I'm hoping this one has some 
+%hope of generalizing.
 
+This proof is wrong because the first lemma is wrong.  A sequence of $n$
+nested squares whose corners are joined has constant pathwidth (5 or 6)
+but its dual has diameter $n$.
 
-\begin{lem}\lemlabel{dual-diameter}
+\begin{lem}[False]\lemlabel{dual-diameter}
    Let $G$ be an embedded planar graph of treewidth at most $k$ and let
    $G'$ be the dual graph of $G$.  Then the diameter of $G'$ is $O(k)$.
 \end{lem}
 
-\begin{proof}[Proof Sketch]
+\begin{proof}[Wrong Proof Sketch]
    Since $G$ has no $k\times k$ grid minor, every face is within distance
    $O(k)$ of the outer face.
 \end{proof}
