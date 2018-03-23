@@ -1,0 +1,90 @@
+\documentclass{patmorin}
+
+
+\begin{document}
+
+\section{The Proof $(2)\Rightarrow(4)$}
+
+\subsection{Sketch of the Proof}
+
+We say that a tree decomposition of a graph $G$ is $(w,p)$-good if it
+has width at most $w$ and, for each $v\in V(G)$, $T[v]$ has pathwidth
+at most $p$.  The aim of this section is to show that if a graph $G$ has
+no $Q_k$ minor then $G$ has an $(w,p)$-good tree decomposition where $w$
+and $p$ depend only on $k$. Here we give an outline of our proof.
+
+A recent result of Deng shows that if $G$ is 3-connected, then $G$ has
+pathwidth at most $w$ for some $w$ that depends only on $k$.  Thus, $G$
+has a $(w,1)$-good tree decomposition.
+
+Next we deal with cut vertices by showing that, if each 2-connected
+component of $G$ has a $(w,p)$-good tree decomposition, then $G$ has a
+$(w,p+1)$-good tree decomposition.
+
+Thus, the main difficulty is to show that every 2-connected graph $G$
+with no $Q_k$ minor has $(w,p)$-good tree decomposition.  To do this,
+we describe a tree decomposition $(T,B)$ of $G$. If, for some $v\in
+V(G)$, $T[v]$ has sufficiently large pathwidth then, by XXX, $T[v]$
+contains a $T_{k'}$ minor.  We then show that this implies that $G$
+contains a subdivision of $Q_k$ in which $v$ is the apex vertex.
+
+To construct the tree decomposition $(T,B)$ we use two tools: An
+SPQR-tree, $S$, represents $G$ as a collection of subgraphs that are
+joined at 2-vertex cutsets.  These subgraphs consist of cycles and
+3-connected graphs. Cycles have pathwidth 2 and, by the result of Deng
+discussed above, the 3-connected graphs have pathwidth $w$. Gluing these path decompositions into the SPQR-tree produces our tree decomposition $(T,B)$.
+
+To show that $(T,B)$ is $(w,p)$-good, we first show that if $T[v]$
+contains a subdivision of a sufficiently large binary tree then the
+SPQR-tree $S$ also contains a subdivision $S'$ of a large binary tree
+all of whose degree-3 vertices are what we call $v$-bad.  Using this
+large binary tree we piece together a subdivision of $Q_k$ in which $v$
+is the apex vertex.
+
+
+
+\section{SPQR-Trees}
+
+Let $G$ be a 2-connected graph. The SPQR-tree $S(G)$ for $G$ is a tree
+in which each node $v\in V(S(G))$ is associated with a minor labelled
+minor $H_v$ of $G$.  In particular, $V(H_v)\subseteq V(G)$ and $H_v$ can
+be obtained from $G$ by repeatedly replacing all the edges and vertices of some connected subgraph $A$ of $G$ with a single edge edge that connects two vertices of $A$.
+
+
+
+can be obtained from $G$
+by a series of edge contractions.
+
+Each edge $xy\in E(H_v)$ is classified either as a \emph{virtual
+edge} or a \emph{real edge}.  For each edge $xy\in E(G)$ there is exactly
+one vertex $v\in S(G)$ for which $xy$ is a real edge in $H_v$ and we
+call $v$ the representative node for $xy$.  Each virtual edge $xy\in
+E(H_v)$ represents a path from $x$ to $y$ whose interior is disjoint
+from $V(H_v)$.  Each edge $vw\in E(S(G))$ is labelled with a virtual edge
+$xy$ that appears both in $H_v$ and $H_w$.
+
+The SPQR-tree $S(G)$ is defined as follows:  If $G$ is a cycle, then
+$S(G)$ consists of one node $v$ (an S-node) in which $H_v=G$.  If $G$
+is 3-connected, then $S(G)$ consist sof a single node $v$ (an R-node) in
+which $H_v=G$.  Otherwise, consider any 2-vertex cutset $\{x,y\}$ of $G$
+and let $C_1,\ldots,C_k$ be the connected components of $G-\{x,y\}$.
+Let $G_i=G[V(C_i)\cup\{x,y\}]$ and let $\tilde{G}_i$ be the graph
+$G_i$ with the edge $xy$ added, if not already present. Note that each
+$\tilde{G}_i$ is 2-connected, so each has an SPQR-tree $S_i$.  Then the
+SPQR-tree for $G$ is obtained by creating a node $v$ (a P-node) with
+$H_v$ being a \emph{dipole graph} with vertices $x$ and $y$ and having
+$k$ virtual edges joining $x$ and $y$.  Additionally, if $xy\in E(G)$
+then $H_v$ also contains an additional real edge $xy$.  Now the edge $xy$
+appears in each $S_i$ as a real edge in exactly one node $v_i$ of $S_i$.
+To complete $S(G)$ we make $v$ adjacent to each of $v_1,\ldots,v_k$
+and we make the edge the $xy$ a virtual edge in each of $v_1,\ldots,v_k$.
+
+The SQPR-tree $S(G)$ for $G$ has several properties:
+
+\begin{enumerate}
+   \item Colouring the R-nodes and S-nodes red and the P-nodes blue gives a proper 2-colouring of $G$.
+\end{enumerate}
+
+For a vertex $v\in V(G)$, we say that a ndoe
+
+\end{document}

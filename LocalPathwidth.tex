@@ -1,0 +1,633 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{iwona,amsmath,amsthm,amsfonts,amssymb,enumerate,graphicx,float,color,wrapfig,calc}
+\usepackage[colorlinks=true,citecolor=black,linkcolor=black,urlcolor=blue]{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[lmargin=25mm,rmargin=25mm,tmargin=25mm,bmargin=25mm]{geometry}
+\usepackage[capitalize]{cleveref}
+
+%\usepackage[margin=35mm]{geometry}
+%\linespread{1.4}
+%\renewcommand{\baselinestretch}{1.1}
+%\setlength{\footnotesep}{\baselinestretch\footnotesep}
+%\renewcommand{\thefootnote}{\fnsymbol{footnote}}	
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1.5ex}
+\allowdisplaybreaks
+
+\newcommand{\half}{\ensuremath{\protect\tfrac{1}{2}}}
+\newcommand{\ceil}[1]{\ensuremath{\protect\lceil#1\rceil}}
+\newcommand{\CEIL}[1]{\ensuremath{\protect\left\lceil#1\right\rceil}}
+\newcommand{\FLOOR}[1]{\ensuremath{\protect\left\lfloor#1\right\rfloor}}
+\newcommand{\floor}[1]{\ensuremath{\protect\lfloor#1\rfloor}}
+\newcommand{\Oh}[1]{\ensuremath{\protect\mathcal{O}(#1)}}
+\newcommand{\etal}{\emph{et al.}}
+\newcommand{\Ze}{\ensuremath{\protect{\mathbb{Z}}}}
+\newcommand{\GG}{\ensuremath{\protect{\mathcal{G}}}}
+
+\DeclareMathOperator{\tn}{tn}
+\DeclareMathOperator{\qn}{qn}
+\DeclareMathOperator{\tw}{tw}
+\DeclareMathOperator{\pw}{pw}
+\DeclareMathOperator{\pb}{layered-pw}
+\DeclareMathOperator{\tb}{layered-tw}
+\DeclareMathOperator{\lpw}{local-pw}
+\DeclareMathOperator{\ltw}{local-tw}
+\DeclareMathOperator{\dist}{dist}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}	
+\allowdisplaybreaks
+
+\newcommand{\arXiv}[1]{arXiv:\,\href{http://arxiv.org/abs/#1}{#1}}
+\newcommand{\msn}[1]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR#1}{#1}}
+\newcommand{\MSN}[2]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR#1}{#1}}
+\newcommand{\Zbl}[1]{Zbl:\,\href{http://www.zentralblatt-math.org/zmath/en/search/?q=an:#1}{#1}}
+\newcommand{\doi}[1]{doi:\,\href{http://dx.doi.org/#1}{#1}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\seclabel}[1]{\label{sec:#1}}
+\newcommand{\Secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\secref}[1]{\mbox{Section~\ref{sec:#1}}}
+\newcommand{\lemlabel}[1]{\label{lem:#1}}
+\newcommand{\lemref}[1]{Lemma~\ref{lem:#1}}
+\newcommand{\twolemref}[2]{Lemmas~\ref{lem:#1} and~\ref{lem:#2}}
+\newcommand{\thmlabel}[1]{\label{thm:#1}}
+\newcommand{\thmref}[1]{Theorem~\ref{thm:#1}}
+\newcommand{\twothmref}[2]{Theorems~\ref{thm:#1} and~\ref{thm:#2}}
+\newcommand{\corlabel}[1]{\label{cor:#1}}
+\newcommand{\corref}[1]{Corollary~\ref{cor:#1}}
+\newcommand{\figlabel}[1]{\label{fig:#1}}
+\newcommand{\Figref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\figref}[1]{\mbox{Figure~\ref{fig:#1}}}
+\newcommand{\proplabel}[1]{\label{prop:#1}}
+\newcommand{\propref}[1]{Proposition~\ref{prop:#1}}
+
+\newcommand{\comment}[1]{\bigskip\framebox{\parbox{150mm}{\textcolor{red}{#1}}}\bigskip}
+
+%Mathematics Subject Classifications: 05C15; 05C10
+
+\begin{document}
+
+\author{
+%Janos Barat\,\footnotemark[2] 
+\qquad Vida Dujmovi{\'c}\,\footnotemark[3] 
+\qquad David Eppstein\,\footnotemark[2] 
+\qquad Gwena\"el  Joret\,\footnotemark[4] 
+\\[2ex]
+\qquad Pat Morin\,\footnotemark[6] 
+\qquad David~R.~Wood\,\footnotemark[5]}
+
+%\footnotetext[2]{Department of Computer Science, E\"otv\"os Lor\'and University, Hungary (\texttt{barat@cs.elte.hu}).}
+
+\footnotetext[3]{School of Computer Science and Electrical Engineering,  
+University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}). Research  supported by NSERC.}
+
+\footnotetext[4]{D\'epartement d'Informatique, Universit\'e Libre de Bruxelles, Brussels, Belgium (\texttt{gjoret@ulb.ac.be}). }
+
+\footnotetext[2]{Department of Computer Science, University of California, Irvine, California, USA (\texttt{eppstein@uci.edu}). Supported in part by NSF grant  CCF-1228639. }
+
+\footnotetext[6]{School of Computer Science, Carleton University, Ottawa, Canada (\texttt{morin@scs.carleton.ca}). Research  supported by NSERC.}
+
+\footnotetext[5]{School of Mathematical Sciences, Monash   University, Melbourne, Australia  (\texttt{david.wood@monash.edu}). Research supported by the Australian Research Council.}
+
+
+\title{\boldmath\bf Local Pathwidth}
+\maketitle
+
+% \thanks{\textbf{MSC Classification}: ???}
+
+\begin{abstract}
+\end{abstract}
+
+%\newpage
+%\tableofcontents
+%\newpage
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\section{Defnitions}
+
+A \emph{layering} of a graph $G$ is a partition $(V_0,V_1,\dots,V_t)$ of $V(G)$ such that for every edge $vw\in E(G)$, if $v\in V_i$ and $w\in V_j$, then $|i-j|\leq 1$. Each set $V_i$ is called a \emph{layer}.  For example, for a vertex $r$ of a connected graph $G$, if $V_i$ is the set of vertices at distance $i$ from $r$, then $(V_0,V_1,\dots)$ is a layering of $G$, called the \emph{bfs layering} of $G$ starting from $r$. 
+
+For a graph $G$ and tree $T$, a $T$-\emph{decomposition} of  $G$ is a collection $(B_x\subseteq V(G):x\in V(T))$ of sets of vertices in $G$ (called  \emph{bags}) indexed by the nodes of $T$, such that:
+\begin{enumerate}[(i)]
+\item for every edge $vw$ of $G$, some bag $B_x$ contains both $v$ and $w$, and 
+\item for every vertex $v$ of $G$, the set $\{x\in V(T):v\in B_x\}$ induces a non-empty connected subgraph of $H$.
+\end{enumerate}
+The \emph{width} of a tree-decomposition is the size of the largest bag minus 1. The \emph{treewidth} of a graph $G$, denoted by $\tw(G)$, is the minimum width of a tree decomposition of $G$. Tree decompositions were first introduced by \citet{Halin76} and independently by \citet{RS-II}. 
+
+\citet{DMW17,DMW-FOCS13} introduced the following definition. The \emph{layered width} of a tree decomposition $(B_x:x\in V(T))$ of a graph $G$ is the minimum integer $\ell$ such that, for some layering $(V_0,V_1,\dots,V_t)$ of $G$, each bag $B_x$ contains at most $\ell$ vertices in each layer $V_i$. The \emph{layered treewidth} of a graph $G$, denoted by $\tb(G)$, is the minimum layered width of a tree-decomposition of $G$. We define the \emph{layered pathwidth} of a graph $G$ to be the minimum layered width of a path-decomposition of $G$, denoted by $\pb(G)$. 
+
+If $T$ is a tree indexing a tree decomposition of a graph $G$, then for each vertex $v$ of $G$, let $T[v]$ denote the subtree of $T$ induced by those nodes corresponding to bags that contain $v$. Thus $T[v]$ is non-empty and connected. 
+
+Let $T_h$ be the complete binary tree of height $h$. For a graph $G$, let $t(G)$ be the maximum $h$ for which $T_h$ is a minor of $G$. Since $T_h$ has maximum degree 3, if $T_h$ is a minor of $G$, then $G$ contains a subdivision of $T_h$ as a subgraph. It is well known and easily proved that  $\pw(T_h)=\ceil{h/2}$. Thus $\pw(G)\geq \ceil{t(G)/2}$. On the other hand, for every tree $T$ with $p$ vertices, \citet{BRST-JCTB91} proved that every graph containing no $T$ minor has pathwidth at most $p-2$. Since $T_h$ has $2^{h+1}-1$ vertices, and every graph $G$ contains no $T_{t(G)+1}$-minor, $\pw(G)\leq 2^{t(G)+2}-3$. In this sense, pathwidth and the function $t$ are tied. 
+
+Let $Q_k$ be the graph obtained from $T_k$ by adding one dominant vertex. Thus $\pw(Q_k)=\ceil{k/2}+1$. 
+
+\section{A Conjecture and Some Proofs}
+
+\begin{conjecture}
+\label{MainConj}
+The following are equivalent for a proper minor-closed class \GG:
+\begin{enumerate}[(1)]
+\item \GG\ has bounded local pathwidth,
+\item \GG\ excludes $Q_k$ as a minor for some fixed $k$,
+\item \GG\ has bounded layered pathwidth,
+\item each graph in $G\in\GG$ has a tree decomposition $T$ of bounded width, such that $T[v]$ has bounded pathwidth for each vertex $v$ of $G$,
+\item \GG\ has linear local pathwidth.
+\end{enumerate}
+\end{conjecture}
+
+It is immediate that (5) implies (1).
+
+\begin{proof}[Proof that (2) implies (1)] 
+Let $G$ be a graph containing no $Q_k$ minor. Let $v$ be a vertex of $G$. For $i\geq 0$, let $V_i$ be the set of vertices of $G$ at distance $i$ from $v$. Fix $r\geq 0$. Let $G_r$ be the subgraph of $G$ induced by $V_0\cup V_1\cup \dots\cup V_r$. Our goal is to prove that $t(G_r)\leq f(k,r)$ for some function $f$ (independent of $G$). To do so, for $0\leq j\leq r$, let $G_{r,j}$ be the subgraph of $G$ induced by $V_{r-j},V_{r-j+1},\dots,V_r$. We proceed by induction on $j$, with the hypothesis that $t(G_{r,j})< k^{j+1}$. Since $G_r=G_{r,r}$, the desired result follows with $f(k,r):=k^{r+1}$. 
+
+For the base case $j=0$, if $G_{r,0}$ (which is the subgraph of $G$ induced by $V_r$) contains a $T_k$ minor, then the graph obtained from $G$ by contracting $V_0\cup V_1\cup\dots\cup V_{r-1}$ into a single vertex contains $Q_k$ (since every vertex in $V_r$ has a neighbour in $V_{r-1}$). Since $G$ contains no $Q_k$ minor, $G_{r,0}$ contains no $T_k$ minor, and $t(G_{r,0})< k$. Hence the hypothesis holds for $j=0$.
+
+Now assume that $t(G_{r,j})< k^{j+1}$ for some $j$ with $0\leq j\leq r-1$. Suppose on the contrary that $t(G_{r,j+1})\geq k^{j+2}$. Hence $G_{r,j+1}$ contains a subdivision of $T_{kh}$ as a subgraph, where $h:=k^{j+1}$. Observe that $T_{kh}$ contains $2^k-1$ pairwise disjoint copies of $T_h$, such that contracting each copy gives $T_k$. Thus $G_{r,j+1}$ contains $2^k-1$ pairwise disjoint copies of subdivisions of $T_h$, such that contracting each copy gives a $T_k$ minor. Since $G_{r,j}$ contains no $T_h$ minor, each such subdivision of $T_h$ contains some vertex in $V_{r-j-1}$. Contracting each such subdivision of $T_h$, and contracting $V_0\cup\dots\cup V_{r-j-2}$ into a single vertex gives a $Q_k$-minor in $G$ (since each subdivision of $T_h$ has a vertex in $V_{r-j-1}$, which has a neighbour in $V_{r-j-2}$). This is a contradiction, since $G$ contains no $Q_k$ minor. Hence   $t(G_{r,j+1})< k^{j+2}$, as desired. 
+
+This proves that $t(G_r)=t(G_{r,r})<k^{r+1}$. Hence $G_r$ has pathwidth at most $2^{k^{r+1}+2}-3$, and $G$ has bounded local pathwidth. 
+\end{proof}
+
+\begin{proof}[Proof that (3) implies (5)] 
+Let $B_1,\dots,B_s$ be a path decomposition of $G$ with layered with $\pb(G)$, with respect to layering $V_0,V_1,\dots,V_t$. Let $v$ be a vertex in $V_i$. Let $r$ be a positive integer. Let $H$ be the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$. Thus $V(H)\subseteq V_{i-r}\cup V_{i-r+1}\cup\dots\cup V_{i+r}$. Each bag $B_i$ contains at most $\pw(G)$ vertices in each layer. Hence $B_1\cap V(H),\dots,B_s\cap V(H)$ is a path decomposition of $H$ with at most $(2r+1)\pb(G)$ vertices in each bag, and  $\lpw(G,r)\leq(2r+1)\pb(G)-1$.  
+\end{proof}
+
+\begin{proof}[Proof that (1) implies (2)] Assume that \GG\ has bounded local pathwidth. Thus, for some constant $k$, for every graph $G\in\GG$ and every vertex $v$ of $G$, we have $\pw(G[N[v]])\leq k$. Suppose on the contrary that $G:=Q_{2k}$ is in \GG. Let $v$ be the dominant vertex in $Q_{2k}$. Thus $$k+1=\pw(Q_{2k})=\pw(G[N[v]])\leq k\enspace.$$ This contradiction proves that $Q_{2k}$ is not in \GG. 
+\end{proof}
+
+\begin{proof}[Proof that (4) implies (3)] Consider a graph  $G$ with a tree decomposition $T$ of width $k$, such that $\pw(T[v])\leq p$  for each vertex $v$ of $G$. Since adding edges does not decrease the layered pathwidth, we may add edges to $G$ between two non-adjacent vertices in the same bag of $T$. Now each bag is a clique, and $G$ is chordal with maximum clique size $k+1$. Let $V_0,V_1,\dots,V_t$ be a bfs layering in $G$. That is, $V_i$ is the set of vertices in $G$ at distance $i$ from some fixed vertex $x$ of $G$. In particular, $V_0=\{x\}$. 
+
+Consider a component $H$ of $G[V_i]$ for some $i\geq 1$. Let $C_H$ be the set of vertices in $V_{i-1}$ adjacent to some vertex in $H$. Then $C_H$ is a clique of size at most $k$ (see \citep{KP-DM08,DMW05}), called the \emph{parent clique} of $H$. A bag containing $w\in C_H$ is said to \emph{belong} to $w$. Define $X_H:=\cup_{w\in C_H}T[w]$. Since $C_H$ is a clique, which is contained in a single bag of $T$, the subtrees whose union is $X_H$ have a node in common. Thus $X_H$ is a (connected) subtree of $T$. Moreover, $X_H$  is the union of at most $k$ subtrees, each with pathwidth at most $p$. Thus $\pw(X_H)+1\leq k(p+1)$ by Corollary~\ref{SubtreeUnion}. 
+
+We now prove that $X_H$ indexes a tree-decomposition of $G[V(H)\cup C_H]$ (using the same bags as $T$ restricted to $V(H)\cup C_H$). We first prove condition (ii). For a vertex $v$ of $C_H$, the set of bags in $X_H$ that contain $v$ is precisely $T[v]$, which is non-empty and connected, by assumption. Now, consider a vertex $v$ in $H$. Let $w$ be the neighbour of $v$ on a shortest $vx$-path in $G$. Thus $w$ is in $C_H$. Since $vw$ is an edge,  $v$ and $w$ appear in a common bag of $T$, which is also in $X_H$ (since that bag contains $w$). Hence $X_H[v]$ is non-empty. 
+We now prove that  $X_H[v]$ is connected. Let $B_1$ and $B_2$ be distinct bags of $X_H$ containing $v$. Let $P$ be the $B_1B_2$-path in $T$. Since $T[v]$ is connected, $v$ is in each bag in $P$. To conclude that $X_H[v]$ is connected, it remains to prove that $P\subseteq X_H$. By construction, some vertex $w_1\in B_1\cap C_H$ and some vertex $w_2\in B_2\cap C_H$. Since $w_1$ and $w_2$ are adjacent, each bag in $P$ contains $w_1$ or $w_2$. Hence $P\subseteq X_H$ and $X_H[v]$ is connected. This proves condition (ii). Now we prove condition (i). Since $C_H$ is contained in some bag of $X_H$, condition (i) holds for each edge with endpoints in $C_H$. For each edge $vw$ with $v\in V(H)$ and $w\in C_H$,  $v$ and $w$ are in a common bag of $T$, which is also in $X_H$ (since that bag contains $w$), as desired. Finally, consider an edge $uv$ with $u,v\in V(H)$. Suppose on the contrary that $u$ and $v$ have no common neighbour in $C_H$. By construction,  $u$ has a neighbour $w_1$ in $C_H$, and $v$ has a neighbour $w_2$ in $C_H$. Thus $w_1\neq w_2$. Since $C_H$ is a clique, $w_1$ and $w_2$ are adjacent. Since $uw_2\not\in E(G)$ and $vw_1\not\in E(G)$, the 4-cycle $(u,w_1,w_2,v)$ is chordless, and $G$ is not chordal, which is a contradiction. Hence $u$ and $v$ have a common neighbour $w$ in $C_H$. Thus $\{u,v,w\}$ is a triangle in $G$, which is in a common bag of $T$, and therefore in a common bag of $X_H$, implying that $u$ and $v$ are in a common bag of $X_H$. This proves  condition (i) in the definition of tree-decomposition. Therefore $X_H$ indexes a tree-decomposition of $G[V(H)\cup C_H]$. By construction, it has width at most $k$. 
+
+Since $\pw(X_H)+1\leq k(p+1)$ and $X_H$ indexes a tree-decomposition of $G[V(H)\cup C_H]$ with width at most $k$, it follows that  $\pw(X_H) \leq (k(p+1)+1)(k+1)-1$.  
+
+We now construct a path-decomposition of $G$ with layered width at most $k(p+1)(k+1)$ with respect to layering $V_0,V_1,\dots,V_t$. Let $G_i:=G[V_0\cup V_1\cup\dots\cup V_i]$. We now prove, by induction on $i$, that $G_i$ has a 
+ path-decomposition with layered width at most $k(p+1)(k+1)$ with respect to layering $V_0,V_1,\dots,V_i$. This claim is trivial for $i=0$. Now assume that $B_1,\dots,B_q$ is a path-decomposition of $G_{i-1}$ with layered width at most $k(p+1)(k+1)$ with respect to layering $V_0,V_1,\dots,V_{i-1}$. For each component $H$ of $G[V_i]$, there is a bag $B_i$ that contains $C_H$; pick one such bag and call it the \emph{parent bag} of $H$. By doubling the bag, we may assume that distinct components of $G[V_i]$ have distinct parents bags. Now, for each component $H$ of $G[V_i]$ with parent bag $B_i$, if $D_1,\dots,D_r$ is a path-decomposition of $G[V_i]$ with width  $k(p+1)(k+1)-1$, then replace $B_i$ by  
+ $B_i\cup D_1,\dots,B_i\cup D_r$. Doing this for each component of $G[V_i]$ produces a path decomposition of $G_i$ 
+ with layered width at most $k(p+1)(k+1)$ with respect to layering $V_0,V_1,\dots,V_i$. In particular, we obtain a path decomposition of $G$  with layered width at most $k(p+1)(k+1)$ with respect to layering $V_0,V_1,\dots,V_t$.
+ \end{proof}
+
+\textcolor{red}{It remains to prove that (1) implies (4), or (2) implies (4). }
+
+\section{New Stuff} 
+
+Short version: We think we have all the necessary ingredients to
+finish the paper now, thanks to a recent result of Thanh Dang, a
+student of Robin Thomas, who characterized unavoidable minors in
+3-connected graphs of large pathwidth in his PhD thesis. A corollary
+of his main result is that 3-connected graphs with no $Q_k$ minor have
+bounded pathwidth, where $Q_k$ is the complete binary tree of height $k$ plus a 
+universal vertex.
+
+Long version, with recaps of previous stuff:
+
+- Say G is a graph with no $Q_k$-minor (or equivalently, $G$ and all its
+minors have bounded local pathwidth)
+
+- The missing part in our draft was a proof that $G$ has bounded layered pathwidth
+
+- We know it is enough to show that $G$ has a 'good tree decomposition',
+a tree decomposition of bounded width such that, for each vertex $v$ of
+$G$, the corresponding subtree $T_v$ has bounded pathwidth
+
+- To show this, we may easily reduce to the 2-connected case, so
+assume $G$ is 2-connected
+
+- To handle the 2-connected case, David Eppstein\ suggested to look at the
+associated SPQR-tree and study how the triconnected components of a
+graph can be 2-summed together without ever creating a $Q_k$ minor
+
+- In a series of emails (April 2015), he showed the following:
+
+** Say that an R-node is 'safe' if, in the corresponding 3-connected
+graph, either there are at most 2 virtual edges, or there are three
+virtual edges and they form a triangle, or the graph is obtained from
+a planar graph with all virtual edges are on a common face using
+3-sums with other 3-connected graphs
+
+** In a safe R-node, it is not possible contract edges of the
+corresponding graph so as to have three parallel virtual edges
+
+** Conversely, in an unsafe R-node, it is always possible to do so.
+(The intuition is that unsafe R-nodes allow some kind of branching of
+2-cutsets while safe R-nodes don't.)
+
+** If the SPQR-tree of G contains a subdivision of a large enough
+complete binary tree such that the degree-3 nodes are either P-nodes
+or unsafe R-nodes, then there is a $Q_k$-minor in $G$
+
+** So this does not happen, and using this we can reduce to the
+3-connected case: Assuming that we have a good tree decomposition of
+each triconnected component of G, we can join them together following
+the 2-sums encoded by the SPQT-tree and argue that the pathwidth of
+our subtrees $T_v$ does not explode, otherwise we would find the
+complete binary tree from the previous step.
+
+- To show that the triconnected components have good tree
+decompositions, it is enough to show that a 3-connected graph with no
+$Q_k$ minor must have bounded pathwidth
+
+- This is a corollary of Theorem 1.1.5 on page 3 in thesis of  \citet{Dang18}:
+
+** In that theorem, choose $P'$ to be the complete binary of height k
+plus two universal vertices. Choose $Q'$ to be the "universal"
+outerplanar graph of depth $k+1$, as defined in \cite[page 3]{HJMW}, plus one universal
+vertex. Choose $R'$ to be the complete binary of height $2^k +1$ plus a
+cycle on its leaves.
+
+** Clearly, $P'$ contains $Q_k$ as a minor
+
+** Q' also does, because $U_{k+1}$ contains a complete binary of height
+k as a subgraph
+
+** Finally, R' also contains a $Q_k$ minor: Contract the cycle, then we
+have a complete binary tree of height $2^k$ plus an apex vertex linked
+to its leaves, which contains $Q_k$ as minor (see e.g. \citep[Lemma 2.2 on page 4]{HJMW}.
+
+
+\section{SPQR Trees --- from Wikipedia}
+
+An SPQR tree is an unrooted tree in which for each node $x$ there is associated an undirected graph or multigraph $G_x$. The node, and the graph associated with it, may have one of four types, given the initials SPQR:
+
+In an S node, the associated graph is a cycle graph with three or more vertices and edges. 
+
+In a P node, the associated graph is a dipole graph, a multigraph with two vertices and three or more edges. 
+
+In a Q node, the associated graph has a single real edge. This trivial case is necessary to handle the graph that has only one edge. In some works on SPQR trees, this type of node does not appear in the SPQR trees of graphs with more than one edge; in other works, all non-virtual edges are required to be represented by Q nodes with one real and one virtual edge, and the edges in the other node types must all be virtual.
+
+In an R node, the associated graph is a 3-connected graph that is not a cycle or dipole. 
+
+Each edge $xy$ between two nodes of the SPQR tree is associated with two directed virtual edges, one of which is an edge in $G_x$ and the other of which is an edge in $G_y$. Each edge in a graph $G_x$ may be a virtual edge for at most one SPQR tree edge.
+
+An SPQR tree T represents a 2-connected graph $G-T$, formed as follows. Whenever SPQR tree edge $xy$ associates the virtual edge $ab$ of $G_x$ with the virtual edge $cd$ of $G_y$, form a single larger graph by merging $a$ and $c$ into a single supervertex, merging $b$ and $d$ into another single supervertex, and deleting the two virtual edges. That is, the larger graph is the 2-clique-sum of $G_x$ and $G_y$. Performing this gluing step on each edge of the SPQR tree produces the graph $G_T$; the order of performing the gluing steps does not affect the result. Each vertex in one of the graphs $G_x$ may be associated in this way with a unique vertex in $G_T$, the supervertex into which it was merged.
+
+Typically, it is not allowed for two S nodes to be adjacent, nor for two P nodes to be adjacent, because if such an adjacency occurred the two nodes could be merged into a single larger node. With this assumption, the SPQR tree is uniquely determined from its graph. When a graph G is represented by an SPQR tree with no adjacent P nodes and no adjacent S nodes, then the graphs $G_x$ associated with the nodes of the SPQR tree are known as the triconnected components of $G$.
+
+\section{Comment by David Eppstein, 8 April 2015}
+
+Something still seems strange to me about your proposed structure theorem for minor-closed families of bounded local pathwidth. For the other restricted structure theorems (for families excluding a planar graph, families excluding a one-crossing graph, families excluding a tree, etc) we have a characterization that itself gives a minor-closed family (graphs of bounded treewidth, clique-sums of planar graphs and graphs of bounded treewidth, graphs of bounded pathwidth, etc). But your proposed structure, a tree-decomposition of low width in which each vertex belongs to a set of bags of low pathwidth, is not minor-closed. For instance, let T be a large binary tree and consider the graph G = K2 x T. Then G has a tree decomposition that is itself in the form of a large binary tree, with each vertex belonging to a three-bag path formed by a parent and its two children, so it fits your structure theorem. But if you collapse one of the two copies of T in G, you get a large tree-apex graph. This suggests to me that, although your conjecture that this structure might always exist should still be true, there is a more highly constrained structure that always exists and might be easier to prove.
+
+For a while I thought maybe the structure might be the following: let F be a minor-closed family of bounded local pathwidth; then I thought the graphs in F would necessarily be 1-sums of graphs of bounded pathwidth. But this is too constrained and turns out to be false. The outerplanar graphs do not have this form, but every outerplanar graph has bounded local pathwidth (did you already know this?). Here's a construction of a layered pathwidth 2 layering of an arbitrary outerplanar graph: find a one-page book embedding of the graph (in a halfspace), and label every vertex and face by its distance in the vertex-face incidence graph from the (unique) unbounded face of the embedding. Use the vertex labels as layers; every two adjacent vertices share a face, so they can have labels at most two units apart and therefore are either on the same layer or on consecutive layers. Make a path decomposition as follows: for each vertex (in left to right order), make a bag containing that vertex and the vertex closest to it on the left with each label (including its own label). I've attached a figure showing the construction.
+
+So now I'm wondering what the right kind of structure is. It should allow arbitrary 1-sums, outerplanar graphs, and bounded-pathwidth graphs, but it's also possible to do some (but not arbitrary) 2-sums or 3-sums between the bounded-pathwidth pieces and the outerplanar pieces in a controlled way that preserves the hereditary bounded local pathwidth. And unlike your proposed structure, every minor of every graph with this structure should have bounded local pathwidth.
+
+
+\section{Comment by David Eppstein 9 April 2015}
+
+So in connection with this I've been looking today at the structure of 2-connected graphs (their SPQR trees) when their minors have bounded local pathwidth. I think, for instance, that if you take a collection of planar graphs of bounded pathwidth, and then you 2-sum them together in such a way that
+- each edge is used to 2-sum only two of the graphs
+- within each of the planar graphs, the edges used for 2-sums all lie on a single face
+then the result should still have minor-closed bounded local pathwidth, regardless of the shape of the SPQR tree.
+
+On the other hand if there is a subdivision of a large complete binary tree within the SPQR tree such that each of the branching nodes of the subdivision is either
+- a P node, or
+- an R node that can be contracted to a P node (i.e. you can contract its graph down to a two-vertex bipole multigraph keeping each of the three 3-sum edges uncontracted)
+then you can use this to form a minor in the form of a Cartesian product of large tree T with K2, and then contracting one of the two copies of T gives a large apex-tree minor.
+
+These two constructions show that we can't just look at the SPQR tree, and at the pathwidth of the 3-connected components, to determine whether a graph has minors with bounded local pathwidth. We have to look inside the 3-connected components to see how they're connected to the rest of the SPQR tree.
+Because we could have two graphs with isomorphic SPQR trees that are large binary trees of R nodes, but where the R nodes of one graph are bounded-pathwidth planar graphs with its 2-sums all on the same face, and the R nodes of the other can be contracted to P nodes. Despite having the same SPQR tree, the first graph would have minors with bounded local pathwidth and the second wouldn't.
+
+Based on this I'd like to understand when a 3-connected graph plus three designated edges can be contracted down to a bipole multigraph and when it can't. The situation of a planar graph with all three edges on one face is an example when it can't, because any contraction preserves the fact that the three edges still lie on a single face. Another example is an arbitrary 3-connected graph in which the three edges form a triangle. And if G is a graph with three designated edges that cannot be contracted down in this way, then any clique-sum of G with another graph doesn't change anything. Are those the only possibilities?
+
+\section{Comment by David Eppstein 14 April 2015}
+
+Recall from my earlier message that if the SPQR tree contains a subdivision of a ternary tree T in which the branching nodes are either P nodes or R nodes that can be contracted to P nodes, then the graph can be contracted to K2 x T (actually not quite, for each edge of T one of the two copies of the edge in K2 x T could be contracted) and then by collapsing one of the copies of T we can find a large tree-apex minor. This gives a way for a graph to fail to have minor-closed bounded local pathwidth even when each of its 3-connected components is individually well-behaved, and maybe the only way for it to fail. So I'm still trying to investigate the conditions under which an R node (3-connected component) can be contracted to a P node (multigraph with two vertices and three edges, in which the three uncontracted edges are the virtual edges linking the R node to other parts of the SPQR tree).
+
+The case when the three virtual edges in the R node form a triangle is easy (it can't be contracted to a P node) and the case in which they form a claw is almost as easy (it can always be contracted). The next simplest case is when they form a three-edge path. In this case, I believe the result is that the R node can be contracted into a P node if and only if the 3-connected component is not a planar graph with the path forming part of a face, and is not a graph obtained from a planar graph (with the path on a face) by 3-sums with other graphs.
+
+The key lemma (which I imagine is likely known somewhere in Robertson and Seymour's many papers on this sort of thing): suppose G is a 4-connected graph with four designated vertices p,q,r,s. Then either (1) G is planar and pqrs are on one face, or (2) for each of the three possible pairings (p-q r-s, p-r q-s, or p-s q-r) the two pairs of vertices can be connected by vertex-disjoint paths. The proof sketch is to consider any one pairing, and add to G a 4-wheel through the four vertices, with the two pairs opposite each other around the wheel. If (1) fails, then the augmented graph G' is nonplanar, and contains a subdivision of a Kuratowski graph K5 or K33. By 4-connectivity the vertices p, q, r, and s have four disjoint paths to four vertices of the subdivision (where we choose these four vertices to avoid the wheel center if necessary). A case analysis shows that these paths can be extended through the Kuratowski graph  to connect the two desired pairs.
+
+Then if you have three virtual edges forming a path, split off any 3-separation (the reverse operation to a 3-clique-sum) and, if this separates one edge from the other two, replace it by a triangle edge from the 3-sum, until getting to a 4-connected graph that still has three designated edges forming a path pqrs. Then either the graph is planar with the path on a face, or there are disjoint paths p-r and q-s. Contracting along these paths (and contracting the rest of the graph) gives the desired P node.
+
+
+Something similar but more complicated also works when the three virtual edges form a two-edge path pqr and another separate edge st.
+1. By biconnectivity we can find a cycle through two of the edges, and a path from and to the cycle containing the third edge. If the path endpoints separate the two edges on the cycle, we can contract to a P node. Otherwise, we can reroute to get a cycle C through all three nodes.
+2. Reduce to the 4-connected case as above.
+3. By the lemma about 4-connectivity, we can either find disjoint paths p-r and q-s, or show that the graph is planar with pqrs on the same face. Similarly, we can either find paths p-r and q-t, or show that the graph is planar with pqrt on the same face. If both planar cases happen, then all five vertices are on the same face (in an order consistent with having the edges also on the face) and we are done. Otherwise, we have one of the two sets of disjoint paths, say (by symmetry) p-r and q-s.
+4. If the q-s path passes through t, shorten it and swap the vertex labels so that it doesn't.
+5. If the q-s path avoids the r-t arc of C, then we can contract p-r-t and q-s, giving a bipole.
+6. If qs has multiple non-contiguous intersections with the r-t arc of C, we can re-route C along qs, giving it only a single path ¹ where they intersect.
+7. If path p-r meets the r-t arc of C at a point x that is closer to t than ¹, then we can contract p-r, x-t, and q-s, giving a P node.
+8. If none of the preceding cases hold, let y be the first point of path q-s that lies on arc r-t. Then replace path q-s by path q-y-t where the first part of the path (up to y) follows q-s and the second part follows r-t. Because case 7 is assumed not to hold, this new path is still disjoint from path p-r, and it has fewer edges that do not belong to C. So we can go back to step 5 with the new pair of paths and use induction on the number of edges that are not in C.
+
+
+I'm hopeful that something like this will also work for the remaining case (three disjoint edges) but I haven't gotten them to work yet.
+
+
+... new email ...
+
+By the way, I think I didn't explain this clearly before, but: the reason for trying to prove this characterization that you can collapse R nodes of the SPQR tree to P nodes iff the virtual edges of the R node neither form a triangle nor all lie on a face of a planar graph (3-summed with other graphs) is that if it holds, it allows us to reduce the characterization of minor-closed bounded local pathwidth to the 3-connected case.
+
+In particular, if H is a nontrivial 3-connected component (R node of the SPQR tree) with three or more virtual edges (separation pairs linking it to other components) but these virtual edges form a triangle or lie on a planar face, then each vertex of H can only be shared with two of the neighboring components. This is also always true of the S nodes of the SPQR tree (which represent 3-connected components that are simple cycles). So (assuming this characterization works) if we have a good tree decomposition within each 3-connected component (one where each vertex occupies a low-pathwidth set of bags), we glue these tree decompositions together, and we don't have a bushy tree of P nodes or contractible-to-P R nodes, then we automatically get a good decomposition for the whole graph, because the P nodes and contractible-to-P nodes are the only ones where the set of bags for a vertex can branch to more than just a path of components.
+
+Also, unlike good tree decompositions, this characterization is minor closed: if the virtual edges are in a triangle or a planar face, the same is true for every contraction that preserves the structure of the 3-connected components (and contractions that increase the number of components or change a 2-separation to a 1-separation are also safe).
+
+
+\section{Comment by David Eppstein, 15 April 2015}
+
+Ok, I think I can handle the final case of the reduction to 3-connectivity. But it takes the use of 4-connectivity directly, not just the existence of linkages.
+
+Claim: Let G be a 4-connected graph with three non-incident edges ab, cd, and ef. Then either it is possible to contract G down to a 2-vertex multigraph without contracting any of these three edges, or G is planar and the three edges lie on a face.
+
+Proof sketch:
+- By biconnectivity we can assume ab and cd lie on a cycle. If this cycle does not also contain ef, then there is a path containing ef that starts and ends on the cycle. If the endpoints of this path are separated on the cycle by ab and cd, we can immediately contract G down to a bipole. Otherwise, we can reroute the cycle so that it passes through all three designated edges. By relabeling if necessary, we can assume that the cycle order is abcdef.
+- By Jung's theorem, either some two long diagonals of this hexagon form a linkage, or we have three quadruples of cofacial vertices in a planar graph, which is enough to force all three edges to lie on a common face. So from now on we can assume that one of these three two-diagonal linkages exists, say the one from a to d and b to e.
+- By 4-connectivity (this is the part I'm a little unsure of, but I'm pretty sure this follows from Menger's theorem) there exist four vertex-disjoint paths from (2 x a, 2 x b) to (c,d,e,f). I.e. two of the paths start at a, two start at b, and they end at the four distinct vertices c, d, e, and f. If the two paths from a go to an endpoint of cd and an endpoint of ef, then the same must be true of the two paths from b; in this case we can contract these four paths to give a bipole. So from now on we can assume that either the paths connect a-c a-d b-e b-f or a-e a-f b-c b-d.
+- If we have four paths a-c a-d b-e b-f, we also have a linkage a-f b-c coming from the cycle through abcdef. In the other case, we have a linkage a-d b-e, and we can relabel so that (as long as we no longer use the cycle abcdef) we have the case of four paths a-c a-d b-e b-f and a linkage a-f b-c.
+- Although the four paths a-c a-d b-e b-f are disjoint, and the two paths a-f b-c are disjoint, there might be intersections between the four paths and the two paths. But suppose that additionally a-f is disjoint from b-e and b-c is disjoint from a-d. In this case we can contract d-a-f and c-b-e and get a bipole.
+- In the remaining case, one of the four paths is blocked by one of the two paths; by symmetry, suppose that a-d has a nonempty intersection with b-c. Let x be the point closest to d along path a-d that belongs to one of the two linkage paths a-f and b-c. If x belongs to a-f, we can reroute path a-d via the prefix of a-f up to x, and then continue from x to d, eliminating the blockage of a-d by b-c. On the other hand, suppose that x belongs to path b-c. In this case, we can replace b-c by b-x-d, getting another two linkage paths that have fewer edges outside the other four paths.
+- In each case we can either solve the problem or reduce to a case of the same type (four paths and a linkage) with fewer edges in the linkage that are outside the four paths. The result follows by induction.
+
+
+The other missing part of the reduction is that, if we have a large subdivision complete binary tree T in the SPQR tree, at which all branching nodes are P nodes or contractable-to-P R nodes, then we can find a minor of the given graph that has the structure of a graph K2 x T in which at most one of the two copies of each edge of T has been contracted. We need to show that such a graph has a large complete-binary-tree-apex minor. The obvious thing to do is to contract the copy of T in which the most edges have been already contracted, but this does not work. Suppose for instance that in the two copies of T one copy has all the leaves contracted and the other has all the non-leaf edges contracted. Then the only way to get the tree-apex minor we seek is to contract the copy of T whose non-leaf edges have already been contracted, even though the other copy has more edges already contracted.
+
+Claim: let T be a complete binary tree of height h, and suppose that the edges of T are partitioned into two subsets A and B. Form a tree $T_A$ by contracting B, and similarly form a tree $T_B$ by contracting A. Then at least one of $T_A$ and $T_B$ contains a subdivision of a complete binary tree of height $\Omega(\sqrt h)$.
+
+Proof: split T into subtrees of height sqrt(h). Say that a subtree S is "good" if there are two leaves of S such that the two paths from these leaves to their common ancestor contain at least one edge of A, and "bad" otherwise. Then if all subtrees are good, we can find a subdivision of a complete binary tree in $T_A$ by starting at the root of T and within each subtree continuing at the two leaves that define it as good. On the other hand if there exists at least one bad subtree then we can find a subdivision of a complete binary tree in $T_B$ just restricted to that one bad subtree, because in a bad subtree only the edges of a single leaf-to-root path can belong to A.
+
+
+So if I haven't made any mistakes in these proofs (unlikely...) the remaining step is to understand what happens when we have a 3-connected graph in a minor-closed family of bounded local pathwidth. Do these always have bounded pathwidth?
+
+\section{Comment by David Eppstein, 21 July 2015}
+
+If I remember correctly from our messages of a few months ago, we had a complete structural characterization of the minor-closed graph families of bounded layered pathwidth, in terms of their block-cut trees and SPQR trees, modulo one missing detail: a proof that in minor-closed graph families of bounded layered pathwidth, the 3-connected graphs necessarily also have bounded pathwidth. I believe I now am close to a proof of this piece, although there are still some (seemingly not difficult) unproven details.
+
+Possibly more strongly, the formulation I want to prove is that there exists a non-constant monotonic function f such that, if G is a 3-connected graph of pathwidth at least p, then G also must have layered pathwidth at least f(p).
+
+So suppose G has pathwidth p; then (by the standard characterization of minor-closed families of bounded pathwidth as having a forbidden tree minor) G necessarily contains a subdivision of a large complete binary tree B. (Here "large" means bounded below by a non-constant monotonic function of p). Additionally, if G is 3-connected, then for each vertex v of G (where v is neither the root nor a child of the root) there is a path leading from the subtree of v to a node of B whose common ancestor with v is higher than the parent of v. Here comes the biggest gap in the proof: I want to contract the parts of G outside of B so that each subtree of B has an edge to somewhere else in the tree rather than just a path. Next, we can contract small neighborhoods in B so that we get a complete 6-ary tree (whose height is still large) with the same subtree-escape-edge property. And then, for each node v of B, find the escape edge in its subtree such that the common ancestor of v with the other endpoint of the edge is as high as possible, and contract the path in the subtree from v to this edge; the result is a complete 5-ary tree T (still of large height) where each node is incident to an escape edge connecting it past its parent, and where the escape edge of each node goes at least as far as the escape edge of its children.
+
+What I want to prove (by induction) is that whenever you have a complete 9-ary tree T and a set of escape edges with this property, you can find a minor that is either a leaf-apex tree (a large complete binary tree with an additional apex vertex connected to all of its leaves, which we already know has high layered pathwidth) or the Cartesian product of a complete binary tree with a single edge (let's call this a tree of squares).
+If you have a tree of squares, then collapsing one of the two binary tree factors gives leaf-apex tree, so trees of squares also have high layered pathwidth. Thus, if we can show that either they exist, or large leaf-apex trees exist directly, we're done.
+
+If S is a subtree of T, define a TS(i) within S to be a minor of the given graph, formed only from nodes in S, that takes the form of a tree of squares of height i, with the following additional properties. First, the root node of S should be one of the nodes that is contracted to form one of the two root nodes of the tree of squares. And second, among the two root nodes of the tree of squares tree, the one that does not include the root node of S should be the endpoint of an escape edge that connects out of S.
+
+Lemma: if S is a subtree of T and S' is a subtree of S containing a TS(i) then S also contains a TS(i). Proof idea: If the escape edge from the TS(i) in S' also escapes S, we can just contract the path from the root of S' to the root of S. Otherwise, we can step upwards in the tree from S', possibly swapping the roles of the two root nodes in the TS(i).
+
+Lemma: if S is a subtree of T, v is a node within S, and the 5 children of v each contain a TS(i) whose escape edge stays within S, then S contains a TS(i+1). Proof sketch: classify the children of v into 4 types, according to the following two criteria: (1) does the escape edge of the TS(i) terminate at v itself or farther away in the tree? (2) let e be the escape edge of the TS(i) (if it terminates farther than v) or the escape edge of the child (otherwise). Do e and the escape edge of v terminate at the same place, or does the escape edge of v terminate farther away than e? (Because of the way we contracted the 6-ary tree to form T, it can't terminate closer.) Since there are 5 children and only 4 types, some two children have the same type as each other. By a somewhat messy case analysis (shown schematically in the attached illustration) having a pair of children of any of the 4 types gives a TS(i+1) in some subtree of S. And then by the previous lemma we get a TS(i+1) in S itself.
+
+Lemma: Let k be given. Then either T can be contracted to a k-level leaf-apex tree, or for each i there exists j such that every j-level subtree of T contains a TS(i). Proof: induction on i. Let j' be such that every j-level subtree of T contains a TS(i-1), and consider a subtree S of level j'+k+1. Then the nodes of S at level j'+1 each have 5 child subtrees containing a TS(i-1). Suppose that each node at level j'+1 has an escape edge that leaves S. Then the part of S between its top level and level j'+1, together with the contraction of the entire rest of the graph, forms a height-k leaf apex tree minor, and we are done. On the other hand, suppose that for at least one of these nodes at level j'+1, the escape edges for that node and for all its descendants stay within S. Then by the previous lemma we get a TS(i) inside S, and again we are done.
+
+... new email ...
+
+Oops, one small correction re "Possibly more strongly, the formulation I want to prove is that there exists a non-constant monotonic function f such that, if G is a 3-connected graph of pathwidth at least p, then G also must have layered pathwidth at least f(p)."
+What I want to show is that G must have a minor with layered pathwidth at least f(p). G itself could have smaller lpw.
+
+Reply from David Wood: 
+When you say "the subtree of v", I assume you mean "the subtree of B rooted at v", let's denote it by $B_v$. I think you also mean "each vertex v of B" not "each vertex of G", right? Anyway, say p is the parent of a vertex v in B, and say w is the sibling of v. Is the path starting at $B_v$ allowed to go through $B_w$ before arriving at a node of B whose common ancestor with v is higher than the parent of v. If this is allowed then I envisage problems when you start contracting paths in the proof that follows. On the other hand, I do not see how to prove that this path avoids $B_w$. Perhaps I am missing something important?
+
+Reply from David Eppstein: 
+Yes, I mean rooted subtrees, and "each vertex of G" was a typo for "each vertex of B".
+Paths that pass through siblings of v before getting to the rest of B do seem to be a bit of a problem here; I wasn't thinking about that possibility.
+
+Gwen (22 July 2015): 
+We had a quick skype discussion with David W. just now about this but
+we couldn't find an easy fix for this "path passing first through
+subtree of sibling" issue. A very interesting approach nonetheless, I
+hope we'll find a way around this.
+
+\section{A Useful Lemma}
+
+\begin{lemma}
+Let $T_1$ and $T_2$ be subtrees of a tree $T$, such that $T=T_1\cup T_2$. Then 
+$$\pw(T)+1\leq(\pw(T_1)+1)+(\pw(T_2)+1)\enspace.$$
+\end{lemma}
+
+\begin{proof}
+Let $B_1,\dots,B_s$ be a path-decomposition of $T_1$ with bag size $\pw(T_1)+1$. 
+Each component  of $T-V(T_1)$ is contained in $T_2$ and therefore has a path-decomposition  with bag size at most $\pw(T_2)+1$. For each such component $J$ of $T-V(T_1)$, there is exactly one vertex $v$ in $T_1$ adjacent to some vertex in $J$ (otherwise $T$ would contain a cycle consisting of two edges between a path in $T_1$ and a path in $J$). Say $v$ is in bag $B_i$. We say $J$ \emph{attaches} at $v$ and at $B_i$. By doubling bags in the path-decomposition of $T_1$, we may assume that distinct components of $T-V(T_1)$ attach at distinct $B_i$. For each component $J$ of $T-V(T_1)$, if $D_1,\dots,D_t$ is a path-decomposition of $J$ with bag size at most $\pw(T_2)+1$, then replace $B_i$ by $B_i\cup D_1,\dots,B_i\cup D_t$. We obtain a path-decomposition of $T$ with bag size $(\pw(T_1)+1)+(\pw(T_2)+1)$. The result follows. 
+\end{proof}
+
+\begin{corollary}
+\label{SubtreeUnion}
+Let $T_1,\dots,T_k$ be subtrees of a tree $T$, such that $T=T_1\cup\dots\cup T_k$. Then 
+$$\pw(T)+1\leq\sum_{i=1}^k(\pw(T_i)+1)\enspace.$$
+\end{corollary}
+
+
+Let $T_h$ be the complete binary tree of height $h$. 
+Let $T_h^+$ be the complete binary tree of height $h$ plus a vertex adjacent to the leaves. 
+Recall that $Q_h$ is the complete binary tree of height $h$ plus a dominant vertex.
+
+\begin{lemma} 
+\label{FindQh}
+$T_{2h}^+$ contains $Q_h$ as a minor.
+\end{lemma}
+
+\begin{lemma} 
+\label{FindTk+}
+If $v$ is a vertex of eccentricity $d$ in a graph $G$ and there is a 
+$T_{dk}$ minor in $G-v$, then $G$ contains a $T_k^+$ minor where $v$ is in the
+branch set of the `apex' vertex adjacent to the leaves.
+\end{lemma}
+
+\begin{proof}
+We proceed by induction on $d$. With $d=1$ there is nothing to
+prove. Now assume that $d > 1$. We may assume that $T_{dk}$ is a subgraph.
+Think of $T_{dk}$ to consist of the $T_k$ at the root plus many copies of
+$T_{(d-1)k}$. If $v$ has a neighbour in each such copy of $T_{(d-1)k}$, then
+contract each copy to get the desired $T_k^+$. Otherwise one of the
+$T_{(d-1)k}$ copies $H$ has no neighbour of $v$. Then contract $N[v]$ into $v'$.
+In the obtained graph, $v'$ has eccentricity $d-1$. So by induction, $H$
+contains $T_k^+$ where $v'$ is the vertex adjacent to the leaves, and we
+are done.
+\end{proof}
+
+\section{An Application}
+
+A \emph{track} in a graph $G$ is a totally ordered independent set. If $A$ and $B$ are disjoint tracks in $G$, then edges $vw$ and $xy$ form an \emph{X-crossing} if $v\prec x$ in $A$ and $y\prec w$ in $B$. A \emph{$t$-track layout} of $G$ is a proper partition $(V_1,V_2,\dots,V_t)$ of $V(G)$ into tracks, such that there is no X-crossing between $V_i$ and $V_j$, for $1\leq i<j\leq t$. The \emph{track-number} of  $G$ is the minimum integer $t$ for which there is a $t$-track layout of $G$. 
+
+\begin{theorem}
+\label{qntnpb}
+The queue-number and track-number of a graph $G$ satisfies
+$$\qn(G)<\tn(G)\leq 3\pb(G).$$ 
+\end{theorem}
+
+\begin{proof}
+\citet{DMW05} proved that $\qn(G)<\tn(G)$. It remains to prove that $\tn(G)\leq \pb(G)$. The proof is an extension of a method by \citet{DMW05} who proved that $\tn(G)\leq\pw(G)+1$. 
+
+Let $B_1,B_2,\dots,B_n$ be a path decomposition of $G$ with layered width $\ell:=\pb(G)$. Let $(V_0,V_1,\dots,V_m)$ be the corresponding layering. Thus, each bag $B_i$ contains at most $\ell$ vertices in each layer $V_j$. Since $G[V_j]$ has pathwidth at most $\ell-1$, there is a proper colouring of $G[V_j]$ with colours $1,2,\dots,\ell$. 
+For each vertex $v$ of $G$, let $b(v):=\min\{i:v\in B_i\}$ be the index of the leftmost bag containing $v$. 
+For $0\leq j\leq m$ and $1\leq a\leq\ell$, let $V_{j,a}$ be the set of vertices in $V_j$ coloured $a$. 
+Let $\preceq$ be the total order of $V_{j,a}$ defined by $v\prec w$ if and only if $b(v)< b(w)$. 
+Clearly $\preceq$ is a total order. Since $G[V_j]$ is properly coloured, $V_{j,a}$ is a track. 
+Suppose on the contrary that $vw$ and $xy$ form an X-crossing between $V_{j,a}$ and $V_{k,b}$, where $v\prec x$ in $V_{j,a}$ and $y\prec w$ in $V_{k,b}$. Without loss of generality, $b(w)\leq b(x)$. Since $y\prec w$ we have $b(y)<b(w)\leq b(x)$. Since $xy$ is an edge, $y\in B_{b(w)}$. Hence $y$ and $w$ are adjacent in $G[V_k]$, which is a contradiction since $y$ and $w$ are assigned the same colour. Therefore there is no X-crossing, and $\{V_{j,a}:0\leq j\leq m,1\leq a\leq \ell\}$ is a track layout of $G$. Since $(V_0,V_1,\dots,V_m)$ is a layering, if $vw$ is an edge of $G$ with $v\in V_{j,a}$ and $w\in V_{k,b}$, then $|j-k|\leq 1$. It follows from a result of \citet[Lemma~6 with $s=1$]{DPW04} that this track layout can be wrapped onto $3\ell$ tracks. In particular, for $q\in\{0,1,2\}$ and $1\leq a\leq \ell$, let $W_{q,a}$ be the track $V_{q,a},V_{q+3,a},V_{q+6,a},\dots$. Then $\{W_{q,a}:q\in\{0,1,2\},1\leq a\leq \ell\}$ is a $3\ell$-track layout of $G$. 
+\end{proof}
+
+%Conjecture~\ref{MainConj} would imply that graphs with no $Q_k$ minor ($k$ fixed) have bounded track and queue-number. 
+
+\begin{lemma}
+\label{log}
+For every $n$-vertex graph $G$, $$\pb(G)\leq \tb(G)\log_3(2n+1).$$
+\end{lemma}
+
+\begin{proof} 
+Let $(B_x:x\in V(T))$ be a tree decomposition  of $G$ with layered width $\ell:=\tb(G)$.  That is, each bag $B_x$ contains at most $\ell$ vertices in some layering. If $B_x=B_y$ for some edge $xy\in E(T)$, then contracting $xy$ gives a tree decomposition with layered width $\ell$. Thus, we may assume that $B_x\neq B_y$ for each edge $xy\in E(T)$. It follows that $T$ has at most $n$ vertices. \citet{Sch92} proved that every $n$-vertex tree has pathwidth at most $\log_3(2n+1)$. Let $B_1,\dots,B_m$ be a path decomposition of $T$ with width $\log_2 n$. Let $B'_i:=\cup\{V_x:x\in B_i\}$. Then  $B'_1,\dots,B'_m$ is a path decomposition of $G$ with layered width at most $\ell\log_3(2n+1)$ (with respect to the initial layering). 
+\end{proof}
+
+Lemmas~\ref{qntnpb} and \ref{log} imply the following result of \citet{Duj15} with improved constants.
+
+\begin{theorem}[\citep{Duj15}]
+The queue-number and track-number of every $n$-vertex graph $G$ satisfies
+$$\qn(G)<\tn(G)\leq 3\tb(G)\log_3(2n+1).$$ 
+\end{theorem}
+
+It is possible that graphs of bounded layered treewidth have bounded track- and queue-number (thus eliminating the $\log n$ term above). This would be very interesting since planar graphs have layered treewidth at most 3, and one of the main open problem in the field of graph layouts is whether planar graphs have bounded track- and queue-number. 
+
+
+%\section{New Stuff --- with David Eppstein}
+%
+%\begin{theorem}
+%Every bipartite 3-track graph has a layered planar drawing (and thus has local pathwidth 1).
+%\end{theorem}
+%
+%\begin{proof}
+%
+%\end{proof}
+%
+%\begin{theorem}
+%Every 3-track graph has bounded local pathwidth.
+%\end{theorem}
+%
+%\begin{proof}
+%
+%\end{proof}
+%
+%\newpage
+%
+%Every outerplanar triangulation has a tree decomposition (indexed by the dual) with width 2 such that for each vertex $v$ the subtree of bags containing $v$ is a path. Thus, the proof that (4) $\Longrightarrow$ (3) with $p=1$ and $k=2$ implies: 
+%
+%\begin{theorem}
+%\label{Outerplanar}
+%Every outerplanar graph $G$ has layered pathwidth at most 12. 
+%\end{theorem}
+%
+%\begin{theorem}
+%\label{Outerplanar3}
+%Every outerplanar graph $G$ has layered pathwidth at most 3. 
+%\end{theorem}
+%
+%\begin{proof}
+%Consider a 1-page book embedding of $G$. Say $V(G)=\{1,2,\dots,n\}$ in the order along the spine. Let $H$ be the vertex-face incidence graph. Let $f$ be the vertex in $H$ corresponding to the unbounded face. Label every vertex and face by its distance in $H$ from $f$. Every vertex receives an odd positive label. For $i\geq 0$, let $V_i$ be the set of vertices labelled $2i+1$. Since two adjacent vertices share a face, their labels differ by at most two and therefore are either on the same layer or on consecutive layers. Hence $V_0,V_1,\dots$ is a layering of $G$. For each vertex $v$, initialise $B_v:=\{v\}$. For $i\geq 0$, add to $B_v$ the vertex in $V_i$ closest to $v$ on the left of $v$ and the vertex in $V_i$ closest to $v$ on the right of $v$.
+%
+%We now prove that $B_1,B_2,\dots,B_n$ is a path decomposition of $G$. First consider a vertex $v\in V_i$. Let $u$ be the vertex in $V_i$ immediately before $v$. If there is no such vertex then let $u:=1$. 
+%Similarly, let $w$ be the vertex in $V_i$ immediately after $v$. If there is no such vertex then let $u:=n$. 
+%Observe that $v$ is in bag $B_x$ if and only if  $u\leq x\leq w$. 
+%Thus $v$ is in a consecutive sequence of bags. 
+%
+%Consider an edge $vw$ where $v\in V_i$ and $w\in V_j$. For $v<u<w$, vertex $u$ is separated from $f$ by $\{v,w\}$. Thus the label assigned to $u$ is greater than the minimum label of $v$ and $w$. Without loss of generality, $i\leq j$. Then $u\not\in V_i$ and $v$ is in $B_w$. Therefore $v$ and $w$ are in a common bag. 
+%
+%Hence we have a path decomposition of $G$. By construction, each bag contains at most 3 vertices in each layer. 
+%\end{proof}
+%
+%\begin{figure}[htb]
+%\begin{center}
+%\includegraphics[width=\textwidth]{OuterplanarBLP}
+%\end{center}
+%\caption{The construction in the proof of \cref{Outerplanar3}. FIGURE NEEDS UPDATING}
+%\label{OuterplanarBLP}
+%\end{figure}
+%
+%\newpage
+%\begin{theorem}
+%\label{Outerplanar2}
+%Every outerplanar graph has layered pathwidth at most 2. 
+%\end{theorem}
+%
+%This theorem follows from the next lemma. 
+%%If $v_1,\dots,v_n$ is an ordering of the vertices a graph (in some order) then we say a path decomposition $B_1,\dots,B_n$ is indexed by this vertex ordering if $v_i\in B_i$. 
+%Consider an outerplanar graph $G$ whose outerface is a cycle $(v_1,\dots,v_n)$. 
+%We say a path decomposition $B_1,\dots,B_n$ of $G$ \emph{respects} the outerface if $v_i\in B_i$ for $i\in\{1,2,\dots,n\}$; we say 
+%%We say $B_1,\dots,B_n$ is indexed by $v_1,\dots,v_n$ if $v_i\in B_i$ for $i\in\{1,2,\dots,n\}$. 
+% the bag $B_i$ is \emph{indexed} by $v_i$. 
+%
+%\begin{lemma}
+%%Let $G$ be edge-maximal outerplanar graph with $n\geq 3$ vertices.
+%%Let $v_1,\dots,v_n$ be the vertices of $G$ in clockwise order around the outerface. 
+%%For $j\geq 0$, let $V_j:=\{v_i\in V(G):\dist(v_1,v_i)=j\}$. 
+%%Then $G$ has a path decomposition $B_1,B_2,\dots,B_n$ such that for each 
+%%$i\in\{1,2,\dots,n\}$ we have $v_i\in B_i$ and if $v_i\in V_j$ then 
+%%$B_i\subseteq V_0\cup V_1\cup\dots\cup V_j$ and $|B_i\cap V_\ell|\leq 2$ for each $\ell\in\{0,1,\dots,j\}$.
+%%
+%%
+%Let $G$ be edge-maximal outerplanar graph with $n\geq 3$ vertices. 
+%Fix one vertex $r$ of $G$. 
+%For $j\geq 0$, let $V_j:=\{v\in V(G):\dist(r,v)=j\}$. 
+%Then $G$ has a path decomposition that respects the outerface of $G$ such that: \\
+%(1) for each vertex $u$ of $G$, if $u$ is in $V_j$ and $B_u $ is the bag indexed by $u$, then \\
+%(1a) $B_u\subseteq V_0\cup V_1\cup\dots\cup V_j$ and \\
+%(1b) $|B_u\cap V_\ell|\leq 2$ for each $\ell\in\{0,1,\dots,j\}$, and \\
+%(2) for each edge $ab$ on the outerface of $G$, if $a,b\in V_i$ then $B_a\cap B_b\cap V_i\subseteq\{a,b\}$.
+%% CRAP for each edge $ab$ on the outerface of $G$, we have $a,b\in B_a\cap B_b$. 
+%\end{lemma}
+%
+%\begin{proof}
+%We proceed by induction on $n$. In the base case with $n=3$, we have $G\cong K_3$. If $V(G)=\{r,u,v\}$ then the layering is given by $V_0=\{r\}$ and $V_1=\{u,v\}$ and the desired path decomposition is $\{r\},\{r,u,v\},\{r,u,v\}$. Now assume that $n\geq 4$. For $j\geq 0$, let $V_j:=\{v\in V(G):\dist(r,v)=j\}$. Every edge-maximal outerplanar graph with at least three vertices has at least two vertices with degree 2. Let $v$ be a degree-2 vertex other than $r$. Let $x$ and $y$ be the neighbours of $v$. Say $v\in V_i$. Since $\{x,y\}$ separates $v$ and $r$, without loss of generality, $x\in V_{i-1}$ and $y\in V_j$ where $j\in\{i-1,i\}$. 
+%
+%Note that $G-v$ is an edge-maximal outerplanar graph in which $xy$ is an edge on the outerface. 
+%By induction, $G-v$ has a path decomposition that respects the outerface of $G-v$ and satisfies properties (1) and (2). 
+%In particular, $x\in B_x$ and $y\in B_y$, and $B_x\subseteq V_0\cup V_1\cup\dots\cup V_{i-1}$ and $|B_x\cap V_\ell|\leq 2$ for each $\ell\in\{0,1,\dots,i-1\}$, and $B_y\subseteq V_0\cup V_1\cup\dots\cup V_j$ and $|B_y\cap V_\ell|\leq 2$ for each $\ell\in\{0,1,\dots,j\}$. Note that $\dist_G(x,r)=\dist_{G-v}(x,r)$. Thus the layering of $G-v$ (given by induction) is the same as in the layering of $G$. 
+%Define $B_v:=\{v,x,y\}\cup(B_x\cap B_y)$. On the outerface of $G$, $v$ is between $x$ and $y$. Insert $B_v$ between $B_x$ and $B_y$ in the path decomposition of $G-v$. 
+%
+%We claim that this defines the desired path decomposition of $G$. Since  $B_v$ contains the endpoints of each edge of $G$ that is not in $G-v$, the endpoints of each edge of $G$ are in some bag. Since $B_x\cap B_y\subseteq B_v$, every vertex of $G$ is in a consecutive sequence of bags. Thus we have a path decomposition of $G$. 
+%
+%To prove (1), it suffices to prove (1) for $B_v$ since every other bag is unchanged. 
+%Since $B_x\subseteq V_0\cup V_1\cup\dots\cup V_{i-1}$ and $B_y\subseteq V_0\cup V_1\cup\dots\cup V_{i}$ and $v,x,y\subseteq V_{i-1}\cup V_i$, we have  $B_v\subseteq V_0\cup V_1\cup\dots\cup V_i$ as desired. This proves (1a). 
+%For all $\ell\in\{0,1,\dots,i-2\}$ we have $B_v\cap V_\ell\subseteq B_x\cap V_\ell$, and thus  $|B_v\cap V_\ell|\leq 2$ as desired. 
+%Since $B_v\cap V_i\subseteq\{v,y\}$ we have $|B_v\cap V_i|\leq 2$ as desired. 
+%Now for the $\ell=i-1$ case. 
+%If $j=i$ then $B_v\cap V_{i-1}\subseteq B_x\cap V_{i-1}$, and thus  $|B_v\cap V_{i-1}|\leq 2$. 
+%Otherwise $j=i-1$. Then $B_v\cap V_{i-1}=\{x,y\}\cup(B_x\cap B_y\cap V_{i-1})$. 
+%By (2) applied to the edge $xy$ (which is on the outerface of $G-v$), we have
+%$B_x\cap B_y\cap V_{i-1}\subseteq\{x,y\}$.
+%Thus $B_v\cap V_{i-1} =\{x,y\}$ and $|B_v\cap V_{i-1}|=2$ as desired. 
+%%By (2) applied to the edge $xy$ (which is on the outerface of $G-v$), we have $x,y\in B_x\cap V_{i-1}$ and by (1b) we have $B_x\cap V_{i-1}=\{x,y\}$. Thus $B_v\cap V_{i-1}= \{x,y\}$ and $|B_v\cap V_{i-1}|=2$ as desired. 
+%This proves (1b) and (1). 
+%
+%To prove (2), the only new edges on the outerface of $G$ are $vx$ and $vy$. The only possibility for both endpoints of one of these edges to be in the same layer is if $j=i$ in which case $v,y\in V_i$. Then $B_v\cap V_i=\{v,y\}\cup(B_x\cap B_y\cap V_i)$. Now $B_x\cap V_i=\emptyset$ by (1a). Thus $B_x\cap B_y\cap V_i=\emptyset$ and 
+%$B_v\cap B_y\cap V_i\subseteq B_v\cap V_i=\{v,y\}$ as desired. 
+%\end{proof}
+%
+%\newpage
+
+%\citet{BRST-JCTB91} proved that every graph containing no $T$ minor has pathwidth at most $p-2$. 
+%Since $T_h$ has $2^{h+1}-1$ vertices, and every graph $G$ contains no $T_{t(G)+1}$-minor, $\pw(G)\leq 2^{t(G)+2}-3$. 
+%
+%\citet{BRST-JCTB91} proved that every graph containing no $T_{2dh}$ minor has pathwidth at most $2^{2dh+1}-3$. 
+%
+%\citet{BRST-JCTB91} proved that every graph 
+%with pathwidth at least $2^{2dh+1}-2$. 
+%contains a $T_{2dh}$ minor.
+
+
+\begin{proof}[Proof that (2) implies (1) in \cref{MainConj}] 
+Suppose that for some vertex $v$ of a graph $G$, the radius-$d$ ball $H$ centred at $v$ has pathwidth at least $2^{2dh+1} -1$. 
+Thus,  $H-v$ has pathwidth at least $2^{2dh+1}-2$. 
+By the theorem of \citet{BRST-JCTB91},  $H-v$ contains a $T_{2dh}$ minor. 
+By \cref{FindTk+}, $H$ contains $T_{2h}^+$ as a minor. 
+By \cref{FindQh}, $H-v$ contains a $Q_h$ minor. 
+
+This shows that for a graph with no $Q_h$ minor every radius-$d$ subgraph has pathwidth at most $2^{2dh+1}-2$
+\end{proof}
+
+\section{Results of \citet{BDDEW}}
+
+Results of \citet{BDDEW}
+
+%\subsection*{Acknowledgements} Thanks to 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{myNatbibStyle}
+\bibliography{myBibliography,myConferences}
+
+\end{document}

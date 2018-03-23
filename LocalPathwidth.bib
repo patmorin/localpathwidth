@@ -1,0 +1,174 @@
+
+
+,-------------------.
+|     PREAMBLE      |
+`-------------------'
+
+@preamble{ "\def\soft#1{\leavevmode\setbox0=\hbox{h}\dimen7=\ht0\advance
+           \dimen7 by-1ex\relax\if t#1\relax\rlap{\raise.6\dimen7
+           \hbox{\kern.3ex\char'47}}#1\relax\else\if T#1\relax
+           \rlap{\raise.5\dimen7\hbox{\kern1.3ex\char'47}}#1\relax
+           \else\if d#1\relax\rlap{\raise.5\dimen7\hbox{\kern.9ex
+           \char'47}}#1\relax\else\if D#1\relax\rlap{\raise.5\dimen7
+           \hbox{\kern1.4ex\char'47}}#1\relax\else\if l#1\relax
+           \rlap{\raise.5\dimen7\hbox{\kern.4ex\char'47}}#1\relax
+           \else\if L#1\relax\rlap{\raise.5\dimen7\hbox{\kern.7ex
+           \char'47}}#1\relax\else\message{accent \string\soft \space #1
+           not defined!}#1\relax\fi\fi\fi\fi\fi\fi} "
+}
+
+,-------------------.
+|  BIBTEX ENTRIES   |
+`-------------------'
+
+@article{Halin76,
+  author =        {Halin, Rudolf},
+  journal =       {J. Geometry},
+  note =          {\msn{0444522}},
+  number =        {1-2},
+  pages =         {171--186},
+  title =         {{$S$}-functions for graphs},
+  volume =        {8},
+  year =          {1976},
+  doi =           {10.1007/BF01917434},
+}
+
+@article{RS-II,
+  author =        {Robertson, Neil and Seymour, Paul},
+  journal =       {J. Algorithms},
+  note =          {\msn{0855559}},
+  number =        {3},
+  pages =         {309--322},
+  title =         {Graph minors. {II}. {A}lgorithmic aspects of
+                   tree-width},
+  volume =        {7},
+  year =          {1986},
+  doi =           {10.1016/0196-6774(86)90023-4},
+}
+
+@article{DMW17,
+  author =        {Vida Dujmovi{\'c} and Pat Morin and David R. Wood},
+  journal =       {J. Combin. Theory Ser. B},
+  note =          {\msn{3704658}},
+  pages =         {111--147},
+  title =         {Layered Separators in Minor-Closed Graph Classes with
+                   Applications},
+  volume =        {127},
+  year =          {2017},
+  doi =           {10.1016/j.jctb.2017.05.006},
+}
+
+@inproceedings{DMW-FOCS13,
+  author =        {Vida Dujmovi{\'c} and Pat Morin and David R. Wood},
+  booktitle =     {Proc. of 54th Annual Symposium on Foundations of
+                   Computer Science (FOCS '13)},
+  pages =         {280--289},
+  publisher =     {IEEE},
+  title =         {Layered separators for queue layouts, {3D} graph
+                   drawing and nonrepetitive coloring},
+  year =          {2013},
+  doi =           {10.1109/FOCS.2013.38},
+}
+
+@article{BRST-JCTB91,
+  author =        {Bienstock, Dan and Robertson, Neil and
+                   Seymour, Paul D. and Thomas, Robin},
+  journal =       {J. Combin. Theory Ser. B},
+  number =        {2},
+  pages =         {274--283},
+  title =         {Quickly excluding a forest},
+  volume =        {52},
+  year =          {1991},
+}
+
+@article{KP-DM08,
+  author =        {K{\"u}ndgen, Andre and Pelsmajer, Michael J.},
+  journal =       {Discrete Math.},
+  note =          {\msn{2433774}},
+  number =        {19},
+  pages =         {4473--4478},
+  title =         {Nonrepetitive colorings of graphs of bounded
+                   tree-width},
+  volume =        {308},
+  year =          {2008},
+  doi =           {10.1016/j.disc.2007.08.043},
+}
+
+@article{DMW05,
+  author =        {Vida Dujmovi{\'c} and Pat Morin and David R. Wood},
+  journal =       {SIAM J. Comput.},
+  note =          {\msn{2137079}},
+  number =        {3},
+  pages =         {553--579},
+  title =         {Layout of Graphs with Bounded Tree-Width},
+  volume =        {34},
+  year =          {2005},
+  doi =           {10.1137/S0097539702416141},
+}
+
+@phdthesis{Dang18,
+  author =        {Thanh N. Dang},
+  school =        {Georgia Institute of Technology},
+  title =         {Minors of graphs of large path-width},
+  year =          {2018},
+  url =           {http://aco.gatech.edu/sites/default/files/documents/dang-
+                  thesis.pdf},
+}
+
+@misc{HJMW,
+  author =        {Tony Huynh and Gwena\"el Joret and Piotr Micek and
+                   David R. Wood},
+  note =          {\arXiv:{1801.01833}},
+  title =         {Seymour's conjecture on 2-connected graphs of large
+                   pathwidth},
+  year =          {2018},
+}
+
+@article{DPW04,
+  author =        {Vida Dujmovi{\'c} and Attila P\'or and David R. Wood},
+  journal =       {Discrete Math. Theor. Comput. Sci.},
+  note =          {\msn{2180055}},
+  number =        {2},
+  pages =         {497-522},
+  title =         {Track Layouts of Graphs},
+  volume =        {6},
+  year =          {2004},
+  url =           {http://dmtcs.episciences.org/315},
+}
+
+@inproceedings{Sch92,
+  author =        {Scheffler, Petra},
+  booktitle =     {Fourth Czechoslovakian Symposium on Combinatorics,
+                   Graphs and Complexity},
+  editor =        {Ne{\v{s}}et{\v{r}}il, Jaroslav and Fiedler, Miroslav},
+  pages =         {287--291},
+  publisher =     {Elsevier},
+  series =        {Annals of Discrete Mathematics},
+  title =         {Optimal embedding of a tree into an interval graph in
+                   linear time},
+  volume =        {51},
+  year =          {1992},
+  doi =           {10.1016/S0167-5060(08)70644-7},
+}
+
+@article{Duj15,
+  author =        {Vida Dujmovi{\'c}},
+  journal =       {J. Combin. Theory Series B.},
+  note =          {\msn{3279388}},
+  pages =         {79--89},
+  title =         {Graph Layouts via Layered Separators},
+  volume =        {110},
+  year =          {2015},
+  doi =           {10.1016/j.jctb.2014.07.005},
+}
+
+@unpublished{BDDEW,
+  author =        {Michael J. Bannister and William E. Devanny and
+                   Dujmovi\'c, Vida and David Eppstein and
+                   Wood, David R.},
+  note =          {\arXiv{1506.09145}},
+  title =         {Track layouts, layered path decompositions, and
+                   leveled planarity},
+  year =          {2015},
+}
+
