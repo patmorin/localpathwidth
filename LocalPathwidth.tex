@@ -41,7 +41,7 @@
 \newcommand{\msn}[1]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR#1}{#1}}
 \newcommand{\MSN}[2]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR#1}{#1}}
 \newcommand{\Zbl}[1]{Zbl:\,\href{http://www.zentralblatt-math.org/zmath/en/search/?q=an:#1}{#1}}
-\newcommand{\doi}[1]{doi:\,\href{http://dx.doi.org/#1}{#1}}
+\newcommand{\doi}[1]{doi:\,\href{https://doi.org/#1}{#1}}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
@@ -671,8 +671,8 @@ Thus far we have established that if $T[v]$ has sufficiently high pathwidth, the
 %3. By the lemma about 4-connectivity, we can either find disjoint paths p-r and q-s, or show that the graph is planar with pqrs on the same face. Similarly, we can either find paths p-r and q-t, or show that the graph is planar with pqrt on the same face. If both planar cases happen, then all five vertices are on the same face (in an order consistent with having the edges also on the face) and we are done. Otherwise, we have one of the two sets of disjoint paths, say (by symmetry) p-r and q-s.
 %4. If the q-s path passes through t, shorten it and swap the vertex labels so that it doesn't.
 %5. If the q-s path avoids the r-t arc of C, then we can contract p-r-t and q-s, giving a bipole.
-%6. If qs has multiple non-contiguous intersections with the r-t arc of C, we can re-route C along qs, giving it only a single path น where they intersect.
-%7. If path p-r meets the r-t arc of C at a point x that is closer to t than น, then we can contract p-r, x-t, and q-s, giving a P node.
+%6. If qs has multiple non-contiguous intersections with the r-t arc of C, we can re-route C along qs, giving it only a single path ยน where they intersect.
+%7. If path p-r meets the r-t arc of C at a point x that is closer to t than ยน, then we can contract p-r, x-t, and q-s, giving a P node.
 %8. If none of the preceding cases hold, let y be the first point of path q-s that lies on arc r-t. Then replace path q-s by path q-y-t where the first part of the path (up to y) follows q-s and the second part follows r-t. Because case 7 is assumed not to hold, this new path is still disjoint from path p-r, and it has fewer edges that do not belong to C. So we can go back to step 5 with the new pair of paths and use induction on the number of edges that are not in C.
 %
 %
