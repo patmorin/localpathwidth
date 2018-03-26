@@ -150,6 +150,25 @@ In \cref{easy-section} we prove $(5)\implies (4)\implies(3)\implies(2)\implies(1
 \section{Downward Implications}
 \label{easy-section}
 
+We start with a few simple but useful lemmas.
+
+\begin{lemma}
+Let $T_1$ and $T_2$ be subtrees of a tree $T$, such that $T=T_1\cup T_2$. Then 
+$$\pw(T)+1\leq(\pw(T_1)+1)+(\pw(T_2)+1)\enspace.$$
+\end{lemma}
+
+\begin{proof}
+Let $B_1,\dots,B_s$ be a path-decomposition of $T_1$ with bag size $\pw(T_1)+1$. 
+Each component  of $T-V(T_1)$ is contained in $T_2$ and therefore has a path-decomposition  with bag size at most $\pw(T_2)+1$. For each such component $J$ of $T-V(T_1)$, there is exactly one vertex $v$ in $T_1$ adjacent to some vertex in $J$ (otherwise $T$ would contain a cycle consisting of two edges between a path in $T_1$ and a path in $J$). Say $v$ is in bag $B_i$. We say $J$ \emph{attaches} at $v$ and at $B_i$. By doubling bags in the path-decomposition of $T_1$, we may assume that distinct components of $T-V(T_1)$ attach at distinct $B_i$. For each component $J$ of $T-V(T_1)$, if $D_1,\dots,D_t$ is a path-decomposition of $J$ with bag size at most $\pw(T_2)+1$, then replace $B_i$ by $B_i\cup D_1,\dots,B_i\cup D_t$. We obtain a path-decomposition of $T$ with bag size $(\pw(T_1)+1)+(\pw(T_2)+1)$. The result follows. 
+\end{proof}
+
+\begin{corollary}
+\label{SubtreeUnion}
+Let $T_1,\dots,T_k$ be subtrees of a tree $T$, such that $T=T_1\cup\dots\cup T_k$. Then 
+$$\pw(T)+1\leq\sum_{i=1}^k(\pw(T_i)+1)\enspace.$$
+\end{corollary}
+
+
 %\begin{proof}[Proof that (2) implies (1)] 
 %Suppose that for some vertex $v$ of a graph $G$, the radius-$d$ ball $H$ centred at $v$ has pathwidth at least $2^{2dh+1} -1$. 
 %Thus,  $H-v$ has pathwidth at least $2^{2dh+1}-2$. 
@@ -197,25 +216,23 @@ We now construct a path-decomposition of $G$ with layered width at most $k(p+1)(
 \section{Proof that (1) implies (5)}
 \label{hard-section}
 
-This section is devoted to proving that, if
-$G$ is a graph with no $Q_k$ minor then $G$ has a tree decomposition
-$(T,\mathcal{B})$ of width at most $w=w(k)$ and, for every $v\in V(G)$,
-the subtree $T[v]$ has pathwidth at most $p=p(k)$.  We will
+In this section we show that if $G$ is a graph with no $Q_k$ minor then
+$G$ has a tree decomposition $(T,\mathcal{B})$, where $\mathcal{B}=(B_a
+\subseteq V(G):a\in V(T))$, of width at most $w=w(k)$ and, for every
+$v\in V(G)$, the subtree $T[v]$ has pathwidth at most $p=p(k)$.  We will
 call such a tree decomposition \emph{$(w,p)$-good}.
 
-We now give an outline of the proof.  We make use of a recent result
-of Dang, which shows that, any 3-connected $Q_k$-minor free graph
-$G$ has pathwidth at most $w=w(k)$.  Thus, $G$ has a $(w,1)$-good
+We now give an outline of the proof.  We make use of a recent result of
+Dang which shows that any 3-connected $Q_k$-minor free graph $G$ has
+pathwidth at most $w=w(k)$.  Thus, in this case $G$ has a $(w,1)$-good
 tree decomposition.  Next we deal with cut vertices by showing that,
-if each 2-connected component of a graph $G$ with no $Q_k$ minor has
-a $(w,p)$-good tree decomposition, then $G$ has a $(w,p+1)$-good tree
-decomposition.
+if each 2-connected component of a graph $G$ has a $(w,p)$-good tree
+decomposition, then $G$ has a $(w,p+1)$-good tree decomposition.
 
-Thus, the main difficulty is to show that every 2-connected graph $G$
-with no $Q_k$ minor has $(w,p)$-good tree decomposition.  To do this, we
-describe a tree decomposition $(T,\mathcal{B})$ of $G$.  If we assume,
-for the sake of contradiction that $\pw(T[v])\ge 2^X$ for some $v\in
-V(G)$ then, by the results of \citet{BRST-JCTB91} the graph $T[v]$
+Therefore, the main difficulty is to show that every 2-connected
+graph $G$ with no $Q_k$ minor has a $(w,p)$-good tree decomposition
+$(T,\mathcal{B})$.  By the results of \citet{BRST-JCTB91} described in
+the introduction, if $\pw(T[v])\ge 2^X$ for some $v\in V(G)$ then $T[v]$
 contains a $T_X$ minor.  We then show that this $T_X$ minor in $T[v]$
 implies that $G$ has a $Q_k$ minor in which $v$ is the apex vertex.
 
@@ -225,57 +242,93 @@ R-nodes) that are joined at 2-vertex cutsets (P-nodes).  These subgraphs
 consist of cycles (S-nodes) and 3-connected graphs (R-nodes). Cycles have
 pathwidth 2 and, by the result of Dang discussed above, the 3-connected
 graphs have pathwidth $w=w(k)$. Replacing the S- and R-nodes of the
-SPQR-tree with these path decompositions produces our tree decomposition
+SPQR-tree with these path decompositions produces the tree $T$ in our
+tree decomposition
 $(T,\mathcal{B})$.
 
 To show that $(T,B)$ is $(w,p)$-good, we first show that if $T[v]$
-contains a subdivision of a sufficiently large binary tree then the
-SPQR-tree $S$ also contains a subdivision $S'$ of a large binary tree
-all of whose degree-3 vertices are what we call $v$-bad.  Using this
-large $v$-bad binary tree we then piece together a subgraph of $G$ that
-has a $Q_k$ minor in which $v$ is the apex vertex.
+contains a subdivision of a sufficiently large complete binary tree
+then the SPQR-tree $S$ also contains a subdivision $S'$ of a large
+binary tree all of whose branching vertices are what we call $v$-bad.
+Using this large $v$-bad binary tree we then piece together a subgraph
+of $G$ that has a $Q_k$ minor in which $v$ is the apex vertex.
 
 \subsection{Dang's Result}
 
-Next we show how a result of Dang implies that any 3-connected graph with no $Q_k$ minor has pathwidth at most $w=w(k)$.
+First we show how a result of Dang \citet[Theorem 1.1.5]{Dang18} implies
+that any 3-connected graph with no $Q_k$ minor has pathwidth at most
+$w=w(k)$.
 
-Let $P'$ be a graph with two distinct vertices $u_1$ and $u_2$ such
-that $P'-\{u_1,u_2\}$ is a forest, $Q'$ be a graph with a vertex $v$
-such that $Q'\setminus\{v\}$ is an outerplanar graph, and $R'$ be a tree
-with a cycle going through its leaves in order from the leftmost leaf to
-the rightmost leaf so that $R'$ is planar. \citet[Theorem 1.1.5]{Dang18}
-proved the following
-
-\begin{theorem}[Dang 2018]
-\label{dang-theorem}
-There exists a number $w = w(P ', Q' , R')$ such that every 3-connected graph
-of pathwidth at least $w$ has a $P'$, $Q'$ or $R'$ minor.
+\begin{theorem}[Dang 2018]\label{dang-theorem}
+  Let $P'$ be a graph with two distinct vertices $u_1$ and $u_2$ such
+  that $P'-\{u_1,u_2\}$ is a forest, $Q'$ be a graph with a vertex $v$
+  such that $Q'\setminus\{v\}$ is an outerplanar graph, and $R'$ be a
+  tree with a cycle going through its leaves in order from the leftmost
+  leaf to the rightmost leaf so that $R'$ is planar.  There there exists
+  a number $w = w(P ', Q' , R')$ such that every 3-connected graph of
+  pathwidth at least $w$ has a $P'$, $Q'$, or $R'$ minor.
 \end{theorem} 
 
+Let $T_k^+$ be the complete binary tree $T_k$ of height $k$ plus a vertex
+adjacent to the leaves.
+
+\begin{lemma} 
+\label{FindQh}
+$T_{2k}^+$ contains $Q_k$ as a minor.
+\end{lemma}
+
+\begin{proof}
+  Partition the edges of $T_{2k}^+$ into the tree $T_{2k}$ and the
+  remaining edges, which form a star.  
+  Let $w$ be the root of $T_{2k}$ and $v$ be the center of the star.
+
+  Recall that the minor we are searching for consists of a complete binary
+  tree $T_k$, of height $k$, which has a root $w'$ and an apex vertex
+  $v'$ adjacent to every vertex of $T_k$.  We claim We claim something
+  slightly stronger: That the $Q_k$ minor we obtain is \emph{rooted}
+  in the sense that the set of vertices in $T_{2k}^+$ identified with
+  $w'$ includes $w$ and and the set of vertices idendified with the apex
+  vertex $v'$ includes $v$.
+
+  The proof of this stronger claim is by induction on $k$. 
+  If $k=0$ then the result is
+  trivial.  Otherwise, let $w$ be the root of $T_{2k}$ and let $v$
+  be the apex vertex of $T_{2k}^+$.  Let $L$ be the set of nodes in
+  $T_{2k}$ in the subtree rooted at $w$'s leftmost grandchild. Let
+  $R$ be the set of nodes in $T_{2k}$ in the subtree rooted at $w$'s
+  rightmost grandchild. Then, by induction $T_{2k}^+[L\cup\{v\}]$ and
+  $T_{2k}^+[R\cup\{v\}]$ each contain a rooted $Q_{k-1}$ minor.  Now, consider
+  any path $w=w_0,w_1,\ldots,w_{2k}$ from $w$ to a leaf of $T_{2k}$ that
+  is not in $L\cup R$. Contracting this path creates an edge from $v$
+  to $w$ and shows that $T_{2k}^+$ contains a rooted $Q_{k}$ minor.
+\end{proof}
+
+
+
 \begin{corollary}\label{3-connected}
-  There exists a number $w=w(k)$ such that every 3-connected graph of pathwidth at least $w$ has a $Q_k$ minor.
+  There exists a number $w=w(k)$ such that every 3-connected graph of
+  pathwidth at least $w$ has a $Q_k$ minor.
 \end{corollary}
 
 \begin{proof}
-Choose $P'$ to be $T_k$ plus 
-two universal vertices $u_1$ and $u_2$ adjacent ot every vertex of $T_k$. Choose $Q'$ to be the ``universal''
-outerplanar graph $\nabla_{k+1}$ of depth $k+1$ as defined, for example, in
-\citet{} plus one additional apex vertex $v$.
-Choose $R'$ to be $T_{2^k +1}$ plus a
-cycle on its leaves.
+  Choose $P'$ to be $T_k$ plus two universal vertices $u_1$ and $u_2$
+  adjacent ot every vertex of $T_k$. Choose $Q'$ to be the ``universal''
+  outerplanar graph $\nabla_{k+1}$ of depth $k+1$ as defined, for example,
+  by \citet{huynh.joret.ea:seymour}, plus one additional apex vertex $v$.
+  Choose $R'$ to be $T_{2^k +1}$ plus a cycle on its leaves.
 
-Clearly, $P'$ contains $Q_k$ as a minor since $P'\{u_2\}$ is isomorphic
-to $Q_k$.
-$Q'$ also contains $Q_k$ as a minor because $\nabla_{k+1}$ contains a complete binary tree of of height
-$k$ as a subgraph. Finally, $R'$ also contains a $Q_k$ minor: Contract the cycle, then we
-have a complete binary tree of height $2^k$ plus an apex vertex linked
-to its leaves, which contains $Q_k$ as a minor by \cref{FindQh}.
+  Clearly, $P'$ contains $Q_k$ as a minor since $P'\{u_2\}$ is isomorphic
+  to $Q_k$.  $Q'$ also contains $Q_k$ as a minor because $\nabla_{k+1}$
+  contains a complete binary tree of of height $k$ as a subgraph. Finally,
+  $R'$ also contains a $Q_k$ minor: Contract the cycle, then we have
+  a complete binary tree of height $2^k$ plus an apex vertex linked to
+  its leaves, which contains $Q_k$ as a minor by \cref{FindQh}.
 \end{proof}
 
 \subsection{Dealing with Cut Vertices}
 
-\begin{lemma}
-  Let $G$ be a graph, each of whose maximal 2-connected components has
+\begin{lemma}\label{cut-vertices}
+  Let $G$ be a graph, each of whose 2-connected components has
   a $(w,p)$-good tree decomposition. Then $G$ has a $(w,p+1)$-good tree
   decomposition.
 \end{lemma}
@@ -317,10 +370,18 @@ $a$ the \emph{representative node} for $xy$.  Each edge $ab$ in $S(G)$
 is labelled with a virtual edge $e(ab)$ that appears as a virtual edge
 in $H_a$ and in $H_b$.
 
-The SPQR-tree $S(G)$ is defined recursively as follows:\footnote{This
-definition includes P-nodes consisting of only two virtual edges, which
-some works exclude because they are unnecessary. However, their inclusion
-in our definition makes some of our analysis simpler.}
+The SPQR-tree $S(G)$ is defined recursively as follows (see
+\cref{spqr}):\footnote{This definition includes P-nodes consisting
+of only two virtual edges, which some works exclude because they are
+unnecessary. However, their inclusion in our definition makes some of
+our analysis simpler.}
+\begin{figure}
+  \begin{center}
+    \includegraphics{figs/spqr}
+  \end{center}
+  \caption{A graph and its SPQR-tree.}
+  \label{sqpr}
+\end{figure}
 \begin{enumerate}
    \item If $G$ is a cycle, then $S(G)$ consists of a single node $a$
      (an S-node) in which $H_a=G$.
@@ -331,7 +392,7 @@ in our definition makes some of our analysis simpler.}
      For each $i\in \{1,\ldots,r\}$, let $G_i=G[V(C_i)\cup\{x,y\}]$.
      Note that each $G_i$ is 2-connected, so each has an SPQR-tree $S_i$.
      Then the SPQR-tree for $G$ is obtained by creating a node $a$ (a
-     P-node) with $H_a$ being a \emph{dipole graph} with vertices $x$
+     P-node) with $H_a$ being a \emph{dipole graph} having vertices $x$
      and $y$ and having $k$ virtual edges joining $x$ and $y$ and one
      real edge $xy$.  Now the edge $xy$ appears in each $S_i$ as a real
      edge in exactly one node $a_i$ of $S_i$.
@@ -351,6 +412,10 @@ in our definition makes some of our analysis simpler.}
      $S(G)$ we make $a$ adjacent to each of $a_1,\ldots,a_k$ and we make
      the edge the $xy$ a virtual edge in each of $H_{a_1},\ldots,H_{a_k}$.
 \end{enumerate}
+This recursive process may produce pairs of S-nodes $a$ and $b$ with a
+common P-node neighbour $c$.  If this happens and $H_c$ contains exactly
+two virtual edges and no real edge, then we eliminate $c$ and merge $a$
+and $b$ into a single S-node.
 
 For each node $a$ in $S(G)$, we let $E_r(H_a)$ denote the set of real
 edges in $H_a$ and $E_v(H_a)$ denote the multiset of virtual edges
@@ -364,28 +429,30 @@ has several properties:
 \begin{enumerate}
    \item Every R-node and S-node is adjacent only to P-nodes and no two
    P-nodes are adjacent.
+   \item The degree of any node $a$ is equal to the number of virtual edges
+     in $H_a$.
+   \item For a vertex $v\in V(G)$, the set of vertices $S[v]=\{a\in V(S): v\in V(H_a)\}$ is connected in $S$.
+
    \item If $a$ is an R-node or S-node, then $H_a$ is a simple graph, i.e., $H_a$ does not contain any parallel edges.
-   \item If $a$ is a P-node, then $H_a$ contains at least two virtual edges.
-   \item If nodes $a$ and $b$ are adjacent and $v\in V(H_a)\cap V(H_b)$ then $v$ is incident on a virtual edge in $H_a$ and in $H_b$.
-   \item The degree of $a$ in $S$ is equal to the number of virtual edges in $H_a$.
+   \item If two S-nodes are adjacent to a common P-node $a$ then $H_a$ has a real edge.
    \item For every 2-vertex cutset $\{x,y\}$ in $G$ there is at most
      one P-node $a$ for which $V(H_a)=\{x,y\}$.
-   \item If $S'$ is a maximal connected subtree of $S$ that excludes some P-node    $a$ with poles $x$ and $y$ then $G[S']$ is connected.
+   \item If $S'$ is a maximal connected subtree of $S$ that excludes some node then $G[S']$ is connected.
    \item If $S'$ and $S''$ are two subtrees of $S$ that are adjacent to
      but not including a common P-node $a$ whose dipole graph has vertices
      $x$ and $y$, then $G[S']$ and $G[S'']$ have exactly two vertices,
      $x$ and $y$ in common and have no edges in common.
-   \item For a vertex $v\in V(G)$, the set of vertices $S[v]=\{a\in V(S): v\in V(H_a)\}$ is connected in $S$.
 \end{enumerate}
 
 
 \subsection{The Good Tree Decomposition}
+\label{good-tree}
 
 To obtain our good tree decomposition $(T,\mathcal{B})$ of a 2-connected
 graph $G$ we start with the SPQR-tree $S$ for $G$.  For each R-node
 or S-node $a$ of $S$ we take a minimum-width path decomposition
 $(P_a,\mathcal{B})$ of $H_a$.  We say that the node $a$ \emph{generates}
-the nodes in the path $P_a$and that each node in $P_a$ is \emph{generated
+the nodes in the path $P_a$ and that each node in $P_a$ is \emph{generated
 by} $a$.
 
 Each S- or R-node $a$ is adjacent to some set of P-nodes in $S$. For
@@ -395,55 +462,59 @@ bag $c$ of $P_a$.  We make $c$ and $b$ adjacent in $T$. This defines
 the tree $T$ in the tree decomposition. The contents of $T$'s bags are
 obvious. Each P-node $a$ of $S$ becomes a node in $T$ whose bag contains
 only the two vertices of $H_a$.  Every node $a$ in $T$ that is generated
-by an S- or R-node of $S$ is a vertex in some path decomposition of a
+by an S- or R-node of $S$ is a vertex in some path decomposition of
 a cycle or 3-connected graph and already has an associated bag $B_a$
 that it inherits from this path decomposition.
 
 It is straightforward to verify that $(T,\mathcal{B})$ is indeed a
 tree decomposition of $G$. For any particular vertex $v\in V(G)$ the
-connectivity of the subtree $T[v]$ follows from Property~4 of SPQR-trees.
+connectivity of the subtree $T[v]$ follows from Property~3 of SPQR-trees.
+Each edge $xy$ of $G$ appears as an edge in $H_a$ for at least one 
+node $a$ of $S$ and therefore $x$ and $y$ appear in a common bag
+in the path decomposition of $H_a$.
+
 Each bag $B_a$ of $(T,\mathcal{B})$ either has size 2 (when $a$ is
-generated by a P-node or an S-node) or it has size at most $w(k)$ where $w(k)$ is
-the function in \cref{3-connected} (when $a$ is generated by an R-node).
-Thus, $(T,\mathcal{B})$ is a tree decomposition whose width depends only
-on $k$.  What remains is to show that, for every $v\in V(G)$, $T[v]$
-has pathwidth that depends only on $k$.
+generated by a P-node or an S-node) or it has size at most $w(k)$ where
+$w(k)$ is the function in \cref{3-connected} (when $a$ is generated by
+an R-node).  Thus, $(T,\mathcal{B})$ is a tree decomposition whose width
+depends only on $k$.  What remains is to show that, for every $v\in V(G)$,
+$T[v]$ has pathwidth that depends only on $k$.
 
 In the remainder of this section, we fix $G$ to be a 2-connected graph,
 $S$ to be the SPQR-tree of $G$ and $(T,\mathcal{B})$ to be a tree
 decomposition obtained using the procedure described above.  For a
 vertex $v\in V(G)$, we say that a node $a$ of $S$ is \emph{$v$-bad}
 if $H_a$ contains 3 or more virtual edges incident on $v$. Note that,
-by Property~2 of SPQR-trees, no S-node $a$ is $v$-bad because $H_a$ has
-maximum-degree 2.
+by Property~4 of SPQR-trees, no S-node is $v$-bad because the graph
+$H_a$ for an S-node has maximum-degree 2.
 
 \begin{lemma}
   \label{roof-lifting}
-  If $T[v]$ has pathwidth at least $2^{2Y?}$, then $S$ contains a subdivision of $T_Y$ in which each degree-3 node is $v$-bad.
+  If $T[v]$ has pathwidth greater than $2^{2Y+1}-3$, then $S$ contains a
+  subdivision of $T_Y$ in which each degree-3 node is $v$-bad.
 \end{lemma}
 
 \begin{proof}
   In a rooted binary tree we call the root and every degree 3 node
-  \emph{branching nodes}. We call all the leaves and branching nodes
-  \emph{solid nodes}. We will use the convention that all binary trees
-  are ordered, possibly arbitrarily, so that we can distinguish between
-  left and right children of a branching node.  For a node $a$ in a rooted
-  binary tree, we denote by $T_a$, the maximal subtree rooted at $a$.
+  \emph{branching nodes}.  We will use the convention that all binary
+  trees are ordered, possibly arbitrarily, so that we can distinguish
+  between left and right children of a branching node.  For a node $a$
+  in a rooted binary tree, we denote by $T_a$, the maximal subtree rooted
+  at $a$.
 
-  Recall from the introduction that, if $T[v]$
-  has pathwidth at least $2^{2Y}$ then it contains a subdivision $T'$
-  of $T_{2Y}$.  Label each node of $T'$ with the node of $S$ that
-  generated it.
-  Recall that each node $a$ in $S$ generates a path in $T$ so, if we
-  consider any subset of nodes of $T'$ with a common label then this
-  subset forms a path in $T'$.
+  Recall from the introduction that, if $T[v]$ has pathwidth greater than
+  $2^{2Y+1}-3$ then it contains a subdivision $T'$ of $T_{2Y}$.  Label each
+  node of $T'$ with the node of $S$ that generated it.  Recall that each
+  node $a$ in $S$ generates a path in $T$ so, if we consider any subset of
+  nodes of $T'$ with a common label then this subset forms a path in $T'$.
 
   We claim that $T'$ contains a subdivision $T''$ of $T_{Y}$ such that
   all the branching nodes of $T''$ have distinct labels.  We establish
   this claim by induction on $Y$: If $Y=0$ then the claim is trivial.
   Otherwise, let $a$ be the root of $T'$ and notice that $a$ has two
   branching vertices $a_1$ and $a_2$ that are in $a$'s left subtree
-  and such $T_{a_1}$ and $T_{a_2}$ are each subdivisions of $T_{2Y-2}$.
+  and such that the subtrees $T_{a_1}$ and $T_{a_2}$ rooted a $a_1$
+  and $a_2$ are disjoint and each contains a subdivision of $T_{2Y-2}$.
   Similarly, $a$'s right subtree has two branching vertices $a_3$ and
   $a_4$ and such that each of $T_{a_3}$ and $T_{a_4}$ is a subdivision
   of $T_{2Y-2}$.  At least one of $T_{a_1}$ or $T_{a_2}$, say $T_{a_2}$,
@@ -451,8 +522,9 @@ maximum-degree 2.
   at least one of $T_{a_3}$ or $T_{a_4}$, say $T_{a_3}$, does not
   have any labels in common with $a$.  Furthermore, since they are
   separated by $a$, $T_{a_2}$ and $T_{a_3}$ have no labels in common.
-  Applying induction on $T_{a_2}$ and $T_{a_3}$ and connecting them by
-  the path from $a_2$ to $a$ to $a_3$ yields a subdivision of $T_{Y}$
+  Applying induction on $T_{a_2}$ and $T_{a_3}$ yields two subdivisions
+  of $T_{Y-1}$ and connecting their roots by
+  the path through $a$ yields a subdivision of $T_{Y}$
   in which each branching vertex has a distinct label.
 
   Now, each branching node in $T''$ has a distinct label and therefore
@@ -461,76 +533,146 @@ maximum-degree 2.
   that is a subdivision of $T_{Y}$. All that remains is to show that every
   degree-3 node of $T'''$ is $v$-bad.  But this is straightforward. Every
   degree-3 node $a$ of $T'''$ has three neighbours $a_1$, $a_2$, and
-  $a_3$ and each of $H_{a_1}$, $H_{a_2}$ and $H_{a_3}$ contains a $v$.
+  $a_3$ and each of $H_{a_1}$, $H_{a_2}$ and $H_{a_3}$ contains $v$.
   Therefore $H_a$ contains at least three virtual edges incident on $v$.
 \end{proof}
 
-Thus far we have established that if $T[v]$ has sufficiently high pathwidth, then $S$ contains a subdivision of $T_Y$ in which all branching nodes are $v$-bad.
+Thus far we have established that if $T[v]$ has sufficiently high
+pathwidth, then $S$ contains a subdivision of all a large complete binary
+tree in which all branching nodes are $v$-bad.
 
-\begin{lemma}
-  If $S$ contains a subdivision of $T_{5(Y+1)}$ in which all branching nodes are  $v$-bad then $G$ contains a $Q_{k}$ minor.
+\begin{lemma}\label{qk-minor}
+  If $S$ contains a subdivision of $T_{7(k+1)}$ in which all branching nodes are  $v$-bad then $G$ contains a $Q_{k}$ minor.
 \end{lemma}
 
 \begin{proof}
-  First we note that if $S$ contains a subdivision of $T_{5(Y+1)}$ in which
+  First we note that if $S$ contains a subdivision of $T_{7(k+1)}$ in which
   all branching nodes are $v$-bad, then $S$ contains a subdivision $T'$
-  of $T_{Y+1}$ in which all branching nodes are $v$-bad and the path
-  between any pair of branching nodes has length at least 5.
+  of $T_{k+1}$ in which all branching nodes are $v$-bad and the path
+  between any pair of branching nodes has length at least 7.
 
   It will be helpful to work with a simplified SPQR-tree $S'$ and
-  multigraph $G'$ obtained by repeating the following operation
+  graph $G'$ obtained by repeating the following operation
   exhaustively: Consider some edge $ab$ of $S$ with $a\in V(T')$ and
   $b\not\in V(T')$. The edge $ab$ is associated with some virtual edge
   $xy$ in $H_a$.  In $S'$ we replace the virtual edge $xy$ in $H_a$
   with a real edge. At the same time we remove the maximal subtree of
   $S$ that contains $b$ and not $a$.  In $G'$ this means we replace
-  one of the components $C$ of $G-\{x,y\}$ with the single edge $xy$,
-  possibly introducing multiple edges in $G'$.  This simplification
-  is safe in the sense that, if we find a $Q_k$ minor in $G'$
-  that uses the edge $xy$ then, in $G$, the edge $xy$ can be replaced with a
-  path in $G[V(C)\cup\{x,y\}]$ that joins $x$ and $y$.
+  one of the components $C$ of $G-\{x,y\}$ with the single edge $xy$.
+  This simplification is safe in the sense that, if we find a $Q_k$
+  minor in $G'$ that uses the edge $xy$ then, in $G$, the edge $xy$ can
+  be replaced with a path in $G[V(C)\cup\{x,y\}]$ that joins $x$ and $y$.
 
   With this simplification, the tree $T'$ is the SPQR-tree for the
-  multigraph $G'$ and every virtual edge is incident to $v$.  We now
-  focus on finding the $Q_k$ minor of $G'$.  Recall that $Q_k$ is
+  graph $G'$ and every virtual edge is incident to $v$.  We now turn
+  our efforts finding the $Q_k$ minor of $G'$.  Recall that $Q_k$ is
   the union of a complete binary tree $T_k$ and an apex vertex $v$.
-  We begin by finding a subdivision of $T_{k+1}$ in $G$.
+  We begin by finding a subdivision $T''$ of $T_{k+1}$ in $G$. In this
+  subdivision, each edge of $T_{k+1}$ that joins a node to its left child
+  is represented by a path $P_{\mu\nu}$ joining a branching node $\mu$
+  to a node $\nu$.  We show that $G$ contains a path from $v$
+  to some vertex $\eta$ of $P_{\mu\nu}$ with $\eta\neq\nu$.  Furthermore,
+  these paths are disjoint, so the union of $T''$ and these paths contains
+  a $Q_k$ minor.  See \cref{qk}.
 
-  Let $a$ and $b$ be two solid nodes of $T'$ with no branching
-  nodes on the path $a=c_1,c_2,\ldots,c_r=b$ joining them. For
-  each $i\in\{1,\ldots,r-1\}$, the edge $c_ic_{i+1}$ is associated
-  with a cutset $\{v,x_i\}$ in $G$.   We claim that, for each
-  $i\in\{1,\ldots,r-2\}$, $H_{c_{i+1}}$ contains a path from $x_i$
-  to $x_{i+1}$ that does not contain $v$.  When $c_i$
-  is a P-node, this claim is trivial since, in this case, $x_i=x_{i+1}$.
-  The case in which $c_i$ is an S-node or R-node is also easy: In these
-  cases $H_{c_i}$ is 2-connected, therefore there is a path from $x_1$
-  to $x_{i+1}$ that avoids $v$.  
-  Therefore, $G'$ contains a path from
-  $x_1$ to $x_{r-1}$ that not include $v$ (TODO: Explain why this path is simple---cutsets).  Since the only virtual
-  edges of $S'$ are incident to $v$, this implies that the path from
-  $x_1$ to $x_r$ uses only real edges in $H_{c_2},\ldots,H_{c_{r-1}}$.
-  Therefore, all of the paths obtained this way (one for each edge of
-  $T_{Y+1}$) do not share any edges or interior vertices. Furthermore,
-  none of these paths uses any real edges of any branching node.
-  
-  Thus far we have constructed paths joining each branching nodes to
-  each other.  For each branching P-node $a$, the three paths leading to
-  $H_a$ meet at a common vertex.  
-  For each branching R-node $a$, the three
-  paths leading to $H_a$ end at three distinct vertices $x$, $y$, and $z$.
-  What remains is to show how to connect $x$, $y$, and $z$ using real edges of $H_a$ in order to complete our subdivision of $T_{Y+1}$.
-  Since $H_a$ is 3-connected, there is a path $P_1$ in $H_a$ from $y$
-  to $z$ that avoids $v$.  Again, since $H_a$ is 3-connected, there is
-  a path $P_2$ in $H_a$ that avoids $v$, whose interior is disjoint from
-  $P_1$ and that whose endpoints are $x$ and some vertex $x'$ in $P_1$.
-  In this way we have found a subgraph in $H_a$ that connects $x$, $y$, and $z$.  Doing this for each branching R-node completes the subdivision of $T_{Y+1}$
+  \begin{figure}
+    \begin{center}
+      \includegraphics{figs/qk}
+    \end{center}
+    \caption{Finding a $Q_k$ minor in the proof of \cref{qk-minor}.}
+    \label{qk}
+  \end{figure}
 
-  Now each node $T_{Y+1}$
+  Let $a$ be a branching node of $T'$ and let $b$ be the nearest
+  branching node in one of $a$'s two subtrees.  Consider the path
+  $a=c_1,c_2,\ldots,c_r=b$ in $T'$.  For each
+  $i\in\{1,\ldots,r-1\}$, the edge $c_ic_{i+1}$ is associated with a
+  cutset $\{v,x_i\}$ in $G$.  Refer to \cref{paths}.  We claim that,
+  for each $i\in\{2,\ldots,r-1\}$, $H_{c_{i}}$ contains a path $P_i$
+  from $x_{i-1}$ to $x_{i}$ that does not contain $v$.  When $c_i$ is a
+  P-node, this claim is trivial since, in this case, $x_{i-1}=x_{i}$.
+  The case in which $c_i$ is an S-node or R-node is also easy: In
+  these cases $H_{c_i}$ is 2-connected, therefore there is a path
+  from $x_{i-1}$ to $x_{i}$ that avoids $v$.  Now note that the paths
+  $P_1,\ldots,P_{r-1}$ have disjoint interiors since each $\{v,x_i\}$ is a
+  cutset that separates $\bigcup_{j=1}^{i} V(H_{c_j})\setminus\{v,x_i\}$
+  from $\bigcup_{j={i+1}}^r V(H_{c_j})\setminus\{v,x_i\}$.  We call the
+  path obtained this way the \emph{subdivision path} for branching nodes
+  $a$ and $b$.
 
+  \begin{figure}
+    \begin{center}
+      \includegraphics{figs/paths}
+    \end{center}
+    \caption{Finding a path connecting a vertex of $H_a$ to a vertex of $H_b$.}
+    \label{paths}
+  \end{figure}
+
+  Therefore, $G'[\{c_2,\ldots,c_r\}]$ contains a simple path $P$
+  from $x_1$ to $x_{r-1}$ that does not include $v$.  Now suppose
+  that $b$ is a descendant of $a$'s left child.  We now show that
+  $G'[\{c_2,c_3,c_4,c_5\}]$ contains an \emph{apex path} $P'$ from
+  $v$ to some vertex of $P$ whose internal vertices are disjoint from
+  $V(P)\cup V(H_{b})$.  To prove this, there are two cases to consider:
+  \begin{enumerate}
+    \item $c_i$ is an R-node, for some $i\in\{2,\ldots,5\}$:  Since
+    $H_{c_i}$ is 3-connected, there are three paths with endpoints
+    $v$ and $x_i$ an no other vertices in common.
+    Since $H_{c_{i}}$ has only two virtual edges, at least
+    one of these paths uses only real edges in $H_{c_i}$.  This path
+    therefore contains a subpath $P'$ joining $v$ to some vertex of $P$
+    that is otherwise disjoint from $P$.
+
+    \item Otherwise, none of $c_2,\ldots,c_5$ is an R-node. Property~1
+    of SPQR-trees implies that, for at least one $i\in\{4,5\}$, $c_i$ is
+    an S-node, $c_{i+1}$ is a P-node and $c_{i+2}$ is an S-node.  But in
+    this case, Property~5 of SPQR-trees ensures that the $H_{c_{i+1}}$
+    contains the real edge $vx_{i+1}$. Therefore, in this case there is a
+    single edge path $P'$ from $v$ to $P$.
+  \end{enumerate}
+  By Properties~1 and 6 of SPQR-trees, for any $x\in V(G)\setminus\{v\}$,
+  the subtree $T'[x]$ of $T'$ consisting only of nodes $a$ such that $x\in
+  V(H_a)$ is a star, i.e., the distance between any two nodes in $T[x]$
+  is at most 2.  Now, since the distance between two branching nodes
+  of $T'$ is at least $7$, $r\ge 8$ and therefore $H_b=H_{c_r}$ has no
+  vertex in common with any of $H_{c_2},\ldots,H_{c_5}$.  Therefore,
+  $P'$ joins $v$ to a vertex in $P$ that is not in $H_{b}$, as required.
+
+  Finally, observe that every branching node $a$ of $T'$ is either
+  an R-node or a P-node. In the case where $a$ is a P-node, all the
+  subdivision paths that include a vertex of $H_a$ include the same
+  vertex of $H_a$.  In the case where $a$ is an R-node, each subdivision
+  path that includes a vertex of $H_a$ includes a different vertex
+  (for up to 3 different vertices $x$, $y$, and $z$). Now, since $H_a$
+  is 3-connected, these three vertices are in the same component of
+  $H_{a}-\{v\}$. In particular, $H_a$ contains a minimal tree that
+  includes $x$, $y$, and $z$.  Adding each of these trees to the union
+  of all subdivision paths produces the subdivision $T''$ of $T_{k+1}$.
+  Adding the set of all apex paths to $T''$ then produces a subgraph of
+  $G'$ that contains a $Q_k$-minor.
 \end{proof}
 
+Finally, we have all the pieces in place to complete the proof.
 
+\begin{proof}[Proof that (1) implies (5)]
+   Let $G$ be a graph with no $Q_k$ minor.  We wish to show that there are
+   $w$ and $p$ that depend only on $k$ such that $G$ has a $(w,p)$-good
+   tree decomposition.  By \cref{cut-vertices} we may assume that $G$
+   is 2-connected.
+
+   Consider the good tree decomposition $T$ of $G$ described in
+   \cref{good-tree}.    This decomposition has width at most $w$ where
+   $w=w(k)$ is the function that appears (implicitly) in \cref{dang-theorem}
+   and \cref{3-connected}.
+
+   We claim that, for each $v\in V(G)$, $\pw(T[v])\le
+   2^{14(k+1)}-3$, so that the tree decomposition $(T,\mathcal{B})$ is
+   $(w,2^{14(k+1)}-3)$-good.  Otherwise, by \cref{roof-lifting}, the
+   SPQR-tree $S$ of $G$ contains a subdivision of $T_{7(k+1)}$ in which
+   each branching node is $v$-bad.  Therefore, by \cref{qk-minor},
+   $G$ contains a $Q_k$ minor, contradicting the assertion that $G$
+   has no $Q_k$ minor.
+\end{proof}
 
 %\textcolor{red}{It remains to prove that (1) implies (4), or (2) implies (4). }
 %
@@ -750,52 +892,26 @@ Thus far we have established that if $T[v]$ has sufficiently high pathwidth, the
 %subtree of sibling" issue. A very interesting approach nonetheless, I
 %hope we'll find a way around this.
 
-\section{A Useful Lemma}
-
-\begin{lemma}
-Let $T_1$ and $T_2$ be subtrees of a tree $T$, such that $T=T_1\cup T_2$. Then 
-$$\pw(T)+1\leq(\pw(T_1)+1)+(\pw(T_2)+1)\enspace.$$
-\end{lemma}
-
-\begin{proof}
-Let $B_1,\dots,B_s$ be a path-decomposition of $T_1$ with bag size $\pw(T_1)+1$. 
-Each component  of $T-V(T_1)$ is contained in $T_2$ and therefore has a path-decomposition  with bag size at most $\pw(T_2)+1$. For each such component $J$ of $T-V(T_1)$, there is exactly one vertex $v$ in $T_1$ adjacent to some vertex in $J$ (otherwise $T$ would contain a cycle consisting of two edges between a path in $T_1$ and a path in $J$). Say $v$ is in bag $B_i$. We say $J$ \emph{attaches} at $v$ and at $B_i$. By doubling bags in the path-decomposition of $T_1$, we may assume that distinct components of $T-V(T_1)$ attach at distinct $B_i$. For each component $J$ of $T-V(T_1)$, if $D_1,\dots,D_t$ is a path-decomposition of $J$ with bag size at most $\pw(T_2)+1$, then replace $B_i$ by $B_i\cup D_1,\dots,B_i\cup D_t$. We obtain a path-decomposition of $T$ with bag size $(\pw(T_1)+1)+(\pw(T_2)+1)$. The result follows. 
-\end{proof}
-
-\begin{corollary}
-\label{SubtreeUnion}
-Let $T_1,\dots,T_k$ be subtrees of a tree $T$, such that $T=T_1\cup\dots\cup T_k$. Then 
-$$\pw(T)+1\leq\sum_{i=1}^k(\pw(T_i)+1)\enspace.$$
-\end{corollary}
-
-
-Let $T_h$ be the complete binary tree of height $h$. 
-Let $T_h^+$ be the complete binary tree of height $h$ plus a vertex adjacent to the leaves. 
-Recall that $Q_h$ is the complete binary tree of height $h$ plus a dominant vertex.
-
-\begin{lemma} 
-\label{FindQh}
-$T_{2h}^+$ contains $Q_h$ as a minor.
-\end{lemma}
-
-\begin{lemma} 
-\label{FindTk+}
-If $v$ is a vertex of eccentricity $d$ in a graph $G$ and there is a 
-$T_{dk}$ minor in $G-v$, then $G$ contains a $T_k^+$ minor where $v$ is in the
-branch set of the `apex' vertex adjacent to the leaves.
-\end{lemma}
-
-\begin{proof}
-We proceed by induction on $d$. With $d=1$ there is nothing to
-prove. Now assume that $d > 1$. We may assume that $T_{dk}$ is a subgraph.
-Think of $T_{dk}$ to consist of the $T_k$ at the root plus many copies of
-$T_{(d-1)k}$. If $v$ has a neighbour in each such copy of $T_{(d-1)k}$, then
-contract each copy to get the desired $T_k^+$. Otherwise one of the
-$T_{(d-1)k}$ copies $H$ has no neighbour of $v$. Then contract $N[v]$ into $v'$.
-In the obtained graph, $v'$ has eccentricity $d-1$. So by induction, $H$
-contains $T_k^+$ where $v'$ is the vertex adjacent to the leaves, and we
-are done.
-\end{proof}
+%\section{A Useful Lemma}
+%
+%\begin{lemma} 
+%\label{FindTk+}
+%If $v$ is a vertex of eccentricity $d$ in a graph $G$ and there is a 
+%$T_{dk}$ minor in $G-v$, then $G$ contains a $T_k^+$ minor where $v$ is in the
+%branch set of the `apex' vertex adjacent to the leaves.
+%\end{lemma}
+%
+%\begin{proof}
+%We proceed by induction on $d$. With $d=1$ there is nothing to
+%prove. Now assume that $d > 1$. We may assume that $T_{dk}$ is a subgraph.
+%Think of $T_{dk}$ to consist of the $T_k$ at the root plus many copies of
+%$T_{(d-1)k}$. If $v$ has a neighbour in each such copy of $T_{(d-1)k}$, then
+%contract each copy to get the desired $T_k^+$. Otherwise one of the
+%$T_{(d-1)k}$ copies $H$ has no neighbour of $v$. Then contract $N[v]$ into $v'$.
+%In the obtained graph, $v'$ has eccentricity $d-1$. So by induction, $H$
+%contains $T_k^+$ where $v'$ is the vertex adjacent to the leaves, and we
+%are done.
+%\end{proof}
 
 \section{An Application}
 
@@ -973,6 +1089,6 @@ Results of \citet{BDDEW}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{myNatbibStyle}
 %\bibliography{myBibliography,myConferences}
-\bibliography{LocalPathwidth}
+\bibliography{LocalPathwidth,extra}
 
 \end{document}
