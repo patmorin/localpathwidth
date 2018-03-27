@@ -141,7 +141,7 @@ The following are equivalent for a proper minor-closed class \GG:
 \item \GG\ has bounded local pathwidth,
 \item \GG\ has linear local pathwidth.
 \item \GG\ has bounded layered pathwidth,
-\item each graph in $G\in\GG$ has a tree decomposition $T$ of bounded width, such that $T[v]$ has bounded pathwidth for each vertex $v$ of $G$,
+\item each graph $G\in\GG$ has a tree decomposition $T$ of bounded width, such that $T[v]$ has bounded pathwidth for each vertex $v$ of $G$,
 \end{enumerate}
 \end{theorem}
 
@@ -216,11 +216,16 @@ We now construct a path-decomposition of $G$ with layered width at most $k(p+1)(
 \section{Proof that (1) implies (5)}
 \label{hard-section}
 
-In this section we show that if $G$ is a graph with no $Q_k$ minor then
-$G$ has a tree decomposition $(T,\mathcal{B})$, where $\mathcal{B}=(B_a
-\subseteq V(G):a\in V(T))$, of width at most $w=w(k)$ and, for every
-$v\in V(G)$, the subtree $T[v]$ has pathwidth at most $p=p(k)$.  We will
-call such a tree decomposition \emph{$(w,p)$-good}.
+In this section we show that if $G$ is a graph with no $Q_k$ minor
+then $G$ has a tree decomposition $(B_a \subseteq V(G):a\in V(T))$, of
+width at most $w=w(k)$ and, for every $v\in V(G)$, the subtree $T[v]$
+has pathwidth at most $p=p(k)$.  We will call such a tree decomposition
+\emph{$(w,p)$-good}.  
+
+In this section, we will be working with two related trees $S$ and $T$
+and one graph $G$. To help the reader keep track of things we will use
+variables $a$, $b$, and $c$ to refer to \emph{nodes} of $S$ and $T$
+and variables $v$, $x$, $y$, and $z$ to refer to \emph{vertices} of $G$.
 
 We now give an outline of the proof.  We make use of a recent result of
 Dang which shows that any 3-connected $Q_k$-minor free graph $G$ has
@@ -279,29 +284,19 @@ $T_{2k}^+$ contains $Q_k$ as a minor.
 
 \begin{proof}
   Partition the edges of $T_{2k}^+$ into the tree $T_{2k}$ and the
-  remaining edges, which form a star.  
-  Let $w$ be the root of $T_{2k}$ and $v$ be the center of the star.
-
-  Recall that the minor we are searching for consists of a complete binary
-  tree $T_k$, of height $k$, which has a root $w'$ and an apex vertex
-  $v'$ adjacent to every vertex of $T_k$.  We claim We claim something
-  slightly stronger: That the $Q_k$ minor we obtain is \emph{rooted}
-  in the sense that the set of vertices in $T_{2k}^+$ identified with
-  $w'$ includes $w$ and and the set of vertices idendified with the apex
-  vertex $v'$ includes $v$.
-
-  The proof of this stronger claim is by induction on $k$. 
-  If $k=0$ then the result is
-  trivial.  Otherwise, let $w$ be the root of $T_{2k}$ and let $v$
-  be the apex vertex of $T_{2k}^+$.  Let $L$ be the set of nodes in
-  $T_{2k}$ in the subtree rooted at $w$'s leftmost grandchild. Let
-  $R$ be the set of nodes in $T_{2k}$ in the subtree rooted at $w$'s
-  rightmost grandchild. Then, by induction $T_{2k}^+[L\cup\{v\}]$ and
-  $T_{2k}^+[R\cup\{v\}]$ each contain a rooted $Q_{k-1}$ minor.  Now, consider
-  any path $w=w_0,w_1,\ldots,w_{2k}$ from $w$ to a leaf of $T_{2k}$ that
-  is not in $L\cup R$. Contracting this path creates an edge from $v$
-  to $w$ and shows that $T_{2k}^+$ contains a rooted $Q_{k}$ minor.
+  remaining edges, which form a star.  In the tree, for each odd
+  $i\in\{1,\ldots,2k\}$ and each node $a$ whose depth is even and such
+  that $a$ is the right child of its parent, contract the entire subtree
+  at rooted at $a$ and the path from $a$ to its grandparent.  It is easy
+  straightforward to verify by induction on $k$ that the result of this 
+  operation is $Q_k$.
 \end{proof}
+
+\begin{figure}
+
+   \caption{The graph $T_{2k}^+$ contains a $Q_k$ minor. Contracting the
+    the coloured edges gives the tree $T_k$
+\end{figure}
 
 
 
