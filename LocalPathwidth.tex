@@ -380,7 +380,7 @@ our analysis simpler.}
     \includegraphics{figs/spqr}
   \end{center}
   \caption{A graph and its SPQR-tree.}
-  \label{sqpr}
+  \label{spqr}
 \end{figure}
 \begin{enumerate}
    \item If $G$ is a cycle, then $S(G)$ consists of a single node $a$
@@ -399,7 +399,8 @@ our analysis simpler.}
      To complete $S(G)$ we make $a$ adjacent to each of $a_1,\ldots,a_k$ and we
      make the edge the $xy$ a virtual edge in each of $H_{a_1},\ldots,H_{a_k}$.
 
-   \item Otherwise $G$ has a cutset $\{x,y\}$ such that $xy\not\in E(G)$.
+   \item Otherwise $G$ has a cutset $\{x,y\}$ such that $xy\not\in E(G)$
+     and $x$ and $y$ each have degree at least 3.
      Then let $C_1,\ldots,C_r$ be the connected components of
      $G-\{x,y\}$.  For each $i\in \{1,\ldots,r\}$, let $\tilde{G}_i$
      be $G[V(C_i)\cup\{x,y\}]$ along with the additional edge $xy$.
@@ -412,10 +413,6 @@ our analysis simpler.}
      $S(G)$ we make $a$ adjacent to each of $a_1,\ldots,a_k$ and we make
      the edge the $xy$ a virtual edge in each of $H_{a_1},\ldots,H_{a_k}$.
 \end{enumerate}
-This recursive process may produce pairs of S-nodes $a$ and $b$ with a
-common P-node neighbour $c$.  If this happens and $H_c$ contains exactly
-two virtual edges and no real edge, then we eliminate $c$ and merge $a$
-and $b$ into a single S-node.
 
 For each node $a$ in $S(G)$, we let $E_r(H_a)$ denote the set of real
 edges in $H_a$ and $E_v(H_a)$ denote the multiset of virtual edges

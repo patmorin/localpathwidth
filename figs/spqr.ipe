@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20180326161942" modified="D:20180326161942"/>
+<info created="D:20180326161942" modified="D:20180326164559"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -220,13 +220,13 @@ h
 <dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
 <dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
 <textsize name="large" value="\large"/>
+<textsize name="small" value="\small"/>
+<textsize name="tiny" value="\tiny"/>
 <textsize name="Large" value="\Large"/>
 <textsize name="LARGE" value="\LARGE"/>
 <textsize name="huge" value="\huge"/>
 <textsize name="Huge" value="\Huge"/>
-<textsize name="small" value="\small"/>
 <textsize name="footnote" value="\footnotesize"/>
-<textsize name="tiny" value="\tiny"/>
 <textstyle name="center" begin="\begin{center}" end="\end{center}"/>
 <textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
 <textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
@@ -395,10 +395,6 @@ h
 </path>
 <use matrix="0.5 0 0 0.5 29.9358 181.223" name="mark/disk(sx)" pos="272 672" size="normal" stroke="black"/>
 <use matrix="0.5 0 0 0.5 29.9358 181.223" name="mark/disk(sx)" pos="304 672" size="normal" stroke="black"/>
-<path matrix="0.5 0 0 0.5 29.9358 181.223" stroke="black">
-272 672 m
-304 672 l
-</path>
 <use matrix="0.5 0 0 0.5 29.9358 181.223" name="mark/disk(sx)" pos="128 688" size="normal" stroke="black"/>
 <use matrix="0.5 0 0 0.5 29.9358 181.223" name="mark/disk(sx)" pos="144 704" size="normal" stroke="black"/>
 <use matrix="0.5 0 0 0.5 29.9358 181.223" name="mark/disk(sx)" pos="128 624" size="normal" stroke="black"/>
@@ -644,45 +640,45 @@ h
 148 512
 192 560 u
 </path>
-<use matrix="-0.5 0 -0 -0.5 405.539 735.873" name="mark/disk(sx)" pos="128 544" size="normal" stroke="black"/>
-<use matrix="-0.5 0 -0 -0.5 405.539 735.873" name="mark/disk(sx)" pos="128 560" size="normal" stroke="black"/>
-<use matrix="-0.5 0 -0 -0.5 405.539 735.873" name="mark/disk(sx)" pos="128 576" size="normal" stroke="black"/>
-<use matrix="-0.5 0 -0 -0.5 405.539 735.873" name="mark/disk(sx)" pos="144 576" size="normal" stroke="black"/>
-<use matrix="-0.5 0 -0 -0.5 405.539 735.873" name="mark/disk(sx)" pos="160 576" size="normal" stroke="black"/>
-<path matrix="-0.5 0 -0 -0.5 405.539 735.873" stroke="black" dash="dotted">
+<use matrix="-0.5 0 0 -0.5 405.539 735.873" name="mark/disk(sx)" pos="128 544" size="normal" stroke="black"/>
+<use matrix="-0.5 0 0 -0.5 405.539 735.873" name="mark/disk(sx)" pos="128 560" size="normal" stroke="black"/>
+<use matrix="-0.5 0 0 -0.5 405.539 735.873" name="mark/disk(sx)" pos="128 576" size="normal" stroke="black"/>
+<use matrix="-0.5 0 0 -0.5 405.539 735.873" name="mark/disk(sx)" pos="144 576" size="normal" stroke="black"/>
+<use matrix="-0.5 0 0 -0.5 405.539 735.873" name="mark/disk(sx)" pos="160 576" size="normal" stroke="black"/>
+<path matrix="-0.5 0 0 -0.5 405.539 735.873" stroke="black" dash="dotted">
 160 576 m
 128 544 l
 </path>
-<path matrix="-0.5 0 -0 -0.5 405.539 735.873" stroke="black">
+<path matrix="-0.5 0 0 -0.5 405.539 735.873" stroke="black">
 128 544 m
 128 560 l
 </path>
-<path matrix="-0.5 0 -0 -0.5 405.539 735.873" stroke="black">
+<path matrix="-0.5 0 0 -0.5 405.539 735.873" stroke="black">
 128 560 m
 128 576 l
 </path>
-<path matrix="-0.5 0 -0 -0.5 405.539 735.873" stroke="black">
+<path matrix="-0.5 0 0 -0.5 405.539 735.873" stroke="black">
 128 576 m
 160 576 l
 </path>
-<use matrix="-0.5 0 -0 -0.5 393.539 747.873" name="mark/disk(sx)" pos="128 544" size="normal" stroke="black"/>
-<use matrix="-0.5 0 -0 -0.5 393.539 747.873" name="mark/disk(sx)" pos="160 576" size="normal" stroke="black"/>
-<path matrix="-0.5 0 -0 -0.5 401.539 739.873" stroke="black" dash="dotted">
+<use matrix="-0.5 0 0 -0.5 393.539 747.873" name="mark/disk(sx)" pos="128 544" size="normal" stroke="black"/>
+<use matrix="-0.5 0 0 -0.5 393.539 747.873" name="mark/disk(sx)" pos="160 576" size="normal" stroke="black"/>
+<path matrix="-0.5 0 0 -0.5 401.539 739.873" stroke="black" dash="dotted">
 144 528 m
 156 548
 176 560 c
 </path>
-<path matrix="-0.5 0 -0 -0.5 401.539 739.873" stroke="black" dash="dotted">
+<path matrix="-0.5 0 0 -0.5 401.539 739.873" stroke="black" dash="dotted">
 176 560 m
 164 540
 144 528 c
 </path>
-<path matrix="-0.5 0 -0 -0.5 405.744 735.668" stroke="black">
+<path matrix="-0.5 0 0 -0.5 405.744 735.668" stroke="black">
 112 592
 112 512
 196 588 u
 </path>
-<path matrix="-0.5 0 -0 -0.5 402.539 738.873" stroke="black">
+<path matrix="-0.5 0 0 -0.5 402.539 738.873" stroke="black">
 176 572
 132 524
 148 512
