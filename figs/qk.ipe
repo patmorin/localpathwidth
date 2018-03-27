@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20180326094648" modified="D:20180326105227"/>
+<info created="D:20180326094648" modified="D:20180327112858"/>
 <preamble>\usepackage{iwona}</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
@@ -455,13 +455,6 @@ h
 256 400 c
 </path>
 <use matrix="2 0 0 0.5 -160 383.585" name="mark/disk(sx)" pos="224 640" size="normal" stroke="black"/>
-<use matrix="0.5 0 0 0.5 144 319.585" name="mark/disk(sx)" pos="82.3533 609.807" size="normal" stroke="black"/>
-<use matrix="0.5 0 0 0.5 144 319.585" name="mark/disk(sx)" pos="129.09 672.409" size="normal" stroke="black"/>
-<use matrix="0.5 0 0 0.5 144 319.585" name="mark/disk(sx)" pos="212.483 620.24" size="normal" stroke="black"/>
-<use matrix="0.5 0 0 0.5 144 319.585" name="mark/disk(sx)" pos="329.645 601.082" size="normal" stroke="black"/>
-<use matrix="0.5 0 0 0.5 144 319.585" name="mark/disk(sx)" pos="466.637 610.038" size="normal" stroke="black"/>
-<use matrix="0.5 0 0 0.5 144 319.585" name="mark/disk(sx)" pos="387.969 673.513" size="normal" stroke="black"/>
-<use matrix="0.5 0 0 0.5 144 319.585" name="mark/disk(sx)" pos="198.4 728.533" size="normal" stroke="black"/>
 <use matrix="0.5 0 0 0.5 144 319.585" name="mark/disk(sx)" pos="288 512" size="normal" stroke="black"/>
 <path matrix="0.5 0 0 0.5 144 319.585" stroke="black">
 288 512 m
@@ -504,5 +497,12 @@ h
 466.637 610.038 c
 </path>
 <text matrix="0.5 0 0 0.5 144 330.585" transformations="translations" pos="290.28 484.269" stroke="black" type="label" width="5.187" height="4.289" depth="0" halign="center" valign="top" style="math">v</text>
+<use matrix="0.5 0 0 0.5 144 319.585" name="mark/fdisk(sfx)" pos="129.09 672.409" size="normal" stroke="black"/>
+<use matrix="0.5 0 0 0.5 144 319.585" name="mark/fdisk(sfx)" pos="82.3533 609.807" size="normal" stroke="black"/>
+<use matrix="0.5 0 0 0.5 144 319.585" name="mark/fdisk(sfx)" pos="212.483 620.24" size="normal" stroke="black"/>
+<use matrix="0.5 0 0 0.5 144 319.585" name="mark/fdisk(sfx)" pos="198.4 728.533" size="normal" stroke="black"/>
+<use matrix="0.5 0 0 0.5 144 319.585" name="mark/fdisk(sfx)" pos="387.969 673.513" size="normal" stroke="black"/>
+<use matrix="0.5 0 0 0.5 144 319.585" name="mark/fdisk(sfx)" pos="329.645 601.082" size="normal" stroke="black"/>
+<use matrix="0.5 0 0 0.5 144 319.585" name="mark/fdisk(sfx)" pos="466.637 610.038" size="normal" stroke="black"/>
 </page>
 </ipe>
