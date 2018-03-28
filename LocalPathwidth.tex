@@ -122,7 +122,11 @@ For a graph $G$ and tree $T$, a $T$-\emph{decomposition} of  $G$ is a collection
 \end{enumerate}
 The \emph{width} of a tree-decomposition is the size of the largest bag minus 1. The \emph{treewidth} of a graph $G$, denoted by $\tw(G)$, is the minimum width of a tree decomposition of $G$. Tree decompositions were first introduced by \citet{Halin76} and independently by \citet{RS-II}. 
 
-\citet{DMW17,DMW-FOCS13} introduced the following definition. The \emph{layered width} of a tree decomposition $(B_x:x\in V(T))$ of a graph $G$ is the minimum integer $\ell$ such that, for some layering $(V_0,V_1,\dots,V_t)$ of $G$, each bag $B_x$ contains at most $\ell$ vertices in each layer $V_i$. The \emph{layered treewidth} of a graph $G$, denoted by $\tb(G)$, is the minimum layered width of a tree-decomposition of $G$. We define the \emph{layered pathwidth} of a graph $G$ to be the minimum layered width of a path-decomposition of $G$, denoted by $\pb(G)$. 
+\citet{DMW17,DMW-FOCS13} introduced the following definition. The \emph{layered width} of a tree decomposition $(B_x:x\in V(T))$ of a graph $G$ is the minimum integer $\ell$ such that, for some layering $(V_0,V_1,\dots,V_t)$ of $G$, each bag $B_x$ contains at most $\ell$ vertices in each layer $V_i$. The \emph{layered treewidth} of a graph $G$, denoted by $\tb(G)$, is the minimum layered width of a tree-decomposition of $G$. 
+
+\citet{BDDEW} study a specialization of layered treewidth by defining the \emph{layered pathwidth} of a graph $G$ to be the minimum layered width of a path-decomposition of $G$, denoted by $\pb(G)$.\ldots 
+
+\comment{David W.\ is probably best suited to write a summary of the relationship between \cite{BDDEW} and the current paper.}
 
 If $T$ is a tree indexing a tree decomposition of a graph $G$, then for each vertex $v$ of $G$, let $T[v]$ denote the subtree of $T$ induced by those nodes corresponding to bags that contain $v$. Thus $T[v]$ is non-empty and connected. 
 
@@ -195,7 +199,7 @@ It is immediate that (3) implies (2).
 %\end{proof}
 
 \begin{proof}[Proof that (4) implies (3)] 
-Let $B_1,\dots,B_s$ be a path decomposition of $G$ with layered with $\pb(G)$, with respect to layering $V_0,V_1,\dots,V_t$. Let $v$ be a vertex in $V_i$. Let $r$ be a positive integer. Let $H$ be the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$. Thus $V(H)\subseteq V_{i-r}\cup V_{i-r+1}\cup\dots\cup V_{i+r}$. Each bag $B_i$ contains at most $\pw(G)$ vertices in each layer. Hence $B_1\cap V(H),\dots,B_s\cap V(H)$ is a path decomposition of $H$ with at most $(2r+1)\pb(G)$ vertices in each bag, and  $\lpw(G,r)\leq(2r+1)\pb(G)-1$.  
+Let $B_1,\dots,B_s$ be a path decomposition of $G$ with layered width $\pb(G)$, with respect to layering $V_0,V_1,\dots,V_t$. Let $v$ be a vertex in $V_i$. Let $r$ be a positive integer. Let $H$ be the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$. Thus $V(H)\subseteq V_{i-r}\cup V_{i-r+1}\cup\dots\cup V_{i+r}$. Each bag $B_i$ contains at most $\pw(G)$ vertices in each layer. Hence $B_1\cap V(H),\dots,B_s\cap V(H)$ is a path decomposition of $H$ with at most $(2r+1)\pb(G)$ vertices in each bag, and  $\lpw(G,r)\leq(2r+1)\pb(G)-1$.  
 \end{proof}
 
 \begin{proof}[Proof that (5) implies (4)] Consider a graph  $G$ with a tree decomposition $T$ of width $k$, such that $\pw(T[v])\leq p$  for each vertex $v$ of $G$. Since adding edges does not decrease the layered pathwidth, we may add edges to $G$ between two non-adjacent vertices in the same bag of $T$. Now each bag is a clique, and $G$ is chordal with maximum clique size $k+1$. Let $V_0,V_1,\dots,V_t$ be a bfs layering in $G$. That is, $V_i$ is the set of vertices in $G$ at distance $i$ from some fixed vertex $x$ of $G$. In particular, $V_0=\{x\}$. 
@@ -228,7 +232,7 @@ variables $a$, $b$, and $c$ to refer to \emph{nodes} of $S$ and $T$
 and variables $v$, $x$, $y$, and $z$ to refer to \emph{vertices} of $G$.
 
 We now give an outline of the proof.  We make use of a recent result of
-Dang which shows that any 3-connected $Q_k$-minor free graph $G$ has
+Dang which implies that any 3-connected $Q_k$-minor free graph $G$ has
 pathwidth at most $w=w(k)$.  Thus, in this case $G$ has a $(w,1)$-good
 tree decomposition.  Next we deal with cut vertices by showing that,
 if each 2-connected component of a graph $G$ has a $(w,p)$-good tree
@@ -236,31 +240,31 @@ decomposition, then $G$ has a $(w,p+1)$-good tree decomposition.
 
 Therefore, the main difficulty is to show that every 2-connected
 graph $G$ with no $Q_k$ minor has a $(w,p)$-good tree decomposition
-$(T,\mathcal{B})$.  By the results of \citet{BRST-JCTB91} described in
-the introduction, if $\pw(T[v])\ge 2^X$ for some $v\in V(G)$ then $T[v]$
-contains a $T_X$ minor.  We then show that this $T_X$ minor in $T[v]$
-implies that $G$ has a $Q_k$ minor in which $v$ is the apex vertex.
+$(B_a:a\in V(T))$.  By the results of \citet{BRST-JCTB91} described in the
+introduction, if $\pw(T[v])> 2^{Y+1}-3$ for some $v\in V(G)$ then $T[v]$
+contains a $T_Y$ minor.  We then show that this $T_Y$ minor in $T[v]$,
+for sufficiently large $Y$, implies that $G$ has a $Q_k$ minor in which
+$v$ plays the role of the apex vertex.
 
-To construct the tree decomposition $(T,\mathcal{B})$ we use two tools:
+To construct the tree decomposition $(B_a:a\in V(T))$ we use two tools:
 An SPQR-tree, $S$, represents $G$ as a collection of subgraphs (S- and
 R-nodes) that are joined at 2-vertex cutsets (P-nodes).  These subgraphs
 consist of cycles (S-nodes) and 3-connected graphs (R-nodes). Cycles have
 pathwidth 2 and, by the result of Dang discussed above, the 3-connected
 graphs have pathwidth $w=w(k)$. Replacing the S- and R-nodes of the
 SPQR-tree with these path decompositions produces the tree $T$ in our
-tree decomposition
-$(T,\mathcal{B})$.
+tree decomposition.
 
-To show that $(T,B)$ is $(w,p)$-good, we first show that if $T[v]$
-contains a subdivision of a sufficiently large complete binary tree
-then the SPQR-tree $S$ also contains a subdivision $S'$ of a large
+To show that this tree decomposition is $(w,p)$-good, we first show that
+if $T[v]$ contains a subdivision of a sufficiently large complete binary
+tree then the SPQR-tree $S$ also contains a subdivision of a large
 complete binary tree all of whose nodes have subgraphs that contain $v$.
-Using this large binary tree we then piece together a subgraph of $G$
+Using this large binary tree in $S$ we then piece together a subgraph of $G$
 that has a $Q_k$ minor in which $v$ is the apex vertex.
 
 \subsection{Dang's Result}
 
-First we show how a result of Dang \citet[Theorem 1.1.5]{Dang18} implies
+First we show how a result of \citet[Theorem 1.1.5]{Dang18} implies
 that any 3-connected graph with no $Q_k$ minor has pathwidth at most
 $w=w(k)$.
 
@@ -285,12 +289,12 @@ $T_{2k}^+$ contains $Q_k$ as a minor.
 
 \begin{proof}
   Partition the edges of $T_{2k}^+$ into the tree $T_{2k}$ and the
-  remaining edges, which form a star.  Refer to \cref{contraction}. In
-  the tree, for each odd $i\in\{1,\ldots,2k\}$ and each node $a$ whose
-  depth is even and such that $a$ is the right child of its parent,
-  contract the entire subtree rooted at $a$ and the path from $a$ to
-  its grandparent.  It is straightforward to verify by induction on $k$
-  that the result of this operation is $Q_k$.
+  remaining edges, which form a star.  Refer to \cref{contraction}. In the
+  tree, for each node $a$ whose depth is even and such that $a$ is the
+  right child of its parent, contract the entire subtree rooted at $a$
+  and the path from $a$ to its grandparent.  It is straightforward to
+  verify by induction on $k$ that the result of this operation, after 
+  removing parallel edges, is $Q_k$.
 \end{proof}
 
 \begin{figure}
@@ -322,6 +326,9 @@ $T_{2k}^+$ contains $Q_k$ as a minor.
   $R'$ also contains a $Q_k$ minor: Contract the cycle, then we have
   a complete binary tree of height $2^k$ plus an apex vertex linked to
   its leaves, which contains $Q_k$ as a minor by \cref{FindQh}.
+  Now, applying \cref{dang-theorem} establishes that any 3-connected graph
+  $G$ with sufficiently high pathwidth contains at least one of $P'$, $Q'$
+  or $R'$ as a minor and therefore contains a $Q_k$ minor.
 \end{proof}
 
 \subsection{Dealing with Cut Vertices}
@@ -381,10 +388,10 @@ our analysis simpler.}
 \end{figure}
 \begin{enumerate}
    \item If $G$ is a cycle, then $S(G)$ consists of a single node $a$
-     (an S-node) in which $H_a=G$.
+     (an S-node) in which $H_a=G$ and all edges of $H_a$ are real.
 
    \item If $G$ is 3-connected, then $S(G)$ consists of a single node $a$
-     (an R-node) in which $H_a=G$.  
+     (an R-node) in which $H_a=G$ and all edges of $H_a$ are real.  
 
 %   \item If $G$ has an edge $xy$ such that $\{x,y\}$ is a cutset,
 %     then let $C_1,\ldots,C_r$ be the connected components of $G-\{x,y\}$.
@@ -438,7 +445,7 @@ the subgraph of $G$ whose vertex set is $V(G[S'])=\bigcup_{a\in V(S')}
 V(H_a)$ and whose edge set is $E(G[S'])=\bigcup_{a\in V(S')} E_r(H_a)$.
 For a vertex $v\in V(G)$, we denote the subtree of $S$ induced by $v$
 as $S[v]=S[\{a\in V(S(G)): v\in V(H_a)\}]$. The SQPR-tree $S$ for a 
-2-connected graph $G$ has several properties:
+2-connected graph $G$ has several properties that we make use of:
 
 \begin{enumerate}
    \item Every R-node and S-node is adjacent only to P-nodes and no two
@@ -475,30 +482,30 @@ by} $a$.
 Each S- or R-node $a$ is adjacent to some set of P-nodes in $S$. For
 each such P-node $b$ whose dipole has $x$ and $y$, the edge $xy$ is a
 (virtual) edge in $H_a$ and therefore $x$ and $y$ appear in some common
-bag $c$ of $P_a$.  We make $c$ and $b$ adjacent in $T$. This defines
+bag $B_c$ with $c\in V(P_a)$.  We make $c$ and $b$ adjacent in $T$. This defines
 the tree $T$ in the tree decomposition. The contents of $T$'s bags are
 obvious. Each P-node $a$ of $S$ becomes a node in $T$ whose bag contains
 only the two vertices of $H_a$.  Every node $a$ in $T$ that is generated
-by an S- or R-node of $S$ is a vertex in some path decomposition of
-a cycle or 3-connected graph and already has an associated bag $B_a$
+by an S- or R-node $a'$ of $S$ is a node in some path decomposition of
+$H_{a'}$ and already has an associated bag $B_{a}$
 that it inherits from this path decomposition.
 
-It is straightforward to verify that $(B_v:v\in V(T))$ is indeed a
+It is straightforward to verify that $(B_a:a\in V(T))$ is indeed a
 tree decomposition of $G$: For any particular vertex $v\in V(G)$ the
 connectivity of the subtree $T[v]$ follows from Property~3 of SPQR-trees.
 Each edge $xy$ of $G$ appears as an edge in $H_a$ for at least one node
 $a$ of $S$ and therefore $x$ and $y$ appear in a common bag in the path
 decomposition of $H_a$.
 
-Each bag $B_a$ of $(B_v:v\in V(T))$ either has size 2 (when $a$ is
+Each bag $B_a$ of $(B_a:a\in V(T))$ either has size 2 (when $a$ is
 generated by a P-node or an S-node) or it has size at most $w(k)$ where
 $w(k)$ is the function in \cref{3-connected} (when $a$ is generated by
-an R-node).  Thus, $(B_v:v\in V(T))$ is a tree decomposition of $G$
+an R-node).  Thus, $(B_a:a\in V(T))$ is a tree decomposition of $G$
 whose width depends only on $k$.  What remains is to show that, for
 every $v\in V(G)$, $T[v]$ has pathwidth that depends only on $k$.
 
 In the remainder of this section, we fix $G$ to be a 2-connected graph,
-$S$ to be the SPQR-tree of $G$ and $(B_v:v\in V(T))$ to be a tree
+$S$ to be the SPQR-tree of $G$ and $(B_a:a\in V(T))$ to be a tree
 decomposition obtained using the procedure described above.  
 
 \begin{lemma}
@@ -512,8 +519,9 @@ decomposition obtained using the procedure described above.
   \emph{branching nodes}.  We will use the convention that all binary
   trees are ordered, possibly arbitrarily, so that we can distinguish
   between left and right children of a branching node.  For a node $a$
-  in a rooted binary tree, we denote by $T_a$, the maximal subtree rooted
-  at $a$.
+  in a rooted binary tree, we denote by $T_a$, the subtree rooted
+  at $a$, i.e., the subtree of $T$ containing all nodes that have a
+  as an ancestor, including $a$ itself.
 
   Recall from the introduction that, if $T[v]$ has pathwidth greater than
   $2^{2Y+1}-3$ then it contains a subdivision $T'$ of $T_{2Y}$.  Label each
@@ -541,7 +549,7 @@ decomposition obtained using the procedure described above.
   in which each branching vertex has a distinct label.
 
   Now, each branching node in $T''$ has a distinct label and therefore
-  corresponds to a unique node of $S$.  Now, if we contract all nodes of
+  corresponds to a unique node of $S$.  If we contract all nodes of
   $T''$ sharing a common label, then we obtain a subtree $T'''$ of $S[v]$
   that is a subdivision of $T_{Y}$.
 \end{proof}
@@ -576,7 +584,7 @@ tree.
 
   With this simplification, the tree $T'$ is the SPQR-tree for the
   graph $G'$ and every virtual edge is incident to $v$.  We now turn
-  our efforts finding the $Q_k$ minor of $G'$.  Recall that $Q_k$ is
+  our efforts finding the $Q_k$ minor in $G'$.  Recall that $Q_k$ is
   the union of a complete binary tree $T_k$ and an apex vertex $v$.
   We begin by finding a subdivision $T''$ of $T_{k+1}$ in $G$. In this
   subdivision, each edge of $T_{k+1}$ that joins a node to its left child
@@ -607,8 +615,8 @@ tree.
   from $x_{i-1}$ to $x_{i}$ that avoids $v$.  Now note that the paths
   $P_1,\ldots,P_{r-1}$ have disjoint interiors since each $\{v,x_i\}$ is a
   cutset that separates $\bigcup_{j=1}^{i} V(H_{c_j})\setminus\{v,x_i\}$
-  from $\bigcup_{j={i+1}}^r V(H_{c_j})\setminus\{v,x_i\}$.  We call the
-  path obtained this way the \emph{subdivision path} for branching nodes
+  from $\bigcup_{j={i+1}}^r V(H_{c_j})\setminus\{v,x_i\}$.  By concatenating
+  $P_2,\ldots,P_{r-1}$ we obtain a path $P_{ab}$ from $x_1\in V(H_a)$ to $x_{r-1}\in V(H_b)$ that we call the \emph{subdivision path} for nodes
   $a$ and $b$.
 
   \begin{figure}
@@ -619,11 +627,13 @@ tree.
     \label{paths}
   \end{figure}
 
-  Therefore, $G'[\{c_2,\ldots,c_r\}]$ contains a simple path $P$
+  Thus far, we have established that $G'[\{c_2,\ldots,c_{r-1}\}]$ 
+  contains a simple path $P_{ab}$
   from $x_1$ to $x_{r-1}$ that does not include $v$.  Now suppose
   that $b$ is a descendant of $a$'s left child.  We now show that
   $G'[\{c_2,c_3,c_4,c_5\}]$ contains an \emph{apex path} $P'$ from
-  $v$ to some vertex of $P$ whose internal vertices are disjoint from
+  $v$ to some vertex of $P_{ab}$ such that the internal vertices of $P'$ 
+  are disjoint from
   $V(P)\cup V(H_{b})$.  To prove this, there are two cases to consider:
   \begin{enumerate}
     \item $c_i$ is an R-node, for some $i\in\{2,\ldots,5\}$:  Since
@@ -649,19 +659,24 @@ tree.
   vertex in common with any of $H_{c_2},\ldots,H_{c_5}$.  Therefore,
   $P'$ joins $v$ to a vertex in $P$ that is not in $H_{b}$, as required.
 
-  Finally, observe that every branching node $a$ of $T'$ is either
+  Finally, by Property~3 of SPQR-trees and the fact that
+  all virtual edges are incident to $v$, every branching node $a$ of 
+  $T'$ is either
   an R-node or a P-node. In the case where $a$ is a P-node, all the
-  subdivision paths that include a vertex of $H_a$ include the same
+  subdivision paths that begin or end at a vertex of $H_a$ include the same
   vertex of $H_a$.  In the case where $a$ is an R-node, each subdivision
-  path that includes a vertex of $H_a$ includes a different vertex
+  path that begins or ends at a vertex of $H_a$ includes a different vertex
   (for up to 3 different vertices $x$, $y$, and $z$). Now, since $H_a$
   is 3-connected, these three vertices are in the same component of
-  $H_{a}-\{v\}$. In particular, $H_a$ contains a minimal tree that
+  $H_{a}-\{v\}$. In particular, $H_a-\{v\}$ contains an edge-minimal tree that
   includes $x$, $y$, and $z$.  Adding each of these trees to the union
   of all subdivision paths produces the subdivision $T''$ of $T_{k+1}$.
   Adding the set of all apex paths to $T''$ then produces a subgraph of
   $G'$ that contains a $Q_k$-minor.
 \end{proof}
+
+\comment{With a little more careful analysis in the last paragraph of the preceding proof, the $7(k+1)$ that appears everywhere could be reduced to $6(k+1)$. Does anyone care?}
+
 
 Finally, we have all the pieces in place to complete the proof.
 
@@ -671,18 +686,17 @@ Finally, we have all the pieces in place to complete the proof.
    tree decomposition.  By \cref{cut-vertices} we may assume that $G$
    is 2-connected.
 
-   Consider the good tree decomposition $T$ of $G$ described in
+   Consider the good tree decomposition $(B_a:a\in V(T))$ of $G$ described in
    \cref{good-tree}.    This decomposition has width at most $w$ where
    $w=w(k)$ is the function that appears (implicitly) in \cref{dang-theorem}
    and \cref{3-connected}.
-
    We claim that, for each $v\in V(G)$, $\pw(T[v])\le
-   2^{14(k+1)}-3$, so that the tree decomposition $(B_v:v\in V(T))$ is
+   2^{14(k+1)}-3$, so that this tree decomposition is
    $(w,2^{14(k+1)}-3)$-good.  Otherwise, by \cref{roof-lifting}, there
    is a vertex $v\in V(G)$ such that the SPQR-tree $S$ has a subtree
    $S[v]$ that contains a subdivision of $T_{7(k+1)}$.  Therefore,
    by \cref{qk-minor}, $G$ contains a $Q_k$ minor, contradicting the
-   assertion that $G$ has no $Q_k$ minor.
+   supposition that $G$ has no $Q_k$ minor.
 \end{proof}
 
 %\textcolor{red}{It remains to prove that (1) implies (4), or (2) implies (4). }
@@ -928,25 +942,27 @@ Finally, we have all the pieces in place to complete the proof.
 \label{application}
 
 A \emph{track} in a graph $G$ is a totally ordered independent set. If $A$ and $B$ are disjoint tracks in $G$, then edges $vw$ and $xy$ form an \emph{X-crossing} if $v\prec x$ in $A$ and $y\prec w$ in $B$. A \emph{$t$-track layout} of $G$ is a proper partition $(V_1,V_2,\dots,V_t)$ of $V(G)$ into tracks, such that there is no X-crossing between $V_i$ and $V_j$, for $1\leq i<j\leq t$. The \emph{track-number} of  $G$ is the minimum integer $t$ for which there is a $t$-track layout of $G$. 
+\cite[Lemma~4]{BDDEW} proved the following:
 
-\begin{theorem}
-\label{qntnpb}
-The queue-number and track-number of a graph $G$ satisfies
-$$\qn(G)<\tn(G)\leq 3\pb(G).$$ 
-\end{theorem}
+\begin{lemma}[BDDEW 2017]
+\label{tnpb}
+The track-number of a graph $G$ satisfies
+$\tn(G)\leq 3\pb(G).$ 
+\end{lemma}
 
-\begin{proof}
-\citet{DMW05} proved that $\qn(G)<\tn(G)$. It remains to prove that $\tn(G)\leq \pb(G)$. The proof is an extension of a method by \citet{DMW05} who proved that $\tn(G)\leq\pw(G)+1$. 
+%\begin{proof}
+%\citet{DMW05} proved that $\qn(G)<\tn(G)$. It remains to prove that $\tn(G)\leq \pb(G)$. The proof is an extension of a method by \citet{DMW05} who proved that $\tn(G)\leq\pw(G)+1$. 
+%
+%Let $B_1,B_2,\dots,B_n$ be a path decomposition of $G$ with layered width $\ell:=\pb(G)$. Let $(V_0,V_1,\dots,V_m)$ be the corresponding layering. Thus, each bag $B_i$ contains at most $\ell$ vertices in each layer $V_j$. Since $G[V_j]$ has pathwidth at most $\ell-1$, there is a proper colouring of $G[V_j]$ with colours $1,2,\dots,\ell$. 
+%For each vertex $v$ of $G$, let $b(v):=\min\{i:v\in B_i\}$ be the index of the leftmost bag containing $v$. 
+%For $0\leq j\leq m$ and $1\leq a\leq\ell$, let $V_{j,a}$ be the set of vertices in $V_j$ coloured $a$. 
+%Let $\preceq$ be the total order of $V_{j,a}$ defined by $v\prec w$ if and only if $b(v)< b(w)$. 
+%Clearly $\preceq$ is a total order. Since $G[V_j]$ is properly coloured, $V_{j,a}$ is a track. 
+%Suppose on the contrary that $vw$ and $xy$ form an X-crossing between $V_{j,a}$ and $V_{k,b}$, where $v\prec x$ in $V_{j,a}$ and $y\prec w$ in $V_{k,b}$. Without loss of generality, $b(w)\leq b(x)$. Since $y\prec w$ we have $b(y)<b(w)\leq b(x)$. Since $xy$ is an edge, $y\in B_{b(w)}$. Hence $y$ and $w$ are adjacent in $G[V_k]$, which is a contradiction since $y$ and $w$ are assigned the same colour. Therefore there is no X-crossing, and $\{V_{j,a}:0\leq j\leq m,1\leq a\leq \ell\}$ is a track layout of $G$. Since $(V_0,V_1,\dots,V_m)$ is a layering, if $vw$ is an edge of $G$ with $v\in V_{j,a}$ and $w\in V_{k,b}$, then $|j-k|\leq 1$. It follows from a result of \citet[Lemma~6 with $s=1$]{DPW04} that this track layout can be wrapped onto $3\ell$ tracks. In particular, for $q\in\{0,1,2\}$ and $1\leq a\leq \ell$, let $W_{q,a}$ be the track $V_{q,a},V_{q+3,a},V_{q+6,a},\dots$. Then $\{W_{q,a}:q\in\{0,1,2\},1\leq a\leq \ell\}$ is a $3\ell$-track layout of $G$. 
+%\end{proof}
 
-Let $B_1,B_2,\dots,B_n$ be a path decomposition of $G$ with layered width $\ell:=\pb(G)$. Let $(V_0,V_1,\dots,V_m)$ be the corresponding layering. Thus, each bag $B_i$ contains at most $\ell$ vertices in each layer $V_j$. Since $G[V_j]$ has pathwidth at most $\ell-1$, there is a proper colouring of $G[V_j]$ with colours $1,2,\dots,\ell$. 
-For each vertex $v$ of $G$, let $b(v):=\min\{i:v\in B_i\}$ be the index of the leftmost bag containing $v$. 
-For $0\leq j\leq m$ and $1\leq a\leq\ell$, let $V_{j,a}$ be the set of vertices in $V_j$ coloured $a$. 
-Let $\preceq$ be the total order of $V_{j,a}$ defined by $v\prec w$ if and only if $b(v)< b(w)$. 
-Clearly $\preceq$ is a total order. Since $G[V_j]$ is properly coloured, $V_{j,a}$ is a track. 
-Suppose on the contrary that $vw$ and $xy$ form an X-crossing between $V_{j,a}$ and $V_{k,b}$, where $v\prec x$ in $V_{j,a}$ and $y\prec w$ in $V_{k,b}$. Without loss of generality, $b(w)\leq b(x)$. Since $y\prec w$ we have $b(y)<b(w)\leq b(x)$. Since $xy$ is an edge, $y\in B_{b(w)}$. Hence $y$ and $w$ are adjacent in $G[V_k]$, which is a contradiction since $y$ and $w$ are assigned the same colour. Therefore there is no X-crossing, and $\{V_{j,a}:0\leq j\leq m,1\leq a\leq \ell\}$ is a track layout of $G$. Since $(V_0,V_1,\dots,V_m)$ is a layering, if $vw$ is an edge of $G$ with $v\in V_{j,a}$ and $w\in V_{k,b}$, then $|j-k|\leq 1$. It follows from a result of \citet[Lemma~6 with $s=1$]{DPW04} that this track layout can be wrapped onto $3\ell$ tracks. In particular, for $q\in\{0,1,2\}$ and $1\leq a\leq \ell$, let $W_{q,a}$ be the track $V_{q,a},V_{q+3,a},V_{q+6,a},\dots$. Then $\{W_{q,a}:q\in\{0,1,2\},1\leq a\leq \ell\}$ is a $3\ell$-track layout of $G$. 
-\end{proof}
 
-From Theorems~\ref{qntnpb} and \ref{MainThm}, we obtain the following corollary:
+\citet{DMW05} proved that queue number is upper bounded by track number so that, for any graph $G$, $\qn(G)<\tn(G)$. From \cref{MainThm} and \cref{tnpb} we obtain the following corollary:
 
 \begin{corollary}
   Any graph $G$ that does not contain a $Q_k$ minor has queue number and
@@ -1101,12 +1117,12 @@ From Theorems~\ref{qntnpb} and \ref{MainThm}, we obtain the following corollary:
 %contains a $T_{2dh}$ minor.
 
 
-\section{Results of \citet{BDDEW}}
-
-\comment{Pat asks: What did we want to include in this section?}
-
-Results of \citet{BDDEW}
-
+%\section{Results of \citet{BDDEW}}
+%
+%\comment{Pat asks: What did we want to include in this section?}
+%
+%Results of \citet{BDDEW}
+%
 %\subsection*{Acknowledgements} Thanks to 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
