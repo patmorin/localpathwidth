@@ -37,11 +37,11 @@
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}	
 \allowdisplaybreaks
 
-\newcommand{\arXiv}[1]{arXiv:\,\href{http://arxiv.org/abs/#1}{#1}}
-\newcommand{\msn}[1]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR#1}{#1}}
-\newcommand{\MSN}[2]{MR:\,\href{http://www.ams.org/mathscinet-getitem?mr=MR#1}{#1}}
-\newcommand{\Zbl}[1]{Zbl:\,\href{http://www.zentralblatt-math.org/zmath/en/search/?q=an:#1}{#1}}
-\newcommand{\doi}[1]{doi:\,\href{http://dx.doi.org/#1}{#1}}
+\newcommand{\arXiv}[1]{arXiv:\,\href{https://arxiv.org/abs/#1}{#1}}
+\newcommand{\msn}[1]{MR:\,\href{https://www.ams.org/mathscinet-getitem?mr=MR#1}{#1}}
+\newcommand{\MSN}[2]{MR:\,\href{https://www.ams.org/mathscinet-getitem?mr=MR#1}{#1}}
+\newcommand{\Zbl}[1]{Zbl:\,\href{https://www.zentralblatt-math.org/zmath/en/search/?q=an:#1}{#1}}
+\newcommand{\doi}[1]{doi:\,\href{https://dx.doi.org/#1}{#1}}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
@@ -111,7 +111,7 @@ University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}). Resear
 
 \renewcommand{\thefootnote}{\arabic{footnote}}
 
-\section{Defnitions}
+\section{Introduction}
 
 A \emph{layering} of a graph $G$ is a partition $(V_0,V_1,\dots,V_t)$ of $V(G)$ such that for every edge $vw\in E(G)$, if $v\in V_i$ and $w\in V_j$, then $|i-j|\leq 1$. Each set $V_i$ is called a \emph{layer}.  For example, for a vertex $r$ of a connected graph $G$, if $V_i$ is the set of vertices at distance $i$ from $r$, then $(V_0,V_1,\dots)$ is a layering of $G$, called the \emph{bfs layering} of $G$ starting from $r$. 
 
@@ -274,6 +274,7 @@ $w=w(k)$.
   pathwidth at least $w$ has a $P'$, $Q'$, or $R'$ minor.
 \end{theorem} 
 
+To use \cref{dang-theorem} we need a small helper lemma.
 Let $T_k^+$ be the complete binary tree $T_k$ of height $k$ plus a vertex
 adjacent to the leaves.
 
@@ -284,18 +285,21 @@ $T_{2k}^+$ contains $Q_k$ as a minor.
 
 \begin{proof}
   Partition the edges of $T_{2k}^+$ into the tree $T_{2k}$ and the
-  remaining edges, which form a star.  In the tree, for each odd
-  $i\in\{1,\ldots,2k\}$ and each node $a$ whose depth is even and such
-  that $a$ is the right child of its parent, contract the entire subtree
-  at rooted at $a$ and the path from $a$ to its grandparent.  It is easy
-  straightforward to verify by induction on $k$ that the result of this 
-  operation is $Q_k$.
+  remaining edges, which form a star.  Refer to \cref{contraction}. In
+  the tree, for each odd $i\in\{1,\ldots,2k\}$ and each node $a$ whose
+  depth is even and such that $a$ is the right child of its parent,
+  contract the entire subtree rooted at $a$ and the path from $a$ to
+  its grandparent.  It is straightforward to verify by induction on $k$
+  that the result of this operation is $Q_k$.
 \end{proof}
 
 \begin{figure}
-
+   \begin{center}
+      \includegraphics{figs/contraction}
+   \end{center}
    \caption{The graph $T_{2k}^+$ contains a $Q_k$ minor. Contracting the
-    the coloured edges gives the tree $T_k$
+    the coloured edges gives the tree $T_k$}
+   \label{contraction}
 \end{figure}
 
 
