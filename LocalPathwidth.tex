@@ -278,35 +278,26 @@ $w=w(k)$.
   pathwidth at least $w$ has a $P'$, $Q'$, or $R'$ minor.
 \end{theorem} 
 
-To use \cref{dang-theorem} we need a small helper lemma.
-Let $T_k^+$ be the complete binary tree $T_k$ of height $k$ plus a vertex
-adjacent to the leaves.
+To use \cref{dang-theorem} we need a small helper lemma.  For every
+$k\ge 0$, let $T_k^+$ be the complete binary tree $T_k$ of height $k$
+plus a vertex adjacent to the leaves.
 
 \begin{lemma} 
 \label{FindQh}
-$T_{2k}^+$ contains $Q_k$ as a minor.
+For every integer $k\ge 0$, $T_{2k}^+$ contains $Q_k$ as a minor.
 \end{lemma}
 
 \begin{proof}
-  Partition the edges of $T_{2k}^+$ into the tree $T_{2k}$ and the
-  remaining edges, which form a star.  Refer to \cref{contraction}. In the
-  tree, for each node $a$ whose depth is even and such that $a$ is the
-  right child of its parent, contract the entire subtree rooted at $a$
-  and the path from $a$ to its grandparent.  It is straightforward to
-  verify by induction on $k$ that the result of this operation, after 
-  removing parallel edges, is $Q_k$.
+  The statement is immediate for $k=0$. For $k\ge 1$, partition the
+  edges of $T_{2k}^+$ into the tree $T_{2k}$ and the remaining edges,
+  which form a star centered at some vertex $v$.  Let $a_1,a_2,a_3,a_4$
+  be the grandchildren of the root of $T_{2k}$ ordered from left to right.
+  Contract the entire subtree comprised of the tree rooted at $a_2$,
+  the subtree rooted at $a_3$ and the path from $a_2$ to $a_3$. Applying
+  the same procedure recursively on $T_{2k-2}^+$ rooted at $a_1$ and
+  $T_{2k-2}$ rooted at $a_4$ produces $Q_k$, as can be easily verified
+  by induction.
 \end{proof}
-
-\begin{figure}
-   \begin{center}
-      \includegraphics{figs/contraction}
-   \end{center}
-   \caption{The graph $T_{2k}^+$ contains a $Q_k$ minor. Contracting the
-    the coloured edges gives the tree $T_k$}
-   \label{contraction}
-\end{figure}
-
-
 
 \begin{corollary}\label{3-connected}
   There exists a number $w=w(k)$ such that every 3-connected graph of
