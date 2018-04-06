@@ -115,14 +115,14 @@ University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}). Resear
 
 A \emph{layering} of a graph $G$ is a partition $(V_0,V_1,\dots,V_t)$ of $V(G)$ such that for every edge $vw\in E(G)$, if $v\in V_i$ and $w\in V_j$, then $|i-j|\leq 1$. Each set $V_i$ is called a \emph{layer}.  For example, for a vertex $r$ of a connected graph $G$, if $V_i$ is the set of vertices at distance $i$ from $r$, then $(V_0,V_1,\dots)$ is a layering of $G$, called the \emph{bfs layering} of $G$ starting from $r$. 
 
-For a graph $G$ and tree $T$, a $T$-\emph{decomposition} of  $G$ is a collection $(B_x\subseteq V(G):x\in V(T))$ of sets of vertices in $G$ (called  \emph{bags}) indexed by the nodes of $T$, such that:
+For a graph $G$, a \emph{tree decomposition} of $G$, denoted by $\{B_x:x\in V(T)\}$, is a set of subsets of $V(G)$ (called \emph{bags}) indexed by the nodes of $T$, such that:
 \begin{enumerate}[(i)]
 \item for every edge $vw$ of $G$, some bag $B_x$ contains both $v$ and $w$, and 
-\item for every vertex $v$ of $G$, the set $\{x\in V(T):v\in B_x\}$ induces a non-empty connected subgraph of $H$.
+\item for every vertex $v$ of $G$, the set $\{x\in V(T):v\in B_x\}$ induces a non-empty connected subtree of $T$.
 \end{enumerate}
 The \emph{width} of a tree-decomposition is the size of the largest bag minus 1. The \emph{treewidth} of a graph $G$, denoted by $\tw(G)$, is the minimum width of a tree decomposition of $G$. Tree decompositions were first introduced by \citet{Halin76} and independently by \citet{RS-II}. 
 
-\citet{DMW17,DMW-FOCS13} introduced the following definition. The \emph{layered width} of a tree decomposition $(B_x:x\in V(T))$ of a graph $G$ is the minimum integer $\ell$ such that, for some layering $(V_0,V_1,\dots,V_t)$ of $G$, each bag $B_x$ contains at most $\ell$ vertices in each layer $V_i$. The \emph{layered treewidth} of a graph $G$, denoted by $\tb(G)$, is the minimum layered width of a tree-decomposition of $G$. 
+\citet{DMW17,DMW-FOCS13} introduced the following definition. The \emph{layered width} of a tree decomposition $\{B_x:x\in V(T)\}$ of a graph $G$ is the minimum integer $\ell$ such that, for some layering $(V_0,V_1,\dots,V_t)$ of $G$, each bag $B_x$ contains at most $\ell$ vertices in each layer $V_i$. The \emph{layered treewidth} of a graph $G$, denoted by $\tb(G)$, is the minimum layered width of a tree-decomposition of $G$. 
 
 \citet{BDDEW} study a specialization of layered treewidth by defining the \emph{layered pathwidth} of a graph $G$ to be the minimum layered width of a path-decomposition of $G$, denoted by $\pb(G)$.\ldots 
 
@@ -221,7 +221,7 @@ We now construct a path-decomposition of $G$ with layered width at most $k(p+1)(
 \label{hard-section}
 
 In this section we show that if $G$ is a graph with no $Q_k$ minor
-then $G$ has a tree decomposition $(B_a \subseteq V(G):a\in V(T))$, of
+then $G$ has a tree decomposition $\{B_a:a\in V(T)\}$, of
 width at most $w=w(k)$ and, for every $v\in V(G)$, the subtree $T[v]$
 has pathwidth at most $p=p(k)$.  We will call such a tree decomposition
 \emph{$(w,p)$-good}.  
@@ -240,13 +240,13 @@ decomposition, then $G$ has a $(w,p+1)$-good tree decomposition.
 
 Therefore, the main difficulty is to show that every 2-connected
 graph $G$ with no $Q_k$ minor has a $(w,p)$-good tree decomposition
-$(B_a:a\in V(T))$.  By the results of \citet{BRST-JCTB91} described in the
+$\{B_a:a\in V(T)\}$.  By the results of \citet{BRST-JCTB91} described in the
 introduction, if $\pw(T[v])> 2^{Y+1}-3$ for some $v\in V(G)$ then $T[v]$
 contains a $T_Y$ minor.  We then show that this $T_Y$ minor in $T[v]$,
 for sufficiently large $Y$, implies that $G$ has a $Q_k$ minor in which
 $v$ plays the role of the apex vertex.
 
-To construct the tree decomposition $(B_a:a\in V(T))$ we use two tools:
+To construct the tree decomposition $\{B_a:a\in V(T)\}$ we use two tools:
 An SPQR-tree, $S$, represents $G$ as a collection of subgraphs (S- and
 R-nodes) that are joined at 2-vertex cutsets (P-nodes).  These subgraphs
 consist of cycles (S-nodes) and 3-connected graphs (R-nodes). Cycles have
@@ -344,7 +344,7 @@ $T_{2k}^+$ contains $Q_k$ as a minor.
   $T_1,\ldots,T_r$ be the trees used in $(w,p)$-good tree decompositions
   of these components.  For each cut vertex $v$ in $G$, we introduce a new
   tree node $a_v$ with $B_{a_v}=\{v\}$.  In each 2-connected component
-  $C_i$ that contains $v$, the tree decomposition $(T_i,(B_a:a\in V(T_i)))$ 
+  $C_i$ that contains $v$, the tree decomposition $\{B_a:a\in V(T_i)\}$ 
   has at least
   one node $a$ such that $v\in B_a$, so we make $a_v$ adjacent to exactly
   one such node for each $C_i$.  The resulting tree decomposition of $G$
@@ -473,10 +473,10 @@ as $S[v]=S[\{a\in V(S(G)): v\in V(H_a)\}]$. The SQPR-tree $S$ for a
 \subsection{The Good Tree Decomposition}
 \label{good-tree}
 
-To obtain our good tree decomposition $(T,(B_a:a\in V(T)))$ of a 2-connected
+To obtain our good tree decomposition $\{B_a:a\in V(T)\}$ of a 2-connected
 graph $G$ we start with the SPQR-tree $S$ for $G$.  For each R-node
 or S-node $a$ of $S$ we take a minimum-width path decomposition
-$(B_c: c\in V(P_a))$ of $H_a$.  We say that the node $a$ \emph{generates}
+$\{B_c: c\in V(P_a)\}$ of $H_a$.  We say that the node $a$ \emph{generates}
 the nodes in the path $P_a$ and that each node in $P_a$ is \emph{generated
 by} $a$.
 
@@ -491,22 +491,22 @@ by an S- or R-node $a'$ of $S$ is a node in some path decomposition of
 $H_{a'}$ and already has an associated bag $B_{a}$
 that it inherits from this path decomposition.
 
-It is straightforward to verify that $(B_a:a\in V(T))$ is indeed a
+It is straightforward to verify that $\{B_a:a\in V(T)\}$ is indeed a
 tree decomposition of $G$: For any particular vertex $v\in V(G)$ the
 connectivity of the subtree $T[v]$ follows from Property~3 of SPQR-trees.
 Each edge $xy$ of $G$ appears as an edge in $H_a$ for at least one node
 $a$ of $S$ and therefore $x$ and $y$ appear in a common bag in the path
 decomposition of $H_a$.
 
-Each bag $B_a$ of $(B_a:a\in V(T))$ either has size 2 (when $a$ is
+Each bag $B_a$ of $\{B_a:a\in V(T)\}$ either has size 2 (when $a$ is
 generated by a P-node or an S-node) or it has size at most $w(k)$ where
 $w(k)$ is the function in \cref{3-connected} (when $a$ is generated by
-an R-node).  Thus, $(B_a:a\in V(T))$ is a tree decomposition of $G$
+an R-node).  Thus, $\{B_a:a\in V(T)\}$ is a tree decomposition of $G$
 whose width is upper bounded by a function of $k$.  What remains is to show that, for
 every $v\in V(G)$, $T[v]$ has pathwidth that is upper bounded by a function of $k$.
 
 In the remainder of this section, we fix $G$ to be a 2-connected graph,
-$S$ to be the SPQR-tree of $G$ and $(B_a:a\in V(T))$ to be a tree
+$S$ to be the SPQR-tree of $G$ and $\{B_a:a\in V(T)\}$ to be a tree
 decomposition obtained using the procedure described above.  
 
 \begin{lemma}
@@ -688,7 +688,7 @@ Finally, we have all the pieces in place to complete the proof.
    tree decomposition.  By \cref{cut-vertices} we may assume that $G$
    is 2-connected.
 
-   Consider the good tree decomposition $(B_a:a\in V(T))$ of $G$ described in
+   Consider the good tree decomposition $\{B_a:a\in V(T)\}$ of $G$ described in
    \cref{good-tree}.    This decomposition has width at most $w$ where
    $w=w(k)$ is the function that appears (implicitly) in \cref{dang-theorem}
    and \cref{3-connected}.
