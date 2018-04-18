@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20180326094648" modified="D:20180327112858"/>
+<info created="D:20180326094648" modified="D:20180418093211"/>
 <preamble>\usepackage{iwona}</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
@@ -455,7 +455,7 @@ h
 256 400 c
 </path>
 <use matrix="2 0 0 0.5 -160 383.585" name="mark/disk(sx)" pos="224 640" size="normal" stroke="black"/>
-<use matrix="0.5 0 0 0.5 144 319.585" name="mark/disk(sx)" pos="288 512" size="normal" stroke="black"/>
+<use matrix="0.5 0 0 0.5 144 319.585" name="mark/square(sx)" pos="288 512" size="normal" stroke="black"/>
 <path matrix="0.5 0 0 0.5 144 319.585" stroke="black">
 288 512 m
 96 512
