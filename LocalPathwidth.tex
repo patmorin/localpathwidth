@@ -81,7 +81,6 @@
 \begin{document}
 
 \author{
-%Janos Barat\,\footnotemark[2] 
 \qquad Vida Dujmovi{\'c}\,\footnotemark[3] 
 \qquad David Eppstein\,\footnotemark[2] 
 \qquad Gwena\"el  Joret\,\footnotemark[4] 
@@ -89,12 +88,10 @@
 \qquad Pat Morin\,\footnotemark[6] 
 \qquad David~R.~Wood\,\footnotemark[5]}
 
-%\footnotetext[2]{Department of Computer Science, E\"otv\"os Lor\'and University, Hungary (\texttt{barat@cs.elte.hu}).}
-
 \footnotetext[3]{School of Computer Science and Electrical Engineering,  
 University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}). Research  supported by NSERC.}
 
-\footnotetext[4]{D\'epartement d'Informatique, Universit\'e Libre de Bruxelles, Brussels, Belgium (\texttt{gjoret@ulb.ac.be}). }
+\footnotetext[4]{D\'epartement d'Informatique, Universit\'e Libre de Bruxelles, Brussels, Belgium (\texttt{gjoret@ulb.ac.be}). Supported by an ARC grant from the Wallonia-Brussels Federation of Belgium.}
 
 \footnotetext[2]{Department of Computer Science, University of California, Irvine, California, USA (\texttt{eppstein@uci.edu}). Supported in part by NSF grants  CCF-1618301 and CCF-1616248.}
 
@@ -170,8 +167,8 @@ $$\pw(T)+1\leq(\pw(T_1)+1)+(\pw(T_2)+1)\enspace.$$
 \end{lemma}
 
 \begin{proof}
-Let $B_1,\dots,B_s$ be a path-decomposition of $T_1$ with bag size $\pw(T_1)+1$. 
-Each component  of $T-V(T_1)$ is contained in $T_2$ and therefore has a path-decomposition  with bag size at most $\pw(T_2)+1$. For each such component $J$ of $T-V(T_1)$, there is exactly one vertex $v$ in $T_1$ adjacent to some vertex in $J$ (otherwise $T$ would contain a cycle consisting of two edges between a path in $T_1$ and a path in $J$). Say $v$ is in bag $B_i$. We say $J$ \emph{attaches} at $v$ and at $B_i$. By doubling bags in the path-decomposition of $T_1$, we may assume that distinct components of $T-V(T_1)$ attach at distinct $B_i$. For each component $J$ of $T-V(T_1)$, if $D_1,\dots,D_t$ is a path-decomposition of $J$ with bag size at most $\pw(T_2)+1$, then replace $B_i$ by $B_i\cup D_1,\dots,B_i\cup D_t$. We obtain a path-decomposition of $T$ with bag size $(\pw(T_1)+1)+(\pw(T_2)+1)$. The result follows. 
+Let $B_1,\dots,B_s$ be a path-decomposition of $T_1$ with bag size at most $\pw(T_1)+1$. 
+Each component  of $T-V(T_1)$ is contained in $T_2$ and therefore has a path-decomposition  with bag size at most $\pw(T_2)+1$. For each such component $J$ of $T-V(T_1)$, there is exactly one vertex $v$ in $T_1$ adjacent to some vertex in $J$ (otherwise $T$ would contain a cycle consisting of two edges between a path in $T_1$ and a path in $J$). Say $v$ is in bag $B_i$. We say $J$ \emph{attaches} at $v$ and at $B_i$. By doubling bags in the path-decomposition of $T_1$, we may assume that distinct components of $T-V(T_1)$ attach at distinct $B_i$. For each component $J$ of $T-V(T_1)$, if $D_1,\dots,D_t$ is a path-decomposition of $J$ with bag size at most $\pw(T_2)+1$, then replace $B_i$ by $B_i\cup D_1,\dots,B_i\cup D_t$. We obtain a path-decomposition of $T$ with bag size at most $(\pw(T_1)+1)+(\pw(T_2)+1)$. The result follows. 
 \end{proof}
 
 \begin{corollary}
@@ -207,7 +204,7 @@ It is immediate that (3) implies (2).
 %\end{proof}
 
 \begin{proof}[Proof that (4) implies (3)] 
-Let $B_1,\dots,B_s$ be a path decomposition of $G$ with layered width $\pb(G)$, with respect to layering $V_0,V_1,\dots,V_t$. Let $v$ be a vertex in $V_i$. Let $r$ be a positive integer. Let $H$ be the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$. Thus $V(H)\subseteq V_{i-r}\cup V_{i-r+1}\cup\dots\cup V_{i+r}$. Each bag $B_i$ contains at most $\pw(G)$ vertices in each layer. Hence $B_1\cap V(H),\dots,B_s\cap V(H)$ is a path decomposition of $H$ with at most $(2r+1)\pb(G)$ vertices in each bag, and  $\lpw(G,r)\leq(2r+1)\pb(G)-1$.  
+Let $B_1,\dots,B_s$ be a path decomposition of $G$ with layered width $\pb(G)$, with respect to layering $V_0,V_1,\dots,V_t$. Let $v$ be a vertex in $V_i$. Let $r$ be a positive integer. Let $H$ be the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$. Thus $V(H)\subseteq V_{i-r}\cup V_{i-r+1}\cup\dots\cup V_{i+r}$. Each bag $B_i$ contains at most $\lpw(G)$ vertices in each layer. Hence $B_1\cap V(H),\dots,B_s\cap V(H)$ is a path decomposition of $H$ with at most $(2r+1)\pb(G)$ vertices in each bag, and  $\lpw(G,r)\leq(2r+1)\pb(G)-1$.  
 \end{proof}
 
 \begin{proof}[Proof that (5) implies (4)] 
@@ -228,8 +225,8 @@ We now prove that  $X_H[v]$ is connected. Let $B_1$ and $B_2$ be distinct bags o
 Since $\pw(X_H)+1\leq w(p+1)$ and $X_H$ indexes a tree-decomposition of $G[V(H)\cup C_H]$ with width at most $w$, it follows that  $\pw(X_H) \leq (w(p+1)+1)(w+1)-1$.  
 
 We now construct a path-decomposition of $G$ with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_t$. Let $G_i:=G[V_0\cup V_1\cup\dots\cup V_i]$. We now prove, by induction on $i$, that $G_i$ has a 
- path-decomposition with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_i$. This claim is trivial for $i=0$. Now assume that $B_1,\dots,B_q$ is a path-decomposition of $G_{i-1}$ with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_{i-1}$. For each component $H$ of $G[V_i]$, there is a bag $B_i$ that contains $C_H$; pick one such bag and call it the \emph{parent bag} of $H$. By doubling the bag, we may assume that distinct components of $G[V_i]$ have distinct parents bags. Now, for each component $H$ of $G[V_i]$ with parent bag $B_i$, if $D_1,\dots,D_r$ is a path-decomposition of $G[V_i]$ with width  $w(p+1)(w+1)-1$, then replace $B_i$ by  
- $B_i\cup D_1,\dots,B_i\cup D_r$. Doing this for each component of $G[V_i]$ produces a path decomposition of $G_i$ 
+ path-decomposition with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_i$. This claim is trivial for $i=0$. Now assume that $B_1,\dots,B_q$ is a path-decomposition of $G_{i-1}$ with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_{i-1}$. For each component $H$ of $G[V_i]$, there is a bag $B_j$ that contains $C_H$; pick one such bag and call it the \emph{parent bag} of $H$. By doubling the bag, we may assume that distinct components of $G[V_i]$ have distinct parents bags. Now, for each component $H$ of $G[V_i]$ with parent bag $B_j$, if $D_1,\dots,D_r$ is a path-decomposition of $G[V_i]$ with width  $w(p+1)(w+1)-1$, then replace $B_j$ by  
+ $B_j\cup D_1,\dots,B_j\cup D_r$. Doing this for each component of $G[V_i]$ produces a path decomposition of $G_i$ 
  with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_i$. In particular, we obtain a path decomposition of $G$  with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_t$.
  \end{proof}
 
@@ -242,7 +239,7 @@ width at most $w=w(k)$ and, for every $v\in V(G)$, the subtree $T[v]$
 has pathwidth at most $p=p(k)$.  We will call such a tree decomposition
 \emph{$(w,p)$-good}.  
 
-In this section, we will be working with two related trees $S$ and $T$
+We will be working with two related trees $S$ and $T$
 and one graph $G$. To help the reader keep track of things we will use
 variables $a$, $b$, and $c$ as names for \emph{nodes} of $S$ and $T$
 and variables $v$, $x$, $y$, and $z$ to refer to \emph{vertices} of $G$.
@@ -267,7 +264,7 @@ An SPQR-tree, $S$, represents $G$ as a collection of subgraphs (S- and
 R-nodes) that are joined at 2-vertex cutsets (P-nodes).  These subgraphs
 consist of cycles (S-nodes) and 3-connected graphs (R-nodes). Cycles have
 pathwidth 2 and, by the result of Dang discussed above, the 3-connected
-graphs have pathwidth $w=w(k)$. Replacing the S- and R-nodes of the
+graphs have pathwidth at most $w=w(k)$. Replacing the S- and R-nodes of the
 SPQR-tree with these path decompositions produces the tree $T$ in our
 tree decomposition.
 
@@ -518,7 +515,7 @@ decomposition of $H_a$.
 
 Each bag $B_a$ of $\{B_a:a\in V(T)\}$ either has size in $\{2,3\}$
 (when $a$ is generated by a P-node or an S-node) or it has size at
-most $w(k)$ where $w(k)+1$ is the function in \cref{3-connected} (when
+most $w(k)+1$ where $w(k)$ is the function in \cref{3-connected} (when
 $a$ is generated by an R-node).  Thus, $\{B_a:a\in V(T)\}$ is a tree
 decomposition of $G$ whose width is upper bounded by a function of $k$.
 What remains is to show that, for every $v\in V(G)$, $T[v]$ has pathwidth
@@ -541,7 +538,7 @@ decomposition obtained using the procedure described above.
   \emph{distinctive node}.  We will use the convention that all binary
   trees are ordered, possibly arbitrarily, so that we can distinguish
   between the left and right child of a branching node.  For a node $a$
-  in a rooted binary tree, we denote by $\subtree{a}$ the subtree rooted
+  in the rooted binary tree $T$, we denote by $\subtree{a}$ the subtree rooted
   at $a$, i.e., the subtree of $T$ containing all nodes that have $a$
   as an ancestor, including $a$ itself.
 
@@ -561,15 +558,15 @@ decomposition obtained using the procedure described above.
   Otherwise, let $a$ be the root of $T'$ and let $a'$ and
   $a''$ be the highest branching nodes in the left and right subtrees
   of $\subtree{a}$, respectively.  Let $a_1$ and $a_2$ be the highest
-  distinctive nodes in the left and right subtrees of $\subtree{a'}$,
+  distinctive nodes in the left and right subtrees of $\subtree{a}'$,
   respectively, and let $a_3$ and $a_4$ be the highest distinctive nodes in
-  the left and right subtrees of $\subtree{a''}$, respectively.  Since each
+  the left and right subtrees of $\subtree{a}''$, respectively.  Since each
   label induces a path in $T'$, at least
   one of $\{a_1,a_2\}$, say $a_1$, and at least one of $\{a_3,a_4\}$, say $a_4$, does not have the same label as $a$.
   Furthermore, since $a_1$ and $a_4$ are separated by $a$, the set of labels
-  of nodes in $\subtree{a_1}$ is disjoint from the set of labels of
-  nodes in $\subtree{a_4}$.  Applying induction on $\subtree{a_1}$
-  and $\subtree{a_4}$ yields two subdivisions of $T_{h-1}$ in which
+  of nodes in $\subtree{a}_1$ is disjoint from the set of labels of
+  nodes in $\subtree{a}_4$.  Applying induction on $\subtree{a}_1$
+  and $\subtree{a}_4$ yields two subdivisions of $T_{h-1}$ in which
   each distinctive node has a unique label.  Connecting these two
   subdivisions with the unique path from $a_1$ to $a_4$ yields the
   desired subdivision of $T_{h}$ in which each distinctive node has
@@ -611,13 +608,12 @@ tree.
   With this simplification, the tree $T'$ is the SPQR-tree for the
   graph $G'$ and every virtual edge is incident to $v$.  We now turn
   our efforts to finding the $Q_k$ minor in $G'$.  Recall that $Q_k$
-  is the union of a complete binary tree $T_k$ and an apex vertex $v$.
+  is the union of a complete binary tree $T_k$ and an apex vertex.
   We begin by finding a subdivision $T''$ of $T_{k+1}$ in $G'$. In this
   subdivision, each edge of $T_{k+1}$ that joins a node to its left child
   is represented by a path $P_{\mu\nu}$ joining a branching node $\mu$
-  to a distinctive node $\nu$. We show that $G'$ contains a path, not
-  using any edge of $T'$, from $v$ to some \emph{anchor node} $\eta$
-  of $P_{\mu\nu}$ with $\eta\neq\nu$.  Furthermore, except for their
+  to a distinctive node $\nu$. We show that $G'$ contains a path from $v$ to some \emph{anchor node} $\eta$
+  of $P_{\mu\nu}$ with $\eta\neq\nu$, which is vertex disjoint from $T''$ except for $\eta$.  Furthermore, except for their
   common endpoint $v$, all of these paths are disjoint. The union of $T''$
   and these paths contains a $Q_k$ minor since contracting the path from
   each anchor node to its closest ancestor branching node produces $Q_k$.
@@ -678,7 +674,7 @@ tree.
   Next we show how to construct paths from $v$ to anchor nodes.
   Let $a$ be a branching node of $T'$, let $b$ be the highest
   distinctive node in $a$'s left subtree and let $c_1=a,\ldots,c_r=b$
-  be the path in $T'$ having endpoints $a$ to $b$.   
+  be the path in $T'$ having endpoints $a$ and $b$.   
   Thus far we have established
   that $G'[\{c_2,\ldots,c_{r-1}\}]$ contains a simple path $P_{ab}$
   from $x_1$ to $x_{r-1}$ that does not include $v$.    We now show
@@ -700,7 +696,7 @@ tree.
     \item Otherwise, none of $c_2,\ldots,c_5$ is an R-node. Property~1
     of SPQR-trees implies that, for at least one $i\in\{2,3\}$, $c_i$ is
     an S-node, $c_{i+1}$ is a P-node and $c_{i+2}$ is an S-node.  But in
-    this case, Property~5 of SPQR-trees ensures that the $H_{c_{i+1}}$
+    this case, Property~5 of SPQR-trees ensures that $H_{c_{i+1}}$
     contains the real edge $vx_{i+1}$. Therefore, in this case there is a
     single edge path $P'$ from $v$ to $P_{ab}$.
   \end{enumerate}
@@ -719,9 +715,9 @@ tree.
 \end{proof}
 
 \comment{ 
-With a little more careful analysis in the preceding proof, the $7(k+1)$ that appears everywhere could be reduced to $6(k+1)$. Does anyone care?}
+With a little more careful analysis in the preceding proof, the $7(k+1)$ that appears everywhere could be reduced to $6(k+1)$. Does anyone care? GJ: No}
 
-\comment{The requirement that $S[v]$ contains a subdivision of $T_{7(k+1)}$ is quite a bit stronger than necessary.  It is enough if $S[v]$ contains a subdivision of a 6-subdivision of $T_{k+1}$.  This would reduce the pathwidth dependence in the next proof from $2^{14(k+1)}-3$ down to $7\cdot 2^{2(k+1)}-3$. (Even the leading 7 could be reduced further.)}
+\comment{The requirement that $S[v]$ contains a subdivision of $T_{7(k+1)}$ is quite a bit stronger than necessary.  It is enough if $S[v]$ contains a subdivision of a 6-subdivision of $T_{k+1}$.  This would reduce the pathwidth dependence in the next proof from $2^{14(k+1)}-3$ down to $7\cdot 2^{2(k+1)}-3$. (Even the leading 7 could be reduced further.) GJ: What about stating we do not try to optimize constants (and keep current proof)?}
 
 \comment{Let $Q^*_k$ be the graph (shown in \cref{qk}) obtained by
 subdividing each edge of $T_{k+1}$ and adding a vertex $v$ adjacent to
@@ -729,7 +725,7 @@ all subdivision vertices. The proof above actually shows that, if $S[v]$
 contains a subdivision of $T_{9(k+1)}$ then $G$ contains a \emph{subdivision}
 of $Q^*_k$.  This is a little bit surprising, since I would have guessed
 that $v$ would have to be a contracted subgraph of $G$, not a single
-high-degree vertex. Is it worth writing the proof to highlight this?}
+high-degree vertex. Is it worth writing the proof to highlight this? GJ: Yes it is surprising at first sight. Note that in the $R$-nodes we do need to forbid $Q_k$ as a minor, not enough to forbid a $Q^*_k$-subdivision. So there the minor relation is needed. }
 
 Finally, we have all the pieces in place to complete the proof.
 
