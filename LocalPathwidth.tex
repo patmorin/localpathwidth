@@ -222,10 +222,12 @@ Consider a component $H$ of $G[V_i]$ for some $i\geq 1$. Let $C_H$ be the set of
 We now prove that $X_H$ indexes a tree-decomposition of $G[V(H)\cup C_H]$ (using the same bags as $T$ restricted to $V(H)\cup C_H$). We first prove condition (ii). For a vertex $v$ of $C_H$, the set of bags in $X_H$ that contain $v$ is precisely $T[v]$, which is non-empty and connected, by assumption. Now, consider a vertex $v$ in $H$. Let $w$ be the neighbour of $v$ on a shortest $vx$-path in $G$. Thus $w$ is in $C_H$. Since $vw$ is an edge,  $v$ and $w$ appear in a common bag of $T$, which is also in $X_H$ (since that bag contains $w$). Hence $X_H[v]$ is non-empty. 
 We now prove that  $X_H[v]$ is connected. Let $B_1$ and $B_2$ be distinct bags of $X_H$ containing $v$. Let $P$ be the $B_1B_2$-path in $T$. Since $T[v]$ is connected, $v$ is in each bag in $P$. To conclude that $X_H[v]$ is connected, it remains to prove that $P\subseteq X_H$. By construction, some vertex $w_1\in B_1\cap C_H$ and some vertex $w_2\in B_2\cap C_H$. Since $w_1$ and $w_2$ are adjacent, each bag in $P$ contains $w_1$ or $w_2$. Hence $P\subseteq X_H$ and $X_H[v]$ is connected. This proves condition (ii). Now we prove condition (i). Since $C_H$ is contained in some bag of $X_H$, condition (i) holds for each edge with endpoints in $C_H$. For each edge $vw$ with $v\in V(H)$ and $w\in C_H$,  $v$ and $w$ are in a common bag of $T$, which is also in $X_H$ (since that bag contains $w$), as desired. Finally, consider an edge $uv$ with $u,v\in V(H)$. Suppose on the contrary that $u$ and $v$ have no common neighbour in $C_H$. By construction,  $u$ has a neighbour $w_1$ in $C_H$, and $v$ has a neighbour $w_2$ in $C_H$. Thus $w_1\neq w_2$. Since $C_H$ is a clique, $w_1$ and $w_2$ are adjacent. Since $uw_2\not\in E(G)$ and $vw_1\not\in E(G)$, the 4-cycle $(u,w_1,w_2,v)$ is chordless, and $G$ is not chordal, which is a contradiction. Hence $u$ and $v$ have a common neighbour $w$ in $C_H$. Thus $\{u,v,w\}$ is a triangle in $G$, which is in a common bag of $T$, and therefore in a common bag of $X_H$, implying that $u$ and $v$ are in a common bag of $X_H$. This proves  condition (i) in the definition of tree-decomposition. Therefore $X_H$ indexes a tree-decomposition of $G[V(H)\cup C_H]$. By construction, it has width at most $w$. 
 
-Since $\pw(X_H)+1\leq w(p+1)$ and $X_H$ indexes a tree-decomposition of $G[V(H)\cup C_H]$ with width at most $w$, it follows that  $\pw(X_H) \leq (w(p+1)+1)(w+1)-1$.  
+Since $\pw(X_H)+1\leq w(p+1)$ and $X_H$ indexes a tree-decomposition of $G[V(H)\cup C_H]$ with width at most $w$, it follows that  $\pw(V(H)\cup C_H) \leq (w(p+1)+1)(w+1)-1$.  
+
+\comment{GJ: This implicitly uses a lemma along the lines "if treewidth is $k$ and pathwidth of tree indexing tree decomposition is $p$ then pathwidth is at most $pk$", this should be explained}
 
 We now construct a path-decomposition of $G$ with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_t$. Let $G_i:=G[V_0\cup V_1\cup\dots\cup V_i]$. We now prove, by induction on $i$, that $G_i$ has a 
- path-decomposition with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_i$. This claim is trivial for $i=0$. Now assume that $B_1,\dots,B_q$ is a path-decomposition of $G_{i-1}$ with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_{i-1}$. For each component $H$ of $G[V_i]$, there is a bag $B_j$ that contains $C_H$; pick one such bag and call it the \emph{parent bag} of $H$. By doubling the bag, we may assume that distinct components of $G[V_i]$ have distinct parents bags. Now, for each component $H$ of $G[V_i]$ with parent bag $B_j$, if $D_1,\dots,D_r$ is a path-decomposition of $G[V_i]$ with width  $w(p+1)(w+1)-1$, then replace $B_j$ by  
+ path-decomposition with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_i$. This claim is trivial for $i=0$. Now assume that $B_1,\dots,B_q$ is a path-decomposition of $G_{i-1}$ with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_{i-1}$. For each component $H$ of $G[V_i]$, there is a bag $B_j$ that contains $C_H$; pick one such bag and call it the \emph{parent bag} of $H$. By doubling the bag, we may assume that distinct components of $G[V_i]$ have distinct parents bags. Now, for each component $H$ of $G[V_i]$ with parent bag $B_j$, if $D_1,\dots,D_r$ is a path-decomposition of $G[V(H)\cup C_H]$ with width  $w(p+1)(w+1)-1$, then replace $B_j$ by  
  $B_j\cup D_1,\dots,B_j\cup D_r$. Doing this for each component of $G[V_i]$ produces a path decomposition of $G_i$ 
  with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_i$. In particular, we obtain a path decomposition of $G$  with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_t$.
  \end{proof}
@@ -286,7 +288,7 @@ $w=w(k)$.
   that $P'-\{u_1,u_2\}$ is a forest, $Q'$ be a graph with a vertex $v$
   such that $Q'\setminus\{v\}$ is an outerplanar graph, and $R'$ be a
   tree with a cycle going through its leaves in order from the leftmost
-  leaf to the rightmost leaf so that $R'$ is planar.  There there exists
+  leaf to the rightmost leaf so that $R'$ is planar.  Then there exists
   a number $w = w(P ', Q' , R')$ such that every 3-connected graph of
   pathwidth at least $w$ has a $P'$, $Q'$, or $R'$ minor.
 \end{theorem} 
@@ -382,6 +384,8 @@ dibattista.tamassia:on-line, dibattista.tamassia:on-line2}.
 %the resulting vertex is $x$.  That is, the result of contracting $xy$
 %in $G$ is a graph $G'$ with $V(G')=V(G)\setminus \{y\}$ and $E(G') =
 %E(G)\cup \{xz : yz\in E(G)\} \setminus \{yz: yz\in E(G)\}$.
+
+\comment{GJ (splitting hairs): Should we mention that $G$ has a unique SPQR-tree, hence `the' SPQR-tree below? Or drop the `the'?}
 
 Let $G$ be a 2-connected graph. The \emph{SPQR-tree} $S$ of $G$ is
 a tree in which each node $a\in V(S)$ is associated with a 
