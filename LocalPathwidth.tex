@@ -99,6 +99,7 @@ University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}). Resear
 
 \footnotetext[5]{School of Mathematical Sciences, Monash   University, Melbourne, Australia  (\texttt{david.wood@monash.edu}). Research supported by the Australian Research Council.}
 
+\sloppy
 
 \title{\boldmath\bf Local Pathwidth}
 \maketitle
@@ -204,7 +205,7 @@ It is immediate that (3) implies (2).
 %\end{proof}
 
 \begin{proof}[Proof that (4) implies (3)] 
-Let $B_1,\dots,B_s$ be a path decomposition of $G$ with layered width $\pb(G)$, with respect to layering $V_0,V_1,\dots,V_t$. Let $v$ be a vertex in $V_i$. Let $r$ be a positive integer. Let $H$ be the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$. Thus $V(H)\subseteq V_{i-r}\cup V_{i-r+1}\cup\dots\cup V_{i+r}$. Each bag $B_i$ contains at most $\lpw(G)$ vertices in each layer. Hence $B_1\cap V(H),\dots,B_s\cap V(H)$ is a path decomposition of $H$ with at most $(2r+1)\pb(G)$ vertices in each bag, and  $\lpw(G,r)\leq(2r+1)\pb(G)-1$.  
+Let $B_1,\dots,B_s$ be a path decomposition of $G$ with layered width $\pb(G)$, with respect to layering $V_0,V_1,\dots,V_t$. Let $v$ be a vertex in $V_i$. Let $r$ be a positive integer. Let $H$ be the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$. Thus $V(H)\subseteq V_{i-r}\cup V_{i-r+1}\cup\dots\cup V_{i+r}$. Each bag $B_j$ contains at most $\lpw(G)$ vertices in each layer. Hence $B_1\cap V(H),\dots,B_s\cap V(H)$ is a path decomposition of $H$ with at most $(2r+1)\pb(G)$ vertices in each bag, and  $\lpw(G,r)\leq(2r+1)\pb(G)-1$.  
 \end{proof}
 
 \begin{proof}[Proof that (5) implies (4)] 
@@ -235,11 +236,17 @@ We now construct a path-decomposition of $G$ with layered width at most $w(p+1)(
 \section{Proof that (1) implies (5)}
 \label{hard-section}
 
-In this section we show that if $G$ is a graph with no $Q_k$ minor
-then $G$ has a tree decomposition $\{B_a:a\in V(T)\}$, of
-width at most $w=w(k)$ and, for every $v\in V(G)$, the subtree $T[v]$
-has pathwidth at most $p=p(k)$.  We will call such a tree decomposition
-\emph{$(w,p)$-good}.  
+Let us say that a tree decomposition of a graph $G$ is \emph{$(w,p)$-good} if its width is at most $w$ and, for every $v\in V(G)$, the subtree $T[v]$
+has pathwidth at most $p$.
+In this section we show that if $G$ has no $Q_k$ minor
+then $G$ has $(w,p)$-good tree decomposition for some $w=w(k)$ and $p=p(k)$. 
+
+%%%% previous version of above paragraph
+% In this section we show that if $G$ is a graph with no $Q_k$ minor
+% then $G$ has a tree decomposition $\{B_a:a\in V(T)\}$, of
+% width at most $w=w(k)$ and, for every $v\in V(G)$, the subtree $T[v]$
+% has pathwidth at most $p=p(k)$.  We will call such a tree decomposition
+% \emph{$(w,p)$-good}.  
 
 We will be working with two related trees $S$ and $T$
 and one graph $G$. To help the reader keep track of things we will use
