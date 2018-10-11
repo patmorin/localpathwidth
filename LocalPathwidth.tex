@@ -108,12 +108,11 @@ University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}). Resear
 
 \sloppy
 
-\title{\boldmath\bf Local Pathwidth}
+\title{\boldmath\bf Minor-Closed Graph Classes \\
+with Bounded Layered Pathwidth}
 \maketitle
 
 % \thanks{\textbf{MSC Classification}: ???}
-
-\comment{DW: I suggest a more descriptive title, such as ``Minor-Closed Graph Classes with Bounded Layered Pathwidth''}
 
 \begin{abstract}
 We prove that a minor-closed class of graphs has bounded layered pathwidth if and only if some apex-forest is not in the class. 
@@ -224,7 +223,7 @@ The following are equivalent for a minor-closed class \GG:
 \end{enumerate}
 \end{theorem}
 
-Here is some intuition about (5). Suppose that \GG\ excludes some apex-forest graph as a minor. Since every apex-forest graph is planar, by \cref{TreewidthCharacterisation}, the graphs in \GG\ have bounded treewidth. Thus we should expect that the tree decompositions in (5) have bounded width. Moreover, if \GG\ has bounded layered pathwidth, then $G[N(v)]$ has bounded pathwidth for each vertex $v$ in each graph $G\in\GG$. Property (5) takes this idea further, and says that each graph $G\in \GG$ has a tree decomposition indexed by $T$ such that for each vertex $v$ in $G$, the subtree $T[v]$ has bounded pathwidth, which implies that $G[N[v]]$ has bounded pathwidth (since the width of the tree decomposition is bounded). 
+Here is some intuition about (5). Suppose that \GG\ excludes some apex-forest graph as a minor. Since every apex-forest graph is planar, by \cref{TreewidthCharacterisation}, the graphs in \GG\ have bounded treewidth. Thus we should expect that the tree decompositions in (5) have bounded width. Moreover, if \GG\ has bounded layered pathwidth, then $G[N(v)]$ has bounded pathwidth for each vertex $v$ in each graph $G\in\GG$. Property (5) takes this idea further, and says that each graph $G\in \GG$ has a tree decomposition indexed by $T$ such that for each vertex $v$ in $G$, the subtree $T[v]$ has bounded pathwidth, which implies that $G[N(v)]$ has bounded pathwidth (since the width of the tree decomposition is bounded). 
 
 In \cref{easy-section} we prove $(5)\implies (4)\implies(3)\implies(2)\implies(1)$. In \cref{hard-section} we close the loop by proving $(1)\implies (5)$. Throughout the proof we use the following `universal' apex-forest graph. Let $Q_k$ be the graph obtained from the complete binary tree $T_k$ by adding one dominant vertex. Note that $\pw(Q_k)=\ceil{k/2}+1$ and the layered pathwidth of $Q_k$ is $\Omega(k)$, since every layering of $Q_k$ uses at most three layers. Since every forest is a minor of some complete binary tree, every apex-forest graph is a minor of some $Q_k$. 
 
@@ -452,8 +451,7 @@ For every integer $k\ge 0$, $T_{2k}^+$ contains $Q_k$ as a minor.
 \subsection{SPQR-Trees}
 
 In this section we quickly review SPQR-trees, a graph decomposition
-tool formalized by \citet{dibattista.tamassia:incremental,
-dibattista.tamassia:on-line, dibattista.tamassia:on-line2}.
+tool formalized by \citet{dibattista.tamassia:incremental,dibattista.tamassia:on-line, dibattista.tamassia:on-line2}.
 
 
 %A \emph{labelled minor} $H$ of a graph $G$ is a multigraph with
@@ -463,9 +461,9 @@ dibattista.tamassia:on-line, dibattista.tamassia:on-line2}.
 %in $G$ is a graph $G'$ with $V(G')=V(G)\setminus \{y\}$ and $E(G') =
 %E(G)\cup \{xz : yz\in E(G)\} \setminus \{yz: yz\in E(G)\}$.
 
-\comment{GJ (splitting hairs): Should we mention that $G$ has a unique SPQR-tree, hence `the' SPQR-tree below? Or drop the `the'?}
+%\comment{GJ (splitting hairs): Should we mention that $G$ has a unique SPQR-tree, hence `the' SPQR-tree below? Or drop the `the'?}
 
-Let $G$ be a 2-connected graph. The \emph{SPQR-tree} $S$ of $G$ is
+Let $G$ be a 2-connected graph. A \emph{SPQR-tree} $S$ of $G$ is
 a tree in which each node $a\in V(S)$ is associated with a 
 minor $H_a$ of $G$.  For each node $a$ of $S$ each edge $xy\in E(H_a)$
 is classified either as a \emph{virtual edge} or a \emph{real edge}.
@@ -476,7 +474,7 @@ unnecessary. However, their inclusion in our definition makes some of
 our analysis simpler.}
 \begin{figure}
   \begin{center}
-    \includegraphics{figs/spqr}
+    \includegraphics[width=\textwidth]{figs/spqr}
   \end{center}
   \caption{A graph and its SPQR-tree.}
   \label{spqr}
@@ -796,18 +794,11 @@ tree.
   $G'$ that contains a $Q_k$-minor.
 \end{proof}
 
-\comment{ 
-With a little more careful analysis in the preceding proof, the $7(k+1)$ that appears everywhere could be reduced to $6(k+1)$. Does anyone care? GJ: No. DW: no}
+%\comment{ With a little more careful analysis in the preceding proof, the $7(k+1)$ that appears everywhere could be reduced to $6(k+1)$. Does anyone care? GJ: No. DW: no}
 
-\comment{The requirement that $S[v]$ contains a subdivision of $T_{7(k+1)}$ is quite a bit stronger than necessary.  It is enough if $S[v]$ contains a subdivision of a 6-subdivision of $T_{k+1}$.  This would reduce the pathwidth dependence in the next proof from $2^{14(k+1)}-3$ down to $7\cdot 2^{2(k+1)}-3$. (Even the leading 7 could be reduced further.) GJ: What about stating we do not try to optimize constants (and keep current proof)? DW: I agree with GJ.}
+%\comment{The requirement that $S[v]$ contains a subdivision of $T_{7(k+1)}$ is quite a bit stronger than necessary.  It is enough if $S[v]$ contains a subdivision of a 6-subdivision of $T_{k+1}$.  This would reduce the pathwidth dependence in the next proof from $2^{14(k+1)}-3$ down to $7\cdot 2^{2(k+1)}-3$. (Even the leading 7 could be reduced further.) GJ: What about stating we do not try to optimize constants (and keep current proof)? DW: I agree with GJ.}
 
-\comment{Let $Q^*_k$ be the graph (shown in \cref{qk}) obtained by
-subdividing each edge of $T_{k+1}$ and adding a vertex $v$ adjacent to
-all subdivision vertices. The proof above actually shows that, if $S[v]$
-contains a subdivision of $T_{9(k+1)}$ then $G$ contains a \emph{subdivision}
-of $Q^*_k$.  This is a little bit surprising, since I would have guessed
-that $v$ would have to be a contracted subgraph of $G$, not a single
-high-degree vertex. Is it worth writing the proof to highlight this? GJ: Yes it is surprising at first sight. Note that in the $R$-nodes we do need to forbid $Q_k$ as a minor, not enough to forbid a $Q^*_k$-subdivision. So there the minor relation is needed. }
+\comment{Let $Q^*_k$ be the graph (shown in \cref{qk}) obtained by subdividing each edge of $T_{k+1}$ and adding a vertex $v$ adjacent to all subdivision vertices. The proof above actually shows that, if $S[v]$ contains a subdivision of $T_{9(k+1)}$ then $G$ contains a \emph{subdivision} of $Q^*_k$.  This is a little bit surprising, since I would have guessed that $v$ would have to be a contracted subgraph of $G$, not a single high-degree vertex. Is it worth writing the proof to highlight this? GJ: Yes it is surprising at first sight. Note that in the $R$-nodes we do need to forbid $Q_k$ as a minor, not enough to forbid a $Q^*_k$-subdivision. So there the minor relation is needed. }
 
 Finally, we have all the pieces in place to complete the proof.
 
@@ -833,11 +824,11 @@ to discuss algorithmic complexity, which the following theorem sketches.\\DW: I 
    In the following, for each $i\in\{0,\ldots,5\}$,
    $f_i:\mathbb{N}\to\mathbb{N}$ is an unspecified function that is known
    to exist.  The fact that $G$ has no $Q_k$-minor implies that the number
-   of edges of $G$ is $O(f_0(k)n)$ \comment{We do not need $O(..)$ here, right? Example reference \citep{ReedWood16}}.  
+   of edges of $G$ is at most $f_0(k)n$ (see \citep{ReedWood16}).  
    Computing the SPQR-tree $S$ of $G$ can
    be done in $O(f_0(k)n)$ time and the total size of the graphs $\{H_a:a\in
-   V(S)\}$ is $O(f_0(k)n)$ \cite{GM00}.  Computing a path decomposition of
-   $H_a$ having width at most 2 for each S-node or P-node $a$ is easily
+   V(S)\}$ is at most $f_0(k)n$ (see \cite{GM00}).  Computing a path decomposition of
+   $H_a$ with width at most 2 for each S-node or P-node $a$ is easily
    done in time linear in the size of $H_a$.  For each R-node $a$, the
    pathwidth of $H_a$ is at most $p=p(k)=O(1)$.  Therefore, computing
    a minimum-width path decomposition of $H_a$ for an R-node $a$ can be
@@ -852,8 +843,7 @@ to discuss algorithmic complexity, which the following theorem sketches.\\DW: I 
    and immediately gives an $O(f_4(k)n)$ time algorithm to convert
    the $(f_2(k),f_3(k))$-good tree decomposition into a layered path
    decomposition of layered width at most $f_5(k)$. This establishes the
-   theorem for $f(k)
-   = \max\{f_i(k) : i\in\{1,\ldots,5\}\}$.
+   theorem for $f(k) = \max\{f_i(k) : i\in\{1,\ldots,5\}\}$.
 \end{proof}
 
 %\textcolor{red}{It remains to prove that (1) implies (4), or (2) implies (4). }
@@ -1293,6 +1283,6 @@ to discuss algorithmic complexity, which the following theorem sketches.\\DW: I 
       \setlength{\itemsep}{0.4ex}%
   }{\end{oldthebibliography}}
 \bibliographystyle{myNatbibStyle}
-\bibliography{LocalPathwidth,extra}
+\bibliography{LocalPathwidth}
 
 \end{document}
