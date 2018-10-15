@@ -3,7 +3,7 @@
 \usepackage[colorlinks=true,citecolor=black,linkcolor=black,urlcolor=blue]{hyperref}
 \usepackage[longnamesfirst,numbers,sort&compress]{natbib}
 \usepackage[lmargin=30mm,rmargin=30mm,tmargin=30mm,bmargin=30mm]{geometry}
-\usepackage[capitalize]{cleveref}
+\usepackage[noabbrev,capitalise]{cleveref}
 \usepackage{underscore}  % because one annoying doi has an underscore in it
 
 \makeatletter
@@ -12,9 +12,8 @@
 
 %\usepackage[margin=35mm]{geometry}
 %\linespread{1.4}
-%\renewcommand{\baselinestretch}{1.1}
-%\setlength{\footnotesep}{\baselinestretch\footnotesep}
-%\renewcommand{\thefootnote}{\fnsymbol{footnote}}	
+\renewcommand{\baselinestretch}{1.1}
+\setlength{\footnotesep}{\baselinestretch\footnotesep}
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{1.5ex}
 \allowdisplaybreaks
@@ -37,10 +36,6 @@
 \DeclareMathOperator{\qn}{qn}
 \DeclareMathOperator{\tw}{tw}
 \DeclareMathOperator{\pw}{pw}
-%\DeclareMathOperator{\pb}{layered-pw}
-%\DeclareMathOperator{\tb}{layered-tw}
-%\DeclareMathOperator{\lpw}{local-pw}
-%\DeclareMathOperator{\ltw}{local-tw}
 \DeclareMathOperator{\dist}{dist}
 
 %\usepackage{phaistos}
@@ -64,26 +59,7 @@
 \theoremstyle{definition}
 \newtheorem{conjecture}[theorem]{Conjecture}
 
-\newcommand{\seclabel}[1]{\label{sec:#1}}
-\newcommand{\Secref}[1]{Section~\ref{sec:#1}}
-\newcommand{\secref}[1]{\mbox{Section~\ref{sec:#1}}}
-\newcommand{\lemlabel}[1]{\label{lem:#1}}
-\newcommand{\lemref}[1]{Lemma~\ref{lem:#1}}
-\newcommand{\twolemref}[2]{Lemmas~\ref{lem:#1} and~\ref{lem:#2}}
-\newcommand{\thmlabel}[1]{\label{thm:#1}}
-\newcommand{\thmref}[1]{Theorem~\ref{thm:#1}}
-\newcommand{\twothmref}[2]{Theorems~\ref{thm:#1} and~\ref{thm:#2}}
-\newcommand{\corlabel}[1]{\label{cor:#1}}
-\newcommand{\corref}[1]{Corollary~\ref{cor:#1}}
-\newcommand{\figlabel}[1]{\label{fig:#1}}
-\newcommand{\Figref}[1]{Figure~\ref{fig:#1}}
-\newcommand{\figref}[1]{\mbox{Figure~\ref{fig:#1}}}
-\newcommand{\proplabel}[1]{\label{prop:#1}}
-\newcommand{\propref}[1]{Proposition~\ref{prop:#1}}
-
 \newcommand{\comment}[1]{\bigskip\framebox{\parbox{150mm}{\textcolor{red}{#1}}}\bigskip}
-
-%Mathematics Subject Classifications: 05C15; 05C10
 
 \begin{document}
 
@@ -91,18 +67,17 @@
 \qquad Vida Dujmovi{\'c}\,\footnotemark[3] 
 \qquad David Eppstein\,\footnotemark[2] 
 \qquad Gwena\"el  Joret\,\footnotemark[4] 
-\\[2ex]
-\qquad Pat Morin\,\footnotemark[6] 
+\\[1ex]
+\qquad Pat Morin\,\footnotemark[1] 
 \qquad David~R.~Wood\,\footnotemark[5]}
 
-\footnotetext[3]{School of Computer Science and Electrical Engineering,  
-University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}). Research  supported by NSERC.}
+\footnotetext[3]{School of Computer Science and Electrical Engineering, University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}). Research  supported by NSERC and the Ontario Ministry of Research and Innovation.}
 
 \footnotetext[4]{D\'epartement d'Informatique, Universit\'e Libre de Bruxelles, Brussels, Belgium (\texttt{gjoret@ulb.ac.be}). Supported by an ARC grant from the Wallonia-Brussels Federation of Belgium.}
 
 \footnotetext[2]{Department of Computer Science, University of California, Irvine, California, USA (\texttt{eppstein@uci.edu}). Supported in part by NSF grants  CCF-1618301 and CCF-1616248.}
 
-\footnotetext[6]{School of Computer Science, Carleton University, Ottawa, Canada (\texttt{morin@scs.carleton.ca}). Research  supported by NSERC.}
+\footnotetext[1]{School of Computer Science, Carleton University, Ottawa, Canada (\texttt{morin@scs.carleton.ca}). Research  supported by NSERC.}
 
 \footnotetext[5]{School of Mathematical Sciences, Monash   University, Melbourne, Australia  (\texttt{david.wood@monash.edu}). Research supported by the Australian Research Council.}
 
@@ -126,7 +101,7 @@ We prove that a minor-closed class of graphs has bounded layered pathwidth if an
 
 \section{Introduction}
 
-Pathwidth and treewidth are graph parameters that respectively measure how similar a given graph is to a path or a tree. These parameters are of fundamental importance in structural graph theory, especially in Roberston and Seymour's graph minors series. They also have numerous applications in algorithmic graph theory. Indeed, many NP-complete problems are solvable in polynomial time on graphs of bounded treewidth. 
+Pathwidth and treewidth are graph parameters that respectively measure how similar a given graph is to a path or a tree. These parameters are of fundamental importance in structural graph theory, especially in Roberston and Seymour's graph minors series. They also have numerous applications in algorithmic graph theory. Indeed, many NP-complete problems are solvable in polynomial time on graphs of bounded treewidth \citep{FG06}. 
 
 Recently, \citet{DMW17} introduced the notion of layered treewidth. Loosely speaking, a graph has bounded layered treewidth if it has a tree decomposition and a layering such that each bag of the tree decomposition contains a bounded number of vertices in each layer (defined formally below). This definition is interesting since several natural graph classes, such as planar graphs, that have unbounded treewidth have bounded layered treewidth. \citet{BDDEW18} introduced layered pathwidth, which is analogous to layered treewidth where the tree decomposition is required to be a path decomposition. 
 
@@ -141,11 +116,13 @@ Before continuing, we define the above notions. A \emph{tree decomposition} of a
 \end{enumerate}
 The \emph{width} of a tree decomposition is the size of the largest bag minus 1. The \emph{treewidth} of a graph $G$, denoted by $\tw(G)$, is the minimum width of a tree decomposition of $G$. Tree decompositions were first introduced by \citet{Halin76} and independently by \citet{RS-II}. 
 
-A \emph{path decomposition} of a graph $G$ is a tree decomposition in which the underlying tree is a path. The \emph{pathwidth} of $G$, denoted by $\pw(G)$, is the minimum width of a path decomposition of $G$. 
+A \emph{path decomposition} is a tree decomposition in which the underlying tree is a path. We denote a path decomposition by the corresponding sequence of bags $(B_1,\dots,B_n)$. The \emph{pathwidth} of $G$, denoted by $\pw(G)$, is the minimum width of a path decomposition of $G$. 
 
 A \emph{layering} of a graph $G$ is a partition $(V_0,V_1,\dots,V_t)$ of $V(G)$ such that for every edge $vw\in E(G)$, if $v\in V_i$ and $w\in V_j$ then $|i-j|\leq 1$. Each set $V_i$ is called a \emph{layer}.  For example, for a vertex $r$ of a connected graph $G$, if $V_i$ is the set of vertices at distance $i$ from $r$, then $(V_0,V_1,\dots)$ is a layering of $G$, called the \emph{bfs layering} of $G$ starting from $r$. 
 
 \citet{DMW17} introduced the following definition. The \emph{layered width} of a tree decomposition $(B_x:x\in V(T))$ of a graph $G$ is the minimum integer $\ell$ such that, for some layering $(V_0,V_1,\dots,V_t)$ of $G$, each bag $B_x$ contains at most $\ell$ vertices in each layer $V_i$. The \emph{layered treewidth} of a graph $G$ is the minimum layered width of a tree decomposition of $G$. \citet{BDDEW18} defined the \emph{layered pathwidth} of a graph $G$ to be the minimum layered width of a path decomposition of $G$.
+
+\comment{DW: Do we want to define $\text{ltw}(G)$ and $\text{lpw}(G)$?}
 
 \subsection{Examples and Applications}
  
@@ -155,7 +132,7 @@ Several interesting graph classes have bounded layered treewidth (despite having
 
 Part of the motivation for studying graphs with bounded layered treewidth or pathwidth is that such graphs have several desirable properties. For example, Norin proved that every $n$-vertex graph with layered treewidth $k$ has treewidth less than $2\sqrt{kn}$ (see \citep{DMW17}). This leads to a very simple proof of the Lipton-Tarjan separator theorem. A standard trick leads to an upper bound of $11\sqrt{kn}$ on the pathwidth (see \citep{DEW17}). 
 
-Another application is to track- and queue-number: \citet{DMW17} proved that every $n$-vertex graph  with layered treewidth $k$ has track- and queue-number $O(k\log n)$. This leads to the best known bounds on the track- and queue-number of several natural graph classes. For graphs with bounded layered pathwidth, the dependence on $n$ can be eliminated: \citet{BDDEW18} proved that every graph with layered pathwidth $k$ has track- and queue-number at most $3k$. 
+Another application is to stack layouts (or book embeddings), queue layouts and track layouts. \citet{DMW17} proved that every $n$-vertex graph  with layered treewidth $k$ has track- and queue-number $O(k\log n)$. This leads to the best known bounds on the track- and queue-number of several natural graph classes. For graphs with bounded layered pathwidth, the dependence on $n$ can be eliminated: \citet{BDDEW18} proved that every graph with layered pathwidth $k$ has track- and queue-number at most $3k$. Similarly, \citet{DMY} proved that every graph with layered pathwidth $k$ has stack-number at most $4k$. 
 
 Graph colouring is another application area for layered treewidth. \citet{EJ14} proved that every graph with maximum degree $\Delta$ and Euler genus $g$ is (improperly) 3-colourable with bounded clustering, which means that each monochromatic component has size bounded by some function of $\Delta$ and $g$. This resolved an old open problem even in the planar case $(g=0)$. The clustering function proved by \citet{EJ14} is roughly $O(\Delta^{32\Delta\,2^g})$. While \citet{EJ14} made no effort to reduce this function, their method will not lead to a  sub-exponential clustering bound. On the other hand, \citet{LW1} recently proved that every graph with layered treewidth $k$ and maximum degree $\Delta$ is 3-colourable with clustering $O(k^{19}\Delta^{37})$. In particular, every graph with Euler genus $g$ and maximum degree $\Delta$ is 3-colorable with clustering $O(g^{19}\Delta^{37})$. This greatly improves upon the clustering bound of \citet{EJ14}. Moreover, the proof by \citet{LW1} is relatively simple, avoiding many technicalities that arise when dealing with graph embeddings. This result highlights the utility of layered treewidth as a general tool. 
 
@@ -168,7 +145,7 @@ We now turn to the question of characterising those minor-closed classes that ha
 A minor-closed class has bounded treewidth if and only if some planar graph is not in the class. 
 \end{theorem}
 
-An analogous result for pathwidth holds, where the complete binary tree is the key example (the analogue of grid graphs for treewidth). Let $T_h$ be the complete binary tree of height $h$. It is well known and easily proved that  $\pw(T_h)=\ceil{h/2}$, and every forest is a minor of some complete binary tree. \citet{RS-I} proved the converse. 
+An analogous result for pathwidth holds, where the complete binary tree is the key example (the analogue of grid graphs for treewidth). Let $T_h$ be the complete binary tree of height $h$. It is well known and easily proved that  $\pw(T_h)=\ceil{\frac{h}{2}}$, and every forest is a minor of some complete binary tree. \citet{RS-I} proved the following characterisation. 
 
 \begin{theorem}[\citet{RS-I}]
 \label{PathwidthCharacterisation}
@@ -176,16 +153,16 @@ A minor-closed class has bounded pathwidth if and only if some forest is not in 
 \end{theorem}
 
 %In particular, \citet{RS-I} proved that for every tree $T$ there is a constant $c$ such that every graph with no $T$ minor has pathwidth at most $c$. 
-Note that \citet{BRST-JCTB91} proved the following quantitatively stronger result: for every forest $T$ (with at least one edge) every graph containing no $T$ minor has pathwidth at most $|V(T)|-2$. 
+Note that \citet{BRST-JCTB91} proved the following quantitatively stronger result: for every forest $T$ with $|V(T)|\geq 2$ every graph containing no $T$ minor has pathwidth at most $|V(T)|-2$. 
 
-Now consider layered analogues of \cref{TreewidthCharacterisation,PathwidthCharacterisation}. A graph $G$ is \emph{apex} if $G-v$ is planar for some vertex $v$. If $G$ is the apex graph obtained from the $n\times n$ grid by adding one dominant vertex $v$, then $G$ has layered treewidth at least $\frac{n+1}{3}$ since every layering of $G$ uses at most three layers. \citet{DMW17} proved the following converse. 
+Now consider layered analogues of \cref{TreewidthCharacterisation,PathwidthCharacterisation}. A graph $G$ is \emph{apex} if $G-v$ is planar for some vertex $v$. Define the $n\times n$ \emph{pyramid} to be the apex graph obtained from the $n\times n$ grid by adding one dominant vertex $v$. The $n\times n$ pyramid has treewidth $n+1$ and layered treewidth at least $\frac{n+2}{3}$, since every layering uses at most three layers. Pyramids are `universal' apex graphs, in the sense that every apex graph is a minor of some pyramid graph (since every planar graph is a minor of some grid graph). \citet{DMW17} proved the following characterisation. 
 
 \begin{theorem}[\citet{DMW17}]
 \label{LayeredTreewidthCharacterisation}
 A minor-closed class has bounded layered treewidth if and only if some apex graph is not in the class. 
 \end{theorem}
 
-Note that the proof of \cref{LayeredTreewidthCharacterisation} uses the graph minor structure theorem and thus relies on \cref{TreewidthCharacterisation}.
+\cref{LayeredTreewidthCharacterisation} generalises the above-mentioned result that graphs of bounded Euler genus have bounded layered treewidth. Note that the proof of \cref{LayeredTreewidthCharacterisation} uses the graph minor structure theorem and thus relies on \cref{TreewidthCharacterisation}.
 
 A graph $G$ is an \emph{apex-forest} if $G-v$ is a forest for some vertex $v$. 
 The following theorem is the main result of this paper. 
@@ -199,33 +176,31 @@ A minor-closed class has bounded layered pathwidth if and only if some apex-fore
 
 \comment{DW: Do we need to define model? Do we need to define minor?}
 
-\comment{DW: We need to check carefully that the result of \citet{Dang18} does not use \cref{PathwidthCharacterisation}.}
+\comment{DW: Please check carefully that the result of \citet{Dang18} does not use \cref{PathwidthCharacterisation}.}
 
 
-Layered treewidth is closely related to the notion of `local treewidth', which was first introduced by \citet{Eppstein-Algo00} under the guise of the `treewidth-diameter' property. A graph class $\mathcal{G}$ has \emph{bounded local treewidth} if there is a function $f$ such that for every graph $G$ in $\mathcal{G}$, for every vertex $v$ of $G$ and for every integer $r\geq0$, the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$ has treewidth at most $f(r)$; see \citep{Grohe-Comb03,DH-SJDM04,DH-SODA04,Eppstein-Algo00}. If $f(r)$ is a linear function, then  $\mathcal{G}$ has \emph{linear local treewidth}. \citet{DMW17} made the following easy observation: If every graph in some class $\mathcal{G}$ has layered treewidth at most $\ell$, then $\mathcal{G}$ has linear local treewidth with $f(r)=\ell(2r+1)-1$. We define local pathwidth similarly. A graph class $\mathcal{G}$ has \emph{bounded local pathwidth} if there is a function $f$ such that for every graph $G$ in $\mathcal{G}$, for every vertex $v$ of $G$ and for every integer $r\geq0$, the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$ has pathwidth at most $f(r)$. The observation of \citet{DMW17} extends to the setting of local pathwidth: If every graph in some class $\mathcal{G}$ has layered pathwidth at most $\ell$, then $\mathcal{G}$ has linear local pathwidth with $f(r)=\ell(2r+1)-1$. 
+Layered treewidth is closely related to the notion of `local treewidth', which was first introduced by \citet{Eppstein-Algo00} under the guise of the `treewidth-diameter' property. A graph class $\mathcal{G}$ has \emph{bounded local treewidth} if there is a function $f$ such that for every graph $G$ in $\mathcal{G}$, for every vertex $v$ of $G$ and for every integer $r\geq0$, the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$ has treewidth at most $f(r)$. If $f(r)$ is a linear function, then  $\mathcal{G}$ has \emph{linear local treewidth}. See \citep{Grohe-Comb03,DH-SJDM04,DH-SODA04,Eppstein-Algo00,FG06} results and algorithmic applications of local treewidth.  \citet{DMW17} observed that if some class $\mathcal{G}$ has bounded layered treewidth, then $\mathcal{G}$ has linear local treewidth. On the other hand, bounded layered treewidth is a stronger property that bounded or linear local treewidth.
 
-%For pathwidth, the complete binary tree is the key example. Let $T_h$ be the complete binary tree of height $h$. For a graph $G$, let $t(G)$ be the maximum $h$ for which $T_h$ is a minor of $G$. Since $T_h$ has maximum degree 3, if $T_h$ is a minor of $G$, then $G$ contains a subdivision of $T_h$ as a subgraph. It is well known and easily proved that  $\pw(T_h)=\ceil{h/2}$. Thus $\pw(G)\geq \ceil{t(G)/2}$. On the other hand, for every tree $T$ with $p$ vertices, \citet{BRST-JCTB91} proved that every graph containing no $T$ minor has pathwidth at most $p-2$. Since $T_h$ has $2^{h+1}-1$ vertices, and every graph $G$ contains no $T_{t(G)+1}$-minor, $\pw(G)\leq 2^{t(G)+2}-3$. In this sense, pathwidth and the function $t$ are tied. Let $Q_k$ be the graph obtained from $T_k$ by adding one dominant vertex. Thus $\pw(Q_k)=\ceil{k/2}+1$. Moreover, since every layering of $Q_k$ uses at most three layers, the layered pathwidth of $Q_k$ is $\Omega(k)$. 
+Local pathwidth is defined similarly to local treewidth. A graph class $\mathcal{G}$ has \emph{bounded local pathwidth} if there is a function $f$ such that for every graph $G$ in $\mathcal{G}$, for every vertex $v$ of $G$ and for every integer $r\geq0$, the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$ has pathwidth at most $f(r)$. The observation of \citet{DMW17} extends to the setting of local pathwidth; see \cref{lpw-llp} below. 
 
-
-\cref{LayeredPathwidthCharacterisation} is extended to capture local pathwidth by the following theorem, which also provides a structural description in terms of a tree decomposition with certain properties. If $T$ is a tree indexing a tree decomposition of a graph $G$, then for each vertex $v$ of $G$, let $T[v]$ denote the subtree of $T$ induced by those nodes corresponding to bags that contain $v$. Thus $T[v]$ is non-empty and connected. 
-
+\cref{LayeredPathwidthCharacterisation} is extended to capture local pathwidth by the following theorem, which also provides a structural description in terms of a tree decomposition with certain properties that we now introduce. If $T$ is a tree indexing a tree decomposition of a graph $G$, then for each vertex $v$ of $G$, let $T[v]$ denote the subtree of $T$ induced by those nodes corresponding to bags that contain $v$. Thus $T[v]$ is non-empty and connected. Say that a tree decomposition of a graph $G$ is \emph{$(w,p)$-good} if its width is at most $w$ and, for every $v\in V(G)$, the subtree $T[v]$ has pathwidth at most $p$. We illustrate this definition with two examples. Let $T$ be a tree, rooted at some vertex. For each node $x$ of $T$, introduce a bag $B_x$ consisting of $x$ and its parent node (or just $x$ if $x$ is the root). Then $(B_x:x\in V(T))$ is a tree decomposition of $T$ with width 1. Moreover, for each vertex $v$, the subtree $T[v]$ is a star, which has pathwidth 1. Thus every tree has a $(1,1)$-good tree decomposition. Now, consider an outerplanar triangulation $G$. Let $T$ be the dual tree (ignoring the outerface). For each node $x$ of $T$, let $B_x$ be the set of three vertices on the face corresponding to $x$. It is easily verified that $(B_x:x\in V(G))$ is a tree decomposition of $G$ with width 2. Moreover, for each vertex $v$ of $G$, the subtree $T[v]$ is a path, which has pathwidth 1.  Thus every outerplanar graph has a $(2,1)$-good tree decomposition (since every outerplanar graph is a subgraph of an outerplanar triangulation). These constructions are generalised via the following theorem, which immediately implies \cref{LayeredPathwidthCharacterisation}. 
 
 \begin{theorem}
 \label{MainThm}
 The following are equivalent for a minor-closed class \GG:
 \begin{enumerate}[(1)]
-%\item $Q_k\not\in \GG$ for some integer $k$, 
 \item some apex-forest graph is not in \GG, 
 \item \GG\ has bounded local pathwidth, 
 \item \GG\ has linear local pathwidth. 
 \item \GG\ has bounded layered pathwidth, 
-\item each graph $G\in\GG$ has a tree decomposition $T$ of bounded width, such that $T[v]$ has bounded pathwidth for each vertex $v$ of $G$, 
+\item there exists integers $w$ and $p$, such that every graph in \GG\ has a $(w,p)$-good tree decomposition. 
+%each graph $G\in\GG$ has a tree decomposition $T$ of bounded width, such that $T[v]$ has bounded pathwidth for each vertex $v$ of $G$, 
 \end{enumerate}
 \end{theorem}
 
-Here is some intuition about (5). Suppose that \GG\ excludes some apex-forest graph as a minor. Since every apex-forest graph is planar, by \cref{TreewidthCharacterisation}, the graphs in \GG\ have bounded treewidth. Thus we should expect that the tree decompositions in (5) have bounded width. Moreover, if \GG\ has bounded layered pathwidth, then $G[N(v)]$ has bounded pathwidth for each vertex $v$ in each graph $G\in\GG$. Property (5) takes this idea further, and says that each graph $G\in \GG$ has a tree decomposition indexed by $T$ such that for each vertex $v$ in $G$, the subtree $T[v]$ has bounded pathwidth, which implies that $G[N(v)]$ has bounded pathwidth (since the width of the tree decomposition is bounded). 
+Here is some intuition about property (5). Suppose that \GG\ excludes some apex-forest graph as a minor. Since every apex-forest graph is planar, by \cref{TreewidthCharacterisation}, the graphs in \GG\ have bounded treewidth. Thus we should expect that the tree decompositions in (5) have bounded width. Moreover, if \GG\ has bounded layered pathwidth, then $G[N(v)]$ has bounded pathwidth for each vertex $v$ in each graph $G\in\GG$. Property (5) takes this idea further, and says that each subtree $T[v]$ has bounded pathwidth, which implies that $G[N(v)]$ has bounded pathwidth (since the width of the tree decomposition is bounded). 
 
-In \cref{easy-section} we prove $(5)\implies (4)\implies(3)\implies(2)\implies(1)$. In \cref{hard-section} we close the loop by proving $(1)\implies (5)$. Throughout the proof we use the following `universal' apex-forest graph. Let $Q_k$ be the graph obtained from the complete binary tree $T_k$ by adding one dominant vertex. Note that $\pw(Q_k)=\ceil{k/2}+1$ and the layered pathwidth of $Q_k$ is $\Omega(k)$, since every layering of $Q_k$ uses at most three layers. Since every forest is a minor of some complete binary tree, every apex-forest graph is a minor of some $Q_k$. 
+In \cref{easy-section} we prove $(5)\implies (4)\implies(3)\implies(2)\implies(1)$. In \cref{hard-section} we close the loop by proving $(1)\implies (5)$. Throughout the proof we use the following `universal' apex-forest graph. Let $Q_k$ be the graph obtained from the complete binary tree $T_k$ by adding one dominant vertex. Note that $\pw(Q_k)=\ceil{\frac{k}{2}}+1$ and the layered pathwidth of $Q_k$ is at least $\frac{k+4}{6}$, since every layering of $Q_k$ uses at most three layers. Since every forest is a minor of some complete binary tree, every apex-forest graph is a minor of some $Q_k$. 
 
 %%%%%%%%%%%%%%%%%%
 \section{Downward Implications}
@@ -234,19 +209,29 @@ In \cref{easy-section} we prove $(5)\implies (4)\implies(3)\implies(2)\implies(1
 We start with a few simple but useful lemmas.
 
 \begin{lemma}
-Let $T_1$ and $T_2$ be subtrees of a tree $T$, such that $T=T_1\cup T_2$. Then 
-$$\pw(T)+1\leq(\pw(T_1)+1)+(\pw(T_2)+1)\enspace.$$
+\label{BlowUp}
+If a graph $G$ has a tree decomposition of width $k$ indexed by a tree of pathwidth $p$, then $G$ has pathwidth at most $(p+1)(k+1)-1$.
 \end{lemma}
 
 \begin{proof}
-Let $B_1,\dots,B_s$ be a path decomposition of $T_1$ with bag size at most $\pw(T_1)+1$. 
-Each component  of $T-V(T_1)$ is contained in $T_2$ and therefore has a path decomposition  with bag size at most $\pw(T_2)+1$. For each such component $J$ of $T-V(T_1)$, there is exactly one vertex $v$ in $T_1$ adjacent to some vertex in $J$ (otherwise $T$ would contain a cycle consisting of two edges between a path in $T_1$ and a path in $J$). Say $v$ is in bag $B_i$. We say $J$ \emph{attaches} at $v$ and at $B_i$. By doubling bags in the path decomposition of $T_1$, we may assume that distinct components of $T-V(T_1)$ attach at distinct $B_i$. For each component $J$ of $T-V(T_1)$, if $D_1,\dots,D_t$ is a path decomposition of $J$ with bag size at most $\pw(T_2)+1$, then replace $B_i$ by $B_i\cup D_1,\dots,B_i\cup D_t$. We obtain a path decomposition of $T$ with bag size at most $(\pw(T_1)+1)+(\pw(T_2)+1)$. The result follows. 
+Let $(B_x:x\in V(T))$ be a tree decomposition of $G$ of width $k$. Let $(C_1,\dots,C_n)$ be a path decomposition of $T$ of width $p$. For $i\in\{1,\dots,n\}$, let $D_i:= \bigcup_{x\in C_i}B_x$. Then it is easily verified that $(D_1,\dots,D_n)$ is a path decomposition of $G$ of width $(p+1)(k+1)-1$ (since $|C_i|\leq p+1$ and $|B_x|\leq k+1$). 
+\end{proof}
+
+\begin{lemma}
+Let $T_1$ and $T_2$ be subtrees of a tree $T$, such that $T=T_1\cup T_2$. Then 
+$$\pw(T)+1\leq(\pw(T_1)+1)+(\pw(T_2)+1).$$
+\end{lemma}
+
+\begin{proof}
+Let $(B_1,\dots,B_s)$ be a path decomposition of $T_1$ with bag size at most $\pw(T_1)+1$. Each component  of $T-V(T_1)$ is contained in $T_2$ and therefore has a path decomposition  with bag size at most $\pw(T_2)+1$. For each such component $J$ of $T-V(T_1)$, there is exactly one vertex $v$ in $T_1$ adjacent to some vertex in $J$ (otherwise $T$ would contain a cycle consisting of two edges between a path in $T_1$ and a path in $J$). Say $v$ is in bag $B_i$. We say $J$ \emph{attaches} at $v$ and at $B_i$. By doubling bags in the path decomposition of $T_1$, we may assume that distinct components of $T-V(T_1)$ attach at distinct $B_i$. For each component $J$ of $T-V(T_1)$, if $(D_1,\dots,D_t)$ is a path decomposition of $J$ with bag size at most $\pw(T_2)+1$, then replace $B_i$ by $(B_i\cup D_1,\dots,B_i\cup D_t)$. We obtain a path decomposition of $T$ with bag size at most $(\pw(T_1)+1)+(\pw(T_2)+1)$. The result follows. 
 \end{proof}
 
 \begin{corollary}
 \label{SubtreeUnion}
 Let $T_1,\dots,T_k$ be subtrees of a tree $T$, such that $T=T_1\cup\dots\cup T_k$. Then 
-$$\pw(T)+1\leq\sum_{i=1}^k(\pw(T_i)+1)\enspace.$$
+\begin{equation*}
+\pw(T)+1\leq\sum_{i=1}^k(\pw(T_i)+1).
+\end{equation*} 
 \end{corollary}
 
 
@@ -260,10 +245,6 @@ $$\pw(T)+1\leq\sum_{i=1}^k(\pw(T_i)+1)\enspace.$$
 %This shows that for a graph with no $Q_h$ minor every radius-$d$ subgraph has pathwidth at most $2^{2dh+1}-2$
 %\end{proof}
 
-\begin{proof}[Proof that (2) implies (1)] Assume that \GG\ has bounded local pathwidth. Thus, for some constant $k$, for every graph $G\in\GG$ and every vertex $v$ of $G$, we have $\pw(G[N[v]])\leq k$. Suppose on the contrary that $G:=Q_{2k}$ is in \GG. Let $v$ be the dominant vertex in $Q_{2k}$. Thus $$k+1=\pw(Q_{2k})=\pw(G[N[v]])\leq k\enspace.$$ This contradiction proves that $Q_{2k}$ is not in \GG. 
-\end{proof}
-
-It is immediate that (3) implies (2).
 
 %\begin{proof}[Proof that (2) implies (1)] 
 %Let $G$ be a graph containing no $Q_k$ minor. Let $v$ be a vertex of $G$. For $i\geq 0$, let $V_i$ be the set of vertices of $G$ at distance $i$ from $v$. Fix $r\geq 0$. Let $G_r$ be the subgraph of $G$ induced by $V_0\cup V_1\cup \dots\cup V_r$. Our goal is to prove that $t(G_r)\leq f(k,r)$ for some function $f$ (independent of $G$). To do so, for $0\leq j\leq r$, let $G_{r,j}$ be the subgraph of $G$ induced by $V_{r-j},V_{r-j+1},\dots,V_r$. We proceed by induction on $j$, with the hypothesis that $t(G_{r,j})< k^{j+1}$. Since $G_r=G_{r,r}$, the desired result follows with $f(k,r):=k^{r+1}$. 
@@ -275,39 +256,43 @@ It is immediate that (3) implies (2).
 %This proves that $t(G_r)=t(G_{r,r})<k^{r+1}$. Hence $G_r$ has pathwidth at most $2^{k^{r+1}+2}-3$, and $G$ has bounded local pathwidth. 
 %\end{proof}
 
-\begin{proof}[Proof that (4) implies (3)] 
-Assume that every graph $G\in\GG$ has layered pathwidth at most $k$. Let $B_1,\dots,B_s$ be a path decomposition of $G$ with layered width $k$, with respect to layering $V_0,V_1,\dots,V_t$. Let $v$ be a vertex in $V_i$. Let $r$ be a positive integer. Let $H$ be the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$. Thus $V(H)\subseteq V_{i-r}\cup V_{i-r+1}\cup\dots\cup V_{i+r}$. Each bag $B_j$ contains at most $k$ vertices in each layer. Hence $B_1\cap V(H),\dots,B_s\cap V(H)$ is a path decomposition of $H$ with at most $(2r+1)k$ vertices in each bag. Therefore $G$ has linear local pathwidth with binding function $f(r) =(2r+1)k-1$.  
+
+We now prove the downward implications in \cref{MainThm}. First note that (2) implies (1), since if every graph in \GG\ has local pathwidth at most $k$, then the apex-forest graph $Q_{6k}$ is not in \GG. It is immediate that (3) implies (2). That (4) implies (3) is the above-mentioned observation of \citet{DMW17} specialised for pathwidth. We include the proof for completeness. 
+
+\begin{lemma}
+\label{lpw-llp}
+Let \GG\ be a class of graphs such that every graph in \GG\ has layered pathwidth at most $k$. Then \GG\ has linear local pathwidth with binding function $f(r) =(2r+1)k-1$.  
+\end{lemma}
+
+\begin{proof}
+For a graph $G\in\GG$, let $(B_1,\dots,B_s)$ be a path decomposition of $G$ with layered width $k$, with respect to some layering $V_0,V_1,\dots,V_t$. Let $v$ be a vertex in $V_i$. Let $r$ be a positive integer. Let $H$ be the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$. Thus $V(H)\subseteq V_{i-r}\cup V_{i-r+1}\cup\dots\cup V_{i+r}$. Each bag $B_j$ contains at most $k$ vertices in each layer. Hence $(B_1\cap V(H),\dots,B_s\cap V(H))$ is a path decomposition of $H$ with at most $(2r+1)k$ vertices in each bag. Therefore \GG\ has linear local pathwidth with binding function $f(r) =(2r+1)k-1$.  
 \end{proof}
 
-\begin{proof}[Proof that (5) implies (4)] 
-Consider a graph  $G$ with a tree decomposition $T$ of width $w$,
-such that $\pw(T[v])\leq p$  for each vertex $v$ of $G$. Since adding
-edges does not decrease the layered pathwidth, we may add edges to $G$
-between two non-adjacent vertices in the same bag of $T$. Now each bag
-is a clique, and $G$ is chordal with maximum clique size $w+1$. Let
-$V_0,V_1,\dots,V_t$ be a bfs layering in $G$. That is, $V_i$ is the set
-of vertices in $G$ at distance $i$ from some fixed vertex $x$ of $G$. In
-particular, $V_0=\{x\}$.
+The next lemma shows that (5) implies (4). 
 
-Consider a component $H$ of $G[V_i]$ for some $i\geq 1$. Let $C_H$ be the set of vertices in $V_{i-1}$ adjacent to some vertex in $H$. Then $C_H$ is a clique of size at most $w$ (see \citep{KP-DM08,DMW05}), called the \emph{parent clique} of $H$. A bag containing $w\in C_H$ is said to \emph{belong} to $w$. Define $X_H:=\cup_{w\in C_H}T[w]$. Since $C_H$ is a clique, which is contained in a single bag of $T$, the subtrees whose union is $X_H$ have a node in common. Thus $X_H$ is a (connected) subtree of $T$. Moreover, $X_H$  is the union of at most $w$ subtrees, each with pathwidth at most $p$. Thus $\pw(X_H)+1\leq w(p+1)$ by Corollary~\ref{SubtreeUnion}. 
+\begin{lemma}
+If a graph $G$ has a $(w,p)$-good tree decomposition, then $G$ has layered pathwidth at most $w(p+1)(w+1)$. 
+\end{lemma}
 
-We now prove that $X_H$ indexes a tree decomposition of $G[V(H)\cup C_H]$ (using the same bags as $T$ restricted to $V(H)\cup C_H$). We first prove condition (ii). For a vertex $v$ of $C_H$, the set of bags in $X_H$ that contain $v$ is precisely $T[v]$, which is non-empty and connected, by assumption. Now, consider a vertex $v$ in $H$. Let $w$ be the neighbour of $v$ on a shortest $vx$-path in $G$. Thus $w$ is in $C_H$. Since $vw$ is an edge,  $v$ and $w$ appear in a common bag of $T$, which is also in $X_H$ (since that bag contains $w$). Hence $X_H[v]$ is non-empty. 
-We now prove that  $X_H[v]$ is connected. Let $B_1$ and $B_2$ be distinct bags of $X_H$ containing $v$. Let $P$ be the $B_1B_2$-path in $T$. Since $T[v]$ is connected, $v$ is in each bag in $P$. To conclude that $X_H[v]$ is connected, it remains to prove that $P\subseteq X_H$. By construction, some vertex $w_1\in B_1\cap C_H$ and some vertex $w_2\in B_2\cap C_H$. Since $w_1$ and $w_2$ are adjacent, each bag in $P$ contains $w_1$ or $w_2$. Hence $P\subseteq X_H$ and $X_H[v]$ is connected. This proves condition (ii). Now we prove condition (i). Since $C_H$ is contained in some bag of $X_H$, condition (i) holds for each edge with endpoints in $C_H$. For each edge $vw$ with $v\in V(H)$ and $w\in C_H$,  $v$ and $w$ are in a common bag of $T$, which is also in $X_H$ (since that bag contains $w$), as desired. Finally, consider an edge $uv$ with $u,v\in V(H)$. Suppose on the contrary that $u$ and $v$ have no common neighbour in $C_H$. By construction,  $u$ has a neighbour $w_1$ in $C_H$, and $v$ has a neighbour $w_2$ in $C_H$. Thus $w_1\neq w_2$. Since $C_H$ is a clique, $w_1$ and $w_2$ are adjacent. Since $uw_2\not\in E(G)$ and $vw_1\not\in E(G)$, the 4-cycle $(u,w_1,w_2,v)$ is chordless, and $G$ is not chordal, which is a contradiction. Hence $u$ and $v$ have a common neighbour $w$ in $C_H$. Thus $\{u,v,w\}$ is a triangle in $G$, which is in a common bag of $T$, and therefore in a common bag of $X_H$, implying that $u$ and $v$ are in a common bag of $X_H$. This proves  condition (i) in the definition of tree decomposition. Therefore $X_H$ indexes a tree decomposition of $G[V(H)\cup C_H]$. By construction, it has width at most $w$. 
+\begin{proof} Let  $\mathcal{T}=(B_x:x\in V(T))$ be a tree decomposition of $G$ with width $w$, such that $\pw(T[v])\leq p$  for each vertex $v$ of $G$. Since adding edges does not decrease the layered pathwidth, we may add edges to $G$ between two non-adjacent vertices in the same bag of $\mathcal{T}$. Now each bag is a clique, and $G$ is chordal with maximum clique size $w+1$. Let $V_0,V_1,\dots,V_t$ be a bfs layering in $G$. That is, $V_i$ is the set of vertices in $G$ at distance $i$ from some fixed vertex $r$ of $G$. In particular, $V_0=\{r\}$.
 
-Since $\pw(X_H)+1\leq w(p+1)$ and $X_H$ indexes a tree decomposition of $G[V(H)\cup C_H]$ with width at most $w$, it follows that  $\pw(V(H)\cup C_H) \leq (w(p+1)+1)(w+1)-1$.  
+Consider a component $H$ of $G[V_i]$ for some $i\geq 1$. Let $C_H$ be the set of vertices in $V_{i-1}$ adjacent to some vertex in $H$. Since $G$ is chordal, $C_H$ is a clique of size at most $w$ (see \citep{KP-DM08,DMW05}), called the \emph{parent clique} of $H$. Define $T_H:=\bigcup_{w\in C_H}T[w]$. Since $C_H$ is a clique, which is contained in a single bag of $\mathcal{T}$, there is a node $x$ of $T$ such that $x\in T[w]$ for each $w\in C_H$. Thus $T_H$ is a (connected) subtree of $T$. Moreover, $T_H$  is the union of at most $w$ subtrees, each with pathwidth at most $p$. Thus $\pw(T_H)+1\leq w(p+1)$ by \cref{SubtreeUnion}. Let $\hat{H}:= G[V(H)\cup C_H]$. 
 
-\comment{GJ: This implicitly uses a lemma along the lines "if treewidth is $k$ and pathwidth of tree indexing tree decomposition is $p$ then pathwidth is at most $pk$", this should be explained}
+We now prove that $\mathcal{T}_H := (B_x\cap V(\hat{H}) : x \in V(T_H))$ is a tree decomposition of $\hat{H}$. We first prove condition (ii). For a vertex $v$ of $C_H$, the set of bags of $\mathcal{T}_H$ that contain $v$ is precisely those indexed by nodes in $T[v]$, which is non-empty and connected, by assumption. Now, consider a vertex $v$ in $H$. Let $w$ be the neighbour of $v$ on a shortest $vr$-path in $G$. Thus $w$ is in $C_H$. Since $vw$ is an edge, $v$ and $w$ appear in a common bag of $\mathcal{T}$, which corresponds to a node in $T_H$ (since that bag contains $w$). Hence $T_H[v]$ is non-empty. 
+We now prove that  $T_H[v]$ is connected. Let $B_1$ and $B_2$ be distinct bags of $\mathcal{T}_H$ containing $v$. Let $P$ be the $B_1B_2$-path in $T$. Since $T[v]$ is connected, $v$ is in the bag associated with each node in $P$. To conclude that $T_H[v]$ is connected, it remains to prove that $P\subseteq T_H$. By construction, some vertex $w_1$ is in $B_1\cap C_H$ and some vertex $w_2$ is in $B_2\cap C_H$. Since $w_1$ and $w_2$ are adjacent, the bag associated with each node in $P$ contains $w_1$ or $w_2$. Hence $P\subseteq T_H$ and $T_H[v]$ is connected. This proves condition (ii). Now we prove condition (i). Since $C_H$ is contained in some bag of $\mathcal{T}_H$, condition (i) holds for each edge with endpoints in $C_H$. For each edge $vw$ with $v\in V(H)$ and $w\in C_H$,  $v$ and $w$ are in a common bag $B_x$ of $\mathcal{T}$, implying $x$ is in $T_H$ (since $B_x$ contains $w$), as desired. Finally, consider an edge $uv$ with $u,v\in V(H)$. Suppose on the contrary that $u$ and $v$ have no common neighbour in $C_H$. By construction,  $u$ has a neighbour $w_1$ in $C_H$, and $v$ has a neighbour $w_2$ in $C_H$. Thus $w_1\neq w_2$. Since $C_H$ is a clique, $w_1$ and $w_2$ are adjacent. Since $uw_2\not\in E(G)$ and $vw_1\not\in E(G)$, the 4-cycle $(u,w_1,w_2,v)$ is chordless, and $G$ is not chordal, which is a contradiction. Hence $u$ and $v$ have a common neighbour $w$ in $C_H$. Thus $\{u,v,w\}$ is a triangle in $G$, which is in a common bag of $T$, and therefore in a common bag of $\mathcal{T}_H$, implying that $u$ and $v$ are in a common bag of $\mathcal{T}_H$. This proves condition (i) in the definition of tree decomposition. Therefore $\mathcal{T}_H$ is a tree decomposition of $\hat{H}$. By construction, it has width at most $w$. 
 
-We now construct a path decomposition of $G$ with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_t$. Let $G_i:=G[V_0\cup V_1\cup\dots\cup V_i]$. We now prove, by induction on $i$, that $G_i$ has a 
- path decomposition with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_i$. This claim is trivial for $i=0$. Now assume that $B_1,\dots,B_q$ is a path decomposition of $G_{i-1}$ with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_{i-1}$. For each component $H$ of $G[V_i]$, there is a bag $B_j$ that contains $C_H$; pick one such bag and call it the \emph{parent bag} of $H$. By doubling the bag, we may assume that distinct components of $G[V_i]$ have distinct parents bags. Now, for each component $H$ of $G[V_i]$ with parent bag $B_j$, if $D_1,\dots,D_r$ is a path decomposition of $G[V(H)\cup C_H]$ with width  $w(p+1)(w+1)-1$, then replace $B_j$ by  
- $B_j\cup D_1,\dots,B_j\cup D_r$. Doing this for each component of $G[V_i]$ produces a path decomposition of $G_i$ 
- with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_i$. In particular, we obtain a path decomposition of $G$  with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_t$.
+Since $\pw(T_H)+1\leq w(p+1)$ and $T_H$ indexes a tree decomposition of $\hat{H}$ with width at most $w$, by \cref{BlowUp}, $\pw(\hat{H}) \leq (w(p+1)+1)(w+1)-1$.  
+
+We now construct a path decomposition of $G$ with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_t$. Let $G_i:=G[V_0\cup V_1\cup\dots\cup V_i]$. We now prove, by induction on $i$, that $G_i$ has a path decomposition with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_i$. This claim is trivial for $i=0$. Now assume that $(B_1,\dots,B_q)$ is a path decomposition of $G_{i-1}$ with layered width at most $w(p+1)(w+1)$ with respect to layering $(V_0,V_1,\dots,V_{i-1})$. For each component $H$ of $G[V_i]$, there is a bag $B_j$ that contains $C_H$; pick one such bag and call it the \emph{parent bag} of $H$. By doubling the bags, we may assume that distinct components of $G[V_i]$ have distinct parents bags. Now, for each component $H$ of $G[V_i]$ with parent bag $B_j$, if $(D_1,\dots,D_s)$ is a path decomposition of $\hat{H}$ with width  $w(p+1)(w+1)-1$, then replace $B_j$ by   $B_j\cup D_1,\dots,B_j\cup D_s$. Doing this for each component of $G[V_i]$ produces a path decomposition of $G_i$  with layered width at most $w(p+1)(w+1)$ with respect to layering $(V_0,V_1,\dots,V_i)$. In particular, we obtain a path decomposition of $G$  with layered width at most $w(p+1)(w+1)$ with respect to layering $(V_0,V_1,\dots,V_t)$.
  \end{proof}
 
+\comment{DW: I have introduced the above two lemmas to highlight that they do not assume a minor-closed class.}
+
+%%%%%%%%%%%%%%
 \section{Proof that (1) implies (5)}
 \label{hard-section}
 
-Say that a tree decomposition of a graph $G$ is \emph{$(w,p)$-good} if its width is at most $w$ and, for every $v\in V(G)$, the subtree $T[v]$ has pathwidth at most $p$. The goal of this section is to show that if a graph $G$ excludes some apex-forest graph $H$ as a minor, then $G$ has $(w,p)$-good tree decomposition for some $w=w(H)$ and $p=p(H)$. Since every apex-forest graph is a minor of some $Q_k$, it suffices to prove this result for $H=Q_k$, in which case we denote $w=w(k)$ and $p=p(k)$. 
+The goal of this section is to show that if a graph $G$ excludes some apex-forest graph $H$ as a minor, then $G$ has $(w,p)$-good tree decomposition for some $w=w(H)$ and $p=p(H)$. Since every apex-forest graph is a minor of some $Q_k$, it suffices to prove this result for $H=Q_k$, in which case we denote $w=w(k)$ and $p=p(k)$. 
 
 %The goal of this section is to show that if $G$ has no $Q_k$ minor, then $G$ has $(w,p)$-good tree decomposition for some $w=w(k)$ and $p=p(k)$. 
 
@@ -319,27 +304,21 @@ Say that a tree decomposition of a graph $G$ is \emph{$(w,p)$-good} if its width
 % \emph{$(w,p)$-good}.  
 
 We will be working with two related trees $S$ and $T$
-and one graph $G$. To help the reader keep track of things we will use
+and one graph $G$. To help the reader keep track of things we use
 variables $a$, $b$, and $c$ as names for \emph{nodes} of $S$ and $T$
 and variables $v$, $x$, $y$, and $z$ to refer to \emph{vertices} of $G$.
 
 We now give an outline of the proof.  We make use of a recent result of
-Dang which implies that any 3-connected graph $G$ with no $Q_k$ minor has
-pathwidth at most $w=w(k)$.  Thus, in this case $G$ has a $(w,1)$-good
+Dang which implies that every 3-connected graph $G$ with no $Q_k$ minor has
+pathwidth at most $w=w(k)$.  Thus, in this case, $G$ has a $(w,1)$-good
 tree decomposition.  Next we deal with cut vertices by showing that,
 if each 2-connected component of a graph $G$ has a $(w,p)$-good tree
 decomposition, then $G$ has a $(w,p+1)$-good tree decomposition.
 
-Therefore, the main difficulty is to show that every 2-connected
-graph $G$ with no $Q_k$ minor has a $(w,p)$-good tree decomposition
-$(B_a:a\in V(T))$.  By the results of \citet{BRST-JCTB91} described in the
-introduction, if $\pw(T[v])> 2^{h+1}-3$ for some $v\in V(G)$ then $T[v]$
-contains a $T_h$ minor.  We then show that this $T_h$ minor in $T[v]$,
-for sufficiently large $h$, implies that $G$ has a $Q_k$ minor in which
-$v$ plays the role of the apex vertex.
+Therefore, the main difficulty is to show that every 2-connected graph $G$ with no $Q_k$ minor has a $(w,p)$-good tree decomposition $(B_a:a\in V(T))$.  By the result of \citet{BRST-JCTB91} described in the introduction, if $\pw(T[v])> 2^{h+1}-3$ for some $v\in V(G)$ then $T[v]$ contains a $T_h$ minor.  For sufficiently large $h$, we then construct a $Q_k$ minor (from the $T_h$ minor in $T[v]$) in which $v$ plays the role of the apex vertex.
 
 To construct the tree decomposition $(B_a:a\in V(T))$ we use two tools:
-An SPQR-tree, $S$, represents $G$ as a collection of subgraphs (S- and
+An SPQR-tree, $S$, represents a graph $G$ as a collection of subgraphs (S- and
 R-nodes) that are joined at 2-vertex cutsets (P-nodes).  These subgraphs
 consist of cycles (S-nodes) and 3-connected graphs (R-nodes). Cycles have
 pathwidth 2 and, by the result of Dang discussed above, the 3-connected
@@ -349,18 +328,16 @@ tree decomposition.
 
 To show that this tree decomposition is $(w,p)$-good, we first show that
 if $T[v]$ contains a subdivision of a sufficiently large complete binary
-tree then the SPQR-tree $S$ also contains a subdivision of a large
+tree, then an SPQR-tree $S$ also contains a subdivision of a large
 complete binary tree all of whose nodes have subgraphs that contain $v$.
 Using this large binary tree in $S$ we then piece together a subgraph of $G$
 that has a $Q_k$ minor in which $v$ is the apex vertex.
 
 \subsection{Dang's Result}
 
-First we show how a result of \citet[Theorem 1.1.5]{Dang18} implies
-that any 3-connected graph with no $Q_k$ minor has pathwidth at most
-$w=w(k)$.
+First we show how the following result of \citet{Dang18} implies that every 3-connected graph with no $Q_k$ minor has pathwidth at most $w=w(k)$.
 
-\begin{theorem}[Dang 2018]\label{dang-theorem}
+\begin{theorem}[\mbox{\citet[Theorem 1.1.5]{Dang18}}]\label{dang-theorem}
   Let $P'$ be a graph with two distinct vertices $u_1$ and $u_2$ such
   that $P'-\{u_1,u_2\}$ is a forest, $Q'$ be a graph with a vertex $v$
   such that $Q'\setminus\{v\}$ is an outerplanar graph, and $R'$ be a
@@ -370,9 +347,9 @@ $w=w(k)$.
   pathwidth at least $w$ has a $P'$, $Q'$, or $R'$ minor.
 \end{theorem} 
 
-To use \cref{dang-theorem} we need a small helper lemma.  For every
-$k\ge 0$, let $T_k^+$ be the complete binary tree $T_k$ of height $k$
-plus a vertex adjacent to the leaves.
+\comment{DW: I suggest we delete all the primes in \cref{dang-theorem} and below.}
+
+To use \cref{dang-theorem} we need a small helper lemma.  For every $k\ge 0$, let $T_k^+$ be the graph obtained from the complete binary tree $T_k$ of height $k$ by adding a new vertex adjacent to the leaves. The next lemma is well known. 
 
 \begin{lemma} 
 \label{FindQh}
@@ -397,13 +374,9 @@ For every integer $k\ge 0$, $T_{2k}^+$ contains $Q_k$ as a minor.
 \end{corollary}
 
 \begin{proof}
-  Choose $P'$ to be $T_k$ plus two universal vertices $u_1$ and $u_2$
-  adjacent to every vertex of $T_k$. Choose $Q'$ to be the ``universal''
-  outerplanar graph $\nabla_{k}$, whose weak dual 
-  is a complete binary tree of height $k$, plus one additional apex
-  vertex $v$.  Choose $R'$ to be $T_{2k +1}$ plus a cycle on its leaves.
+Let $P'$ be obtained from the complete binary tree $T_k$ by adding two dominant vertices $u_1$ and $u_2$. \comment{DW: I assume $u_1u_2$ is meant to be an edge} Let  $Q'$ be the graph obtained from the outerplanar graph $\nabla_{k}$, whose weak dual is a complete binary tree of height $k$, by adding a dominant vertex $v$.  Let $R'$ be the graph obtained from $T_{2k +1}$ by adding a cycle on its leaves, so that $R'$ is planar. 
 
-  Clearly, $P'$ contains $Q_k$ as a minor since $P'-\{u_2\}$ is isomorphic
+Then $P'$ contains $Q_k$ as a minor since $P'-\{u_2\}$ is isomorphic
   to $Q_k$.  $Q'$ also contains $Q_k$ as a minor because $\nabla_{k}$
   contains a complete binary tree of height $k$ as a subgraph. Finally,
   $R'$ also contains a $Q_k$ minor: Contract the cycle, then we have
@@ -417,11 +390,11 @@ For every integer $k\ge 0$, $T_{2k}^+$ contains $Q_k$ as a minor.
 \subsection{Dealing with Cut Vertices}
 
 \begin{lemma}\label{cut-vertices}
-  Let $G$ be a graph, each of whose 2-connected components has
-  a $(w,p)$-good tree decomposition. Then $G$ has a $(w,p+1)$-good tree
-  decomposition.
+  Let $G$ be a graph, each of whose 2-connected components has a $(w,p)$-good tree decomposition. Then $G$ has a $(w,p+1)$-good tree decomposition.
 \end{lemma}
 
+\comment{DW: I do not like the term `2-connected component'. For starters, it could be interpreted to mean those connected components that are 2-connected. Moreover, for the proof below to work, we need that for each bridge edge $vw$, the subgraph induced by $\{v,w\}$ is a `2-connected component'. Again this is problematic, since it is nonsense to say that $K_2$ is a `2-connected component'. What we actually mean is called a `block', which come in three types: maximal 2-connected subgraphs, subgraphs induced by bridge edges, or subgraphs induced by  isolated vertices. May I write it in terms of blocks? } 
+ 
 \begin{proof}
   Let $C_1,\ldots,C_r$ be $G$'s 2-connected components and let
   $T_1,\ldots,T_r$ be the trees used in $(w,p)$-good tree decompositions
@@ -447,12 +420,13 @@ For every integer $k\ge 0$, $T_{2k}^+$ contains $Q_k$ as a minor.
   at most $p+1$.
 \end{proof}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{SPQR-Trees}
 
 In this section we quickly review SPQR-trees, a graph decomposition
 tool formalized by \citet{dibattista.tamassia:incremental,dibattista.tamassia:on-line, dibattista.tamassia:on-line2}.
 
+\comment{DW: Do we need reference \citep{dibattista.tamassia:incremental}? I guess this reference is subsumed by \citep{dibattista.tamassia:on-line, dibattista.tamassia:on-line2}?}
 
 %A \emph{labelled minor} $H$ of a graph $G$ is a multigraph with
 %$V(H)\subseteq V(G)$ that can be obtained from $G$ using edge deletions
@@ -463,15 +437,14 @@ tool formalized by \citet{dibattista.tamassia:incremental,dibattista.tamassia:on
 
 %\comment{GJ (splitting hairs): Should we mention that $G$ has a unique SPQR-tree, hence `the' SPQR-tree below? Or drop the `the'?}
 
-Let $G$ be a 2-connected graph. A \emph{SPQR-tree} $S$ of $G$ is
+Let $G$ be a 2-connected graph. An \emph{SPQR-tree} $S$ of $G$ is
 a tree in which each node $a\in V(S)$ is associated with a 
 minor $H_a$ of $G$.  For each node $a$ of $S$ each edge $xy\in E(H_a)$
 is classified either as a \emph{virtual edge} or a \emph{real edge}.
-The SPQR-tree $S$ is defined recursively as follows (see
+An SPQR-tree $S$ is defined recursively as follows (see
 \cref{spqr}):\footnote{This definition includes P-nodes consisting
 of only two virtual edges, which some works exclude because they are
-unnecessary. However, their inclusion in our definition makes some of
-our analysis simpler.}
+unnecessary. However, their inclusion simplifies some of our analysis.}
 \begin{figure}
   \begin{center}
     \includegraphics[width=\textwidth]{figs/spqr}
@@ -490,7 +463,7 @@ our analysis simpler.}
 %     then let $C_1,\ldots,C_r$ be the connected components of $G-\{x,y\}$.
 %     For each $i\in \{1,\ldots,r\}$, let $G_i=G[V(C_i)\cup\{x,y\}]$.
 %     Note that each $G_i$ is 2-connected, so each has an SPQR-tree $S_i$.
-%     Then the SPQR-tree for $G$ is obtained by creating a node $a$ (a
+%     Then an SPQR-tree for $G$ is obtained by creating a node $a$ (a
 %     P-node) with $H_a$ being a \emph{dipole graph} having vertices $x$
 %     and $y$ and having $k$ virtual edges joining $x$ and $y$ and one
 %     real edge $xy$.  Now the edge $xy$ appears in each $S_i$ as a real
@@ -504,7 +477,7 @@ our analysis simpler.}
 %     $G-\{x,y\}$.  For each $i\in \{1,\ldots,r\}$, let $\tilde{G}_i$
 %     be $G[V(C_i)\cup\{x,y\}]$ along with the additional edge $xy$.
 %     Note that (because of the inclusion of $xy$) each $\tilde{G}_i$  is
-%     2-connected, so each has an SPQR-tree $S_i$.  Then the SPQR-tree
+%     2-connected, so each has an SPQR-tree $S_i$.  Then an SPQR-tree
 %     for $G$ is obtained by creating a node $a$ (a P-node) with $H_a$
 %     being a dipole graph with vertices $x$ and $y$ and having $k$
 %     virtual edges joining $x$ and $y$.  Now the edge $xy$ appears in each
@@ -517,8 +490,9 @@ our analysis simpler.}
      Then let $C_1,\ldots,C_r$, $r\ge 2$, be the connected components of
      $G-\{x,y\}$.  For each $i\in \{1,\ldots,r\}$, let $\tilde{G}_i$
      be $G[V(C_i)\cup\{x,y\}]$ along with the additional edge $xy$.
+     \comment{DW: Are we adding this additional edge $xy$ even if $xy$ already exists? Then we should say that $\tilde{G}_i$ is a multigraph?  Is the additional edge $xy$ considered to be real?}
      Note that (because of the inclusion of $xy$) each $\tilde{G}_i$  is
-     2-connected, so each has an SPQR-tree $S_i$.  Then the SPQR-tree
+     2-connected, so each has an SPQR-tree $S_i$.  Then an SPQR-tree
      for $G$ is obtained by creating a node $a$ (a P-node) with $H_a$
      being a dipole graph with vertices $x$ and $y$ and having $k$
      virtual edges joining $x$ and $y$. In addition to these virtual edges, 
@@ -526,14 +500,13 @@ our analysis simpler.}
      the real edge $xy$ if $xy\in E(G)$.  The construction and the fact
      that $xy$ is an edge in each $\tilde{G}_i$ imply that there exists
      exactly one node $a_i$ in $S_i$ such that $xy$ is a real edge in
-     $H_{a_i}$.
-     To complete
-     $S$ we make $a$ adjacent to each of $a_1,\ldots,a_k$ and we make
+     $H_{a_i}$. To complete $S$ we make $a$ adjacent to each of $a_1,\ldots,a_k$ and we make
      the edge $xy$ a virtual edge in each of $H_{a_1},\ldots,H_{a_k}$.
 
+\comment{DW: I am confused by the above. What is $k$? Perhaps $k$ is meant to be $r$. When we write, ``imply that there exists exactly one node $a_i$ in $S_i$'', do we mean ``imply that for all $i\in\{1,\dots,r\}$ there exists exactly one node $a_i$ in $S_i$''?}
 \end{enumerate}
 
-Let $S$ be the SPQR-tree of a 2-connected graph $G$.
+Let $S$ be an SPQR-tree of a 2-connected graph $G$.
 For each node $a$ of $S$, we let $E_r(H_a)$ denote the set of real
 edges in $H_a$ and $E_v(H_a)$ denote the multiset of virtual edges
 in $H_a$.  For a connected subtree $S'$ of $S$ we define $G[S']$ as
@@ -546,15 +519,16 @@ We make use of the following properties of $S$:
 \begin{enumerate}
    \item Every R-node and S-node is adjacent only to P-nodes and no two
    P-nodes are adjacent.
-   \item The degree of any node $a$ is equal to the number of virtual edges
+   \item The degree of every node $a$ is equal to the number of virtual edges
      in $H_a$.
    \item For every vertex $v\in V(G)$, $S[v]$ is connected.
-   \item If $a$ is an R-node or S-node, then $H_a$ is a simple graph, i.e., $H_a$ does not contain any parallel edges.
+   \item If $a$ is an R-node or S-node, then $H_a$ is a simple graph; 
+   that is, $H_a$ contains no parallel edges.
    \item If a P-node $a$ has degree 2 and both its neighbors are S-nodes 
       then $H_a$ has a real edge.
 %   \item For every 2-vertex cutset $\{x,y\}$ in $G$ there is at most
 %     one P-node $a$ for which $V(H_a)=\{x,y\}$.
-    \item For any node $a$ of $S$ and any component $S'$ of $S-\{a\}$,
+    \item For each node $a$ of $S$ and component $S'$ of $S-\{a\}$,
      $G[S']$ is connected.
 %   \item If $S'$ and $S''$ are two subtrees of $S$ that are adjacent to
 %     but not including a common P-node $a$ whose dipole graph has vertices
@@ -569,7 +543,7 @@ We make use of the following properties of $S$:
 \label{good-tree}
 
 To obtain our good tree decomposition $(B_a:a\in V(T))$ of a 2-connected
-graph $G$ we start with the SPQR-tree $S$ for $G$.  For each R-node
+graph $G$ we start with an SPQR-tree $S$ for $G$.  For each R-node
 or S-node $a$ of $S$ we take a minimum-width path decomposition
 $(B_c: c\in V(P_a))$ of $H_a$.  We say that the node $a$ \emph{generates}
 the nodes in the path $P_a$ and that each node in $P_a$ is \emph{generated
@@ -586,12 +560,7 @@ by an S- or R-node $a'$ of $S$ is a node in some path decomposition of
 $H_{a'}$ and already has an associated bag $B_{a}$
 that it inherits from this path decomposition.
 
-It is straightforward to verify that $(B_a:a\in V(T))$ is indeed a
-tree decomposition of $G$: For any particular vertex $v\in V(G)$ the
-connectivity of the subtree $T[v]$ follows from Property~3 of SPQR-trees and the equivalent property for the path decompositions that include $v$.
-Each edge $xy$ of $G$ appears as an edge in $H_a$ for at least one node
-$a$ of $S$ and therefore $x$ and $y$ appear in a common bag in the path
-decomposition of $H_a$.
+It is straightforward to verify that $(B_a:a\in V(T))$ is indeed a tree decomposition of $G$: For each vertex $v\in V(G)$, the connectivity of the subtree $T[v]$ follows from Property~3 of SPQR-trees and the equivalent property for the path decompositions that include $v$. Each edge $xy$ of $G$ appears as an edge in $H_a$ for at least one node $a$ of $S$ and therefore $x$ and $y$ appear in a common bag in the path decomposition of $H_a$.
 
 Each bag $B_a$ of $(B_a:a\in V(T))$ either has size in $\{2,3\}$
 (when $a$ is generated by a P-node or an S-node) or it has size at
@@ -602,7 +571,7 @@ What remains is to show that, for every $v\in V(G)$, $T[v]$ has pathwidth
 that is upper bounded by a function of $k$.
 
 In the remainder of this section, we fix $G$ to be a 2-connected graph,
-$S$ to be the SPQR-tree of $G$ and $(B_a:a\in V(T))$ to be a tree
+$S$ to be an SPQR-tree of $G$ and $(B_a:a\in V(T))$ to be a tree
 decomposition obtained using the procedure described above.  
 
 \begin{lemma}
@@ -670,7 +639,7 @@ tree.
 \begin{proof}
   First we note that if $S[v]$ contains a subdivision of $T_{7(k+1)}$
   then $S[v]$ contains a subdivision $T'$ of $T_{k+1}$ such that the path
-  between any pair of distinctive nodes in $T'$ has length at least 7.
+  between each pair of distinctive nodes in $T'$ has length at least 7.
 
   It is convenient to work with a simplified SPQR-tree $S'$ and graph $G'$
   obtained by repeating the following operation exhaustively: Consider
@@ -685,7 +654,7 @@ tree.
   safe in the sense that the existence of a $Q_k$ minor in $G'$ implies
   the existence of a $Q_k$ minor in $G$.
 
-  With this simplification, the tree $T'$ is the SPQR-tree for the
+  With this simplification, the tree $T'$ is an SPQR-tree for the
   graph $G'$ and every virtual edge is incident to $v$.  We now turn
   our efforts to finding the $Q_k$ minor in $G'$.  Recall that $Q_k$
   is the union of a complete binary tree $T_k$ and an apex vertex.
@@ -782,11 +751,11 @@ tree.
   \end{enumerate}
   It remains to show that $P'$ does not contain any vertices of
   $V(H_b)\setminus \{v\}$.  By Properties~1 and 6 of SPQR-trees,
-  for any $x\in V(G')\setminus\{v\}$, the subtree $T'[x]$ of $T'$
-  consisting only of nodes $a$ such that $x\in V(H_a)$ is a star, i.e.,
+  for each $x\in V(G')\setminus\{v\}$, the subtree $T'[x]$ of $T'$
+  consisting only of nodes $a$ such that $x\in V(H_a)$ is a star; that is,
   the distance between any two nodes in $T'[x]$ is at most 2.  Now,
   since the distance between any two distinctive nodes of $T'$ is at least
-  $7$, $r\ge 8$ and therefore $H_b=H_{c_r}$ has no vertex, except $v$,
+  $7$, we have $r\ge 8$ and therefore $H_b=H_{c_r}$ has no vertex, except $v$,
   in common with any of $H_{c_2},\ldots,H_{c_5}$.  Therefore, $P'$
   joins $v$ to a vertex in $P_{ab}$ that is not in $H_{b}$, as required.
 
@@ -805,12 +774,17 @@ Finally, we have all the pieces in place to complete the proof.
 \begin{proof}[Proof that (1) implies (5)]
 Let $G$ be a graph excluding some apex-forest graph $H$ as a minor. As explained earlier, $G$ contains no $Q_k$ minor for some $k=k(H)$.  We wish to show that there are $w$ and $p$ that depend only on $k$ such that $G$ has a $(w,p)$-good tree decomposition.  By \cref{cut-vertices} we may assume that $G$ is 2-connected.
 
-Consider the good tree decomposition $(B_a:a\in V(T))$ of $G$ described in   \cref{good-tree}.    This decomposition has width at most $w$ where   $w=w(k)$ is the function that appears (implicitly) in \cref{dang-theorem} and \cref{3-connected}.   We claim that, for each $v\in V(G)$, $\pw(T[v])\le   2^{14(k+1)}-3$, so that this tree decomposition is   $(w,2^{14(k+1)}-3)$-good.  Otherwise, by \cref{roof-lifting}, there is a vertex $v\in V(G)$ such that the SPQR-tree $S$ has a subtree $S[v]$ that contains a subdivision of $T_{7(k+1)}$.  Therefore, by \cref{qk-minor}, $G$ contains a $Q_k$ minor, contradicting the supposition that $G$ has no $Q_k$ minor.
+Consider the good tree decomposition $(B_a:a\in V(T))$ of $G$ described in   \cref{good-tree}.    This decomposition has width at most $w$ where   $w=w(k)$ is the function that appears (implicitly) in \cref{dang-theorem} and \cref{3-connected}.   We claim that, for each $v\in V(G)$, $\pw(T[v])\le   2^{14(k+1)}-3$, so that this tree decomposition is   $(w,2^{14(k+1)}-3)$-good.  Otherwise, by \cref{roof-lifting}, there is a vertex $v\in V(G)$ such that an SPQR-tree $S$ has a subtree $S[v]$ that contains a subdivision of $T_{7(k+1)}$.  Therefore, by \cref{qk-minor}, $G$ contains a $Q_k$ minor, contradicting the supposition that $G$ has no $Q_k$ minor.
 \end{proof}
 
+Note that we have not tried to optimise constants in the above proof. For example, with more work the constant 14 can be reduced to less than 3. 
 
-\comment{Depending on where we decide to submit this paper, we may want
-to discuss algorithmic complexity, which the following theorem sketches.\\DW: I vote to keep this.}
+\comment{DW: Do you agree with the above comment?}
+
+%\comment{Depending on where we decide to submit this paper, we may want
+%to discuss algorithmic complexity, which the following theorem sketches.\\DW: I vote to keep this.}
+
+Finally, we address the computational complexity of our main theorem. 
 
 \begin{theorem}
    There exists a function $f:\mathbb{N}\to\mathbb{N}$ and an algorithm
@@ -820,24 +794,10 @@ to discuss algorithmic complexity, which the following theorem sketches.\\DW: I 
    is largest integer such that $G$ contains a $Q_k$ minor.
 \end{theorem}
 
-\begin{proof}
-   In the following, for each $i\in\{0,\ldots,5\}$,
-   $f_i:\mathbb{N}\to\mathbb{N}$ is an unspecified function that is known
-   to exist.  The fact that $G$ has no $Q_k$-minor implies that the number
-   of edges of $G$ is at most $f_0(k)n$ (see \citep{ReedWood16}).  
-   Computing the SPQR-tree $S$ of $G$ can
-   be done in $O(f_0(k)n)$ time and the total size of the graphs $\{H_a:a\in
-   V(S)\}$ is at most $f_0(k)n$ (see \cite{GM00}).  Computing a path decomposition of
-   $H_a$ with width at most 2 for each S-node or P-node $a$ is easily
-   done in time linear in the size of $H_a$.  For each R-node $a$, the
-   pathwidth of $H_a$ is at most $p=p(k)=O(1)$.  Therefore, computing
-   a minimum-width path decomposition of $H_a$ for an R-node $a$ can be
-   done in $O(f_1(k)|V(H_a)|)$ time \cite{Bod93,BK91,K93,CDF96,Bodlaender-SJC96}. These
-   path decompositions are all that is needed to construct the tree $T$
-   and an $(f_2(k),f_3(k))$-good tree decomposition $\{ B_a:a\in V(T)\}$
-   in $O(f_1(k)n)$ time.
+\begin{proof}[Proof Sketch]
+   In the following, for each $i\in\{0,\ldots,5\}$, $f_i:\mathbb{N}\to\mathbb{N}$ is an unspecified function that is known to exist.  Since $G$ has no $Q_k$-minor, $|E(G)|\leq f_0(k)n$ (see \citep{ReedWood16}).  An SPQR-tree $S$ of $G$ can be computed in $O(f_0(k)n)$ time, and the total size of the graphs $\{H_a:a\in V(S)\}$ is at most $f_0(k)n$ (see \cite{GM00}).  A path decomposition of $H_a$ with width at most 2 for each S-node or P-node $a$ is easily computed in time linear in the size of $H_a$.  For each R-node $a$, the pathwidth of $H_a$ is at most $p=p(k)=O(1)$.  Therefore,  a minimum-width path decomposition of $H_a$ for an R-node $a$ can be computed in $O(f_1(k)|V(H_a)|)$ time \cite{BK91,K93,CDF96,Bodlaender-SJC96}. These path decompositions are all that is needed to construct the tree $T$ and an $(f_2(k),f_3(k))$-good tree decomposition $\{ B_a:a\in V(T)\}$ in $O(f_1(k)n)$ time.
 
-\comment{DW: I would delete reference \citep{Bod93}, since \citep{Bodlaender-SJC96} is the updated journal version.}
+%\comment{DW: I would delete reference \citep{Bod93}, since \citep{Bodlaender-SJC96} is the updated journal version.}
 
    The proof that (5) implies (4) in \cref{easy-section} is constructive
    and immediately gives an $O(f_4(k)n)$ time algorithm to convert
@@ -845,6 +805,9 @@ to discuss algorithmic complexity, which the following theorem sketches.\\DW: I 
    decomposition of layered width at most $f_5(k)$. This establishes the
    theorem for $f(k) = \max\{f_i(k) : i\in\{1,\ldots,5\}\}$.
 \end{proof}
+
+\comment{DW: $\max\{f_i(k) : i\in\{1,\ldots,5\}\}$ should be $\max\{f_i(k) : i\in\{0,1,\ldots,5\}\}$, right?}
+
 
 %\textcolor{red}{It remains to prove that (1) implies (4), or (2) implies (4). }
 %
@@ -891,14 +854,14 @@ to discuss algorithmic complexity, which the following theorem sketches.\\DW: I 
 %(The intuition is that unsafe R-nodes allow some kind of branching of
 %2-cutsets while safe R-nodes don't.)
 %
-%** If the SPQR-tree of G contains a subdivision of a large enough
+%** If an SPQR-tree of G contains a subdivision of a large enough
 %complete binary tree such that the degree-3 nodes are either P-nodes
 %or unsafe R-nodes, then there is a $Q_k$-minor in $G$
 %
 %** So this does not happen, and using this we can reduce to the
 %3-connected case: Assuming that we have a good tree decomposition of
 %each triconnected component of G, we can join them together following
-%the 2-sums encoded by the SPQT-tree and argue that the pathwidth of
+%the 2-sums encoded by an SPQR-tree and argue that the pathwidth of
 %our subtrees $T_v$ does not explode, otherwise we would find the
 %complete binary tree from the previous step.
 %
