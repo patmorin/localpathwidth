@@ -287,7 +287,7 @@ Since $\pw(T_H)+1\leq w(p+1)$ and $T_H$ indexes a tree decomposition of $\hat{H}
 We now construct a path decomposition of $G$ with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_t$. Let $G_i:=G[V_0\cup V_1\cup\dots\cup V_i]$. We now prove, by induction on $i$, that $G_i$ has a path decomposition with layered width at most $w(p+1)(w+1)$ with respect to layering $V_0,V_1,\dots,V_i$. This claim is trivial for $i=0$. Now assume that $(B_1,\dots,B_q)$ is a path decomposition of $G_{i-1}$ with layered width at most $w(p+1)(w+1)$ with respect to layering $(V_0,V_1,\dots,V_{i-1})$. For each component $H$ of $G[V_i]$, there is a bag $B_j$ that contains $C_H$; pick one such bag and call it the \emph{parent bag} of $H$. By doubling the bags, we may assume that distinct components of $G[V_i]$ have distinct parents bags. Now, for each component $H$ of $G[V_i]$ with parent bag $B_j$, if $(D_1,\dots,D_s)$ is a path decomposition of $\hat{H}$ with width  $w(p+1)(w+1)-1$, then replace $B_j$ by   $B_j\cup D_1,\dots,B_j\cup D_s$. Doing this for each component of $G[V_i]$ produces a path decomposition of $G_i$  with layered width at most $w(p+1)(w+1)$ with respect to layering $(V_0,V_1,\dots,V_i)$. In particular, we obtain a path decomposition of $G$  with layered width at most $w(p+1)(w+1)$ with respect to layering $(V_0,V_1,\dots,V_t)$.
  \end{proof}
 
-\comment{DW: I have introduced the above two lemmas to highlight that they do not assume a minor-closed class.}
+\comment{DW: I have introduced the above two lemmas to highlight that they do not assume a minor-closed class. PM: Good!}
 
 %%%%%%%%%%%%%%
 \section{Proof that (1) implies (5)}
@@ -348,7 +348,7 @@ First we show how the following result of \citet{Dang18} implies that every 3-co
   pathwidth at least $w$ has a $P'$, $Q'$, or $R'$ minor.
 \end{theorem} 
 
-\comment{DW: I suggest we delete all the primes in \cref{dang-theorem} and below.}
+\comment{DW: I suggest we delete all the primes in \cref{dang-theorem} and below. PM: I would be ok with that, but I'll wait to see if someone else notices a potential notation clash (I don't).}
 
 To use \cref{dang-theorem} we need a small helper lemma.  For every $k\ge 0$, let $T_k^+$ be the graph obtained from the complete binary tree $T_k$ of height $k$ by adding a new vertex adjacent to the leaves. The next lemma is well known. 
 
@@ -375,7 +375,7 @@ For every integer $k\ge 0$, $T_{2k}^+$ contains $Q_k$ as a minor.
 \end{corollary}
 
 \begin{proof}
-Let $P'$ be obtained from the complete binary tree $T_k$ by adding two dominant vertices $u_1$ and $u_2$. \comment{DW: I assume $u_1u_2$ is meant to be an edge} Let  $Q'$ be the graph obtained from the outerplanar graph $\nabla_{k}$, whose weak dual is a complete binary tree of height $k$, by adding a dominant vertex $v$.  Let $R'$ be the graph obtained from $T_{2k +1}$ by adding a cycle on its leaves, so that $R'$ is planar. 
+	Let $P'$ be obtained from the complete binary tree $T_k$ by adding two dominant vertices $u_1$ and $u_2$. \comment{DW: I assume $u_1u_2$ is meant to be an edge.  PM: It works either way, though if you interpret the preceding sentence in a particular way, then $u_1u2$ is an edge (because each is a dominant vertex).} Let  $Q'$ be the graph obtained from the outerplanar graph $\nabla_{k}$, whose weak dual is a complete binary tree of height $k$, by adding a dominant vertex $v$.  Let $R'$ be the graph obtained from $T_{2k +1}$ by adding a cycle on its leaves, so that $R'$ is planar. 
 
 Then $P'$ contains $Q_k$ as a minor since $P'-\{u_2\}$ is isomorphic
   to $Q_k$.  $Q'$ also contains $Q_k$ as a minor because $\nabla_{k}$
@@ -394,7 +394,7 @@ Then $P'$ contains $Q_k$ as a minor since $P'-\{u_2\}$ is isomorphic
   Let $G$ be a graph, each of whose 2-connected components has a $(w,p)$-good tree decomposition. Then $G$ has a $(w,p+1)$-good tree decomposition.
 \end{lemma}
 
-\comment{DW: I do not like the term `2-connected component'. For starters, it could be interpreted to mean those connected components that are 2-connected. Moreover, for the proof below to work, we need that for each bridge edge $vw$, the subgraph induced by $\{v,w\}$ is a `2-connected component'. Again this is problematic, since it is nonsense to say that $K_2$ is a `2-connected component'. What we actually mean is called a `block', which come in three types: maximal 2-connected subgraphs, subgraphs induced by bridge edges, or subgraphs induced by  isolated vertices. May I write it in terms of blocks? } 
+\comment{DW: I do not like the term `2-connected component'. For starters, it could be interpreted to mean those connected components that are 2-connected. Moreover, for the proof below to work, we need that for each bridge edge $vw$, the subgraph induced by $\{v,w\}$ is a `2-connected component'. Again this is problematic, since it is nonsense to say that $K_2$ is a `2-connected component'. What we actually mean is called a `block', which come in three types: maximal 2-connected subgraphs, subgraphs induced by bridge edges, or subgraphs induced by  isolated vertices. May I write it in terms of blocks? PM: Yes please, I'm also fond of the term \emph{block cut tree}.} 
  
 \begin{proof}
   Let $C_1,\ldots,C_r$ be $G$'s 2-connected components and let
@@ -427,7 +427,7 @@ Then $P'$ contains $Q_k$ as a minor since $P'-\{u_2\}$ is isomorphic
 In this section we quickly review SPQR-trees, a graph decomposition
 tool formalized by \citet{dibattista.tamassia:incremental,dibattista.tamassia:on-line, dibattista.tamassia:on-line2}.
 
-\comment{DW: Do we need reference \citep{dibattista.tamassia:incremental}? I guess this reference is subsumed by \citep{dibattista.tamassia:on-line, dibattista.tamassia:on-line2}?}
+\comment{DW: Do we need reference \citep{dibattista.tamassia:incremental}? I guess this reference is subsumed by \citep{dibattista.tamassia:on-line, dibattista.tamassia:on-line2}? PM: Yes, let's scrap it. I just looked at the FOCS paper and it's super-sparse and really only hints at SPQR-trees.}
 
 %A \emph{labelled minor} $H$ of a graph $G$ is a multigraph with
 %$V(H)\subseteq V(G)$ that can be obtained from $G$ using edge deletions
@@ -490,21 +490,24 @@ unnecessary. However, their inclusion simplifies some of our analysis.}
      $x$ and $y$ each have degree at least 3.
      Then let $C_1,\ldots,C_r$, $r\ge 2$, be the connected components of
      $G-\{x,y\}$.  For each $i\in \{1,\ldots,r\}$, let $\tilde{G}_i$
-     be $G[V(C_i)\cup\{x,y\}]$ along with the additional edge $xy$.
-     \comment{DW: Are we adding this additional edge $xy$ even if $xy$ already exists? Then we should say that $\tilde{G}_i$ is a multigraph?  Is the additional edge $xy$ considered to be real?}
+     be $G[V(C_i)\cup\{x,y\}]$ along with the additional edge $xy$, if not
+     already present.
      Note that (because of the inclusion of $xy$) each $\tilde{G}_i$  is
      2-connected, so each has an SPQR-tree $S_i$.  Then an SPQR-tree
      for $G$ is obtained by creating a node $a$ (a P-node) with $H_a$
-     being a dipole graph with vertices $x$ and $y$ and having $k$
+     being a dipole graph with vertices $x$ and $y$ and having $r$
      virtual edges joining $x$ and $y$. In addition to these virtual edges, 
      $H_a$ contains
      the real edge $xy$ if $xy\in E(G)$.  The construction and the fact
-     that $xy$ is an edge in each $\tilde{G}_i$ imply that there exists
+		that $xy$ is an edge in each $\tilde{G}_i$ imply that, for each $i\in\{1,\ldots,r\}$,  there exists
      exactly one node $a_i$ in $S_i$ such that $xy$ is a real edge in
-     $H_{a_i}$. To complete $S$ we make $a$ adjacent to each of $a_1,\ldots,a_k$ and we make
-     the edge $xy$ a virtual edge in each of $H_{a_1},\ldots,H_{a_k}$.
+     $H_{a_i}$. To complete $S$ we make $a$ adjacent to each of $a_1,\ldots,a_r$ and we make
+     the edge $xy$ a virtual edge in each of $H_{a_1},\ldots,H_{a_r}$.
 
-\comment{DW: I am confused by the above. What is $k$? Perhaps $k$ is meant to be $r$. When we write, ``imply that there exists exactly one node $a_i$ in $S_i$'', do we mean ``imply that for each $i\in\{1,\dots,r\}$ there exists exactly one node $a_i$ in $S_i$''?}
+		\comment{DW (moved down from preceding paragraph: Are we adding this additional edge $xy$ even if $xy$ already exists? Then we should say that $\tilde{G}_i$ is a multigraph?  Is the additional edge $xy$ considered to be real?  PM: Each $\tilde{G}_i$ is simple and at this point it's just a graph so all its edges, including $xy$, are real.  Now when we build the SPQR-tree for $\tilde{G}_i$, the edge $xy$ appears in exactly one node $a_i$ as a real edge.  We change it's status in $a_i$ from real to virtual.  The only place $xy$ might occur as a real edge is in the P-node $a$ that we're creating, and which is adjacent to $a_1,\ldots,a_r$.  Maybe it would help to specify, earlier, that the SPQR-tree is defined for a simple graph $G$, though the graphs contained in the nodes of the SPQR-tree have parallel edges?}
+
+
+		\comment{DW: I am confused by the above. What is $k$? Perhaps $k$ is meant to be $r$. (PM: Yes, $k=r$, fixed now.) When we write, ``imply that there exists exactly one node $a_i$ in $S_i$'', do we mean ``imply that for each $i\in\{1,\dots,r\}$ there exists exactly one node $a_i$ in $S_i$''? (PM: Yes, I adjusted the wording accordingly.)}
 \end{enumerate}
 
 Let $S$ be an SPQR-tree of a 2-connected graph $G$.
@@ -549,8 +552,11 @@ Each S- or R-node $a$ is adjacent to some set of P-nodes in $S$. For
 each such P-node $b$ whose dipole graph $H_b$ has vertices $x$ and $y$, the edge $xy$ is a
 (virtual) edge in $H_a$ and therefore $x$ and $y$ appear in some common
 bag $B_c$ with $c\in V(P_a)$.  We make $c$ and $b$ adjacent in $T$. This defines
-the tree $T$ in the tree decomposition. The contents of $T$'s bags are
-obvious. \comment{DW: I do not like this sentence. It suggests that the bags are already defined, but in fact the following sentences define the bags.}
+the tree $T$ in the tree decomposition. 
+
+\comment{DW: I do not like this sentence. It suggests that the bags are already defined, but in fact the following sentences define the bags. PM: Agreed, I removed it.}
+
+We now describe the contents of $T$'s bags.  
 Each P-node $a$ of $S$ becomes a node in $T$ whose bag contains
 only the two vertices of $H_a$.  Every node $a$ in $T$ that is generated
 by an S- or R-node $a'$ of $S$ is a node in some path decomposition of
@@ -577,12 +583,13 @@ decomposition of $G$ obtained using the procedure described above.
   a subdivision of $T_h$.
 \end{lemma}
 
-\comment{DW: Is $S[v]$ defined? What tree decomposition indexed by $S$ are we refering to here? By $S[v]$ do we mean the set of nodes $a$ in $S$ for which the corresponding subgraph $H_a$ contains $v$? This needs to be made explicit.}
+\comment{DW: Is $S[v]$ defined? What tree decomposition indexed by $S$ are we refering to here? By $S[v]$ do we mean the set of nodes $a$ in $S$ for which the corresponding subgraph $H_a$ contains $v$? This needs to be made explicit. PM: It's defined on Page 12. It's the subtree of $S$ containing only the nodes $a$ whose whose graph $H_a$ includes $v$.  This is analagous with the definition of $T[v]$ for a tree decomposition, if we imagine $H_a$ as a bag of vertices.}
 
 \begin{proof}
+  In the following, a rooted binary tree is a rooted tree in which the root has degree 2 and all other nodes have degree in $\{1,2,3\}$.
   In a rooted binary tree, the root and every degree 3 node is called a 
   \emph{branching node}.  Every branching node and every leaf is a
-  \emph{distinctive node}.  \comment{DW: I am confused. Under this definition, is every node distinctive? If so, why bother with the definition? Or are we allowing a node to have exactly one child in a binary tree? To avoid confusion, I suggest we define binary tree. } We will use the convention that all binary  trees are ordered, possibly arbitrarily, so that we can distinguish
+  \emph{distinctive node}.  \comment{DW: I am confused. Under this definition, is every node distinctive? If so, why bother with the definition? Or are we allowing a node to have exactly one child in a binary tree? To avoid confusion, I suggest we define binary tree. PM: Agreed, I added a definition above} We will use the convention that all binary  trees are ordered, possibly arbitrarily, so that we can distinguish
   between the left and right child of a branching node.  For a node $a$
   in a rooted binary tree $T$, we denote by $\subtree{a}$ the subtree rooted
   at $a$; that is, the subtree of $T$ induced by the set of nodes that have $a$
@@ -762,8 +769,7 @@ tree.
 
 %\comment{The requirement that $S[v]$ contains a subdivision of $T_{7(k+1)}$ is quite a bit stronger than necessary.  It is enough if $S[v]$ contains a subdivision of a 6-subdivision of $T_{k+1}$.  This would reduce the pathwidth dependence in the next proof from $2^{14(k+1)}-3$ down to $7\cdot 2^{2(k+1)}-3$. (Even the leading 7 could be reduced further.) GJ: What about stating we do not try to optimize constants (and keep current proof)? DW: I agree with GJ.}
 
-\comment{Let $Q^*_k$ be the graph (shown in \cref{qk}) obtained by subdividing each edge of $T_{k+1}$ and adding a vertex $v$ adjacent to all subdivision vertices. The proof above actually shows that, if $S[v]$ contains a subdivision of $T_{9(k+1)}$ then $G$ contains a \emph{subdivision} of $Q^*_k$.  This is a little bit surprising, since I would have guessed that $v$ would have to be a contracted subgraph of $G$, not a single high-degree vertex. Is it worth writing the proof to highlight this? \\
-GJ: Yes it is surprising at first sight. Note that in the $R$-nodes we do need to forbid $Q_k$ as a minor, not enough to forbid a $Q^*_k$-subdivision. So there the minor relation is needed. }
+%\comment{Let $Q^*_k$ be the graph (shown in \cref{qk}) obtained by subdividing each edge of $T_{k+1}$ and adding a vertex $v$ adjacent to all subdivision vertices. The proof above actually shows that, if $S[v]$ contains a subdivision of $T_{9(k+1)}$ then $G$ contains a \emph{subdivision} of $Q^*_k$.  This is a little bit surprising, since I would have guessed that $v$ would have to be a contracted subgraph of $G$, not a single high-degree vertex. Is it worth writing the proof to highlight this? \\ GJ: Yes it is surprising at first sight. Note that in the $R$-nodes we do need to forbid $Q_k$ as a minor, not enough to forbid a $Q^*_k$-subdivision. So there the minor relation is needed. }
 
 Finally, we have all the pieces in place to complete the proof.
 
@@ -775,7 +781,7 @@ Consider the good tree decomposition $(B_a:a\in V(T))$ of $G$ described in   \cr
 
 Note that we have not tried to optimise constants in the above proof. For example, with more work the constant 14 can be reduced to less than 3. 
 
-\comment{DW: Do you agree with the above comment?}
+\comment{DW: Do you agree with the above comment? PM: Yes, in fact we could get $O(2^{2k})$.}
 
 %\comment{Depending on where we decide to submit this paper, we may want
 %to discuss algorithmic complexity, which the following theorem sketches.\\DW: I vote to keep this.}
@@ -799,10 +805,10 @@ Finally, we address the computational complexity of our main theorem.
    and immediately gives an $O(f_4(k)n)$ time algorithm to convert
    the $(f_2(k),f_3(k))$-good tree decomposition into a layered path
    decomposition of layered width at most $f_5(k)$. This establishes the
-   theorem for $f(k) = \max\{f_i(k) : i\in\{1,\ldots,5\}\}$.
+   theorem for $f(k) = \max\{f_i(k) : i\in\{0,\ldots,5\}\}$.
 \end{proof}
 
-\comment{DW: $\max\{f_i(k) : i\in\{1,\ldots,5\}\}$ should be $\max\{f_i(k) : i\in\{0,1,\ldots,5\}\}$, right?}
+\comment{DW: $\max\{f_i(k) : i\in\{1,\ldots,5\}\}$ should be $\max\{f_i(k) : i\in\{0,1,\ldots,5\}\}$, right? PM: Yes, corrected now.}
 
 
 %\textcolor{red}{It remains to prove that (1) implies (4), or (2) implies (4). }
