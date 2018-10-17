@@ -229,7 +229,8 @@ Let $(B_x:x\in V(T))$ be a tree decomposition of $G$ of width $k$. Let $(C_1,\do
 
 \comment{DE: Also in the proof I would remove the uninformative phrase "it is
 easily verified that".\\
-DW: In my mind this phrase tells the reader that there is a little bit of work to do to reach the conclusion, which is informative for the reader who might not see the truth of the conclusion immediately. We use this phrase a couple of times, along with ``as can be easily verified''. }
+DW: In my mind this phrase tells the reader that there is a little bit of work to do to reach the conclusion, which is informative for the reader who might not see the truth of the conclusion immediately. We use this phrase a couple of times, along with ``as can be easily verified''. \\
+PM: In situations like this, I always agree with David.}
 
 
 \begin{lemma}
@@ -515,7 +516,10 @@ unnecessary. However, their inclusion simplifies some of our analysis.}
 
 		\comment{DW (moved down from preceding paragraph: Are we adding this additional edge $xy$ even if $xy$ already exists? Then we should say that $\tilde{G}_i$ is a multigraph?  Is the additional edge $xy$ considered to be real? \\ 
 		PM: Each $\tilde{G}_i$ is simple and at this point it's just a graph so all its edges, including $xy$, are real.  Now when we build the SPQR-tree for $\tilde{G}_i$, the edge $xy$ appears in exactly one node $a_i$ as a real edge.  We change it's status in $a_i$ from real to virtual.  The only place $xy$ might occur as a real edge is in the P-node $a$ that we're creating, and which is adjacent to $a_1,\ldots,a_r$.  Maybe it would help to specify, earlier, that the SPQR-tree is defined for a simple graph $G$, though the graphs contained in the nodes of the SPQR-tree have parallel edges?\\
-		DW: We need to say something like that. Then $H_a$ is a multigraph. When we say that $H_a$ is a minor of $G$ do we mean that the simple graph underlying $H_a$ is a minor of $G$?
+		DW: We need to say something like that. Then $H_a$ is a multigraph. When we say that $H_a$ is a minor of $G$ do we mean that the simple graph underlying $H_a$ is a minor of $G$?\\
+		PM: Ok, here's what we can say. 
+		\begin{quote}If $G$ is a simple graph (without parallel edges), then for any S- or R-node $a$ of $S$, $H_a$ is a simple graph. If $a$ is a P-node, on the other hand, then $H_a$ is a \emph{dipole graph} having two vertices and at least two parallel edges.  In all cases, $H_a$ is a minor of $G$.  For a P-node $a$ in which $H_a$ contains vertices $x$ and $y$ and $t$ parallel edges, this means that $G$ contains $t$ paths from $x$ to $y$ that are pairwise disjoint except for their common endpoints.\end{quote}
+		I suggest we put this after the first sentence of the paragraph immediately preceding this numbered list.
 		}
 
 
@@ -530,7 +534,8 @@ the subgraph of $G$ whose vertex set is $V(G[S'])=\bigcup_{a\in V(S')}
 V(H_a)$ and whose edge set is $E(G[S'])=\bigcup_{a\in V(S')} E_r(H_a)$.
 For a vertex $v\in V(G)$, denote the subtree of $S$ induced by $v$ as $S[v]:=S[\{a\in V(S): v\in V(H_a)\}]$. 
 \comment{DW: The previous sentence is defining `induced', right? I suggest we write, \\
-``For a vertex $v\in V(G)$, let $S[v]:=S[\{a\in V(S): v\in V(H_a)\}]$, which is called the subtree of $S$ \emph{induced by} $v$.''}
+``For a vertex $v\in V(G)$, let $S[v]:=S[\{a\in V(S): v\in V(H_a)\}]$, which is called the subtree of $S$ \emph{induced by} $v$.'' \\
+PM: Agreed.}
 We make use of the following properties of $S$:
 
 \begin{enumerate}
