@@ -2,7 +2,7 @@
 \usepackage{iwona,amsmath,amsthm,amsfonts,amssymb,enumerate,graphicx,float,color,wrapfig,calc}
 \usepackage[colorlinks=true,citecolor=black,linkcolor=black,urlcolor=blue]{hyperref}
 \usepackage[longnamesfirst,numbers,sort&compress]{natbib}
-\usepackage[lmargin=30mm,rmargin=30mm,tmargin=30mm,bmargin=30mm]{geometry}
+\usepackage[lmargin=29mm,rmargin=29mm,tmargin=29mm,bmargin=29mm]{geometry}
 \usepackage[noabbrev,capitalise]{cleveref}
 \usepackage{underscore}  % because one annoying doi has an underscore in it
 
@@ -10,8 +10,6 @@
 \def\NAT@spacechar{~}
 \makeatother
 
-%\usepackage[margin=35mm]{geometry}
-%\linespread{1.4}
 \renewcommand{\baselinestretch}{1.1}
 \setlength{\footnotesep}{\baselinestretch\footnotesep}
 \setlength{\parindent}{0cm}
@@ -193,7 +191,7 @@ Layered treewidth is closely related to the notion of `local treewidth', which w
 
 Local pathwidth is defined similarly to local treewidth. A graph class $\mathcal{G}$ has \emph{bounded local pathwidth} if there is a function $f$ such that for every graph $G$ in $\mathcal{G}$, for every vertex $v$ of $G$ and for every integer $r\geq0$, the subgraph of $G$ induced by the vertices at distance at most $r$ from $v$ has pathwidth at most $f(r)$. The observation of \citet{DMW17} extends to the setting of local pathwidth; see \cref{lpw-llp} below. 
 
-\cref{LayeredPathwidthCharacterisation} is extended to capture local pathwidth by the following theorem, which also provides a structural description in terms of a tree decomposition with certain properties that we now introduce. If $T$ is a tree indexing a tree decomposition of a graph $G$, then for each vertex $v$ of $G$, let $T[v]$ denote the subtree of $T$ induced by those nodes corresponding to bags that contain $v$. Thus $T[v]$ is non-empty and connected. Say that a tree decomposition of a graph $G$ is \emph{$(w,p)$-good} if its width is at most $w$ and, for every $v\in V(G)$, the subtree $T[v]$ has pathwidth at most $p$. We illustrate this definition with two examples. Let $T$ be a tree, rooted at some vertex. For each node $x$ of $T$, introduce a bag $B_x$ consisting of $x$ and its parent node (or just $x$ if $x$ is the root). Then $(B_x:x\in V(T))$ is a tree decomposition of $T$ with width 1. Moreover, for each vertex $v$, the subtree $T[v]$ is a star, which has pathwidth 1. Thus every tree has a $(1,1)$-good tree decomposition. Now, consider an outerplanar triangulation $G$. Let $T$ be the weak dual tree (ignoring the outerface). For each node $x$ of $T$, let $B_x$ be the set of three vertices on the face corresponding to $x$. It is easily verified that $(B_x:x\in V(G))$ is a tree decomposition of $G$ with width 2. Moreover, for each vertex $v$ of $G$, the subtree $T[v]$ is a path, which has pathwidth 1.  Thus every outerplanar graph has a $(2,1)$-good tree decomposition (since every outerplanar graph is a subgraph of an outerplanar triangulation). These constructions are generalised via the following theorem, which immediately implies \cref{LayeredPathwidthCharacterisation}. 
+\cref{LayeredPathwidthCharacterisation} is extended to capture local pathwidth by the following theorem, which also provides a structural description in terms of a tree decomposition with certain properties that we now introduce. If $T$ is a tree indexing a tree decomposition of a graph $G$, then for each vertex $v$ of $G$, let $T[v]$ denote the subtree of $T$ induced by those nodes corresponding to bags that contain $v$. Thus $T[v]$ is non-empty and connected. Say that a tree decomposition of a graph $G$ is \emph{$(w,p)$-good} if its width is at most $w$ and, for every $v\in V(G)$, the subtree $T[v]$ has pathwidth at most $p$. We illustrate this definition with two examples. Let $T$ be a tree, rooted at some vertex. For each node $x$ of $T$, introduce a bag $B_x$ consisting of $x$ and its parent node (or just $x$ if $x$ is the root). Then $(B_x:x\in V(T))$ is a tree decomposition of $T$ with width 1. Moreover, for each vertex $v$, the subtree $T[v]$ is a star, which has pathwidth 1. Thus every tree has a $(1,1)$-good tree decomposition. Now, consider an outerplanar triangulation $G$. Let $T$ be the weak dual tree (ignoring the outerface). For each node $x$ of $T$, let $B_x$ be the set of three vertices on the face corresponding to $x$. Then $(B_x:x\in V(G))$ is a tree decomposition of $G$ with width 2. Moreover, for each vertex $v$ of $G$, the subtree $T[v]$ is a path, which has pathwidth 1.  Thus every outerplanar graph has a $(2,1)$-good tree decomposition (since every outerplanar graph is a subgraph of an outerplanar triangulation). These constructions are generalised via the following theorem, which immediately implies \cref{LayeredPathwidthCharacterisation}. 
 
 \begin{theorem}
 \label{MainThm}
@@ -224,13 +222,8 @@ If a graph $G$ has a tree decomposition of width $k$ indexed by a tree of pathwi
 \end{lemma}
 
 \begin{proof}
-Let $(B_x:x\in V(T))$ be a tree decomposition of $G$ of width $k$. Let $(C_1,\dots,C_n)$ be a path decomposition of $T$ of width $p$. For $i\in\{1,\dots,n\}$, let $D_i:= \bigcup_{x\in C_i}B_x$. Then it is easily verified that $(D_1,\dots,D_n)$ is a path decomposition of $G$ of width $(p+1)(k+1)-1$ (since $|C_i|\leq p+1$ and $|B_x|\leq k+1$). 
+Let $(B_x:x\in V(T))$ be a tree decomposition of $G$ of width $k$. Let $(C_1,\dots,C_n)$ be a path decomposition of $T$ of width $p$. For $i\in\{1,\dots,n\}$, let $D_i:= \bigcup_{x\in C_i}B_x$. Then $(D_1,\dots,D_n)$ is a path decomposition of $G$ of width $(p+1)(k+1)-1$ (since $|C_i|\leq p+1$ and $|B_x|\leq k+1$). 
 \end{proof}
-
-\comment{DE: Also in the proof I would remove the uninformative phrase "it is
-easily verified that".\\
-DW: In my mind this phrase tells the reader that there is a little bit of work to do to reach the conclusion, which is informative for the reader who might not see the truth of the conclusion immediately. We use this phrase a couple of times, along with ``as can be easily verified''. \\
-PM: In situations like this, I always agree with David.}
 
 
 \begin{lemma}
@@ -448,9 +441,7 @@ incremental planarity testing \cite{dibattista.tamassia:on-line, dibattista.tama
 
 %\comment{GJ (splitting hairs): Should we mention that $G$ has a unique SPQR-tree, hence `the' SPQR-tree below? Or drop the `the'?}
 
-Let $G$ be a 2-connected graph. An \emph{SPQR-tree} $S$ of $G$ is a tree in which each node $a\in V(S)$ is associated with a minor $H_a$ of $G$.  If $G$ is a simple graph (without parallel edges), then
-\comment{DW: I thought we were assuming that $G$ is simple. Parallel edges make no difference to our main results. Can we just delete, ``If $G$ is a simple graph (without parallel edges), then''?}
- for any S- or R-node $a$ of $S$, $H_a$ is a simple graph. If $a$ is a P-node, on the other hand, then $H_a$ is a \emph{dipole graph} having two vertices and at least two parallel edges.  In all cases, $H_a$ is a minor of $G$.  For a P-node $a$ in which $H_a$ contains vertices $x$ and $y$ and $t$ parallel edges, this means that $G$ contains $t$ internally disjoint paths from $x$ to $y$. For each node $a$ of $S$ each edge $xy\in E(H_a)$ is classified either as a \emph{virtual edge} or a \emph{real edge}. An SPQR-tree $S$ is defined recursively as follows (see \cref{spqr}):\footnote{This definition includes P-nodes consisting of only two virtual edges, which some works exclude because they are unnecessary. However, their inclusion simplifies some of our analysis.}
+Let $G$ be a 2-connected graph. An \emph{SPQR-tree} $S$ of $G$ is a tree in which each node $a\in V(S)$ is associated with a minor $H_a$ of $G$.  For any S- or R-node $a$ of $S$, $H_a$ is a simple graph. If $a$ is a P-node, on the other hand, then $H_a$ is a \emph{dipole graph} having two vertices and at least two parallel edges.  In all cases, $H_a$ is a minor of $G$.  For a P-node $a$ in which $H_a$ contains vertices $x$ and $y$ and $t$ parallel edges, this means that $G$ contains $t$ internally disjoint paths from $x$ to $y$. For each node $a$ of $S$ each edge $xy\in E(H_a)$ is classified either as a \emph{virtual edge} or a \emph{real edge}. An SPQR-tree $S$ is defined recursively as follows (see \cref{spqr}):\footnote{This definition includes P-nodes consisting of only two virtual edges, which some works exclude because they are unnecessary. However, their inclusion simplifies some of our analysis.}
 
 \begin{figure}
   \begin{center}
@@ -651,17 +642,7 @@ tree.
   safe in the sense that the existence of a $Q_k$ minor in $G'$ implies
   the existence of a $Q_k$ minor in $G$.
 
-  With this simplification, the tree $T'$ is an SPQR-tree for the
-  graph $G'$ and every virtual edge is incident to $v$.  We now turn
-  our efforts to finding the $Q_k$ minor in $G'$.  Recall that $Q_k$ is obtained from a complete binary tree $T_k$ by adding a dominant vertex. We begin by finding a subdivision $T''$ of $T_{k+1}$ in $G'$. In this
-  subdivision, each edge of $T_{k+1}$ that joins a node to its left child
-  is represented by a path $P_{\mu\nu}$ joining a branching node $\mu$
-  to a distinctive node $\nu$. We show that $G'$ contains a path from $v$ to some \emph{anchor node} $\eta$
-  of $P_{\mu\nu}$ with $\eta\neq\nu$, which is vertex disjoint from $T''$ except for $\eta$.  Furthermore, except for their
-  common endpoint $v$, all of these paths are disjoint. The union of $T''$
-  and these paths contains a $Q_k$ minor since contracting the path from
-  each anchor node to its closest ancestor branching node produces $Q_k$.
-  See \cref{qk}.
+  With this simplification, the tree $T'$ is an SPQR-tree for the graph $G'$ and every virtual edge is incident to $v$.  We now turn our efforts to finding the $Q_k$ minor in $G'$.  Recall that $Q_k$ is obtained from a complete binary tree $T_k$ by adding a dominant vertex. We begin by finding a subdivision $T''$ of $T_{k+1}$ in $G'$. In this subdivision, each edge of $T_{k+1}$ that joins a node to its left child is represented by a path $P_{\mu\nu}$ joining a branching node $\mu$ to a distinctive node $\nu$. We show that $G'$ contains a path from $v$ to some \emph{anchor node} $\eta$ of $P_{\mu\nu}$ with $\eta\neq\nu$, which is vertex disjoint from $T''$ except for $\eta$.  Furthermore, except for their common endpoint $v$, all of these paths are disjoint. The union of $T''$ and these paths contains a $Q_k$ minor since contracting the path from each anchor node to its closest ancestor branching node produces $Q_k$. See \cref{qk}.
 
   \begin{figure}
     \begin{center}
@@ -1235,8 +1216,8 @@ Finally, we address the computational complexity of our main theorem.
   \let\endoldthebibliography=\endthebibliography
   \renewenvironment{thebibliography}[1]{%
     \begin{oldthebibliography}{#1}%
-      \setlength{\parskip}{0.4ex}%
-      \setlength{\itemsep}{0.4ex}%
+      \setlength{\parskip}{0.3ex}%
+      \setlength{\itemsep}{0.3ex}%
   }{\end{oldthebibliography}}
 \bibliographystyle{myNatbibStyle}
 \bibliography{LocalPathwidth}
