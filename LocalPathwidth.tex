@@ -21,17 +21,12 @@
 \newcommand{\CEIL}[1]{\ensuremath{\protect\left\lceil#1\right\rceil}}
 \newcommand{\FLOOR}[1]{\ensuremath{\protect\left\lfloor#1\right\rfloor}}
 \newcommand{\floor}[1]{\ensuremath{\protect\lfloor#1\rfloor}}
-\newcommand{\Oh}[1]{\ensuremath{\protect\mathcal{O}(#1)}}
-\newcommand{\etal}{\emph{et al.}}
-\newcommand{\Ze}{\ensuremath{\protect{\mathbb{Z}}}}
 \newcommand{\GG}{\ensuremath{\protect{\mathcal{G}}}}
 \renewcommand{\ge}{\geqslant}
 \renewcommand{\le}{\leqslant}
 \renewcommand{\geq}{\geqslant}
 \renewcommand{\leq}{\leqslant}
 
-%\DeclareMathOperator{\tn}{tn}
-%\DeclareMathOperator{\qn}{qn}
 \DeclareMathOperator{\tw}{tw}
 \DeclareMathOperator{\ltw}{ltw}
 \DeclareMathOperator{\pw}{pw}
@@ -92,10 +87,6 @@ with Bounded Layered Pathwidth}
 \begin{abstract}
 We prove that a minor-closed class of graphs has bounded layered pathwidth if and only if some apex-forest is not in the class. This generalises a theorem of Robertson and Seymour, which says that a minor-closed class of graphs has bounded pathwidth if and only if some forest is not in the class. 
 \end{abstract}
-
-%\newpage
-%\tableofcontents
-%\newpage
 
 \renewcommand{\thefootnote}{\arabic{footnote}}
 
@@ -709,7 +700,7 @@ tree.
   from $v$ to some \emph{anchor node} of $P_{ab}$ such that the
   internal vertices of $P'$ are disjoint from $V(P_{ab})\cup V(H_{b})$.
   We first describe the path $P'$ in $G'[\{c_2,c_3,c_4,c_5\}]$ and then
-  show that $P'$ does not contain any vertex of $V(H_b)\setminus\{v\}$.
+  show that $P'$ contains no vertex of $V(H_b)\setminus\{v\}$.
   There are two cases to consider:
   \begin{enumerate}
     \item $c_i$ is an R-node, for some $i\in\{2,\ldots,5\}$:  Since
