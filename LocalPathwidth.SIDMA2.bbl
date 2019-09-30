@@ -1,0 +1,261 @@
+\def\soft#1{\leavevmode\setbox0=\hbox{h}\dimen7=\ht0\advance \dimen7
+  by-1ex\relax\if t#1\relax\rlap{\raise.6\dimen7
+  \hbox{\kern.3ex\char'47}}#1\relax\else\if T#1\relax
+  \rlap{\raise.5\dimen7\hbox{\kern1.3ex\char'47}}#1\relax \else\if
+  d#1\relax\rlap{\raise.5\dimen7\hbox{\kern.9ex \char'47}}#1\relax\else\if
+  D#1\relax\rlap{\raise.5\dimen7 \hbox{\kern1.4ex\char'47}}#1\relax\else\if
+  l#1\relax \rlap{\raise.5\dimen7\hbox{\kern.4ex\char'47}}#1\relax \else\if
+  L#1\relax\rlap{\raise.5\dimen7\hbox{\kern.7ex
+  \char'47}}#1\relax\else\message{accent \string\soft \space #1 not
+  defined!}#1\relax\fi\fi\fi\fi\fi\fi}
+\begin{thebibliography}{34}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem[{Bannister et~al.(2018)Bannister, Devanny, Dujmovi\'c, Eppstein, and
+  Wood}]{BDDEW18}
+\textsc{Michael~J. Bannister, William~E. Devanny, Vida Dujmovi\'c, David
+  Eppstein, and David~R. Wood}.
+\newblock Track layouts, layered path decompositions, and leveled planarity.
+\newblock \emph{Algorithmica}, 2018.
+\newblock \doi{10.1007/s00453-018-0487-5}.
+
+\bibitem[{Bienstock et~al.(1991)Bienstock, Robertson, Seymour, and
+  Thomas}]{BRST-JCTB91}
+\textsc{Dan Bienstock, Neil Robertson, Paul Seymour, and Robin Thomas}.
+\newblock Quickly excluding a forest.
+\newblock \emph{J. Combin. Theory Ser. B}, 52(2):274--283, 1991.
+\newblock \doi{10.1016/0095-8956(91)90068-U}.
+\newblock \msn{1110475}.
+
+\bibitem[{Bodlaender(1996)}]{Bodlaender-SJC96}
+\textsc{Hans~L. Bodlaender}.
+\newblock A linear-time algorithm for finding tree-decompositions of small
+  treewidth.
+\newblock \emph{SIAM J. Comput.}, 25(6):1305--1317, 1996.
+\newblock \doi{10.1137/S0097539793251219}.
+
+\bibitem[{Bodlaender and Kloks(1991)}]{BK91}
+\textsc{Hans~L. Bodlaender and Ton Kloks}.
+\newblock Better algorithms for the pathwidth and treewidth of graphs.
+\newblock In \textsc{Javier~Leach Albert, Burkhard Monien, and Mario
+  Rodr{\'{\i}}guez{-}Artalejo}, eds., \emph{Proc. 18th International Colloquium
+  on Automata, Languages and Programming (ICALP '91)}, vol. 510 of
+  \emph{Lecture Notes in Computer Science}, pp. 544--555. Springer, 1991.
+\newblock \doi{10.1007/3-540-54233-7_162}.
+
+\bibitem[{Cattell et~al.(1996)Cattell, Dinneen, and Fellows}]{CDF96}
+\textsc{Kevin Cattell, Michael~J. Dinneen, and Michael~R. Fellows}.
+\newblock A simple linear-time algorithm for finding path-decompositions of
+  small width.
+\newblock \emph{Inf. Process. Lett.}, 57(4):197--203, 1996.
+\newblock \doi{10.1016/0020-0190(95)00190-5}.
+
+\bibitem[{Chekuri and Chuzhoy(2016)}]{CC16}
+\textsc{Chandra Chekuri and Julia Chuzhoy}.
+\newblock Polynomial bounds for the grid-minor theorem.
+\newblock \emph{J. ACM}, 63(5):40, 2016.
+\newblock \doi{10.1145/2820609}.
+\newblock \msn{3593966}.
+
+\bibitem[{Chuzhoy(2015)}]{Chuzhoy15}
+\textsc{Julia Chuzhoy}.
+\newblock Excluded grid theorem: Improved and simplified.
+\newblock In \emph{Proc 48th Annual ACM on Symposium on Theory of Computing},
+  STOC '15, pp. 645--654. ACM, 2015.
+\newblock \doi{10.1145/2746539.2746551}.
+
+\bibitem[{Dang(2018)}]{Dang18}
+\textsc{Thanh~N. Dang}.
+\newblock \emph{Minors of graphs of large path-width}.
+\newblock Ph.D. thesis, Georgia Institute of Technology, 2018.
+\newblock
+  \urlprefix\url{http://aco.gatech.edu/sites/default/files/documents/dang-thesis.pdf}.
+
+\bibitem[{Demaine et~al.(0405)Demaine, Fomin, Hajiaghayi, and
+  Thilikos}]{DH-SJDM04}
+\textsc{Erik~D. Demaine, Fedor~V. Fomin, MohammadTaghi Hajiaghayi, and
+  Dimitrios~M. Thilikos}.
+\newblock Bidimensional parameters and local treewidth.
+\newblock \emph{SIAM J. Discrete Math.}, 18(3):501--511, 2004/05.
+\newblock \doi{10.1137/S0895480103433410}.
+\newblock \msn{2134412}.
+
+\bibitem[{Demaine and Hajiaghayi(2004)}]{DH-SODA04}
+\textsc{Erik~D. Demaine and MohammadTaghi Hajiaghayi}.
+\newblock Equivalence of local treewidth and linear local treewidth and its
+  algorithmic applications.
+\newblock In \emph{Proc. 15th Annual ACM-SIAM Symposium on Discrete Algorithms
+  (SODA '04)}, pp. 840--849. SIAM, 2004.
+\newblock \urlprefix\url{http://dl.acm.org/citation.cfm?id=982792.982919}.
+
+\bibitem[{{Di Battista} and
+  Tamassia(1996{\natexlab{a}})}]{dibattista.tamassia:on-line}
+\textsc{Giuseppe {Di Battista} and Roberto Tamassia}.
+\newblock On-line maintenance of triconnected components with {SPQR}-trees.
+\newblock \emph{Algorithmica}, 15(4):302--318, 1996{\natexlab{a}}.
+\newblock \doi{10.1007/BF01961541}.
+
+\bibitem[{{Di Battista} and
+  Tamassia(1996{\natexlab{b}})}]{dibattista.tamassia:on-line2}
+\textsc{Giuseppe {Di Battista} and Roberto Tamassia}.
+\newblock On-line planarity testing.
+\newblock \emph{{SIAM} J. Comput.}, 25(5):956--997, 1996{\natexlab{b}}.
+\newblock \doi{10.1137/S0097539794280736}.
+
+\bibitem[{Diestel et~al.(1999)Diestel, Jensen, Gorbunov, and
+  Thomassen}]{DJGT-JCTB99}
+\textsc{Reinhard Diestel, Tommy~R. Jensen, Konstantin~Yu. Gorbunov, and Carsten
+  Thomassen}.
+\newblock Highly connected sets and the excluded grid theorem.
+\newblock \emph{J. Combin. Theory Ser. B}, 75(1):61--73, 1999.
+\newblock \doi{10.1006/jctb.1998.1862}.
+
+\bibitem[{Dujmovi\'c et~al.(2017)Dujmovi\'c, Eppstein, and Wood}]{DEW17}
+\textsc{Vida Dujmovi\'c, David Eppstein, and David~R. Wood}.
+\newblock Structure of graphs with locally restricted crossings.
+\newblock \emph{SIAM J. Disc. Math.}, 31(2):805--824, 2017.
+\newblock \doi{10.1137/16M1062879}.
+\newblock \msn{3639571}.
+
+\bibitem[{Dujmovi{\'c} et~al.(2019)Dujmovi{\'c}, Joret, Micek, Morin, Ueckerdt,
+  and Wood}]{DJMMUW}
+\textsc{Vida Dujmovi{\'c}, Gwena\"{e}l Joret, Piotr Micek, Pat Morin, Torsten
+  Ueckerdt, and David~R. Wood}.
+\newblock Planar graphs have bounded queue-number, 2019.
+\newblock To appear in FOCS '19. See \arXiv{1904.04791}.
+
+\bibitem[{Dujmovi{\'c} et~al.(2005)Dujmovi{\'c}, Morin, and Wood}]{DMW05}
+\textsc{Vida Dujmovi{\'c}, Pat Morin, and David~R. Wood}.
+\newblock Layout of graphs with bounded tree-width.
+\newblock \emph{SIAM J. Comput.}, 34(3):553--579, 2005.
+\newblock \doi{10.1137/S0097539702416141}.
+\newblock \msn{2137079}.
+
+\bibitem[{Dujmovi{\'c} et~al.(2017)Dujmovi{\'c}, Morin, and Wood}]{DMW17}
+\textsc{Vida Dujmovi{\'c}, Pat Morin, and David~R. Wood}.
+\newblock Layered separators in minor-closed graph classes with applications.
+\newblock \emph{J. Combin. Theory Ser. B}, 127:111--147, 2017.
+\newblock \doi{10.1016/j.jctb.2017.05.006}.
+\newblock \msn{3704658}.
+
+\bibitem[{Dujmovi{\'c} et~al.(2018)Dujmovi{\'c}, Morin, and Yelle}]{DMY}
+\textsc{Vida Dujmovi{\'c}, Pat Morin, and C{\'e}line Yelle}.
+\newblock Book embeddings of graphs with bounded layered pathwidth, 2018.
+\newblock In preparation.
+
+\bibitem[{Eppstein(2000)}]{Eppstein-Algo00}
+\textsc{David Eppstein}.
+\newblock Diameter and treewidth in minor-closed graph families.
+\newblock \emph{Algorithmica}, 27(3-4):275--291, 2000.
+\newblock \doi{10.1007/s004530010020}.
+\newblock \msn{1759751}.
+
+\bibitem[{Esperet and Joret(2014)}]{EJ14}
+\textsc{Louis Esperet and Gwena{\"{e}}l Joret}.
+\newblock Colouring planar graphs with three colours and no large monochromatic
+  components.
+\newblock \emph{Combinatorics, Probability {\&} Computing}, 23(4):551--570,
+  2014.
+\newblock \doi{10.1017/S0963548314000170}.
+\newblock \msn{3217360}.
+
+\bibitem[{Flum and Grohe(2006)}]{FG06}
+\textsc{J\"{o}rg Flum and Martin Grohe}.
+\newblock \emph{Parameterized complexity theory}.
+\newblock Springer-Verlag, 2006.
+\newblock \doi{10.1007/3-540-29953-X}.
+\newblock \msn{2238686}.
+
+\bibitem[{Grohe(2003)}]{Grohe-Comb03}
+\textsc{Martin Grohe}.
+\newblock Local tree-width, excluded minors, and approximation algorithms.
+\newblock \emph{Combinatorica}, 23(4):613--632, 2003.
+\newblock \doi{10.1007/s00493-003-0037-9}.
+\newblock \msn{2046826}.
+
+\bibitem[{Gutwenger and Mutzel(2000)}]{GM00}
+\textsc{Carsten Gutwenger and Petra Mutzel}.
+\newblock A linear time implementation of {SPQR}-trees.
+\newblock In \textsc{Joe Marks}, ed., \emph{Proc. 8th International Symposium
+  on Graph Drawing ({GD} 2000)}, vol. 1984 of \emph{Lecture Notes in Computer
+  Science}, pp. 77--90. Springer, 2000.
+\newblock \doi{10.1007/3-540-44541-2_8}.
+
+\bibitem[{Hopcroft and Tarjan(1973)}]{HT73}
+\textsc{John~E. Hopcroft and Robert~E. Tarjan}.
+\newblock Dividing a graph into triconnected components.
+\newblock \emph{SIAM J. Comput.}, 2:135--158, 1973.
+\newblock \doi{10.1137/0202012}.
+
+\bibitem[{Kloks(1993)}]{K93}
+\textsc{Ton Kloks}.
+\newblock \emph{Treewidth}.
+\newblock Ph.D. thesis, Utrecht University, Utrecht, the Netherlands, 1993.
+
+\bibitem[{K{\"u}ndgen and Pelsmajer(2008)}]{KP-DM08}
+\textsc{Andre K{\"u}ndgen and Michael~J. Pelsmajer}.
+\newblock Nonrepetitive colorings of graphs of bounded tree-width.
+\newblock \emph{Discrete Math.}, 308(19):4473--4478, 2008.
+\newblock \doi{10.1016/j.disc.2007.08.043}.
+\newblock \msn{2433774}.
+
+\bibitem[{Leaf and Seymour(2015)}]{LeafSeymour15}
+\textsc{Alexander Leaf and Paul Seymour}.
+\newblock Tree-width and planar minors.
+\newblock \emph{J. Comb. Theory, Ser. {B}}, 111:38--53, 2015.
+\newblock \doi{10.1016/j.jctb.2014.09.003}.
+\newblock \msn{3315599}.
+
+\bibitem[{Liu and Wood(2019)}]{LW1}
+\textsc{Chun-Hung Liu and David~R. Wood}.
+\newblock Clustered graph coloring and layered treewidth.
+\newblock 2019.
+\newblock \arXiv{1905.08969}.
+
+\bibitem[{Mac~Lane(1937)}]{MacLane37}
+\textsc{Saunders Mac~Lane}.
+\newblock A structural characterization of planar combinatorial graphs.
+\newblock \emph{Duke Math. J.}, 3(3):460--472, 1937.
+\newblock \doi{10.1215/S0012-7094-37-00336-3}.
+
+\bibitem[{Reed and Wood(2016)}]{ReedWood16}
+\textsc{Bruce Reed and David~R. Wood}.
+\newblock Forcing a sparse minor.
+\newblock \emph{Combin. Probab. Comput.}, 25:300--322, 2016.
+\newblock \doi{10.1017/S0963548315000073}.
+
+\bibitem[{Robertson and Seymour(1983)}]{RS-I}
+\textsc{Neil Robertson and Paul Seymour}.
+\newblock Graph minors. {I}. {E}xcluding a forest.
+\newblock \emph{J. Combin. Theory Ser. B}, 35(1):39--61, 1983.
+\newblock \doi{10.1016/0095-8956(83)90079-5}.
+\newblock \msn{723569}.
+
+\bibitem[{Robertson and Seymour(1986)}]{RS-V}
+\textsc{Neil Robertson and Paul Seymour}.
+\newblock Graph minors. {V}. {E}xcluding a planar graph.
+\newblock \emph{J. Combin. Theory Ser. B}, 41(1):92--114, 1986.
+\newblock \doi{10.1016/0095-8956(86)90030-4}.
+\newblock \msn{0854606}.
+
+\bibitem[{Robertson and Seymour(2003)}]{RS-XVI}
+\textsc{Neil Robertson and Paul Seymour}.
+\newblock Graph minors. {XVI}. {E}xcluding a non-planar graph.
+\newblock \emph{J. Combin. Theory Ser. B}, 89(1):43--76, 2003.
+\newblock \doi{10.1016/S0095-8956(03)00042-X}.
+\newblock \msn{1999736}.
+
+\bibitem[{Robertson et~al.(1994)Robertson, Seymour, and Thomas}]{RST94}
+\textsc{Neil Robertson, Paul Seymour, and Robin Thomas}.
+\newblock Quickly excluding a planar graph.
+\newblock \emph{J. Combin. Theory Ser. B}, 62(2):323--348, 1994.
+\newblock \doi{10.1006/jctb.1994.1073}.
+\newblock \msn{1305057}.
+
+\end{thebibliography}
