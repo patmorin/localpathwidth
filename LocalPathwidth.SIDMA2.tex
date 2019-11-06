@@ -135,7 +135,7 @@ Several interesting graph classes have bounded layered treewidth (despite having
 
 Part of the motivation for studying graphs with bounded layered treewidth or pathwidth is that such graphs have several desirable properties. For example, Norin proved that every $n$-vertex graph with layered treewidth $k$ has treewidth less than $2\sqrt{kn}$ (see \citep{DMW17}). This leads to a very simple proof of the Lipton-Tarjan separator theorem. A standard trick leads to an upper bound of $11\sqrt{kn}$ on the pathwidth (see \citep{DEW17}). 
 
-Another application is to stack layouts (or book embeddings), queue layouts and track layouts. \citet{DMW17} proved that every $n$-vertex graph  with layered treewidth $k$ has track- and queue-number $O(k\log n)$. This leads to the best known bounds on the track- and queue-number of several natural graph classes\footnote{Subsequent to the submission of this paper, improved bounds on the queue-number have been obtained \citep{DJMMUW}. Still it is open whether graphs of bounded layered treewidth have bounded queue-number}. For graphs with bounded layered pathwidth, the dependence on $n$ can be eliminated: \citet{BDDEW18} proved that every graph with layered pathwidth $k$ has track- and queue-number at most $3k$. Similarly, \citet{DMY} proved that every graph with layered pathwidth $k$ has stack-number at most $4k$. 
+Another application is to stack layouts (or book embeddings), queue layouts and track layouts. \citet{DMW17} proved that every $n$-vertex graph  with layered treewidth $k$ has track- and queue-number $O(k\log n)$. This leads to the best known bounds on the track- and queue-number of several natural graph classes\footnote{Subsequent to the submission of this paper, improved bounds on the queue-number have been obtained \citep{DJMMUW}. Still it is open whether graphs of bounded layered treewidth have bounded queue-number.}. For graphs with bounded layered pathwidth, the dependence on $n$ can be eliminated: \citet{BDDEW18} proved that every graph with layered pathwidth $k$ has track- and queue-number at most $3k$. Similarly, \citet{DMY} proved that every graph with layered pathwidth $k$ has stack-number at most $4k$. 
 
 Graph colouring is another application area for layered treewidth. \citet{EJ14} proved that every graph with maximum degree $\Delta$ and Euler genus $g$ is (improperly) 3-colourable with bounded clustering, which means that each monochromatic component has size bounded by some function of $\Delta$ and $g$. This resolved an old open problem even in the planar case $(g=0)$. The clustering function proved by \citet{EJ14} is roughly $O(\Delta^{32\Delta\,2^g})$. While \citet{EJ14} made no effort to reduce this function, their method will not lead to a  sub-exponential clustering bound. On the other hand, \citet{LW1} recently proved that every graph with layered treewidth $k$ and maximum degree $\Delta$ is 3-colourable with clustering $O(k^{19}\Delta^{37})$. In particular, every graph with Euler genus $g$ and maximum degree $\Delta$ is 3-colorable with clustering $O(g^{19}\Delta^{37})$. This greatly improves upon the clustering bound of \citet{EJ14}. Moreover, the proof by \citet{LW1} is relatively simple, avoiding many technicalities that arise when dealing with graph embeddings. This result highlights the utility of layered treewidth as a general tool. 
 
@@ -165,25 +165,22 @@ Now consider layered analogues of \cref{TreewidthCharacterisation,PathwidthChara
 A minor-closed class has bounded layered treewidth if and only if some apex graph is not in the class. 
 \end{theorem}
 
-\cref{LayeredTreewidthCharacterisation} generalises the above-mentioned result that graphs of bounded Euler genus have bounded layered treewidth. Note that the proof of \cref{LayeredTreewidthCharacterisation} uses the graph minor structure theorem of \citet{RS-XVI} and thus relies on \cref{TreewidthCharacterisation}.
+\cref{LayeredTreewidthCharacterisation} generalises the above-mentioned result that graphs of bounded Euler genus have bounded layered treewidth. 
 
 A graph $G$ is an \emph{apex-forest} if $G-v$ is a forest for some vertex $v$. 
-The following theorem is the main result of this paper. 
+The following analogue of \cref{LayeredTreewidthCharacterisation} is the main result of this paper. 
 
 \begin{theorem}
 \label{LayeredPathwidthCharacterisation}
 A minor-closed class has bounded layered pathwidth if and only if some apex-forest is not in the class. 
 \end{theorem}
 
-\comment{
-REF: It seems to me that it is not fair to say that the proof of Theorem 4 does not depend on Theorem 2. One reason is that the proof of Lemma 15 uses the result of Bienstock et al.\ and the result of Dang. Both of them imply Theorem 2. I didn't check how those theorems are proved, but it is expected that those proofs are not easier than the proof of Theorem 2.\\[1ex]
- DW: I agree. The lemma of  \citet{BRST-JCTB91}, which we use on page 9
- and in the proof of \cref{roof-lifting}, is merely a quantitative version of \cref{PathwidthCharacterisation}. Am I missing anything here?\\[1ex]
- I propose we replace ``However, unlike the  proof of \cref{LayeredTreewidthCharacterisation} which depends on \cref{TreewidthCharacterisation}, our proof of \cref{LayeredPathwidthCharacterisation} does not depend on \cref{PathwidthCharacterisation}. In fact, \cref{LayeredPathwidthCharacterisation} implies \cref{PathwidthCharacterisation}, as we now explain. ''\\
- by\\ ``Note that \cref{LayeredPathwidthCharacterisation} implies \cref{PathwidthCharacterisation} (although our proof of \cref{LayeredPathwidthCharacterisation} relies on \cref{PathwidthCharacterisation}), as we now explain. ''. Okay?
- }
- 
-\cref{LayeredPathwidthCharacterisation} is analogous to \cref{LayeredTreewidthCharacterisation} for layered treewidth. However, unlike the  proof of \cref{LayeredTreewidthCharacterisation} which depends on \cref{TreewidthCharacterisation}, our proof of \cref{LayeredPathwidthCharacterisation} does not depend on \cref{PathwidthCharacterisation}. In fact, \cref{LayeredPathwidthCharacterisation} implies \cref{PathwidthCharacterisation}, as we now explain. Let $T$ be a forest, and let $G$ be a graph with no $T$ minor. Let $T^+$ be the apex-forest obtained from $T$ by adding a dominant vertex $v$. Let $G^+$ be the graph obtained from $G$ by adding a dominant vertex $x$. Suppose for the sake of contradiction that $G^+$ contains a $T^+$-minor.  A $T^+$-minor in $G^+$ can be described by a mapping from the vertices of $T^+$ to vertex-disjoint trees in $G^+$ such that whenever two vertices in $T^+$ are adjacent, the corresponding two trees induce a connected subgraph of $G$. From this mapping, remove two (not necessarily distinct) trees, the image of $v$ and the tree (if it exists) that contains $x$. If the tree that contains $x$ was the image of a vertex $w$ in $T$, then instead map $w$ to the tree that was the image of $v$. The resulting mapping describes a $T$-minor in $G$, as claimed. This contradiction shows that $G^+$ is $T^+$-minor-free. By \cref{LayeredPathwidthCharacterisation}, $G^+$ has layered pathwidth at most $c=c(T^+)$. Since $G^+$ has radius 1, at most three layers are used. Thus $G^+$ and $G$ have pathwidth less than $3c$.
+\citet{DMW17} noted that \cref{LayeredTreewidthCharacterisation} implies \cref{TreewidthCharacterisation}. Similarly, we now show\footnote{While \cref{LayeredPathwidthCharacterisation} implies \cref{PathwidthCharacterisation}, we emphasise that our proof of \cref{LayeredPathwidthCharacterisation} relies on the above-mentioned quantitative version of \cref{PathwidthCharacterisation} by \citet{BRST-JCTB91}. Similarly, the proof of 
+\cref{LayeredTreewidthCharacterisation} uses the graph minor structure theorem of \citet{RS-XVI} and thus relies on 
+\cref{TreewidthCharacterisation}.} that \cref{LayeredPathwidthCharacterisation} implies \cref{PathwidthCharacterisation}. Let $T$ be a forest, and let $G$ be a graph with no $T$ minor. Let $T^+$ be the apex-forest obtained from $T$ by adding a dominant vertex $v$. Let $G^+$ be the graph obtained from $G$ by adding a dominant vertex $x$. Suppose for the sake of contradiction that $G^+$ contains a $T^+$-minor.  A $T^+$-minor in $G^+$ can be described by a mapping from the vertices of $T^+$ to vertex-disjoint trees in $G^+$ such that whenever two vertices in $T^+$ are adjacent, the corresponding two trees induce a connected subgraph of $G$. From this mapping, remove two (not necessarily distinct) trees, the image of $v$ and the tree (if it exists) that contains $x$. If the tree that contains $x$ was the image of a vertex $w$ in $T$, then instead map $w$ to the tree that was the image of $v$. The resulting mapping describes a $T$-minor in $G$, as claimed. This contradiction shows that $G^+$ is $T^+$-minor-free. By \cref{LayeredPathwidthCharacterisation}, $G^+$ has layered pathwidth at most $c=c(T^+)$. Since $G^+$ has radius 1, at most three layers are used. Thus $G^+$ and $G$ have pathwidth less than $3c$.
+
+
+
 
 
 
@@ -525,7 +522,7 @@ Let $G$ be a 2-connected graph. An \emph{SPQR-tree} $S$ of $G$ is a tree in whic
 %		\comment{DW: I am confused by the above. What is $k$? Perhaps $k$ is meant to be $r$. (PM: Yes, $k=r$, fixed now.) When we write, ``imply that there exists exactly one node $a_i$ in $S_i$'', do we mean ``imply that for each $i\in\{1,\dots,r\}$ there exists exactly one node $a_i$ in $S_i$''? (PM: Yes, I adjusted the wording accordingly.)}
 \end{enumerate}
 
-Let $S$ be an SPQR-tree of a 2-connected graph $G$. For each node $a$ of $S$, let $E_r(H_a)$ denote the set of real edges in $H_a$ and let $E_v(H_a)$ denote the multiset of virtual edges in $H_a$.  For a connected subtree $S'$ of $S$ we define $G[S']$ to be the subgraph of $G$ whose vertex set is $V(G[S'])=\bigcup_{a\in V(S')} V(H_a)$ and whose edge set is $E(G[S'])=\bigcup_{a\in V(S')} E_r(H_a)$. For a vertex $v\in V(G)$, let $S[v]:=S[\{a\in V(S): v\in V(H_a)\}]$, which is called the subtree of $S$ \emph{induced by} $v$. We make use of the following properties of $S$:
+Let $S$ be an SPQR-tree of a 2-connected graph $G$. For each node $a$ of $S$, let $E_r(H_a)$ denote the set of real edges in $H_a$ and let $E_v(H_a)$ denote the multiset of virtual edges in $H_a$.  For a connected subtree $S'$ of $S$, define $G[S']$ to be the subgraph of $G$ whose vertex set is $V(G[S'])=\bigcup_{a\in V(S')} V(H_a)$ and whose edge set is $E(G[S'])=\bigcup_{a\in V(S')} E_r(H_a)$. For a vertex $v\in V(G)$, let $S[v]:=S[\{a\in V(S): v\in V(H_a)\}]$, which is called the subtree of $S$ \emph{induced by} $v$. We make use of the following properties of $S$:
 
 \begin{enumerate}
    \item Every R-node and S-node is adjacent only to P-nodes and no two
@@ -793,7 +790,7 @@ Finally, we address the computational complexity of our main theorem.
 \end{theorem}
 
 \begin{proof}[Proof Sketch]
-   In the following, for each $i\in\{0,\ldots,5\}$, $f_i:\mathbb{N}\to\mathbb{N}$ is an unspecified function that is known to exist.  Since $G$ has no $Q_k$-minor, $|E(G)|\leq f_0(k)n$ (see \citep{ReedWood16}).  An SPQR-tree $S$ of $G$ can be computed in $O(f_0(k)n)$ time, and the total size of the graphs $\{H_a:a\in V(S)\}$ is at most $f_0(k)n$ (see \cite{GM00}).  A path decomposition of $H_a$ with width at most 2 for each S-node or P-node $a$ is easily computed in time linear in the size of $H_a$.  For each R-node $a$, the pathwidth of $H_a$ is at most $p=p(k)$ (since $p(k)$ is part of the $f_1(k)$).  Therefore,  a minimum-width path decomposition of $H_a$ for an R-node $a$ can be computed in $O(f_1(k)|V(H_a)|)$ time \cite{BK91,K93,CDF96,Bodlaender-SJC96}. These path decompositions are all that is needed to construct the tree $T$ and an $(f_2(k),f_3(k))$-good tree decomposition $\{ B_a:a\in V(T)\}$ in $O(f_1(k)n)$ time.
+   In the following, for each $i\in\{0,\ldots,5\}$, $f_i:\mathbb{N}\to\mathbb{N}$ is an unspecified function that is known to exist.  Since $G$ has no $Q_k$-minor, $|E(G)|\leq f_0(k)n$ (see \citep{ReedWood16}).  An SPQR-tree $S$ of $G$ can be computed in $O(f_0(k)n)$ time, and the total size of the graphs $\{H_a:a\in V(S)\}$ is at most $f_0(k)n$ (see \cite{GM00}).  A path decomposition of $H_a$ with width at most 2 for each S-node or P-node $a$ is easily computed in time linear in the size of $H_a$.  For each R-node $a$, the pathwidth of $H_a$ is at most $p=p(k)$ (since $p(k)$ is part of $f_1(k)$).  Therefore,  a minimum-width path decomposition of $H_a$ for an R-node $a$ can be computed in $O(f_1(k)|V(H_a)|)$ time \cite{BK91,K93,CDF96,Bodlaender-SJC96}. These path decompositions are all that is needed to construct the tree $T$ and an $(f_2(k),f_3(k))$-good tree decomposition $\{ B_a:a\in V(T)\}$ in $O(f_1(k)n)$ time.
 
 %Page 16, Line -12: I would suggest that revising ``$p=p(k)=O(1)$' by ``$p=p(k)$', as $p(k)$ is part of the $f_1(k)$.
 
@@ -1244,7 +1241,269 @@ Finally, we address the computational complexity of our main theorem.
       \setlength{\parskip}{0.3ex}%
       \setlength{\itemsep}{0.3ex}%
   }{\end{oldthebibliography}}
-\bibliographystyle{myNatbibStyle}
-\bibliography{LocalPathwidth}
+%\bibliographystyle{myNatbibStyle}
+%\bibliography{LocalPathwidth}
+
+\def\soft#1{\leavevmode\setbox0=\hbox{h}\dimen7=\ht0\advance \dimen7
+  by-1ex\relax\if t#1\relax\rlap{\raise.6\dimen7
+  \hbox{\kern.3ex\char'47}}#1\relax\else\if T#1\relax
+  \rlap{\raise.5\dimen7\hbox{\kern1.3ex\char'47}}#1\relax \else\if
+  d#1\relax\rlap{\raise.5\dimen7\hbox{\kern.9ex \char'47}}#1\relax\else\if
+  D#1\relax\rlap{\raise.5\dimen7 \hbox{\kern1.4ex\char'47}}#1\relax\else\if
+  l#1\relax \rlap{\raise.5\dimen7\hbox{\kern.4ex\char'47}}#1\relax \else\if
+  L#1\relax\rlap{\raise.5\dimen7\hbox{\kern.7ex
+  \char'47}}#1\relax\else\message{accent \string\soft \space #1 not
+  defined!}#1\relax\fi\fi\fi\fi\fi\fi}
+\begin{thebibliography}{34}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem[{Bannister et~al.(2018)Bannister, Devanny, Dujmovi\'c, Eppstein, and
+  Wood}]{BDDEW18}
+\textsc{Michael~J. Bannister, William~E. Devanny, Vida Dujmovi\'c, David
+  Eppstein, and David~R. Wood}.
+\newblock Track layouts, layered path decompositions, and leveled planarity.
+\newblock \emph{Algorithmica}, 2018.
+\newblock \doi{10.1007/s00453-018-0487-5}.
+
+\bibitem[{Bienstock et~al.(1991)Bienstock, Robertson, Seymour, and
+  Thomas}]{BRST-JCTB91}
+\textsc{Dan Bienstock, Neil Robertson, Paul Seymour, and Robin Thomas}.
+\newblock Quickly excluding a forest.
+\newblock \emph{J. Combin. Theory Ser. B}, 52(2):274--283, 1991.
+\newblock \doi{10.1016/0095-8956(91)90068-U}.
+\newblock \msn{1110475}.
+
+\bibitem[{Bodlaender(1996)}]{Bodlaender-SJC96}
+\textsc{Hans~L. Bodlaender}.
+\newblock A linear-time algorithm for finding tree-decompositions of small
+  treewidth.
+\newblock \emph{SIAM J. Comput.}, 25(6):1305--1317, 1996.
+\newblock \doi{10.1137/S0097539793251219}.
+
+\bibitem[{Bodlaender and Kloks(1991)}]{BK91}
+\textsc{Hans~L. Bodlaender and Ton Kloks}.
+\newblock Better algorithms for the pathwidth and treewidth of graphs.
+\newblock In \textsc{Javier~Leach Albert, Burkhard Monien, and Mario
+  Rodr{\'{\i}}guez{-}Artalejo}, eds., \emph{Proc. 18th International Colloquium
+  on Automata, Languages and Programming (ICALP '91)}, vol. 510 of
+  \emph{Lecture Notes in Computer Science}, pp. 544--555. Springer, 1991.
+\newblock \doi{10.1007/3-540-54233-7_162}.
+
+\bibitem[{Cattell et~al.(1996)Cattell, Dinneen, and Fellows}]{CDF96}
+\textsc{Kevin Cattell, Michael~J. Dinneen, and Michael~R. Fellows}.
+\newblock A simple linear-time algorithm for finding path-decompositions of
+  small width.
+\newblock \emph{Inf. Process. Lett.}, 57(4):197--203, 1996.
+\newblock \doi{10.1016/0020-0190(95)00190-5}.
+
+\bibitem[{Chekuri and Chuzhoy(2016)}]{CC16}
+\textsc{Chandra Chekuri and Julia Chuzhoy}.
+\newblock Polynomial bounds for the grid-minor theorem.
+\newblock \emph{J. ACM}, 63(5):40, 2016.
+\newblock \doi{10.1145/2820609}.
+\newblock \msn{3593966}.
+
+\bibitem[{Chuzhoy(2015)}]{Chuzhoy15}
+\textsc{Julia Chuzhoy}.
+\newblock Excluded grid theorem: Improved and simplified.
+\newblock In \emph{Proc 48th Annual ACM on Symposium on Theory of Computing},
+  STOC '15, pp. 645--654. ACM, 2015.
+\newblock \doi{10.1145/2746539.2746551}.
+
+\bibitem[{Dang(2018)}]{Dang18}
+\textsc{Thanh~N. Dang}.
+\newblock \emph{Minors of graphs of large path-width}.
+\newblock Ph.D. thesis, Georgia Institute of Technology, 2018.
+\newblock
+  \urlprefix\url{http://aco.gatech.edu/sites/default/files/documents/dang-thesis.pdf}.
+
+\bibitem[{Demaine et~al.(0405)Demaine, Fomin, Hajiaghayi, and
+  Thilikos}]{DH-SJDM04}
+\textsc{Erik~D. Demaine, Fedor~V. Fomin, MohammadTaghi Hajiaghayi, and
+  Dimitrios~M. Thilikos}.
+\newblock Bidimensional parameters and local treewidth.
+\newblock \emph{SIAM J. Discrete Math.}, 18(3):501--511, 2004/05.
+\newblock \doi{10.1137/S0895480103433410}.
+\newblock \msn{2134412}.
+
+\bibitem[{Demaine and Hajiaghayi(2004)}]{DH-SODA04}
+\textsc{Erik~D. Demaine and MohammadTaghi Hajiaghayi}.
+\newblock Equivalence of local treewidth and linear local treewidth and its
+  algorithmic applications.
+\newblock In \emph{Proc. 15th Annual ACM-SIAM Symposium on Discrete Algorithms
+  (SODA '04)}, pp. 840--849. SIAM, 2004.
+\newblock \urlprefix\url{http://dl.acm.org/citation.cfm?id=982792.982919}.
+
+\bibitem[{{Di Battista} and
+  Tamassia(1996{\natexlab{a}})}]{dibattista.tamassia:on-line}
+\textsc{Giuseppe {Di Battista} and Roberto Tamassia}.
+\newblock On-line maintenance of triconnected components with {SPQR}-trees.
+\newblock \emph{Algorithmica}, 15(4):302--318, 1996{\natexlab{a}}.
+\newblock \doi{10.1007/BF01961541}.
+
+\bibitem[{{Di Battista} and
+  Tamassia(1996{\natexlab{b}})}]{dibattista.tamassia:on-line2}
+\textsc{Giuseppe {Di Battista} and Roberto Tamassia}.
+\newblock On-line planarity testing.
+\newblock \emph{{SIAM} J. Comput.}, 25(5):956--997, 1996{\natexlab{b}}.
+\newblock \doi{10.1137/S0097539794280736}.
+
+\bibitem[{Diestel et~al.(1999)Diestel, Jensen, Gorbunov, and
+  Thomassen}]{DJGT-JCTB99}
+\textsc{Reinhard Diestel, Tommy~R. Jensen, Konstantin~Yu. Gorbunov, and Carsten
+  Thomassen}.
+\newblock Highly connected sets and the excluded grid theorem.
+\newblock \emph{J. Combin. Theory Ser. B}, 75(1):61--73, 1999.
+\newblock \doi{10.1006/jctb.1998.1862}.
+
+\bibitem[{Dujmovi\'c et~al.(2017)Dujmovi\'c, Eppstein, and Wood}]{DEW17}
+\textsc{Vida Dujmovi\'c, David Eppstein, and David~R. Wood}.
+\newblock Structure of graphs with locally restricted crossings.
+\newblock \emph{SIAM J. Disc. Math.}, 31(2):805--824, 2017.
+\newblock \doi{10.1137/16M1062879}.
+\newblock \msn{3639571}.
+
+\bibitem[{Dujmovi{\'c} et~al.(2019)Dujmovi{\'c}, Joret, Micek, Morin, Ueckerdt,
+  and Wood}]{DJMMUW}
+\textsc{Vida Dujmovi{\'c}, Gwena\"{e}l Joret, Piotr Micek, Pat Morin, Torsten
+  Ueckerdt, and David~R. Wood}.
+\newblock Planar graphs have bounded queue-number, 2019.
+\newblock To appear in FOCS '19. See \arXiv{1904.04791}.
+
+\bibitem[{Dujmovi{\'c} et~al.(2005)Dujmovi{\'c}, Morin, and Wood}]{DMW05}
+\textsc{Vida Dujmovi{\'c}, Pat Morin, and David~R. Wood}.
+\newblock Layout of graphs with bounded tree-width.
+\newblock \emph{SIAM J. Comput.}, 34(3):553--579, 2005.
+\newblock \doi{10.1137/S0097539702416141}.
+\newblock \msn{2137079}.
+
+\bibitem[{Dujmovi{\'c} et~al.(2017)Dujmovi{\'c}, Morin, and Wood}]{DMW17}
+\textsc{Vida Dujmovi{\'c}, Pat Morin, and David~R. Wood}.
+\newblock Layered separators in minor-closed graph classes with applications.
+\newblock \emph{J. Combin. Theory Ser. B}, 127:111--147, 2017.
+\newblock \doi{10.1016/j.jctb.2017.05.006}.
+\newblock \msn{3704658}.
+
+\bibitem[{Dujmovi{\'c} et~al.(2018)Dujmovi{\'c}, Morin, and Yelle}]{DMY}
+\textsc{Vida Dujmovi{\'c}, Pat Morin, and C{\'e}line Yelle}.
+\newblock Book embeddings of graphs with bounded layered pathwidth, 2018.
+\newblock In preparation.
+
+\bibitem[{Eppstein(2000)}]{Eppstein-Algo00}
+\textsc{David Eppstein}.
+\newblock Diameter and treewidth in minor-closed graph families.
+\newblock \emph{Algorithmica}, 27(3-4):275--291, 2000.
+\newblock \doi{10.1007/s004530010020}.
+\newblock \msn{1759751}.
+
+\bibitem[{Esperet and Joret(2014)}]{EJ14}
+\textsc{Louis Esperet and Gwena{\"{e}}l Joret}.
+\newblock Colouring planar graphs with three colours and no large monochromatic
+  components.
+\newblock \emph{Combinatorics, Probability {\&} Computing}, 23(4):551--570,
+  2014.
+\newblock \doi{10.1017/S0963548314000170}.
+\newblock \msn{3217360}.
+
+\bibitem[{Flum and Grohe(2006)}]{FG06}
+\textsc{J\"{o}rg Flum and Martin Grohe}.
+\newblock \emph{Parameterized complexity theory}.
+\newblock Springer-Verlag, 2006.
+\newblock \doi{10.1007/3-540-29953-X}.
+\newblock \msn{2238686}.
+
+\bibitem[{Grohe(2003)}]{Grohe-Comb03}
+\textsc{Martin Grohe}.
+\newblock Local tree-width, excluded minors, and approximation algorithms.
+\newblock \emph{Combinatorica}, 23(4):613--632, 2003.
+\newblock \doi{10.1007/s00493-003-0037-9}.
+\newblock \msn{2046826}.
+
+\bibitem[{Gutwenger and Mutzel(2000)}]{GM00}
+\textsc{Carsten Gutwenger and Petra Mutzel}.
+\newblock A linear time implementation of {SPQR}-trees.
+\newblock In \textsc{Joe Marks}, ed., \emph{Proc. 8th International Symposium
+  on Graph Drawing ({GD} 2000)}, vol. 1984 of \emph{Lecture Notes in Computer
+  Science}, pp. 77--90. Springer, 2000.
+\newblock \doi{10.1007/3-540-44541-2_8}.
+
+\bibitem[{Hopcroft and Tarjan(1973)}]{HT73}
+\textsc{John~E. Hopcroft and Robert~E. Tarjan}.
+\newblock Dividing a graph into triconnected components.
+\newblock \emph{SIAM J. Comput.}, 2:135--158, 1973.
+\newblock \doi{10.1137/0202012}.
+
+\bibitem[{Kloks(1993)}]{K93}
+\textsc{Ton Kloks}.
+\newblock \emph{Treewidth}.
+\newblock Ph.D. thesis, Utrecht University, Utrecht, the Netherlands, 1993.
+
+\bibitem[{K{\"u}ndgen and Pelsmajer(2008)}]{KP-DM08}
+\textsc{Andre K{\"u}ndgen and Michael~J. Pelsmajer}.
+\newblock Nonrepetitive colorings of graphs of bounded tree-width.
+\newblock \emph{Discrete Math.}, 308(19):4473--4478, 2008.
+\newblock \doi{10.1016/j.disc.2007.08.043}.
+\newblock \msn{2433774}.
+
+\bibitem[{Leaf and Seymour(2015)}]{LeafSeymour15}
+\textsc{Alexander Leaf and Paul Seymour}.
+\newblock Tree-width and planar minors.
+\newblock \emph{J. Comb. Theory, Ser. {B}}, 111:38--53, 2015.
+\newblock \doi{10.1016/j.jctb.2014.09.003}.
+\newblock \msn{3315599}.
+
+\bibitem[{Liu and Wood(2019)}]{LW1}
+\textsc{Chun-Hung Liu and David~R. Wood}.
+\newblock Clustered graph coloring and layered treewidth.
+\newblock 2019.
+\newblock \arXiv{1905.08969}.
+
+\bibitem[{Mac~Lane(1937)}]{MacLane37}
+\textsc{Saunders Mac~Lane}.
+\newblock A structural characterization of planar combinatorial graphs.
+\newblock \emph{Duke Math. J.}, 3(3):460--472, 1937.
+\newblock \doi{10.1215/S0012-7094-37-00336-3}.
+
+\bibitem[{Reed and Wood(2016)}]{ReedWood16}
+\textsc{Bruce Reed and David~R. Wood}.
+\newblock Forcing a sparse minor.
+\newblock \emph{Combin. Probab. Comput.}, 25:300--322, 2016.
+\newblock \doi{10.1017/S0963548315000073}.
+
+\bibitem[{Robertson and Seymour(1983)}]{RS-I}
+\textsc{Neil Robertson and Paul Seymour}.
+\newblock Graph minors. {I}. {E}xcluding a forest.
+\newblock \emph{J. Combin. Theory Ser. B}, 35(1):39--61, 1983.
+\newblock \doi{10.1016/0095-8956(83)90079-5}.
+\newblock \msn{723569}.
+
+\bibitem[{Robertson and Seymour(1986)}]{RS-V}
+\textsc{Neil Robertson and Paul Seymour}.
+\newblock Graph minors. {V}. {E}xcluding a planar graph.
+\newblock \emph{J. Combin. Theory Ser. B}, 41(1):92--114, 1986.
+\newblock \doi{10.1016/0095-8956(86)90030-4}.
+\newblock \msn{0854606}.
+
+\bibitem[{Robertson and Seymour(2003)}]{RS-XVI}
+\textsc{Neil Robertson and Paul Seymour}.
+\newblock Graph minors. {XVI}. {E}xcluding a non-planar graph.
+\newblock \emph{J. Combin. Theory Ser. B}, 89(1):43--76, 2003.
+\newblock \doi{10.1016/S0095-8956(03)00042-X}.
+\newblock \msn{1999736}.
+
+\bibitem[{Robertson et~al.(1994)Robertson, Seymour, and Thomas}]{RST94}
+\textsc{Neil Robertson, Paul Seymour, and Robin Thomas}.
+\newblock Quickly excluding a planar graph.
+\newblock \emph{J. Combin. Theory Ser. B}, 62(2):323--348, 1994.
+\newblock \doi{10.1006/jctb.1994.1073}.
+\newblock \msn{1305057}.
+
+\end{thebibliography}
 
 \end{document}
